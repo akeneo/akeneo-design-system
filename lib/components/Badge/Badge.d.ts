@@ -1,3 +1,4 @@
+import React from 'react';
 import { Level } from 'theme';
 declare type BadgeProps = {
     /**
@@ -12,5 +13,5 @@ declare type BadgeProps = {
 /**
  * Badges are used for items that must be: tagged, categorized, organized by keywords, or to highlight information.
  */
-declare const Badge: ({ level, children }: BadgeProps) => JSX.Element;
+declare const Badge: React.ForwardRefExoticComponent<BadgeProps & React.RefAttributes<HTMLSpanElement>>;
 export { Badge };
