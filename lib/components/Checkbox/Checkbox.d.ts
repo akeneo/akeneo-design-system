@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-declare type CheckboxChecked = 'true' | 'false' | 'mixed';
+declare type CheckboxChecked = boolean | 'mixed';
 declare type CheckboxProps = {
     checked: CheckboxChecked;
     readOnly?: boolean;
