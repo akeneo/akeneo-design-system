@@ -6,3 +6,4 @@ declare type BadgeProps = {
 };
 declare const Badge: React.ForwardRefExoticComponent<BadgeProps & React.RefAttributes<HTMLSpanElement>>;
 export { Badge };
+export type { BadgeProps };
