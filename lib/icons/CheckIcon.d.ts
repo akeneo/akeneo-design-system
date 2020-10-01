@@ -1,6 +1,3 @@
-declare const CheckIcon: ({ width, height, className }: {
-    width: number;
-    height: number;
-    className?: string | undefined;
-}) => JSX.Element;
+import { IconProps } from './IconProps';
+declare const CheckIcon: ({ title, size, color, className, ...props }: IconProps) => JSX.Element;
 export { CheckIcon };
