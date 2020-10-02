@@ -1,5 +1,3 @@
-declare const UsersIllustration: ({ width, height }: {
-    width: number;
-    height: number;
-}) => JSX.Element;
+import { IllustrationProps } from './IllustrationProps';
+declare const UsersIllustration: ({ title, size }: IllustrationProps) => JSX.Element;
 export { UsersIllustration };

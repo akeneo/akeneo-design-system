@@ -59,6 +59,7 @@ declare type Theme = {
         tertiary: string;
         warning: string;
         danger: string;
+        brand: string;
     };
     fontSize: FontSize;
     color: Color;

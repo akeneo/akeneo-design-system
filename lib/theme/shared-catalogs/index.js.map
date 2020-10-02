@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/theme/shared-catalogs/index.ts"],"names":[],"mappings":";;;;;;;;;;;;IACA,oCAA0C;IAE1C,IAAM,mBAAmB,GAAU;QACjC,KAAK,gBAAA;QACL,QAAQ,mBAAA;QACR,OAAO,EAAE;YACP,OAAO,EAAE,OAAO;YAChB,SAAS,EAAE,MAAM;YACjB,QAAQ,EAAE,MAAM;YAChB,OAAO,EAAE,QAAQ;YACjB,MAAM,EAAE,KAAK;YACb,KAAK,EAAE,SAAS;SACjB;KACF,CAAC;IAEM,kDAAmB"}
