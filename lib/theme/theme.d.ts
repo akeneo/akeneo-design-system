@@ -36,6 +36,7 @@ declare type Color = {
     purple40: string;
     purple60: string;
     purple80: string;
+    red10: string;
     red100: string;
     red120: string;
     red140: string;
@@ -44,6 +45,7 @@ declare type Color = {
     red60: string;
     red80: string;
     white: string;
+    yellow10: string;
     yellow100: string;
     yellow120: string;
     yellow140: string;
@@ -67,7 +69,8 @@ declare type Theme = {
 declare type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
 declare const getColor: (color: string) => (props: AkeneoThemedProps) => string;
 declare const getColorForLevel: (level: Level, gradient: number) => (props: AkeneoThemedProps) => string;
+declare const getBrandColor: () => (props: AkeneoThemedProps) => string;
 declare const getFontSize: (fontSize: string) => (props: AkeneoThemedProps) => string;
 export declare type AkeneoThemedProps<P = Record<string, unknown>> = ThemedStyledProps<P, Theme>;
 export type { Theme, FontSize, Color, Level };
-export { getColor, getColorForLevel, getFontSize };
+export { getColor, getBrandColor, getColorForLevel, getFontSize };
