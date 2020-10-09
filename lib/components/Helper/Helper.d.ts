@@ -1,8 +1,10 @@
-import React, { ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
+import { IconProps } from '../../icons';
 declare type Level = 'info' | 'warning' | 'error';
 declare type HelperProps = {
     inline?: boolean;
-    level: Level;
+    level?: Level;
+    icon?: ReactElement<IconProps>;
     children: ReactNode;
 };
 declare const Helper: React.ForwardRefExoticComponent<HelperProps & React.RefAttributes<HTMLDivElement>>;
