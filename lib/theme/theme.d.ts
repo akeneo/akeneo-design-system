@@ -44,7 +44,6 @@ declare type Color = {
     red40: string;
     red60: string;
     red80: string;
-    white: string;
     yellow10: string;
     yellow100: string;
     yellow120: string;
@@ -53,24 +52,32 @@ declare type Color = {
     yellow40: string;
     yellow60: string;
     yellow80: string;
+    brand20: string;
+    brand40: string;
+    brand60: string;
+    brand80: string;
+    brand100: string;
+    brand120: string;
+    brand140: string;
+    white: string;
+};
+declare type Palette = {
+    primary: string;
+    secondary: string;
+    tertiary: string;
+    warning: string;
+    danger: string;
 };
 declare type Theme = {
-    palette: {
-        primary: string;
-        secondary: string;
-        tertiary: string;
-        warning: string;
-        danger: string;
-        brand: string;
-    };
+    name: string;
+    palette: Palette;
     fontSize: FontSize;
     color: Color;
 };
 declare type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
-declare const getColor: (color: string) => (props: AkeneoThemedProps) => string;
+declare const getColor: (color: string, gradient?: number | undefined) => (props: AkeneoThemedProps) => string;
 declare const getColorForLevel: (level: Level, gradient: number) => (props: AkeneoThemedProps) => string;
-declare const getBrandColor: () => (props: AkeneoThemedProps) => string;
 declare const getFontSize: (fontSize: string) => (props: AkeneoThemedProps) => string;
 export declare type AkeneoThemedProps<P = Record<string, unknown>> = ThemedStyledProps<P, Theme>;
-export type { Theme, FontSize, Color, Level };
-export { getColor, getBrandColor, getColorForLevel, getFontSize };
+export type { Theme, FontSize, Color, Level, Palette };
+export { getColor, getColorForLevel, getFontSize };

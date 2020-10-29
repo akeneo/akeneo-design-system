@@ -1,2 +1,2 @@
-declare const StoryStyle: import("styled-components").StyledComponent<"div", any, {}, never>;
+declare const StoryStyle: import("styled-components").StyledComponent<"div", any, Record<string, unknown>, never>;
 export { StoryStyle };
