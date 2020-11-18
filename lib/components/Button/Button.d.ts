@@ -27,4 +27,4 @@ declare const Button: React.ForwardRefExoticComponent<Pick<React.ButtonHTMLAttri
     children?: ReactNode;
 } & React.RefAttributes<HTMLButtonElement>>;
 export { Button };
-export type { ButtonProps };
+export type { ButtonProps, ButtonSize };
