@@ -7,12 +7,14 @@ declare const SectionTitle: import("styled-components").StyledComponent<"div", a
 declare const Title: import("styled-components").StyledComponent<"div", any, Record<string, unknown>, never>;
 declare type ModalProps = {
     isOpen: boolean;
-    onClose: () => void;
     illustration?: ReactElement<IllustrationProps>;
+    closeTitle: string;
     children?: ReactNode;
+    onClose: () => void;
 };
 declare const Modal: {
-    ({ isOpen, onClose, illustration, children, ...rest }: ModalProps): React.ReactPortal | null;
+    ({ isOpen, onClose, illustration, closeTitle, children, ...rest }: ModalProps): React.ReactPortal | null;
     BottomButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
+    TopRightButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
 };
 export { Modal, SectionTitle, Title };
