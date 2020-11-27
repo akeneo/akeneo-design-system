@@ -1,6 +1,12 @@
 import React, { ReactElement } from 'react';
 import { IconProps } from '../../icons';
+import { ButtonProps } from '../../components/Button/Button';
 import { Override } from '../../shared';
+declare type IconButtonProps = Override<Omit<ButtonProps, 'children'>, {
+    ghost?: boolean | 'borderless';
+    icon: ReactElement<IconProps>;
+    title: string;
+}>;
 declare const IconButton: React.ForwardRefExoticComponent<Pick<Pick<Override<React.ButtonHTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>, {
     level?: "primary" | "secondary" | "tertiary" | "warning" | "danger" | undefined;
     ghost?: boolean | undefined;
@@ -18,3 +24,4 @@ declare const IconButton: React.ForwardRefExoticComponent<Pick<Pick<Override<Rea
     title: string;
 } & React.RefAttributes<HTMLButtonElement>>;
 export { IconButton };
+export type { IconButtonProps };
