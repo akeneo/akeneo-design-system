@@ -1,3 +1,3 @@
 import { IllustrationProps } from './IllustrationProps';
-declare const LocaleIllustration: ({ title, size }: IllustrationProps) => JSX.Element;
+declare const LocaleIllustration: ({ title, size, ...props }: IllustrationProps) => JSX.Element;
 export { LocaleIllustration };

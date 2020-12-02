@@ -1,3 +1,3 @@
 import { IllustrationProps } from './IllustrationProps';
-declare const CodingIllustration: ({ title, size }: IllustrationProps) => JSX.Element;
+declare const CodingIllustration: ({ title, size, ...props }: IllustrationProps) => JSX.Element;
 export { CodingIllustration };
