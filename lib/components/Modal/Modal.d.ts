@@ -5,6 +5,8 @@ declare const SectionTitle: import("styled-components").StyledComponent<"div", a
     color?: string | undefined;
 } & Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
 declare const Title: import("styled-components").StyledComponent<"div", any, Record<string, unknown>, never>;
+declare const BottomButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
+declare const TopRightButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
 declare type ModalProps = {
     isOpen: boolean;
     illustration?: ReactElement<IllustrationProps>;
@@ -12,9 +14,8 @@ declare type ModalProps = {
     children?: ReactNode;
     onClose: () => void;
 };
-declare const Modal: {
-    ({ isOpen, onClose, illustration, closeTitle, children, ...rest }: ModalProps): React.ReactPortal | null;
-    BottomButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
-    TopRightButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
+declare const Modal: React.FC<ModalProps> & {
+    BottomButtons: typeof BottomButtons;
+    TopRightButtons: typeof TopRightButtons;
 };
 export { Modal, SectionTitle, Title };
