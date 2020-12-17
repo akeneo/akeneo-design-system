@@ -1,5 +1,6 @@
 import React from 'react';
-declare const BooleanInput: React.ForwardRefExoticComponent<({
+import { InputProps } from '../InputProps';
+declare const BooleanInput: React.ForwardRefExoticComponent<(Pick<InputProps, "id" | "aria-labelledby"> & {
     clearable?: true | undefined;
     value: boolean | null;
     onChange?: ((value: boolean | null) => void) | undefined;
@@ -8,7 +9,7 @@ declare const BooleanInput: React.ForwardRefExoticComponent<({
     readOnly: boolean;
     yesLabel: string;
     noLabel: string;
-} & React.RefAttributes<HTMLDivElement>) | ({
+} & React.RefAttributes<HTMLDivElement>) | (Pick<InputProps, "id" | "aria-labelledby"> & {
     clearable?: false | undefined;
     value: boolean;
     onChange?: ((value: boolean) => void) | undefined;

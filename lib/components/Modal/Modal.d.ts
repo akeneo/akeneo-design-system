@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react';
 import { IllustrationProps } from '../../illustrations/IllustrationProps';
 declare const SectionTitle: import("styled-components").StyledComponent<"div", any, {
-    size?: "big" | "small" | "default" | undefined;
+    size?: "big" | "default" | "small" | undefined;
     color?: string | undefined;
 } & Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
 declare const Title: import("styled-components").StyledComponent<"div", any, Record<string, unknown>, never>;

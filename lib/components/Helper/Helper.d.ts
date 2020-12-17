@@ -9,3 +9,4 @@ declare type HelperProps = {
 };
 declare const Helper: React.ForwardRefExoticComponent<HelperProps & React.RefAttributes<HTMLDivElement>>;
 export { Helper };
+export type { HelperProps };

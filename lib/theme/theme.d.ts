@@ -77,7 +77,7 @@ declare type Theme = {
 declare type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
 declare const getColor: (color: string, gradient?: number | undefined) => (props: AkeneoThemedProps) => string;
 declare const getColorForLevel: (level: Level, gradient: number) => (props: AkeneoThemedProps) => string;
-declare const getFontSize: (fontSize: string) => (props: AkeneoThemedProps) => string;
+declare const getFontSize: (fontSize: keyof FontSize) => (props: AkeneoThemedProps) => string;
 export declare type AkeneoThemedProps<P = Record<string, unknown>> = ThemedStyledProps<P, Theme>;
 export type { Theme, FontSize, Color, Level, Palette };
 export { getColor, getColorForLevel, getFontSize };
