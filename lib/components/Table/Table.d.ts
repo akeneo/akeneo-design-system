@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react';
-declare type TableProps = {
+import { Override } from '../../shared';
+declare type TableProps = Override<React.HTMLAttributes<HTMLTableElement>, {
     isSelectable?: boolean;
     displayCheckbox?: boolean;
     children?: ReactNode;
-};
+}>;
 declare const Table: {
     ({ isSelectable, displayCheckbox, children, ...rest }: TableProps): JSX.Element;
     Header: React.ForwardRefExoticComponent<{
@@ -26,6 +27,7 @@ declare const Table: {
     } & React.RefAttributes<HTMLTableRowElement>>;
     Cell: React.ForwardRefExoticComponent<{
         children?: React.ReactNode;
+        rowTitle?: boolean | undefined;
     } & React.RefAttributes<HTMLTableCellElement>>;
     ActionCell: React.ForwardRefExoticComponent<{
         children?: React.ReactNode;
