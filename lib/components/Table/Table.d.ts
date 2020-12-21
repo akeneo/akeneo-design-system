@@ -8,6 +8,7 @@ declare type TableProps = Override<React.HTMLAttributes<HTMLTableElement>, {
 declare const Table: {
     ({ isSelectable, displayCheckbox, children, ...rest }: TableProps): JSX.Element;
     Header: React.ForwardRefExoticComponent<{
+        sticky?: number | undefined;
         children?: React.ReactNode;
     } & React.RefAttributes<HTMLTableSectionElement>>;
     HeaderCell: React.ForwardRefExoticComponent<{

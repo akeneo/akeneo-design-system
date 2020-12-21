@@ -11,4 +11,7 @@ declare const Content: import("styled-components").StyledComponent<"div", any, {
     height: number;
 } & Record<string, unknown> & import("styled-components").ThemeProps<import("../theme/theme").Theme>, never>;
 declare const MessageBarContainer: import("styled-components").StyledComponent<"div", any, {}, never>;
-export { StoryStyle, PreviewGrid, PreviewCard, PreviewContainer, LabelContainer, Subtitle, Content, MessageBarContainer };
+declare const Scrollable: import("styled-components").StyledComponent<"div", any, {
+    height: number;
+}, never>;
+export { StoryStyle, PreviewGrid, PreviewCard, PreviewContainer, LabelContainer, Subtitle, Content, MessageBarContainer, Scrollable, };
