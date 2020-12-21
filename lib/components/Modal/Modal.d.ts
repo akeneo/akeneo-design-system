@@ -1,5 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react';
 import { IllustrationProps } from '../../illustrations/IllustrationProps';
+import { Override } from '../../shared';
 declare const SectionTitle: import("styled-components").StyledComponent<"div", any, {
     size?: "big" | "default" | "small" | undefined;
     color?: string | undefined;
@@ -7,13 +8,13 @@ declare const SectionTitle: import("styled-components").StyledComponent<"div", a
 declare const Title: import("styled-components").StyledComponent<"div", any, Record<string, unknown>, never>;
 declare const BottomButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
 declare const TopRightButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
-declare type ModalProps = {
+declare type ModalProps = Override<React.HTMLAttributes<HTMLDivElement>, {
     isOpen: boolean;
     illustration?: ReactElement<IllustrationProps>;
     closeTitle: string;
     children?: ReactNode;
     onClose: () => void;
-};
+}>;
 declare const Modal: React.FC<ModalProps> & {
     BottomButtons: typeof BottomButtons;
     TopRightButtons: typeof TopRightButtons;
