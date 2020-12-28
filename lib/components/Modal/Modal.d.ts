@@ -9,7 +9,6 @@ declare const Title: import("styled-components").StyledComponent<"div", any, Rec
 declare const BottomButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
 declare const TopRightButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
 declare type ModalProps = Override<React.HTMLAttributes<HTMLDivElement>, {
-    isOpen: boolean;
     illustration?: ReactElement<IllustrationProps>;
     closeTitle: string;
     children?: ReactNode;
