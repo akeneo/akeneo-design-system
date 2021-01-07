@@ -7,3 +7,4 @@ declare const Checkbox: React.ForwardRefExoticComponent<Pick<React.HTMLAttribute
     children?: ReactNode;
 } & React.RefAttributes<HTMLDivElement>>;
 export { Checkbox };
+export type { CheckboxChecked };

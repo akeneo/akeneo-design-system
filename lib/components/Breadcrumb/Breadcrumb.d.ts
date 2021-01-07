@@ -7,6 +7,7 @@ declare const Breadcrumb: {
     ({ children, ...rest }: BreadcrumbProps): JSX.Element;
     Step: import("styled-components").StyledComponent<React.ForwardRefExoticComponent<{
         disabled?: boolean | undefined;
+        decorated?: boolean | undefined;
         children: React.ReactNode;
         target?: string | undefined;
         href?: string | undefined;
