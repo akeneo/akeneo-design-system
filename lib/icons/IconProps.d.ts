@@ -1,8 +1,11 @@
-import { SVGProps } from 'react';
-declare type IconProps = {
+import { RefObject, SVGProps } from 'react';
+import { Override } from '../shared';
+declare type IconProps = Override<SVGProps<SVGSVGElement>, {
     title?: string;
     size?: number;
     color?: string;
     className?: string;
-} & SVGProps<SVGSVGElement>;
+    animateOnHover?: boolean;
+    ref?: RefObject<SVGSVGElement>;
+}>;
 export type { IconProps };
