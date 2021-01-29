@@ -11,7 +11,7 @@ declare const IconButton: React.ForwardRefExoticComponent<Pick<Pick<Override<Rea
     level?: "primary" | "secondary" | "tertiary" | "warning" | "danger" | undefined;
     ghost?: boolean | undefined;
     disabled?: boolean | undefined;
-    size?: "default" | "small" | undefined;
+    size?: "small" | "default" | undefined;
     onClick?: ((event: React.SyntheticEvent<Element, Event>) => void) | undefined;
     href?: string | undefined;
     ariaLabel?: string | undefined;

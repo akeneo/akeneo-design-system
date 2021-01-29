@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode } from 'react';
 import { IllustrationProps } from '../../illustrations/IllustrationProps';
 import { Override } from '../../shared';
 declare const SectionTitle: import("styled-components").StyledComponent<"div", any, {
-    size?: "big" | "default" | "small" | undefined;
+    size?: "big" | "small" | "default" | undefined;
     color?: string | undefined;
 } & Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
 declare const Title: import("styled-components").StyledComponent<"div", any, Record<string, unknown>, never>;

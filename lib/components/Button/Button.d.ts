@@ -18,7 +18,7 @@ declare const Button: React.ForwardRefExoticComponent<Pick<React.ButtonHTMLAttri
     level?: "primary" | "secondary" | "tertiary" | "warning" | "danger" | undefined;
     ghost?: boolean | undefined;
     disabled?: boolean | undefined;
-    size?: "default" | "small" | undefined;
+    size?: "small" | "default" | undefined;
     onClick?: ((event: SyntheticEvent) => void) | undefined;
     href?: string | undefined;
     ariaLabel?: string | undefined;
