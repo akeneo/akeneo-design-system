@@ -17,5 +17,7 @@ declare type ModalProps = Override<React.HTMLAttributes<HTMLDivElement>, {
 declare const Modal: React.FC<ModalProps> & {
     BottomButtons: typeof BottomButtons;
     TopRightButtons: typeof TopRightButtons;
+    SectionTitle: typeof SectionTitle;
+    Title: typeof Title;
 };
-export { Modal, SectionTitle, Title };
+export { Modal };
