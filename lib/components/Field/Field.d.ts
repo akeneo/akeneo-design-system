@@ -4,8 +4,8 @@ declare type FieldChild = ReactElement<InputProps<unknown>> | ReactElement<Helpe
 declare type FieldProps = {
     label: string;
     incomplete?: boolean;
-    locale?: ReactElement<LocaleProps> | string;
-    channel?: string;
+    locale?: ReactElement<LocaleProps> | string | null;
+    channel?: string | null;
     children: FieldChild;
 };
 declare const Field: React.ForwardRefExoticComponent<FieldProps & React.RefAttributes<HTMLDivElement>>;
