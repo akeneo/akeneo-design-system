@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Override } from '../../shared';
 declare type SectionTitleProps = Override<React.HTMLAttributes<HTMLDivElement>, {
+    sticky?: number;
     children?: ReactNode;
 }>;
 declare const SectionTitle: {
