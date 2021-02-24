@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { HelperProps, InputProps, LocaleProps } from '../../components';
-declare type FieldChild = ReactElement<InputProps<unknown>> | ReactElement<HelperProps> | FieldChild[];
+declare type FieldChild = ReactElement<InputProps<unknown>> | ReactElement<HelperProps> | FieldChild[] | false | null;
 declare type FieldProps = {
     label: string;
     incomplete?: boolean;
