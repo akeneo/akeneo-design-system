@@ -6,6 +6,7 @@ declare type FieldProps = {
     incomplete?: boolean;
     locale?: ReactElement<LocaleProps> | string | null;
     channel?: string | null;
+    requiredLabel?: string;
     children: FieldChild;
 };
 declare const Field: React.ForwardRefExoticComponent<FieldProps & React.RefAttributes<HTMLDivElement>>;
