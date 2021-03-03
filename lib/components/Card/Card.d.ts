@@ -10,6 +10,7 @@ declare type CardProps = Override<React.HTMLAttributes<HTMLDivElement>, {
     isSelected?: boolean;
     disabled?: boolean;
     onSelect?: (isSelected: boolean) => void;
+    stacked?: boolean;
     children: ReactNode;
 }>;
 declare const Card: {
