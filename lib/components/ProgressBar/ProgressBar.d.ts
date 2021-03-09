@@ -1,5 +1,6 @@
 import React from 'react';
 import { Level } from '../../theme';
+declare type ProgressBarSize = 'small' | 'large';
 declare type ProgressBarPercent = number | 'indeterminate';
 declare const ProgressBar: React.ForwardRefExoticComponent<{
     level: Level;
@@ -7,6 +8,6 @@ declare const ProgressBar: React.ForwardRefExoticComponent<{
     light?: boolean | undefined;
     title?: string | undefined;
     progressLabel?: string | undefined;
-    size?: "small" | "large" | undefined;
+    size?: ProgressBarSize | undefined;
 } & React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>;
 export { ProgressBar };

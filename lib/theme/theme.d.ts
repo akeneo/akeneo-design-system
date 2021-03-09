@@ -74,11 +74,17 @@ declare type Theme = {
     palette: Palette;
     fontSize: FontSize;
     color: Color;
+    fontFamily: FontFamily;
+};
+declare type FontFamily = {
+    default: string;
+    monospace: string;
 };
 declare type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
 declare const getColor: (color: string, gradient?: number | undefined) => (props: AkeneoThemedProps) => string;
 declare const getColorForLevel: (level: Level, gradient: number) => (props: AkeneoThemedProps) => string;
 declare const getFontSize: (fontSize: keyof FontSize) => (props: AkeneoThemedProps) => string;
+declare const getFontFamily: (fontFamilyType: keyof FontFamily) => (props: AkeneoThemedProps) => string;
 export declare type AkeneoThemedProps<P = Record<string, unknown>> = ThemedStyledProps<P, Theme>;
-export type { Theme, FontSize, Color, Level, Palette };
-export { getColor, getColorForLevel, getFontSize };
+export type { Theme, FontSize, FontFamily, Color, Level, Palette };
+export { getColor, getFontFamily, getColorForLevel, getFontSize };

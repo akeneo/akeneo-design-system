@@ -11,6 +11,6 @@ declare const Breadcrumb: {
         children: React.ReactNode;
         target?: string | undefined;
         href?: string | undefined;
-    } & React.AnchorHTMLAttributes<HTMLAnchorElement> & React.RefAttributes<HTMLAnchorElement>>, any, Record<string, unknown>, never>;
+    } & React.AnchorHTMLAttributes<HTMLAnchorElement> & React.RefAttributes<HTMLAnchorElement>>, any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
 };
 export { Breadcrumb };

@@ -5,7 +5,7 @@ declare const SectionTitle: import("styled-components").StyledComponent<"div", a
     size?: "big" | "small" | "default" | undefined;
     color?: string | undefined;
 } & Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
-declare const Title: import("styled-components").StyledComponent<"div", any, Record<string, unknown>, never>;
+declare const Title: import("styled-components").StyledComponent<"div", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
 declare const BottomButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
 declare const TopRightButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
 declare type ModalProps = Override<React.HTMLAttributes<HTMLDivElement>, {

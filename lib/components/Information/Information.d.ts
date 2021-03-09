@@ -5,5 +5,5 @@ declare type InformationProps = {
     children: ReactNode;
 };
 declare const Information: React.ForwardRefExoticComponent<InformationProps & React.RefAttributes<HTMLDivElement>>;
-declare const HighlightTitle: import("styled-components").StyledComponent<"span", any, import("styled-components").ThemedStyledProps<Record<string, unknown>, import("../../theme/theme").Theme>, never>;
+declare const HighlightTitle: import("styled-components").StyledComponent<"span", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
 export { Information, HighlightTitle };

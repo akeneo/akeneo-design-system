@@ -14,7 +14,7 @@ declare const Table: {
     HeaderCell: React.ForwardRefExoticComponent<{
         isSortable?: boolean | undefined;
         onDirectionChange?: ((direction: "none" | "ascending" | "descending") => void) | undefined;
-        sortDirection?: "none" | "ascending" | "descending" | undefined;
+        sortDirection?: ("none" | "ascending" | "descending") | undefined;
         children?: React.ReactNode;
     } & React.RefAttributes<HTMLTableHeaderCellElement>>;
     Body: React.ForwardRefExoticComponent<{

@@ -1,22 +1,20 @@
 import React from 'react';
 import { InputProps } from '../InputProps';
-declare const BooleanInput: React.ForwardRefExoticComponent<(Pick<InputProps<boolean>, "id" | "aria-labelledby"> & {
-    clearable?: true | undefined;
+import { Override } from '../../../shared';
+declare type BooleanInputProps = Override<InputProps<boolean>, ({
+    clearable?: true;
     value: boolean | null;
-    onChange?: ((value: boolean | null) => void) | undefined;
+    onChange?: (value: boolean | null) => void;
     clearLabel: string;
-} & {
-    readOnly: boolean;
-    yesLabel: string;
-    noLabel: string;
-} & React.RefAttributes<HTMLDivElement>) | (Pick<InputProps<boolean>, "id" | "aria-labelledby"> & {
-    clearable?: false | undefined;
+} | {
+    clearable?: false;
     value: boolean;
-    onChange?: ((value: boolean) => void) | undefined;
-    clearLabel?: string | undefined;
-} & {
+    onChange?: (value: boolean) => void;
+    clearLabel?: string;
+}) & {
     readOnly: boolean;
     yesLabel: string;
     noLabel: string;
-} & React.RefAttributes<HTMLDivElement>)>;
+}>;
+declare const BooleanInput: React.ForwardRefExoticComponent<BooleanInputProps & React.RefAttributes<HTMLDivElement>>;
 export { BooleanInput };
