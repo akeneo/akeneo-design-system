@@ -11,6 +11,7 @@ declare type TextInputProps = Override<Override<React.InputHTMLAttributes<HTMLIn
     placeholder?: string;
     invalid?: boolean;
     characterLeftLabel?: string;
+    onSubmit?: () => void;
 }>;
 declare const TextInput: React.ForwardRefExoticComponent<TextInputProps & React.RefAttributes<HTMLInputElement>>;
 export { TextInput };

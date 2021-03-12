@@ -13,6 +13,7 @@ declare type NumberInputProps = Override<Override<React.InputHTMLAttributes<HTML
     max?: number;
     step?: number;
     invalid?: boolean;
+    onSubmit?: () => void;
 }>;
 declare const NumberInput: React.ForwardRefExoticComponent<NumberInputProps & React.RefAttributes<HTMLInputElement>>;
 export { NumberInput };

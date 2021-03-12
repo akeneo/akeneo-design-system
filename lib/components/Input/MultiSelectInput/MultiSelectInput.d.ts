@@ -20,9 +20,10 @@ declare type MultiMultiSelectInputProps = Override<Override<React.InputHTMLAttri
     invalid?: boolean;
     children?: ReactElement<OptionProps>[] | ReactElement<OptionProps>;
     verticalPosition?: VerticalPosition;
+    onSubmit?: () => void;
 }>;
 declare const MultiSelectInput: {
-    ({ id, placeholder, invalid, value, emptyResultLabel, children, onChange, removeLabel, openLabel, readOnly, verticalPosition, "aria-labelledby": ariaLabelledby, ...rest }: MultiMultiSelectInputProps): JSX.Element;
+    ({ id, placeholder, invalid, value, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, "aria-labelledby": ariaLabelledby, ...rest }: MultiMultiSelectInputProps): JSX.Element;
     Option: {
         ({ children, ...rest }: OptionProps): JSX.Element;
         displayName: string;
