@@ -1,7 +1,3 @@
-declare const useSelection: () => {
-    checked: boolean;
-    onChange: () => void;
-};
 declare const StoryStyle: import("styled-components").StyledComponent<"div", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../theme/theme").Theme>, never>;
 declare const PreviewGrid: import("styled-components").StyledComponent<"div", any, {
     width: number;
@@ -23,4 +19,4 @@ declare const SpaceContainer: import("styled-components").StyledComponent<"div",
     width: number;
     height: number;
 }, never>;
-export { StoryStyle, PreviewGrid, PreviewCard, PreviewContainer, LabelContainer, Subtitle, Content, MessageBarContainer, Scrollable, SpaceContainer, ListContextContainer, useSelection, };
+export { StoryStyle, PreviewGrid, PreviewCard, PreviewContainer, LabelContainer, Subtitle, Content, MessageBarContainer, Scrollable, SpaceContainer, ListContextContainer, };
