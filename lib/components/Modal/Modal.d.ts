@@ -1,6 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react';
 import { IllustrationProps } from '../../illustrations/IllustrationProps';
 import { Override } from '../../shared';
+import { useInModal } from './ModalContext';
 declare const SectionTitle: import("styled-components").StyledComponent<"div", any, {
     size?: "big" | "small" | "default" | undefined;
     color?: string | undefined;
@@ -20,4 +21,4 @@ declare const Modal: React.FC<ModalProps> & {
     SectionTitle: typeof SectionTitle;
     Title: typeof Title;
 };
-export { Modal };
+export { Modal, useInModal };

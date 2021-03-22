@@ -5,8 +5,8 @@ declare type DropdownProps = {
 declare const Dropdown: {
     ({ children, ...rest }: DropdownProps): JSX.Element;
     Overlay: {
-        ({ verticalPosition: defaultVerticalPosition, onClose, children }: {
-            verticalPosition?: ("up" | "down") | undefined;
+        ({ verticalPosition, onClose, children }: {
+            verticalPosition?: import("../../hooks/usePosition").VerticalPosition | undefined;
             onClose: () => void;
             children: React.ReactNode;
         }): JSX.Element;

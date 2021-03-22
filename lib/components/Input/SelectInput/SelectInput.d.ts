@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Override } from '../../../shared';
 import { InputProps } from '../InputProps';
-declare type VerticalPosition = 'up' | 'down';
+import { VerticalPosition } from '../../../hooks';
 declare type SelectInputProps = Override<Override<React.InputHTMLAttributes<HTMLDivElement>, InputProps<string | null>>, ({
     readOnly: true;
 } | {
