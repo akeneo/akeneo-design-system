@@ -14,6 +14,7 @@ declare type MediaFileInputProps = Override<Override<React.InputHTMLAttributes<H
     placeholder?: string;
     uploadingLabel: string;
     clearTitle: string;
+    clearable?: boolean;
     uploadErrorLabel: string;
     size?: 'default' | 'small';
     invalid?: boolean;
