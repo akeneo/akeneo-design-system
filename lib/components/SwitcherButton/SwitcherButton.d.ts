@@ -1,11 +1,10 @@
 import React, { ReactNode } from 'react';
-declare type SwitcherButtonProps = {
+declare const SwitcherButton: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "label" | "children" | "onClick" | "inline" | "deletable" | "onDelete"> & {
     label: string;
-    onClick?: () => void;
-    inline?: boolean;
-    deletable?: boolean;
-    onDelete?: () => void;
+    onClick?: (() => void) | undefined;
+    inline?: boolean | undefined;
+    deletable?: boolean | undefined;
+    onDelete?: (() => void) | undefined;
     children?: ReactNode;
-};
-declare const SwitcherButton: React.ForwardRefExoticComponent<SwitcherButtonProps & React.RefAttributes<HTMLDivElement>>;
+} & React.RefAttributes<HTMLDivElement>>;
 export { SwitcherButton };
