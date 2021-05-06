@@ -2,7 +2,8 @@ import React, { ReactNode } from 'react';
 import { Override } from '../../shared';
 declare type RemoveCellProps = React.HTMLAttributes<HTMLDivElement>;
 declare type RowProps = Override<React.HTMLAttributes<HTMLDivElement>, {
-    multiline?: boolean;
+    isMultiline?: boolean;
+    isSelected?: boolean;
 }>;
 declare type CellProps = Override<React.HTMLAttributes<HTMLDivElement>, {
     width: 'auto' | number;
@@ -14,7 +15,7 @@ declare type ListProps = {
 declare const List: {
     ({ children, ...rest }: ListProps): JSX.Element;
     Row: {
-        ({ children, multiline }: RowProps): JSX.Element;
+        ({ children, isMultiline, isSelected, ...rest }: RowProps): JSX.Element;
         displayName: string;
     };
     Cell: {
