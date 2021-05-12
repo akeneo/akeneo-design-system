@@ -5,3 +5,4 @@ declare type TableHeaderProps = {
 };
 declare const TableHeader: React.ForwardRefExoticComponent<TableHeaderProps & React.RefAttributes<HTMLTableSectionElement>>;
 export { TableHeader };
+export type { TableHeaderProps };

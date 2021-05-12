@@ -4,3 +4,4 @@ declare type TableBodyProps = {
 };
 declare const TableBody: React.ForwardRefExoticComponent<TableBodyProps & React.RefAttributes<HTMLTableSectionElement>>;
 export { TableBody };
+export type { TableBodyProps };

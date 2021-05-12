@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
-declare type TableCellProps = {
+declare const TableCell: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableCellElement>, "children" | "rowTitle"> & {
     children?: ReactNode;
-    rowTitle?: boolean;
-};
-declare const TableCell: React.ForwardRefExoticComponent<TableCellProps & React.RefAttributes<HTMLTableCellElement>>;
+    rowTitle?: boolean | undefined;
+} & React.RefAttributes<HTMLTableCellElement>>;
 export { TableCell };
