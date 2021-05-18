@@ -29,7 +29,7 @@ declare const Table: {
         rowIndex?: number | undefined;
         draggedElementIndex?: number | null | undefined;
     } & React.RefAttributes<HTMLTableRowElement>>;
-    Cell: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableCellElement>, "children" | "rowTitle"> & {
+    Cell: React.ForwardRefExoticComponent<Omit<React.TdHTMLAttributes<HTMLTableCellElement>, "children" | "rowTitle"> & {
         children?: React.ReactNode;
         rowTitle?: boolean | undefined;
     } & React.RefAttributes<HTMLTableCellElement>>;
