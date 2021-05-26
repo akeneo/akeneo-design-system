@@ -19,4 +19,5 @@ declare const SpaceContainer: import("styled-components").StyledComponent<"div",
     width: number;
     height: number;
 }, never>;
-export { StoryStyle, PreviewGrid, PreviewCard, PreviewContainer, LabelContainer, Subtitle, Content, MessageBarContainer, Scrollable, SpaceContainer, ListContextContainer, };
+declare const fakeFetcher: (page?: number, searchValue?: string) => Promise<unknown>;
+export { StoryStyle, PreviewGrid, PreviewCard, PreviewContainer, LabelContainer, Subtitle, Content, MessageBarContainer, Scrollable, SpaceContainer, ListContextContainer, fakeFetcher, };

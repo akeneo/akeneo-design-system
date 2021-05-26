@@ -19,10 +19,12 @@ declare const Dropdown: {
         disabled?: boolean | undefined;
         children: React.ReactNode;
     } & React.RefAttributes<HTMLDivElement>>;
+    Section: import("styled-components").StyledComponent<"div", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
     Title: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & {
         children: React.ReactNode;
     } & React.RefAttributes<HTMLDivElement>>;
-    ItemCollection: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & {
+    ItemCollection: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "onNextPage"> & {
+        onNextPage?: (() => void) | undefined;
         children: React.ReactNode;
     } & React.RefAttributes<HTMLDivElement>>;
 };
