@@ -15,8 +15,9 @@ declare const Dropdown: {
     Header: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & {
         children: React.ReactNode;
     } & React.RefAttributes<HTMLDivElement>>;
-    Item: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "disabled"> & {
+    Item: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "disabled" | "isActive"> & {
         disabled?: boolean | undefined;
+        isActive?: boolean | undefined;
         children: React.ReactNode;
     } & React.RefAttributes<HTMLDivElement>>;
     Section: import("styled-components").StyledComponent<"div", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
