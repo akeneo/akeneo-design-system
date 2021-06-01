@@ -8,6 +8,7 @@ declare type TabProps = {
 };
 declare type TabBarProps = {
     moreButtonTitle: string;
+    sticky?: number;
     children?: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 declare const TabBar: {
