@@ -1,11 +1,12 @@
-import { HTMLAttributes, ReactNode, RefObject } from 'react';
-declare type TabProps = {
+import React, { HTMLAttributes, ReactNode, RefObject } from 'react';
+import { Override } from '../../shared';
+declare type TabProps = Override<React.HTMLAttributes<HTMLDivElement>, {
     isActive: boolean;
     onClick?: () => void;
     children: ReactNode;
     parentRef?: RefObject<HTMLDivElement>;
     onVisibilityChange?: (newVisibility: boolean) => void;
-};
+}>;
 declare type TabBarProps = {
     moreButtonTitle: string;
     sticky?: number;
