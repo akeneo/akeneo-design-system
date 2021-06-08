@@ -1,5 +1,5 @@
 import React from 'react';
-declare type PillLevel = 'warning' | 'danger';
+declare type PillLevel = 'primary' | 'warning' | 'danger';
 declare type PillProps = {
     level?: PillLevel;
 };
