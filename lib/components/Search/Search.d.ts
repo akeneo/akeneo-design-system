@@ -7,7 +7,7 @@ declare type SearchProps = {
     onSearchChange: (searchValue: string) => void;
 };
 declare const Search: {
-    ({ children, placeholder, title, searchValue, onSearchChange }: SearchProps): JSX.Element;
+    ({ children, placeholder, title, searchValue, onSearchChange, ...rest }: SearchProps): JSX.Element;
     ResultCount: import("styled-components").StyledComponent<"span", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
     Separator: import("styled-components").StyledComponent<"div", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
 };
