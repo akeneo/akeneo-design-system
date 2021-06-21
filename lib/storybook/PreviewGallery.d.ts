@@ -12,6 +12,9 @@ declare const Content: import("styled-components").StyledComponent<"div", any, {
 } & Record<string, unknown> & import("styled-components").ThemeProps<import("../theme/theme").Theme>, never>;
 declare const ListContextContainer: import("styled-components").StyledComponent<"div", any, {}, never>;
 declare const Section: import("styled-components").StyledComponent<"div", any, {}, never>;
+declare const SpaceBetweenContainer: import("styled-components").StyledComponent<"div", any, {
+    direction: string;
+}, never>;
 declare const MessageBarContainer: import("styled-components").StyledComponent<"div", any, {}, never>;
 declare const Scrollable: import("styled-components").StyledComponent<"div", any, {
     height: number;
@@ -21,4 +24,4 @@ declare const SpaceContainer: import("styled-components").StyledComponent<"div",
     height: number;
 }, never>;
 declare const fakeFetcher: (page?: number, searchValue?: string) => Promise<unknown>;
-export { Content, fakeFetcher, LabelContainer, ListContextContainer, MessageBarContainer, PreviewCard, PreviewContainer, PreviewGrid, Scrollable, Section, SpaceContainer, StoryStyle, Subtitle, };
+export { Content, fakeFetcher, LabelContainer, ListContextContainer, MessageBarContainer, PreviewCard, PreviewContainer, PreviewGrid, Scrollable, Section, SpaceBetweenContainer, SpaceContainer, StoryStyle, Subtitle, };
