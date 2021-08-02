@@ -6,4 +6,5 @@ declare const fontSize: FontSize;
 declare const palette: Palette;
 declare const fontFamily: FontFamily;
 declare const BrandedPath: import("styled-components").StyledComponent<"path", any, Record<string, unknown> & import("styled-components").ThemeProps<import("./theme").Theme>, never>;
-export { color, fontFamily, fontSize, palette, CommonStyle, BrandedPath, placeholderStyle };
+declare const Placeholder: import("styled-components").StyledComponent<"div", any, {}, never>;
+export { color, fontFamily, fontSize, palette, CommonStyle, BrandedPath, Placeholder, placeholderStyle };
