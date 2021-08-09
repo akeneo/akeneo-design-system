@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 import { Override } from '../../shared';
-declare type SectionTitleProps = Override<React.HTMLAttributes<HTMLDivElement>, {
+declare type SectionTitleProps = Override<HTMLAttributes<HTMLDivElement>, {
     sticky?: number;
     children?: ReactNode;
 }>;
