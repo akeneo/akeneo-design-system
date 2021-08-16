@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Override } from '../../../shared';
-import { InputProps } from '../InputProps';
+import { InputProps } from '../common';
 import { VerticalPosition } from '../../../hooks';
 declare type SelectInputProps = Override<Override<React.InputHTMLAttributes<HTMLDivElement>, InputProps<string>>, ({
     clearable?: false;
@@ -20,7 +20,7 @@ declare type SelectInputProps = Override<Override<React.InputHTMLAttributes<HTML
     placeholder?: string;
     emptyResultLabel: string;
     clearLabel?: string;
-    openLabel?: string;
+    openLabel: string;
     invalid?: boolean;
     children?: ReactNode;
     verticalPosition?: VerticalPosition;

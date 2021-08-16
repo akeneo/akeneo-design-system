@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputProps } from '../InputProps';
+import { InputProps } from '../common/InputProps';
 import { Override } from '../../../shared';
 import { EditorProps } from './RichTextEditor';
 declare type TextAreaInputProps = Override<Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, ({

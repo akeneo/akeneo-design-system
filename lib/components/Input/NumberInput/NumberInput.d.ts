@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputProps } from '../InputProps';
+import { InputProps } from '../common/InputProps';
 import { Override } from '../../../shared';
 declare type NumberInputProps = Override<Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, ({
     readOnly: true;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Override } from '../../../shared';
-import { InputProps } from '../InputProps';
+import { InputProps } from '../common/InputProps';
 import { FileInfo } from './FileInfo';
 declare type MediaFileInputProps = Override<Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<FileInfo | null>>, ({
     readOnly: true;

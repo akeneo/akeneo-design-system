@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Override } from '../../../shared';
-import { InputProps } from '../InputProps';
+import { InputProps } from '../common';
 import { VerticalPosition } from '../../../hooks';
 declare type OptionProps = {
     value: string;
@@ -15,7 +15,7 @@ declare type MultiMultiSelectInputProps = Override<Override<React.InputHTMLAttri
     value: string[];
     placeholder?: string;
     emptyResultLabel: string;
-    openLabel?: string;
+    openLabel: string;
     removeLabel: string;
     invalid?: boolean;
     children?: ReactElement<OptionProps>[] | ReactElement<OptionProps>;
