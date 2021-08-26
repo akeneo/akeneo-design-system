@@ -7,16 +7,16 @@ declare type TableRowProps = Override<HTMLAttributes<HTMLTableRowElement>, {
     onClick?: (event: SyntheticEvent) => void;
     rowIndex?: number;
     onDragStart?: (rowIndex: number) => void;
-    draggedElementIndex?: number | null;
+    onDragEnd?: () => void;
 }>;
-declare const TableRow: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "onDragStart" | "isSelected" | "onSelectToggle" | "rowIndex" | "draggedElementIndex"> & {
+declare const TableRow: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "onDragEnd" | "onDragStart" | "isSelected" | "onSelectToggle" | "rowIndex"> & {
     children?: ReactNode;
     onSelectToggle?: ((isSelected: boolean) => void) | undefined;
     isSelected?: boolean | undefined;
     onClick?: ((event: SyntheticEvent) => void) | undefined;
     rowIndex?: number | undefined;
     onDragStart?: ((rowIndex: number) => void) | undefined;
-    draggedElementIndex?: number | null | undefined;
+    onDragEnd?: (() => void) | undefined;
 } & React.RefAttributes<HTMLTableRowElement>>;
 export { TableRow };
 export type { TableRowProps };

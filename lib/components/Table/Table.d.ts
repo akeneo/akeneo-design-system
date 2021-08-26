@@ -8,7 +8,7 @@ declare type TableProps = Override<React.HTMLAttributes<HTMLTableElement>, {
     isDragAndDroppable?: false;
     onReorder?: undefined;
 } | {
-    isDragAndDroppable: true;
+    isDragAndDroppable: boolean;
     onReorder: (updatedIndices: number[]) => void;
 })>;
 declare const Table: {
@@ -21,14 +21,14 @@ declare const Table: {
         children?: React.ReactNode;
     } & React.RefAttributes<HTMLTableHeaderCellElement>>;
     Body: React.ForwardRefExoticComponent<import("./TableBody/TableBody").TableBodyProps & React.RefAttributes<HTMLTableSectionElement>>;
-    Row: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "onDragStart" | "isSelected" | "onSelectToggle" | "rowIndex" | "draggedElementIndex"> & {
+    Row: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "onDragEnd" | "onDragStart" | "isSelected" | "onSelectToggle" | "rowIndex"> & {
         children?: React.ReactNode;
         onSelectToggle?: ((isSelected: boolean) => void) | undefined;
         isSelected?: boolean | undefined;
         onClick?: ((event: React.SyntheticEvent<Element, Event>) => void) | undefined;
         rowIndex?: number | undefined;
         onDragStart?: ((rowIndex: number) => void) | undefined;
-        draggedElementIndex?: number | null | undefined;
+        onDragEnd?: (() => void) | undefined;
     } & React.RefAttributes<HTMLTableRowElement>>;
     Cell: React.ForwardRefExoticComponent<Omit<React.TdHTMLAttributes<HTMLTableCellElement>, "children" | "rowTitle"> & {
         children?: React.ReactNode;
