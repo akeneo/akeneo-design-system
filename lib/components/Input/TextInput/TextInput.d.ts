@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { InputHTMLAttributes } from 'react';
 import { InputProps } from '../common/InputProps';
 import { Override } from '../../../shared';
-declare type TextInputProps = Override<Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, ({
+declare type TextInputProps = Override<Override<InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, ({
     readOnly: true;
 } | {
     readOnly?: boolean;

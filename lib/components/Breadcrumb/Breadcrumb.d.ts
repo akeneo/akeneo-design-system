@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
 import { LinkProps } from '../../components/Link/Link';
+declare type BreadcrumbChild = ReactElement<LinkProps> | null | boolean | undefined | BreadcrumbChild[];
 declare type BreadcrumbProps = {
-    children: ReactElement<LinkProps> | ReactElement<LinkProps>[];
+    children: BreadcrumbChild;
 };
 declare const Breadcrumb: {
     ({ children, ...rest }: BreadcrumbProps): JSX.Element;
