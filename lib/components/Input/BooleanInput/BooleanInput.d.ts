@@ -1,5 +1,5 @@
-import React from 'react';
-import { InputProps } from '../common/InputProps';
+import React, { ReactNode } from 'react';
+import { InputProps } from '../common';
 import { Override } from '../../../shared';
 declare type BooleanInputProps = Override<InputProps<boolean>, ({
     clearable?: true;
@@ -15,6 +15,8 @@ declare type BooleanInputProps = Override<InputProps<boolean>, ({
     readOnly: boolean;
     yesLabel: string;
     noLabel: string;
+    invalid?: boolean;
+    children?: ReactNode;
 }>;
 declare const BooleanInput: React.ForwardRefExoticComponent<BooleanInputProps & React.RefAttributes<HTMLDivElement>>;
 export { BooleanInput };
