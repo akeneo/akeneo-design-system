@@ -21,7 +21,7 @@ declare const Table: {
         children?: React.ReactNode;
     } & React.RefAttributes<HTMLTableHeaderCellElement>>;
     Body: React.ForwardRefExoticComponent<import("./TableBody/TableBody").TableBodyProps & React.RefAttributes<HTMLTableSectionElement>>;
-    Row: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "onDragEnd" | "onDragStart" | "isSelected" | "onSelectToggle" | "rowIndex"> & {
+    Row: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "onDragEnd" | "onDragStart" | "isSelected" | "rowIndex" | "onSelectToggle"> & {
         children?: React.ReactNode;
         onSelectToggle?: ((isSelected: boolean) => void) | undefined;
         isSelected?: boolean | undefined;

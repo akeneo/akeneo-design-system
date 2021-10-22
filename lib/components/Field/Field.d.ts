@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { HelperProps, InputProps, LocaleProps } from '../../components';
 declare type FieldChild = ReactElement<InputProps<unknown>> | ReactElement<HelperProps> | FieldChild[] | false | null | undefined;
 declare type FieldProps = {
@@ -9,6 +9,7 @@ declare type FieldProps = {
     requiredLabel?: string;
     fullWidth?: boolean;
     children: FieldChild;
+    actions?: ReactNode;
 };
 declare const Field: React.ForwardRefExoticComponent<FieldProps & React.RefAttributes<HTMLDivElement>>;
 export { Field };

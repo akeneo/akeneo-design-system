@@ -24,9 +24,11 @@ declare type SelectInputProps = Override<Override<React.InputHTMLAttributes<HTML
     invalid?: boolean;
     children?: ReactNode;
     verticalPosition?: VerticalPosition;
+    onNextPage?: () => void;
+    onSearchChange?: (searchValue: string) => void;
 }>;
 declare const SelectInput: {
-    ({ id, placeholder, invalid, value, emptyResultLabel, children, onChange, clearable, clearLabel, openLabel, readOnly, verticalPosition, "aria-labelledby": ariaLabelledby, ...rest }: SelectInputProps): JSX.Element;
+    ({ id, placeholder, invalid, value, emptyResultLabel, children, onChange, clearable, clearLabel, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, "aria-labelledby": ariaLabelledby, ...rest }: SelectInputProps): JSX.Element;
     Option: import("styled-components").StyledComponent<"span", any, {
         value: string;
     }, never>;

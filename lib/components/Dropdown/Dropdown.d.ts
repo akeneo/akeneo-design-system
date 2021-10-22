@@ -5,8 +5,10 @@ declare type DropdownProps = {
 declare const Dropdown: {
     ({ children, ...rest }: DropdownProps): JSX.Element;
     Overlay: {
-        ({ verticalPosition, parentRef, onClose, children, ...rest }: Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "verticalPosition" | "onClose" | "parentRef"> & {
+        ({ verticalPosition, horizontalPosition, dropdownOpenerVisible, parentRef, onClose, children, ...rest }: Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "verticalPosition" | "horizontalPosition" | "dropdownOpenerVisible" | "onClose" | "parentRef"> & {
             verticalPosition?: import("../../hooks/usePosition").VerticalPosition | undefined;
+            horizontalPosition?: import("../../hooks/usePosition").HorizontalPosition | undefined;
+            dropdownOpenerVisible?: boolean | undefined;
             onClose: () => void;
             children: React.ReactNode;
             parentRef?: React.RefObject<HTMLDivElement> | undefined;
