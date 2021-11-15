@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 declare type TableInputSelectProps = {
     value: ReactNode | null;
     onClear: () => void;
@@ -12,6 +12,8 @@ declare type TableInputSelectProps = {
     searchTitle: string;
     inError?: boolean;
     closeTick?: boolean;
+    bottomHelper?: ReactElement;
+    withSearch?: boolean;
 };
 declare const TableInputSelect: React.FC<TableInputSelectProps>;
 export { TableInputSelect };

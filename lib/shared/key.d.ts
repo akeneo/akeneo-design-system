@@ -7,6 +7,7 @@ declare enum Key {
     ArrowRight = "ArrowRight",
     ArrowDown = "ArrowDown",
     ArrowUp = "ArrowUp",
-    Delete = "Delete"
+    Delete = "Delete",
+    Tab = "Tab"
 }
 export { Key };

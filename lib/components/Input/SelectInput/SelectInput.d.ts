@@ -9,7 +9,7 @@ declare type SelectInputProps = Override<Override<React.InputHTMLAttributes<HTML
 } | {
     clearable?: false;
     readOnly?: boolean;
-    value: string;
+    value: string | null;
     onChange: (newValue: string) => void;
 } | {
     clearable?: true;

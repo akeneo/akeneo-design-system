@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-declare const SwitcherButton: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "label" | "children" | "onClick" | "inline" | "deletable" | "onDelete"> & {
+declare const SwitcherButton: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "label" | "inline" | "children" | "onClick" | "deletable" | "onDelete"> & {
     label: string;
     onClick?: (() => void) | undefined;
     inline?: boolean | undefined;

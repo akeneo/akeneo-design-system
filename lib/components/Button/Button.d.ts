@@ -14,7 +14,7 @@ declare type ButtonProps = Override<React.ButtonHTMLAttributes<HTMLButtonElement
     ariaDescribedBy?: string;
     children?: ReactNode;
 }>;
-declare const Button: React.ForwardRefExoticComponent<Omit<React.ButtonHTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "children" | "onClick" | "level" | "disabled" | "size" | "ghost" | "ariaLabel" | "ariaLabelledBy" | "ariaDescribedBy"> & {
+declare const Button: React.ForwardRefExoticComponent<Omit<React.ButtonHTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>, "size" | "disabled" | "href" | "children" | "onClick" | "level" | "ghost" | "ariaLabel" | "ariaLabelledBy" | "ariaDescribedBy"> & {
     level?: Level | undefined;
     ghost?: boolean | undefined;
     disabled?: boolean | undefined;

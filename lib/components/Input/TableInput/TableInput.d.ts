@@ -63,6 +63,8 @@ declare const TableInput: {
         searchTitle: string;
         inError?: boolean | undefined;
         closeTick?: boolean | undefined;
+        bottomHelper?: React.ReactElement<any, string | React.JSXElementConstructor<any>> | undefined;
+        withSearch?: boolean | undefined;
     }>;
 };
 export { TableInput };

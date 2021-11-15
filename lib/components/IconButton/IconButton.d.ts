@@ -7,7 +7,7 @@ declare type IconButtonProps = Override<Omit<ButtonProps, 'children'>, {
     icon: ReactElement<IconProps>;
     title: string;
 }>;
-declare const IconButton: React.ForwardRefExoticComponent<Omit<Omit<ButtonProps, "children">, "title" | "ghost" | "icon"> & {
+declare const IconButton: React.ForwardRefExoticComponent<Omit<Omit<ButtonProps, "children">, "title" | "icon" | "ghost"> & {
     ghost?: boolean | "borderless" | undefined;
     icon: ReactElement<IconProps>;
     title: string;

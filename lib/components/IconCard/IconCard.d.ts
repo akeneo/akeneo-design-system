@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { IconProps } from '../../icons';
 declare const IconCardGrid: import("styled-components").StyledComponent<"div", any, {}, never>;
-declare const IconCard: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "label" | "onClick" | "disabled" | "content" | "icon"> & {
+declare const IconCard: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "label" | "content" | "icon" | "disabled" | "onClick"> & {
     icon: ReactElement<IconProps>;
     label: string;
     content?: string | undefined;

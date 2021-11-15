@@ -18,7 +18,7 @@ declare const Dropdown: {
     Header: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & {
         children: React.ReactNode;
     } & React.RefAttributes<HTMLDivElement>>;
-    Item: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "disabled" | "isActive"> & {
+    Item: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "disabled" | "children" | "isActive"> & {
         disabled?: boolean | undefined;
         isActive?: boolean | undefined;
         children: React.ReactNode;
