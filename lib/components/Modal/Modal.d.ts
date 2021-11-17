@@ -9,6 +9,7 @@ declare const SectionTitle: import("styled-components").StyledComponent<"div", a
 declare const Title: import("styled-components").StyledComponent<"div", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
 declare const BottomButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
 declare const TopRightButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
+declare const TopLeftButtons: import("styled-components").StyledComponent<"div", any, {}, never>;
 declare type ModalProps = Override<React.HTMLAttributes<HTMLDivElement>, {
     illustration?: ReactElement<IllustrationProps>;
     closeTitle: string;
@@ -18,6 +19,7 @@ declare type ModalProps = Override<React.HTMLAttributes<HTMLDivElement>, {
 declare const Modal: React.FC<ModalProps> & {
     BottomButtons: typeof BottomButtons;
     TopRightButtons: typeof TopRightButtons;
+    TopLeftButtons: typeof TopLeftButtons;
     SectionTitle: typeof SectionTitle;
     Title: typeof Title;
 };
