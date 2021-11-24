@@ -31,5 +31,8 @@ declare const Dropdown: {
         onNextPage?: (() => void) | undefined;
         children: React.ReactNode;
     } & React.RefAttributes<HTMLDivElement>>;
+    Surtitle: React.FC<{
+        label: string;
+    }>;
 };
 export { Dropdown };
