@@ -10,7 +10,7 @@ declare type KeyFigureProps = {
     children?: ReactNode;
 };
 declare const KeyFigure: {
-    ({ icon, title, children }: KeyFigureProps): JSX.Element;
+    ({ icon, title, children, ...props }: KeyFigureProps): JSX.Element;
     Figure: ({ label, children }: FigureProps) => JSX.Element;
 };
 declare const KeyFigureGrid: import("styled-components").StyledComponent<"div", any, {}, never>;
