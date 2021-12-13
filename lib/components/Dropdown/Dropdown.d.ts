@@ -27,9 +27,11 @@ declare const Dropdown: {
     Title: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & {
         children: React.ReactNode;
     } & React.RefAttributes<HTMLDivElement>>;
-    ItemCollection: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "onNextPage"> & {
+    ItemCollection: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "onNextPage" | "noResultIllustration" | "noResultTitle"> & {
         onNextPage?: (() => void) | undefined;
-        children: React.ReactNode;
+        children?: React.ReactNode;
+        noResultIllustration?: React.ReactElement<import("../../illustrations/IllustrationProps").IllustrationProps, string | React.JSXElementConstructor<any>> | undefined;
+        noResultTitle?: string | undefined;
     } & React.RefAttributes<HTMLDivElement>>;
     Surtitle: React.FC<{
         label: string;
