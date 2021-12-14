@@ -4,6 +4,7 @@ declare type Level = 'info' | 'warning' | 'error' | 'success';
 declare type HelperProps = {
     inline?: boolean;
     level?: Level;
+    sticky?: number;
     icon?: ReactElement<IconProps>;
     children: ReactNode;
 };

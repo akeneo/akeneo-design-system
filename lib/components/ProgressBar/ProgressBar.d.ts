@@ -11,3 +11,4 @@ declare const ProgressBar: React.ForwardRefExoticComponent<{
     size?: ProgressBarSize | undefined;
 } & React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>;
 export { ProgressBar };
+export type { ProgressBarPercent };

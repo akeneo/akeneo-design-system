@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react';
-declare type DropdownProps = {
+import React, { HTMLAttributes, ReactNode } from 'react';
+import { Override } from '../../shared';
+declare type DropdownProps = Override<HTMLAttributes<HTMLDivElement>, {
     children?: ReactNode;
-};
+}>;
 declare const Dropdown: {
     ({ children, ...rest }: DropdownProps): JSX.Element;
     Overlay: {

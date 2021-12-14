@@ -25,7 +25,7 @@ declare const Table: {
         children?: React.ReactNode;
         onSelectToggle?: ((isSelected: boolean) => void) | undefined;
         isSelected?: boolean | undefined;
-        onClick?: ((event: React.SyntheticEvent<Element, Event>) => void) | undefined;
+        onClick?: ((event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void) | undefined;
         rowIndex?: number | undefined;
         onDragStart?: ((rowIndex: number) => void) | undefined;
         onDragEnd?: (() => void) | undefined;
