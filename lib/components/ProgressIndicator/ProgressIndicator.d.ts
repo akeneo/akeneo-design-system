@@ -1,15 +1,16 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, HTMLAttributes } from 'react';
 import { Override } from '../../shared';
 declare type StepState = 'done' | 'inprogress' | 'todo';
-declare type ProgressIndicatorProps = Override<React.HTMLAttributes<HTMLUListElement>, {
+declare type ProgressIndicatorProps = Override<HTMLAttributes<HTMLUListElement>, {
     children?: ReactNode;
 }>;
 declare const ProgressIndicator: {
     ({ children, ...rest }: ProgressIndicatorProps): JSX.Element;
-    Step: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLLIElement>, "children" | "current" | "state"> & {
+    Step: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLLIElement>, "disabled" | "children" | "current" | "state"> & {
         current?: boolean | undefined;
         state?: StepState | undefined;
-        children: ReactNode;
+        disabled?: boolean | undefined;
+        children?: ReactNode;
     } & React.RefAttributes<HTMLLIElement>>;
 };
 export { ProgressIndicator };
