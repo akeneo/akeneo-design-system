@@ -14,6 +14,7 @@ declare type TableInputSelectProps = {
     closeTick?: boolean;
     bottomHelper?: ReactElement;
     withSearch?: boolean;
+    onOpenChange?: (isOpen: boolean) => void;
 };
 declare const TableInputSelect: React.FC<TableInputSelectProps>;
 export { TableInputSelect };

@@ -24,7 +24,7 @@ declare const TableInput: {
     } & React.RefAttributes<HTMLTableRowElement>>;
     Cell: React.ForwardRefExoticComponent<React.TdHTMLAttributes<HTMLTableCellElement> & React.RefAttributes<HTMLTableCellElement>>;
     CellContent: {
-        ({ children, rowTitle, highlighted, inError, ...rest }: Omit<React.DetailedHTMLFactory<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "children" | "highlighted" | "inError" | "rowTitle"> & {
+        ({ children, rowTitle, highlighted, inError, ...rest }: Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "children" | "highlighted" | "inError" | "rowTitle"> & {
             rowTitle?: boolean | undefined;
             highlighted?: boolean | undefined;
             inError?: boolean | undefined;
@@ -65,6 +65,7 @@ declare const TableInput: {
         closeTick?: boolean | undefined;
         bottomHelper?: React.ReactElement<any, string | React.JSXElementConstructor<any>> | undefined;
         withSearch?: boolean | undefined;
+        onOpenChange?: ((isOpen: boolean) => void) | undefined;
     }>;
 };
 export { TableInput };

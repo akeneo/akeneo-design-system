@@ -1,6 +1,6 @@
-import { DetailedHTMLFactory, HTMLAttributes, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { Override } from '../../../../shared';
-declare type TableInputCellContentProps = Override<DetailedHTMLFactory<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
+declare type TableInputCellContentProps = Override<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
     rowTitle?: boolean;
     highlighted?: boolean;
     inError?: boolean;
