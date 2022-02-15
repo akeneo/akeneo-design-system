@@ -67,5 +67,19 @@ declare const TableInput: {
         withSearch?: boolean | undefined;
         onOpenChange?: ((isOpen: boolean) => void) | undefined;
     }>;
+    Measurement: React.FC<{
+        amount: string;
+        unit: string;
+        emptyResultLabel: string;
+        openLabel: string;
+        onChange: (amount: string | undefined, unit: string) => void;
+        units: {
+            value: string;
+            label: string;
+            symbol?: string | undefined;
+        }[];
+        highlighted?: boolean | undefined;
+        inError?: boolean | undefined;
+    }>;
 };
 export { TableInput };
