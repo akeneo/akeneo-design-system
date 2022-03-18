@@ -20,8 +20,9 @@ declare const Scrollable: import("styled-components").StyledComponent<"div", any
     height: number;
 }, never>;
 declare const SpaceContainer: import("styled-components").StyledComponent<"div", any, {
-    width: number;
-    height: number;
+    width?: number | undefined;
+    height?: number | undefined;
+    gap?: number | undefined;
 }, never>;
 declare const fakeFetcher: (page?: number, searchValue?: string) => Promise<unknown>;
 export { Content, fakeFetcher, LabelContainer, ListContextContainer, MessageBarContainer, PreviewCard, PreviewContainer, PreviewGrid, Scrollable, Section, SpaceBetweenContainer, SpaceContainer, StoryStyle, Subtitle, };
