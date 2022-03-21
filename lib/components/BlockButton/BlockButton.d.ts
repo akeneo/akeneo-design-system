@@ -1,7 +1,7 @@
-import React, { ReactElement, ReactNode, SyntheticEvent } from 'react';
+import React, { ButtonHTMLAttributes, ReactElement, ReactNode, SyntheticEvent } from 'react';
 import { Override } from '../../shared';
 import { IconProps } from '../../icons';
-declare type BlockButtonProps = Override<React.ButtonHTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>, {
+declare type BlockButtonProps = Override<ButtonHTMLAttributes<HTMLButtonElement>, {
     icon: ReactElement<IconProps>;
     disabled?: boolean;
     onClick?: (event: SyntheticEvent) => void;
@@ -10,7 +10,7 @@ declare type BlockButtonProps = Override<React.ButtonHTMLAttributes<HTMLButtonEl
     ariaDescribedBy?: string;
     children?: ReactNode;
 }>;
-declare const BlockButton: React.ForwardRefExoticComponent<Omit<React.ButtonHTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>, "icon" | "disabled" | "children" | "onClick" | "ariaLabel" | "ariaLabelledBy" | "ariaDescribedBy"> & {
+declare const BlockButton: React.ForwardRefExoticComponent<Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "icon" | "disabled" | "children" | "onClick" | "ariaLabel" | "ariaLabelledBy" | "ariaDescribedBy"> & {
     icon: ReactElement<IconProps>;
     disabled?: boolean | undefined;
     onClick?: ((event: SyntheticEvent) => void) | undefined;
