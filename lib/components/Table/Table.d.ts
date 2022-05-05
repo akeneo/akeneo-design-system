@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { Override } from '../../shared';
 declare type TableProps = Override<React.HTMLAttributes<HTMLTableElement>, {
     isSelectable?: boolean;
+    hasWarningRows?: boolean;
     displayCheckbox?: boolean;
     children?: ReactNode;
 } & ({
@@ -12,7 +13,7 @@ declare type TableProps = Override<React.HTMLAttributes<HTMLTableElement>, {
     onReorder: (updatedIndices: number[]) => void;
 })>;
 declare const Table: {
-    ({ isSelectable, displayCheckbox, isDragAndDroppable, onReorder, children, ...rest }: TableProps): JSX.Element;
+    ({ isSelectable, hasWarningRows, displayCheckbox, isDragAndDroppable, onReorder, children, ...rest }: TableProps): JSX.Element;
     Header: React.ForwardRefExoticComponent<import("./TableHeader/TableHeader").TableHeaderProps & React.RefAttributes<HTMLTableSectionElement>>;
     HeaderCell: React.ForwardRefExoticComponent<{
         isSortable?: boolean | undefined;
@@ -21,10 +22,11 @@ declare const Table: {
         children?: React.ReactNode;
     } & React.RefAttributes<HTMLTableHeaderCellElement>>;
     Body: React.ForwardRefExoticComponent<import("./TableBody/TableBody").TableBodyProps & React.RefAttributes<HTMLTableSectionElement>>;
-    Row: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "onDragEnd" | "onDragStart" | "isSelected" | "rowIndex" | "onSelectToggle"> & {
+    Row: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "onDragEnd" | "onDragStart" | "level" | "isSelected" | "rowIndex" | "onSelectToggle"> & {
         children?: React.ReactNode;
         onSelectToggle?: ((isSelected: boolean) => void) | undefined;
         isSelected?: boolean | undefined;
+        level?: "warning" | undefined;
         onClick?: ((event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void) | undefined;
         rowIndex?: number | undefined;
         onDragStart?: ((rowIndex: number) => void) | undefined;
