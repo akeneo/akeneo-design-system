@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Override } from '../../../shared';
-import { InputProps } from '../common/InputProps';
+import { InputProps } from '../common';
 declare type TagInputProps = Override<Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string[]>>, {
     value: string[];
     placeholder?: string;
