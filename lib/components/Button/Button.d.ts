@@ -1,11 +1,12 @@
-import React, { ReactNode, SyntheticEvent } from 'react';
+import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode, SyntheticEvent } from 'react';
 import { Level } from '../../theme';
 import { Override } from '../../shared';
 declare type ButtonSize = 'small' | 'default';
-declare type ButtonProps = Override<React.ButtonHTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>, {
+declare type ButtonProps = Override<ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement>, {
     level?: Level;
     ghost?: boolean;
     disabled?: boolean;
+    active?: boolean;
     size?: ButtonSize;
     onClick?: (event: SyntheticEvent) => void;
     href?: string;
@@ -14,10 +15,11 @@ declare type ButtonProps = Override<React.ButtonHTMLAttributes<HTMLButtonElement
     ariaDescribedBy?: string;
     children?: ReactNode;
 }>;
-declare const Button: React.ForwardRefExoticComponent<Omit<React.ButtonHTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>, "size" | "disabled" | "href" | "children" | "onClick" | "level" | "ghost" | "ariaLabel" | "ariaLabelledBy" | "ariaDescribedBy"> & {
+declare const Button: React.ForwardRefExoticComponent<Omit<React.ButtonHTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>, "size" | "active" | "disabled" | "href" | "children" | "onClick" | "level" | "ghost" | "ariaLabel" | "ariaLabelledBy" | "ariaDescribedBy"> & {
     level?: Level | undefined;
     ghost?: boolean | undefined;
     disabled?: boolean | undefined;
+    active?: boolean | undefined;
     size?: ButtonSize | undefined;
     onClick?: ((event: SyntheticEvent) => void) | undefined;
     href?: string | undefined;
