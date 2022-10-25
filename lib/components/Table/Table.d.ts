@@ -36,7 +36,7 @@ declare const Table: {
         children?: React.ReactNode;
         rowTitle?: boolean | undefined;
     } & React.RefAttributes<HTMLTableCellElement>>;
-    ActionCell: React.ForwardRefExoticComponent<{
+    ActionCell: React.ForwardRefExoticComponent<Omit<React.TdHTMLAttributes<HTMLTableCellElement>, "children"> & {
         children?: React.ReactNode;
     } & React.RefAttributes<HTMLTableCellElement>>;
 };

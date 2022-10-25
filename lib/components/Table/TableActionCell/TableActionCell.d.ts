@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
-declare type ActionCellProps = {
+declare const TableActionCell: React.ForwardRefExoticComponent<Omit<React.TdHTMLAttributes<HTMLTableCellElement>, "children"> & {
     children?: ReactNode;
-};
-declare const TableActionCell: React.ForwardRefExoticComponent<ActionCellProps & React.RefAttributes<HTMLTableCellElement>>;
+} & React.RefAttributes<HTMLTableCellElement>>;
 export { TableActionCell };
