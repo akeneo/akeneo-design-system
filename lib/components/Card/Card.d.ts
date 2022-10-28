@@ -1,20 +1,18 @@
 import React, { ReactNode } from 'react';
-import { Override } from '../../shared';
 declare type CardGridProps = {
     size?: 'normal' | 'big';
 };
 declare const CardGrid: import("styled-components").StyledComponent<"div", any, CardGridProps & Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
-declare type CardProps = Override<React.HTMLAttributes<HTMLDivElement>, {
+declare const Card: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "disabled" | "children" | "onSelect" | "src" | "loading" | "isSelected" | "stacked" | "fit"> & {
     src: string | null;
-    fit?: 'cover' | 'contain';
-    isSelected?: boolean;
-    disabled?: boolean;
-    onSelect?: (isSelected: boolean) => void;
-    stacked?: boolean;
+    fit?: "contain" | "cover" | undefined;
+    loading?: "eager" | "lazy" | undefined;
+    isSelected?: boolean | undefined;
+    disabled?: boolean | undefined;
+    onSelect?: ((isSelected: boolean) => void) | undefined;
+    stacked?: boolean | undefined;
     children: ReactNode;
-}>;
-declare const Card: {
-    ({ src, fit, isSelected, onSelect, disabled, children, onClick, stacked, ...rest }: CardProps): JSX.Element;
+} & React.RefAttributes<HTMLButtonElement>> & {
     BadgeContainer: import("styled-components").StyledComponent<"div", any, {
         stacked: boolean;
     } & Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
