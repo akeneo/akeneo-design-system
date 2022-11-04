@@ -8,7 +8,7 @@ declare type FieldProps = {
     channel?: string | null;
     requiredLabel?: string;
     fullWidth?: boolean;
-    children: FieldChild;
+    children?: FieldChild;
     actions?: ReactNode;
 };
 declare const Field: React.ForwardRefExoticComponent<FieldProps & React.RefAttributes<HTMLDivElement>>;
