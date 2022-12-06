@@ -17,6 +17,7 @@ declare type BooleanInputProps = Override<InputProps<boolean>, ({
     noLabel: string;
     invalid?: boolean;
     children?: ReactNode;
+    size?: 'normal' | 'small';
 }>;
 declare const BooleanInput: React.ForwardRefExoticComponent<BooleanInputProps & React.RefAttributes<HTMLDivElement>>;
 export { BooleanInput };
