@@ -93,7 +93,7 @@ type IconCardProps = Override<
     /**
      * The title to display
      */
-    label: string|JSX.Element;
+    label: string;
 
     /**
      * The content to display

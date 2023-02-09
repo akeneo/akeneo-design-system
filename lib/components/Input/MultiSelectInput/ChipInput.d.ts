@@ -6,6 +6,7 @@ declare type ChipValue = {
 declare type ChipInputProps = {
     id?: string;
     value: ChipValue[];
+    invalidValue: string[];
     invalid?: boolean;
     placeholder?: string;
     readOnly?: boolean;
