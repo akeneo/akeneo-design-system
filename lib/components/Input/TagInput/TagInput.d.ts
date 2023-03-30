@@ -8,6 +8,10 @@ declare type TagInputProps = Override<Override<React.InputHTMLAttributes<HTMLInp
     separators?: string[];
     onChange: (tags: string[]) => void;
     onSubmit?: () => void;
+    labels?: {
+        [key: string]: string;
+    };
+    invalidValue?: string[];
 }>;
 declare const TagInput: FC<TagInputProps>;
 export { TagInput };
