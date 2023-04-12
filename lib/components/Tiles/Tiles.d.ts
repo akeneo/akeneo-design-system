@@ -5,10 +5,17 @@ declare type Size = 'small' | 'big';
 declare type TilesProps = {
     children?: ReactNode;
     size?: Size;
+    inline?: boolean;
 };
-declare type TileProps = Override<React.HTMLAttributes<HTMLDivElement>, {
+declare type TileProps = Override<React.HTMLAttributes<HTMLDivElement>, ({
     icon: React.ReactElement<IconProps>;
-    size?: Size;
+    size?: 'big' | 'small';
+    inline?: false;
+} | {
+    size?: 'big' | 'small';
+    icon?: undefined;
+    inline?: true;
+}) & {
     selected?: boolean;
     onClick?: () => void;
 }>;
