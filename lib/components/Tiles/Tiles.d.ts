@@ -1,4 +1,4 @@
-import React, { ReactNode, FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { IconProps } from '../../icons';
 import { Override } from '../../';
 declare type Size = 'small' | 'big';
@@ -18,6 +18,7 @@ declare type TileProps = Override<React.HTMLAttributes<HTMLDivElement>, ({
 }) & {
     selected?: boolean;
     onClick?: () => void;
+    disabled?: boolean;
 }>;
 declare const Tile: FC<TileProps>;
 declare const Tiles: React.ForwardRefExoticComponent<TilesProps & React.RefAttributes<HTMLDivElement>>;
