@@ -13,7 +13,7 @@ declare type TableProps = Override<React.HTMLAttributes<HTMLTableElement>, {
     onReorder: (updatedIndices: number[]) => void;
 })>;
 declare const Table: {
-    ({ isSelectable, hasWarningRows, displayCheckbox, isDragAndDroppable, onReorder, children, ...rest }: TableProps): JSX.Element;
+    ({ isSelectable, hasWarningRows, displayCheckbox, isDragAndDroppable, onReorder, children, ...rest }: TableProps): React.JSX.Element;
     Header: React.ForwardRefExoticComponent<import("./TableHeader/TableHeader").TableHeaderProps & React.RefAttributes<HTMLTableSectionElement>>;
     HeaderCell: React.ForwardRefExoticComponent<{
         isSortable?: boolean | undefined;

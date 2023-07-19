@@ -7,7 +7,7 @@ declare type TableInputCellContentProps = Override<React.DetailedHTMLProps<React
     children?: ReactNode;
 }>;
 declare const TableInputCellContent: {
-    ({ children, rowTitle, highlighted, inError, ...rest }: TableInputCellContentProps): JSX.Element;
+    ({ children, rowTitle, highlighted, inError, ...rest }: TableInputCellContentProps): React.JSX.Element;
     displayName: string;
 };
 export { TableInputCellContent };

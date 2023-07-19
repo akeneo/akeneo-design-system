@@ -1,6 +1,7 @@
+import React from 'react';
 import { IllustrationProps } from './IllustrationProps';
 declare const ImportIllustration: {
-    ({ title, size, animateOnHover, ...props }: IllustrationProps): JSX.Element;
+    ({ title, size, animateOnHover, ...props }: IllustrationProps): React.JSX.Element;
     animatedMixin: import("styled-components").FlattenSimpleInterpolation;
 };
 export { ImportIllustration };

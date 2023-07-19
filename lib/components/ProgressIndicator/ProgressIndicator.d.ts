@@ -5,7 +5,7 @@ declare type ProgressIndicatorProps = Override<HTMLAttributes<HTMLUListElement>,
     children?: ReactNode;
 }>;
 declare const ProgressIndicator: {
-    ({ children, ...rest }: ProgressIndicatorProps): JSX.Element;
+    ({ children, ...rest }: ProgressIndicatorProps): React.JSX.Element;
     Step: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLLIElement>, "disabled" | "children" | "current" | "state" | "index"> & {
         current?: boolean | undefined;
         state?: StepState | undefined;

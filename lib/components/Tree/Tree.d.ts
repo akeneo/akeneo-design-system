@@ -15,7 +15,7 @@ declare type TreeProps<T = string> = {
     children?: ReactNode;
 };
 declare const Tree: {
-    <T>({ label, value, children, isLeaf, selected, isLoading, selectable, readOnly, onChange, onOpen, onClose, onClick, _isRoot, ...rest }: React.PropsWithChildren<TreeProps<T>>): JSX.Element;
+    <T>({ label, value, children, isLeaf, selected, isLoading, selectable, readOnly, onChange, onOpen, onClose, onClick, _isRoot, ...rest }: React.PropsWithChildren<TreeProps<T>>): React.JSX.Element;
     displayName: string;
 };
 export { Tree };

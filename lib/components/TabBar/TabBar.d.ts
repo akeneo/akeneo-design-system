@@ -13,7 +13,7 @@ declare type TabBarProps = {
     children?: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 declare const TabBar: {
-    ({ moreButtonTitle, children, ...rest }: TabBarProps): JSX.Element;
-    Tab: ({ children, onClick, isActive, parentRef, onVisibilityChange, ...rest }: TabProps) => JSX.Element;
+    ({ moreButtonTitle, children, ...rest }: TabBarProps): React.JSX.Element;
+    Tab: ({ children, onClick, isActive, parentRef, onVisibilityChange, ...rest }: TabProps) => React.JSX.Element;
 };
 export { TabBar };

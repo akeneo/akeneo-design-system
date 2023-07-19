@@ -5,5 +5,5 @@ declare type TableInputTextProps = Override<Override<React.InputHTMLAttributes<H
     highlighted?: boolean;
     inError?: boolean;
 }>;
-declare const TableInputText: ({ children, value, ...rest }: TableInputTextProps) => JSX.Element;
+declare const TableInputText: ({ children, value, ...rest }: TableInputTextProps) => React.JSX.Element;
 export { TableInputText };

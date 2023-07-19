@@ -7,7 +7,7 @@ declare type TableInputProps = Override<React.HTMLAttributes<HTMLTableElement>, 
     onReorder?: (updatedIndices: number[]) => void | undefined;
 }>;
 declare const TableInput: {
-    ({ children, readOnly, isDragAndDroppable, onReorder, ...rest }: TableInputProps): JSX.Element;
+    ({ children, readOnly, isDragAndDroppable, onReorder, ...rest }: TableInputProps): React.JSX.Element;
     Header: React.ForwardRefExoticComponent<{
         children?: React.ReactNode;
     } & React.RefAttributes<HTMLTableSectionElement>>;
@@ -29,17 +29,17 @@ declare const TableInput: {
             highlighted?: boolean | undefined;
             inError?: boolean | undefined;
             children?: React.ReactNode;
-        }): JSX.Element;
+        }): React.JSX.Element;
         displayName: string;
     };
     Text: ({ children, value, ...rest }: Omit<Override<React.InputHTMLAttributes<HTMLInputElement>, import("../common/InputProps").InputProps<string>>, "highlighted" | "inError"> & {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;
-    }) => JSX.Element;
+    }) => React.JSX.Element;
     Number: ({ children, value, ...rest }: Omit<Override<React.InputHTMLAttributes<HTMLInputElement>, import("../common/InputProps").InputProps<string>>, "highlighted" | "inError"> & {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;
-    }) => JSX.Element;
+    }) => React.JSX.Element;
     Boolean: React.FC<Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "value" | "clearLabel" | "yesLabel" | "noLabel" | "highlighted" | "inError" | "openDropdownLabel"> & {
         value: boolean | null;
         onChange: (value: boolean | null) => void;

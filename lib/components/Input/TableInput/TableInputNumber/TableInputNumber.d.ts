@@ -5,5 +5,5 @@ declare type TableInputNumberProps = Override<Override<React.InputHTMLAttributes
     highlighted?: boolean;
     inError?: boolean;
 }>;
-declare const TableInputNumber: ({ children, value, ...rest }: TableInputNumberProps) => JSX.Element;
+declare const TableInputNumber: ({ children, value, ...rest }: TableInputNumberProps) => React.JSX.Element;
 export { TableInputNumber };

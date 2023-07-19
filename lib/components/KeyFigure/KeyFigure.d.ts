@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { IconProps } from '../../icons';
 declare type FigureProps = {
     label?: string;
@@ -10,8 +10,8 @@ declare type KeyFigureProps = {
     children?: ReactNode;
 };
 declare const KeyFigure: {
-    ({ icon, title, children, ...props }: KeyFigureProps): JSX.Element;
-    Figure: ({ label, children }: FigureProps) => JSX.Element;
+    ({ icon, title, children, ...props }: KeyFigureProps): React.JSX.Element;
+    Figure: ({ label, children }: FigureProps) => React.JSX.Element;
 };
 declare const KeyFigureGrid: import("styled-components").StyledComponent<"div", any, {}, never>;
 export { KeyFigure, KeyFigureGrid };

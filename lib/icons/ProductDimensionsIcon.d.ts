@@ -1,3 +1,4 @@
+import React from 'react';
 import { IconProps } from './IconProps';
-declare const ProductDimensionsIcon: ({ title, size, color, ...props }: IconProps) => JSX.Element;
+declare const ProductDimensionsIcon: ({ title, size, color, ...props }: IconProps) => React.JSX.Element;
 export { ProductDimensionsIcon };

@@ -13,24 +13,24 @@ declare type ListProps = {
     children?: ReactNode;
 };
 declare const List: {
-    ({ children, ...rest }: ListProps): JSX.Element;
+    ({ children, ...rest }: ListProps): React.JSX.Element;
     Row: {
-        ({ children, isMultiline, isSelected, ...rest }: RowProps): JSX.Element;
+        ({ children, isMultiline, isSelected, ...rest }: RowProps): React.JSX.Element;
         displayName: string;
     };
     Cell: {
-        ({ title, width, children, ...rest }: CellProps): JSX.Element;
+        ({ title, width, children, ...rest }: CellProps): React.JSX.Element;
         displayName: string;
     };
     TitleCell: import("styled-components").StyledComponent<"div", any, {
         width: 'auto' | number;
     } & Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
     ActionCell: {
-        ({ children, ...rest }: ActionCellProps): JSX.Element;
+        ({ children, ...rest }: ActionCellProps): React.JSX.Element;
         displayName: string;
     };
     RemoveCell: {
-        ({ children, ...rest }: RemoveCellProps): JSX.Element;
+        ({ children, ...rest }: RemoveCellProps): React.JSX.Element;
         displayName: string;
     };
     RowHelpers: import("styled-components").StyledComponent<"div", any, {}, never>;
