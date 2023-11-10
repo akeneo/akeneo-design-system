@@ -25,7 +25,7 @@ declare const Table: {
     Row: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "onDragEnd" | "onDragStart" | "level" | "isSelected" | "rowIndex" | "onSelectToggle"> & {
         children?: React.ReactNode;
         onSelectToggle?: ((isSelected: boolean) => void) | undefined;
-        isSelected?: boolean | undefined;
+        isSelected?: boolean | "mixed" | undefined;
         level?: "warning" | undefined;
         onClick?: ((event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void) | undefined;
         rowIndex?: number | undefined;

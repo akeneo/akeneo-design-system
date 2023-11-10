@@ -4,7 +4,7 @@ declare type Level = 'warning';
 declare type TableRowProps = Override<HTMLAttributes<HTMLTableRowElement>, {
     children?: ReactNode;
     onSelectToggle?: (isSelected: boolean) => void;
-    isSelected?: boolean;
+    isSelected?: boolean | 'mixed';
     level?: Level;
     onClick?: (event: MouseEvent<HTMLTableRowElement>) => void;
     rowIndex?: number;
@@ -14,7 +14,7 @@ declare type TableRowProps = Override<HTMLAttributes<HTMLTableRowElement>, {
 declare const TableRow: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "onDragEnd" | "onDragStart" | "level" | "isSelected" | "rowIndex" | "onSelectToggle"> & {
     children?: ReactNode;
     onSelectToggle?: ((isSelected: boolean) => void) | undefined;
-    isSelected?: boolean | undefined;
+    isSelected?: boolean | "mixed" | undefined;
     level?: "warning" | undefined;
     onClick?: ((event: MouseEvent<HTMLTableRowElement>) => void) | undefined;
     rowIndex?: number | undefined;
