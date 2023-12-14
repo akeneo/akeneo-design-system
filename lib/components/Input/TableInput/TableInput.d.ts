@@ -40,7 +40,7 @@ declare const TableInput: {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;
     }) => React.JSX.Element;
-    Boolean: React.FC<Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "value" | "clearLabel" | "yesLabel" | "noLabel" | "highlighted" | "inError" | "openDropdownLabel"> & {
+    Boolean: React.FC<Omit<React.HTMLAttributes<HTMLDivElement>, "value" | "onChange" | "clearLabel" | "yesLabel" | "noLabel" | "highlighted" | "inError" | "openDropdownLabel"> & {
         value: boolean | null;
         onChange: (value: boolean | null) => void;
         yesLabel: string;

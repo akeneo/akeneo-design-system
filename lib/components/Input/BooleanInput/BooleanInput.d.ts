@@ -12,7 +12,7 @@ declare type BooleanInputProps = Override<InputProps<boolean>, ({
     onChange?: (value: boolean) => void;
     clearLabel?: string;
 }) & {
-    readOnly: boolean;
+    readOnly?: boolean;
     yesLabel: string;
     noLabel: string;
     invalid?: boolean;

@@ -6,7 +6,7 @@ declare type DropdownProps = Override<HTMLAttributes<HTMLDivElement>, {
 declare const Dropdown: {
     ({ children, ...rest }: DropdownProps): React.JSX.Element;
     Overlay: {
-        ({ verticalPosition, horizontalPosition, dropdownOpenerVisible, fullWidth, parentRef, onClose, children, ...rest }: Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "onClose" | "verticalPosition" | "horizontalPosition" | "dropdownOpenerVisible" | "fullWidth" | "parentRef"> & {
+        ({ verticalPosition, horizontalPosition, dropdownOpenerVisible, fullWidth, parentRef, onClose, children, ...rest }: Omit<React.HTMLAttributes<HTMLDivElement>, "verticalPosition" | "horizontalPosition" | "children" | "onClose" | "dropdownOpenerVisible" | "fullWidth" | "parentRef"> & {
             verticalPosition?: import("../../hooks/usePosition").VerticalPosition | undefined;
             horizontalPosition?: import("../../hooks/usePosition").HorizontalPosition | undefined;
             dropdownOpenerVisible?: boolean | undefined;
