@@ -37,6 +37,7 @@ declare const Dropdown: {
     } & React.RefAttributes<HTMLDivElement>>;
     Surtitle: React.FC<{
         label: string;
+        children?: React.ReactNode;
     }>;
 };
 export { Dropdown };
