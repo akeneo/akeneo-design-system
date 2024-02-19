@@ -7,5 +7,8 @@ export declare type TooltipProps = Override<HTMLAttributes<HTMLDivElement>, {
     children: ReactNode;
     width?: number;
 }>;
-declare const Tooltip: React.FC<TooltipProps>;
+declare const Tooltip: {
+    ({ direction, iconSize, width, children, ...rest }: TooltipProps): React.JSX.Element;
+    Title: import("styled-components").StyledComponent<"div", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
+};
 export { Tooltip };

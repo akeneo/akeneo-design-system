@@ -15,6 +15,7 @@ declare type ChipInputProps = {
     onRemove: (chipCode: string) => void;
     onSearchChange: (searchValue: string) => void;
     onFocus?: () => void;
+    lockedValues?: string[];
 };
 declare const ChipInput: React.ForwardRefExoticComponent<ChipInputProps & React.RefAttributes<HTMLInputElement>>;
 export { ChipInput };

@@ -21,6 +21,7 @@ declare type MultiMultiSelectInputProps = Override<Override<React.InputHTMLAttri
     invalid?: boolean;
     children?: ReactElement<OptionProps>[] | ReactElement<OptionProps>;
     verticalPosition?: VerticalPosition;
+    lockedValues?: string[];
     onSubmit?: () => void;
 } & ({
     onNextPage?: () => void;
@@ -32,7 +33,7 @@ declare type MultiMultiSelectInputProps = Override<Override<React.InputHTMLAttri
     disableInternalSearch: true;
 })>;
 declare const MultiSelectInput: {
-    ({ id, placeholder, invalid, value, invalidValue, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, "aria-labelledby": ariaLabelledby, ...rest }: MultiMultiSelectInputProps): React.JSX.Element;
+    ({ id, placeholder, invalid, value, invalidValue, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, lockedValues, "aria-labelledby": ariaLabelledby, ...rest }: MultiMultiSelectInputProps): React.JSX.Element;
     Option: {
         ({ children, ...rest }: OptionProps): React.JSX.Element;
         displayName: string;
