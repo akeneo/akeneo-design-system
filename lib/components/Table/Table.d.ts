@@ -3,6 +3,7 @@ import { Override } from '../../shared';
 declare type TableProps = Override<React.HTMLAttributes<HTMLTableElement>, {
     isSelectable?: boolean;
     hasWarningRows?: boolean;
+    hasLockedRows?: boolean;
     displayCheckbox?: boolean;
     children?: ReactNode;
 } & ({
@@ -13,7 +14,7 @@ declare type TableProps = Override<React.HTMLAttributes<HTMLTableElement>, {
     onReorder: (updatedIndices: number[]) => void;
 })>;
 declare const Table: {
-    ({ isSelectable, hasWarningRows, displayCheckbox, isDragAndDroppable, onReorder, children, ...rest }: TableProps): React.JSX.Element;
+    ({ isSelectable, hasWarningRows, hasLockedRows, displayCheckbox, isDragAndDroppable, onReorder, children, ...rest }: TableProps): React.JSX.Element;
     Header: React.ForwardRefExoticComponent<import("./TableHeader/TableHeader").TableHeaderProps & React.RefAttributes<HTMLTableSectionElement>>;
     HeaderCell: React.ForwardRefExoticComponent<{
         isSortable?: boolean | undefined;
@@ -26,7 +27,7 @@ declare const Table: {
         children?: React.ReactNode;
         onSelectToggle?: ((isSelected: boolean) => void) | undefined;
         isSelected?: boolean | "mixed" | undefined;
-        level?: "warning" | undefined;
+        level?: ("tertiary" | "warning") | undefined;
         onClick?: ((event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void) | undefined;
         rowIndex?: number | undefined;
         onDragStart?: ((rowIndex: number) => void) | undefined;

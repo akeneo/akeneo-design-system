@@ -1,6 +1,6 @@
 import React, { ReactNode, HTMLAttributes, MouseEvent } from 'react';
 import { Override } from '../../../shared';
-declare type Level = 'warning';
+declare type Level = 'warning' | 'tertiary';
 declare type TableRowProps = Override<HTMLAttributes<HTMLTableRowElement>, {
     children?: ReactNode;
     onSelectToggle?: (isSelected: boolean) => void;
@@ -15,7 +15,7 @@ declare const TableRow: React.ForwardRefExoticComponent<Omit<React.HTMLAttribute
     children?: ReactNode;
     onSelectToggle?: ((isSelected: boolean) => void) | undefined;
     isSelected?: boolean | "mixed" | undefined;
-    level?: "warning" | undefined;
+    level?: Level | undefined;
     onClick?: ((event: MouseEvent<HTMLTableRowElement>) => void) | undefined;
     rowIndex?: number | undefined;
     onDragStart?: ((rowIndex: number) => void) | undefined;
