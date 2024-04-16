@@ -17,14 +17,14 @@ const AvatarListContainer = styled.div<AvatarsProps & AkeneoThemedProps>`
 const RemainingAvatar = styled.span`
   height: 32px;
   width: 32px;
-  border: 1px solid ${getColor('grey', 10)};
+  color: ${getColor('grey', 120)};
+  border: 1px solid;
   line-height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 15px;
   border-radius: 32px;
-  background-color: ${getColor('white')};
 `;
 
 type AvatarsProps = Override<
