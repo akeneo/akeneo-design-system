@@ -74,17 +74,17 @@ const YesButton = styled(BooleanButton)`
   ${({value, readOnly, invalid}) =>
     value === true &&
     css`
-      background: ${getColor('green', readOnly ? 60 : 100)};
+      background: ${getColor('blue', readOnly ? 60 : 100)};
       border-color: ${invalid ? getColor('red', 100) : getColor('grey', readOnly ? 60 : 100)};
       color: ${getColor('white')};
 
       &:hover {
-        background: ${getColor('green', readOnly ? 60 : 120)};
+        background: ${getColor('blue', readOnly ? 60 : 120)};
         color: ${getColor('white')};
       }
 
       &:active {
-        background: ${getColor('green', readOnly ? 60 : 140)};
+        background: ${getColor('blue', readOnly ? 60 : 140)};
       }
     `}
 `;
