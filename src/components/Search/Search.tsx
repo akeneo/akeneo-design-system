@@ -123,3 +123,4 @@ Search.ResultCount = ResultCount;
 Search.Separator = Separator;
 
 export {Search};
+export type {SearchProps};

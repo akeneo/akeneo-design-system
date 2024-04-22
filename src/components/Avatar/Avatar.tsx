@@ -2,42 +2,82 @@ import React, {useMemo} from 'react';
 import styled, {css} from 'styled-components';
 import {useTheme} from '../../hooks';
 import {AkeneoThemedProps, getColor} from '../../theme';
-import {AvatarProps} from './types';
+import {AvatarContainerProps, AvatarProps} from './types';
 
-const AvatarContainer = styled.span<AvatarProps & AkeneoThemedProps>`
+const AvatarContainer = styled.span<AvatarContainerProps & AkeneoThemedProps>`
   ${({size}) =>
     size === 'default'
       ? css`
           height: 32px;
           width: 32px;
-          line-height: 32px;
-          font-size: 15px;
           border-radius: 32px;
         `
       : css`
           height: 140px;
           width: 140px;
+          border-radius: 140px;
+        `}
+  ${({size, selected}) =>
+    size === 'default' && selected
+      ? css`
+          padding: 1px;
+          border: 3px solid ${getColor('blue', 100)};
+          margin: -4px -8px 0 0;
+        `
+      : css`
+          margin-right: -4px;
+        `}
+  display: inline-block;
+  background-color: ${getColor('white')};
+`;
+
+const AvatarImage = styled.span<AvatarProps & AkeneoThemedProps>`
+  ${({size}) =>
+    size === 'default'
+      ? css`
+          line-height: 32px;
+          font-size: 15px;
+          border-radius: 32px;
+        `
+      : css`
           line-height: 140px;
           font-size: 66px;
           border-radius: 140px;
         `}
-  display: inline-block;
+  ${({disabled}) =>
+    disabled
+      ? css`
+          opacity: 50%;
+        `
+      : css``}
+  height: 100%;
+  width: 100%;
+  display: block;
   color: ${getColor('white')};
   text-align: center;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   text-transform: uppercase;
-  cursor: ${({onClick}) => (onClick ? 'pointer' : 'default')};
 `;
 
-const Avatar = ({username, firstName, lastName, avatarUrl, size = 'default', ...rest}: AvatarProps) => {
+const Avatar = ({
+  username,
+  firstName,
+  lastName,
+  avatarUrl,
+  size = 'default',
+  disabled = false,
+  selected = false,
+  ...rest
+}: AvatarProps) => {
   const theme = useTheme();
 
   const fallback = (
     firstName.trim().charAt(0) + lastName.trim().charAt(0) || username.substring(0, 2)
   ).toLocaleUpperCase();
   const title = `${firstName || ''} ${lastName || ''}`.trim() || username;
+  const title_container = title + ' container';
 
   const backgroundColor = useMemo(() => {
     const colorId = username.split('').reduce<number>((s, l) => s + l.charCodeAt(0), 0);
@@ -62,8 +102,10 @@ const Avatar = ({username, firstName, lastName, avatarUrl, size = 'default', ...
   const style = avatarUrl ? {backgroundImage: `url(${avatarUrl})`} : {backgroundColor};
 
   return (
-    <AvatarContainer size={size} {...rest} style={style} title={title}>
-      {avatarUrl ? '' : fallback}
+    <AvatarContainer size={size} selected={selected} title={title_container}>
+      <AvatarImage size={size} disabled={disabled} {...rest} style={style} title={title}>
+        {avatarUrl ? '' : fallback}
+      </AvatarImage>
     </AvatarContainer>
   );
 };

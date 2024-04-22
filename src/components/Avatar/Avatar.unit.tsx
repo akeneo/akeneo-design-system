@@ -61,14 +61,14 @@ test('initial are converted to uppercase', () => {
 test('size default', () => {
   render(<Avatar username="john" firstName="John" lastName="Doe" />);
 
-  const avatar = screen.getByTitle('John Doe');
+  const avatar = screen.getByTitle('John Doe container');
   expect(avatar).toHaveStyle('width: 32px');
 });
 
 test('size big', () => {
   render(<Avatar username="john" firstName="John" lastName="Doe" size="big" />);
 
-  const avatar = screen.getByTitle('John Doe');
+  const avatar = screen.getByTitle('John Doe container');
   expect(avatar).toHaveStyle('width: 140px');
 });
 

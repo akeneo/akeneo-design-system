@@ -9,7 +9,6 @@ const AvatarListContainer = styled.div<AvatarsProps & AkeneoThemedProps>`
   flex-direction: row-reverse;
   justify-content: flex-end;
   & > * {
-    margin-right: -4px;
     position: relative;
   }
 `;

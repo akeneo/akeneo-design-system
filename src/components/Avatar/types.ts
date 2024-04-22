@@ -30,5 +30,30 @@ export type AvatarProps = Override<
      * Size of the avatar.
      */
     size?: 'default' | 'big';
+
+    /**
+     * Is user disabled
+     */
+    disabled?: boolean;
+
+    /**
+     * Is user selected
+     */
+    selected?: boolean;
+  }
+>;
+
+export type AvatarContainerProps = Override<
+  React.HTMLAttributes<HTMLSpanElement>,
+  {
+    /**
+     * Size of the avatar.
+     */
+    size?: 'default' | 'big';
+
+    /**
+     * Is user selected
+     */
+    selected?: boolean;
   }
 >;
