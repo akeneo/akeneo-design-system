@@ -27,6 +27,7 @@ const AvatarContainer = styled.span<AvatarContainerProps & AkeneoThemedProps>`
       : css`
           margin-right: -4px;
         `}
+  box-sizing: content-box;
   display: inline-block;
   background-color: ${getColor('white')};
 `;
