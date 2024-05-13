@@ -36,6 +36,10 @@ declare const TableInput: {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;
     }) => React.JSX.Element;
+    Date: ({ children, value, ...rest }: Omit<Override<React.InputHTMLAttributes<HTMLInputElement>, import("../common/InputProps").InputProps<string>>, "highlighted" | "inError"> & {
+        highlighted?: boolean | undefined;
+        inError?: boolean | undefined;
+    }) => React.JSX.Element;
     Number: ({ children, value, ...rest }: Omit<Override<React.InputHTMLAttributes<HTMLInputElement>, import("../common/InputProps").InputProps<string>>, "highlighted" | "inError"> & {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;

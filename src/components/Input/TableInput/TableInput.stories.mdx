@@ -37,6 +37,7 @@ Table input allows the user to input content in a table.
           <TableInput.HeaderCell>Is allergenic</TableInput.HeaderCell>
           <TableInput.HeaderCell>Length</TableInput.HeaderCell>
           <TableInput.HeaderCell>Origin</TableInput.HeaderCell>
+          <TableInput.HeaderCell>Purchase date</TableInput.HeaderCell>
         </TableInput.Header>
         <TableInput.Body>
           {['Sugar', 'Salt', 'Pepper', 'Eggs', 'Flour', 'Yeast'].map((row, index) => <TableInput.Row key={row}>
@@ -108,6 +109,9 @@ Table input allows the user to input content in a table.
                 }
               </TableInput.Select>
             </TableInput.Cell>
+            <TableInput.Cell>
+              <TableInput.Date value={getValue(index, 'purchase_date')} onChange={(value) => setValue(index, 'purchase_date', value)}/>
+            </TableInput.Cell>
           </TableInput.Row>
         )}
         </TableInput.Body>
@@ -134,6 +138,7 @@ Table input allows the user to input content in a table.
             <TableInput.HeaderCell>Number cell</TableInput.HeaderCell>
             <TableInput.HeaderCell>Boolean cell</TableInput.HeaderCell>
             <TableInput.HeaderCell>Measurement cell</TableInput.HeaderCell>
+            <TableInput.HeaderCell>Purchase date</TableInput.HeaderCell>
           </TableInput.Header>
           <TableInput.Body>
             {[...Array(linesCount).keys()].map((_,r) => {
@@ -145,6 +150,7 @@ Table input allows the user to input content in a table.
                 <TableInput.Cell><TableInput.Number value={42} highlighted={r === 4} inError={r === 5}/></TableInput.Cell>
                 <TableInput.Cell><TableInput.Boolean value={true} yesLabel={"Yes"} noLabel={"No"} highlighted={r === 5} inError={r === 6}/></TableInput.Cell>
                 <TableInput.Cell><TableInput.Measurement amount={42} unit={'METER'} units={[{value: 'METER', symbol: 'm', label: 'Meter'}]} highlighted={r === 6} inError={r === 0}/></TableInput.Cell>
+                <TableInput.Cell><TableInput.Date value={'2024-04-29'} highlighted={r===0} inError={r===1}/></TableInput.Cell>
               </TableInput.Row>
             })}
           </TableInput.Body>
@@ -168,6 +174,7 @@ Table input allows the user to input content in a table.
             <TableInput.HeaderCell>Text cell</TableInput.HeaderCell>
             <TableInput.HeaderCell>Number cell</TableInput.HeaderCell>
             <TableInput.HeaderCell>Boolean cell</TableInput.HeaderCell>
+            <TableInput.HeaderCell>Purchase date</TableInput.HeaderCell>
           </TableInput.Header>
           <TableInput.Body>
             {[...Array(linesCount).keys()].map((_,r) => {
@@ -177,6 +184,7 @@ Table input allows the user to input content in a table.
                 <TableInput.Cell><TableInput.Text value={'Cell with a text value having a big text'}/></TableInput.Cell>
                 <TableInput.Cell><TableInput.Number value={Math.pow(4212345967, r)}/></TableInput.Cell>
                 <TableInput.Cell><TableInput.Boolean value={true} yesLabel={"Yes"} noLabel={"No"}/></TableInput.Cell>
+                <TableInput.Cell><TableInput.Date value={'2024-04-09'}/></TableInput.Cell>
               </TableInput.Row>
             })}
           </TableInput.Body>

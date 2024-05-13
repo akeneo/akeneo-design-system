@@ -41,6 +41,7 @@ const useFakeTableInput = (linesCount: number) => {
         is_allergenic: [true, false, null][lineIndex % 3],
         origin: ['french', 'english', 'german', null][lineIndex % 4] as 'french' | 'english' | 'german' | null,
         length: {unit: lengthUnits[lineIndex].value, amount: `${lineIndex * 1.5}`},
+        purchase_date: [null, '2024-04-29', '2024-12-30'][lineIndex % 3],
       };
     })
   );

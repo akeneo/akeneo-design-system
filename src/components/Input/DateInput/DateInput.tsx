@@ -64,14 +64,15 @@ const Input = styled.input<{readOnly: boolean; invalid: boolean} & AkeneoThemedP
 
 const IconContainer = styled.div<{readOnly: boolean} & AkeneoThemedProps>`
   position: absolute;
-  right: 0;
+  right: 12px;
   top: 0;
-  margin: 12px 12px 12px 0;
   padding-left: 12px;
   pointer-events: none;
   z-index: 1;
-
-  background: ${({readOnly}) => (readOnly ? getColor('grey', 20) : getColor('white'))};
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const ReadOnlyIcon = styled(LockIcon)`
