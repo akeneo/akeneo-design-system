@@ -212,7 +212,7 @@ const MediaFileInput = React.forwardRef<HTMLInputElement, MediaFileInputProps>(
         setProgress(0);
         stopUploading();
         uploadFailed();
-        console.error(error);
+        console.log(error);
       }
     };
 

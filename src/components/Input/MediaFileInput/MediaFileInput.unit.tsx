@@ -116,7 +116,7 @@ test('it display the upload error label when the upload failed', async () => {
   const handleChange = jest.fn();
   const uploader = jest.fn().mockRejectedValue(undefined);
 
-  jest.spyOn(console, 'error').mockImplementationOnce(jest.fn());
+  jest.spyOn(console, 'log').mockImplementationOnce(jest.fn());
 
   render(
     <MediaFileInput
@@ -214,7 +214,7 @@ test('it displays the default picture when the image previewer fails', () => {
 
 test('it does not throw an error when component is hidden after upload', async () => {
   const uploader = jest.fn().mockResolvedValue(fileInfo);
-  const mockedConsole = jest.spyOn(console, 'error');
+  const mockedConsole = jest.spyOn(console, 'log');
 
   render(<MediaFileInput {...defaultProps} value={null} onChange={cleanup} uploader={uploader} thumbnailUrl={null} />);
 
