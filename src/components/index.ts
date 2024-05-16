@@ -5,6 +5,7 @@ export * from './Block/Block';
 export * from './BlockButton/BlockButton';
 export * from './Breadcrumb/Breadcrumb';
 export * from './Button/Button';
+export * from './SplitButton/SplitButton';
 export * from './Card/Card';
 export * from './Checkbox/Checkbox';
 export * from './Collapse/Collapse';

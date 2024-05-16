@@ -1,0 +1,216 @@
+import {Meta, Story, ArgsTable, Canvas} from '@storybook/addon-docs';
+import {SplitButton} from './SplitButton';
+
+<Meta
+  title="Components/Buttons/SplitButton"
+  component={SplitButton}
+  argTypes={{
+    level: {control: {type: 'select'}, options: ['primary', 'secondary', 'tertiary', 'warning', 'danger']},
+    ghost: {control: {type: 'boolean'}},
+    disabled: {control: {type: 'boolean'}},
+    active: {control: {type: 'boolean'}},
+    size: {control: {type: 'select'}, options: ['default', 'small']},
+    onClick: {action: 'Click on the button'},
+  }}
+  args={{
+    level: 'primary',
+    label: 'Primary',
+  }}
+/>
+
+# Split Button
+
+## Usage
+
+Split Buttons express what action will occur when the users clicks, it is combined with a dropdown that adds a list of options that can be used. Buttons are used to initialize an action, either in the background or foreground of an experience.
+
+### General guidance
+
+Split Buttons are used primarily on action items. Some examples include Add, Save, Delete, and Sign up. Each page can have one or two primary buttons. Any remaining calls-to-action should be represented as secondary buttons.
+
+Do not use buttons as navigational elements. Instead, use links to take the users to a new page.
+
+### Labels
+
+Button labels should clearly indicate the action of the button. Use active verbs, such as Add or Delete. Use no more than three words for button labels.
+
+For sets of buttons, use specific labels, such as Save or Discard, instead of using OK and Cancel. This is particularly helpful when the user is confirming an action.
+
+## Playground
+
+Use this playground to test the button component
+
+<Canvas>
+  <Story name="Standard">
+    {args => {
+      return <SplitButton {...args}>
+          <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+          <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+      </SplitButton>;
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Standard" />
+
+## Variation on level
+
+<Canvas>
+  <Story name="Level">
+    {args => {
+      return (
+        <>
+          <SplitButton {...args} level="primary" label="Primary">
+            <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+            <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+          </SplitButton>
+          <SplitButton {...args} level="secondary" label="Secondary">
+            <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+            <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+          </SplitButton>
+          <SplitButton {...args} level="tertiary" label="Tertiary">
+            <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+            <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+          </SplitButton>
+          <SplitButton {...args} level="warning" label="Warning">
+            <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+            <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+          </SplitButton>
+          <SplitButton {...args} level="danger" label="Danger">
+            <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+            <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+          </SplitButton>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation on ghost
+
+<Canvas>
+  <Story name="Ghost">
+    {args => {
+      return (
+        <>
+            <SplitButton {...args} ghost={true} level="primary" label="Primary">
+              <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+              <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} ghost={true} level="secondary" label="Secondary">
+              <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+              <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} ghost={true} level="tertiary" label="Tertiary">
+              <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+              <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} ghost={true} level="warning" label="Warning">
+              <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+              <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} ghost={true} level="danger" label="Danger">
+              <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+              <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation on active
+
+<Canvas>
+  <Story name="Active">
+    {args => {
+      return (
+        <>
+            <SplitButton {...args} active={true} level="primary" label="primary">
+                <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+                <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} active={true} level="secondary" label="secondary">
+                <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+                <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} active={true} level="tertiary" label="tertiary">
+                <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+                <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} active={true} level="warning" label="warning">
+                <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+                <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} active={true} level="danger" label="danger">
+                <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+                <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <br />
+            <SplitButton {...args} active={true} ghost={true} level="primary" label="primary">
+                <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+                <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} active={true} ghost={true} level="secondary" label="secondary">
+                <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+                <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} active={true} ghost={true} level="tertiary" label="tertiary">
+                <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+                <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} active={true} ghost={true} level="warning" label="warning">
+                <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+                <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} active={true} ghost={true} level="danger" label="danger">
+                <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+                <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation on disabled
+
+<Canvas>
+  <Story name="Disabled">
+    {args => {
+      return (
+        <>
+          <SplitButton {...args} disabled={false} label={'Default'}>
+            <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+            <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+          </SplitButton>
+          <SplitButton {...args} disabled={true} label={'Disabled'}>
+            <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+            <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+          </SplitButton>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation on size
+
+<Canvas>
+  <Story name="Size">
+    {args => {
+      return (
+        <>
+            <SplitButton {...args} size="default" label={'Default'}>
+               <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+               <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} size="small" label={'Small'}>
+                <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+                <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
