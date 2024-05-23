@@ -71,3 +71,21 @@ When the `src` prop is set to `null`, the Image will display itself as loading.
     }}
   </Story>
 </Canvas>
+
+## Variation on background
+
+When the `background` prop is set to `checkerboard`, the Image will display a checkerboard background behind the transparent image.
+The background will be white otherwise.
+
+<Canvas>
+  <Story name="Background">
+    {args => {
+      return (
+        <>
+          <Image {...args} background="white" src="https://doodleipsum.com/200x140/outline?i=63527485e69dea481bb541d7f1da73fe" />
+          <Image {...args} background="checkerboard" src="https://doodleipsum.com/200x140/outline?i=63527485e69dea481bb541d7f1da73fe" />
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
