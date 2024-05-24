@@ -28,7 +28,7 @@ const generateReorderedIndices = (size: number, draggedIndex: number, droppedInd
 const useDrop = (
   tableSize: number,
   draggedElementIndex: number | null,
-  onReorder: ((reorderedIndices: number[]) => void) | undefined
+  onReorder: ((reorderedIndices: number[], draggedIndex?: number, droppedIndex?: number) => void) | undefined
 ) => {
   const tableId = useId('table_');
 
@@ -40,7 +40,11 @@ const useDrop = (
       const droppedElementIndex = getDropRow(event.target as HTMLElement);
       const newIndices = generateReorderedIndices(tableSize, draggedElementIndex, droppedElementIndex);
 
-      onReorder(newIndices);
+      if (onReorder.length === 1) {
+        onReorder(newIndices); // backwards compatibility
+      } else {
+        onReorder(newIndices, draggedElementIndex, droppedElementIndex);
+      }
     }
   };
 

@@ -11,7 +11,7 @@ declare type TableProps = Override<React.HTMLAttributes<HTMLTableElement>, {
     onReorder?: undefined;
 } | {
     isDragAndDroppable: boolean;
-    onReorder: (updatedIndices: number[]) => void;
+    onReorder: (updatedIndices: number[], draggedIndex?: number, droppedIndex?: number) => void;
 })>;
 declare const Table: {
     ({ isSelectable, hasWarningRows, hasLockedRows, displayCheckbox, isDragAndDroppable, onReorder, children, ...rest }: TableProps): React.JSX.Element;
@@ -23,15 +23,13 @@ declare const Table: {
         children?: React.ReactNode;
     } & React.RefAttributes<HTMLTableHeaderCellElement>>;
     Body: React.ForwardRefExoticComponent<import("./TableBody/TableBody").TableBodyProps & React.RefAttributes<HTMLTableSectionElement>>;
-    Row: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "onDragEnd" | "onDragStart" | "level" | "isSelected" | "rowIndex" | "onSelectToggle"> & {
+    Row: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "level" | "isSelected" | "rowIndex" | "onSelectToggle"> & {
         children?: React.ReactNode;
         onSelectToggle?: ((isSelected: boolean) => void) | undefined;
         isSelected?: boolean | "mixed" | undefined;
         level?: ("tertiary" | "warning") | undefined;
         onClick?: ((event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void) | undefined;
         rowIndex?: number | undefined;
-        onDragStart?: ((rowIndex: number) => void) | undefined;
-        onDragEnd?: (() => void) | undefined;
     } & React.RefAttributes<HTMLTableRowElement>>;
     Cell: React.ForwardRefExoticComponent<Omit<React.TdHTMLAttributes<HTMLTableCellElement>, "children" | "rowTitle"> & {
         children?: React.ReactNode;
@@ -42,3 +40,4 @@ declare const Table: {
     } & React.RefAttributes<HTMLTableCellElement>>;
 };
 export { Table };
+export type { TableProps };

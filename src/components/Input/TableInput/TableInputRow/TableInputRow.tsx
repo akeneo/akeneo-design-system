@@ -6,6 +6,7 @@ import {TableInputContext} from '../TableInputContext';
 import {RowIcon} from '../../../../icons';
 import {TableInputCell} from '../TableInputCell/TableInputCell';
 import {PlaceholderPosition, usePlaceholderPosition} from '../../../../hooks/usePlaceholderPosition';
+import {DraggedElementContext} from '../../../../contexts/DraggedElementContext';
 
 const getZebraBackgroundColor: (highlighted: boolean, rowIndex: number) => (props: AkeneoThemedProps) => string = (
   highlighted,
@@ -138,38 +139,29 @@ export type TableInputRowProps = Override<
      * @private
      */
     rowIndex?: number;
-
-    /**
-     * @private
-     */
-    onDragStart?: (rowIndex: number) => void;
-
-    /**
-     * @private
-     */
-    onDragEnd?: () => void;
   }
 >;
 
 const TableInputRow = forwardRef<HTMLTableRowElement, TableInputRowProps>(
   (
-    {children, rowIndex = 0, draggable, highlighted = false, onDragStart, onDragEnd, ...rest}: TableInputRowProps,
+    {children, rowIndex = 0, draggable, highlighted = false, ...rest}: TableInputRowProps,
     forwardedRef: Ref<HTMLTableRowElement>
   ) => {
     const [placeholderPosition, placeholderDragEnter, placeholderDragLeave, placeholderDragEnd] =
       usePlaceholderPosition(rowIndex);
 
     const {isDragAndDroppable} = useContext(TableInputContext);
+    const {index: draggedElementIndex, onDragStart, onDragEnd} = useContext(DraggedElementContext);
 
-    const handleDragEnter = (event: DragEvent<HTMLTableRowElement>) => {
-      if (isDragAndDroppable) {
-        placeholderDragEnter(parseInt(event.dataTransfer.getData('text')));
+    const handleDragEnter = () => {
+      if (isDragAndDroppable && null !== draggedElementIndex) {
+        placeholderDragEnter(draggedElementIndex);
       }
     };
 
     const handleDragStart = (event: DragEvent<HTMLTableRowElement>) => {
       if (isDragAndDroppable) {
-        event.dataTransfer.setData('text', rowIndex.toString());
+        event.dataTransfer.setData('text/plain', rowIndex.toString());
         onDragStart?.(rowIndex);
       }
     };

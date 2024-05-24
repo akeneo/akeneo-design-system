@@ -16,6 +16,7 @@ import {TableContext} from '../TableContext';
 import {TableCell} from '../TableCell/TableCell';
 import {RowIcon, DangerIcon, LockIcon} from '../../../icons';
 import {PlaceholderPosition, usePlaceholderPosition} from '../../../hooks/usePlaceholderPosition';
+import {DraggedElementContext} from '../../../contexts/DraggedElementContext';
 
 type Level = 'warning' | 'tertiary';
 
@@ -164,33 +165,12 @@ type TableRowProps = Override<
      * @private
      */
     rowIndex?: number;
-
-    /**
-     * @private
-     */
-    onDragStart?: (rowIndex: number) => void;
-
-    /**
-     * @private
-     */
-    onDragEnd?: () => void;
   }
 >;
 
 const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
   (
-    {
-      rowIndex = 0,
-      isSelected = false,
-      level,
-      onSelectToggle,
-      onClick,
-      draggable,
-      onDragStart,
-      onDragEnd,
-      children,
-      ...rest
-    }: TableRowProps,
+    {rowIndex = 0, isSelected = false, level, onSelectToggle, onClick, draggable, children, ...rest}: TableRowProps,
     forwardedRef: Ref<HTMLTableRowElement>
   ) => {
     const [placeholderPosition, placeholderDragEnter, placeholderDragLeave, placeholderDragEnd] =
@@ -200,14 +180,17 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
     if (isSelectable && (undefined === isSelected || undefined === onSelectToggle)) {
       throw Error('A row in a selectable table should have the prop "isSelected" and "onSelectToggle"');
     }
+    const {index: draggedElementIndex, onDragStart, onDragEnd} = useContext(DraggedElementContext);
 
     const handleCheckboxChange = (event: SyntheticEvent) => {
       event.stopPropagation();
       onSelectToggle?.(!isSelected);
     };
 
-    const handleDragEnter = (event: DragEvent<HTMLTableRowElement>) => {
-      placeholderDragEnter(parseInt(event.dataTransfer.getData('text')));
+    const handleDragEnter = () => {
+      if (null !== draggedElementIndex) {
+        placeholderDragEnter(draggedElementIndex);
+      }
     };
 
     const handleDragStart = (event: DragEvent<HTMLTableRowElement>) => {

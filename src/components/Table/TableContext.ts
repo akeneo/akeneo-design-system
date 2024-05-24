@@ -6,7 +6,7 @@ type TableContextType = {
   hasLockedRows: boolean;
   displayCheckbox: boolean;
   isDragAndDroppable: boolean;
-  onReorder: ((reorderedIndices: number[]) => void) | undefined;
+  onReorder: ((reorderedIndices: number[], draggedIndex?: number, droppedIndex?: number) => void) | undefined;
 };
 
 const TableContext = createContext<TableContextType>({

@@ -1,8 +1,8 @@
 import React, {Children, cloneElement, ReactNode, Ref, useContext} from 'react';
 import {TableInputContext} from '../TableInputContext';
 import {TableInputRowProps} from '../TableInputRow/TableInputRow';
-import {useDragElementIndex} from '../../../../hooks/useDragElementIndex';
 import {useDrop} from '../../../../hooks/useDrop';
+import {DraggedElementContext} from '../../../../contexts/DraggedElementContext';
 
 type TableInputBodyProps = {
   children?: ReactNode;
@@ -10,8 +10,8 @@ type TableInputBodyProps = {
 
 const TableInputBody = React.forwardRef<HTMLTableSectionElement, TableInputBodyProps>(
   ({children, ...rest}: TableInputBodyProps, forwardedRef: Ref<HTMLTableSectionElement>) => {
-    const [draggedElementIndex, onDragStart, onDragEnd] = useDragElementIndex();
     const {isDragAndDroppable, onReorder} = useContext(TableInputContext);
+    const {index: draggedElementIndex} = useContext(DraggedElementContext);
 
     const decoratedChildren = Children.map(children, (child, rowIndex) => {
       if (!React.isValidElement<TableInputRowProps>(child)) {
@@ -22,8 +22,6 @@ const TableInputBody = React.forwardRef<HTMLTableSectionElement, TableInputBodyP
         ? cloneElement(child, {
             rowIndex,
             draggable: rowIndex === draggedElementIndex,
-            onDragStart,
-            onDragEnd,
           })
         : cloneElement(child, {
             rowIndex,

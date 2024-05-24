@@ -4,14 +4,10 @@ export declare type TableInputRowProps = Override<HTMLAttributes<HTMLTableRowEle
     children?: ReactNode;
     highlighted?: boolean;
     rowIndex?: number;
-    onDragStart?: (rowIndex: number) => void;
-    onDragEnd?: () => void;
 }>;
-declare const TableInputRow: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onDragEnd" | "onDragStart" | "highlighted" | "rowIndex"> & {
+declare const TableInputRow: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "highlighted" | "rowIndex"> & {
     children?: ReactNode;
     highlighted?: boolean | undefined;
     rowIndex?: number | undefined;
-    onDragStart?: ((rowIndex: number) => void) | undefined;
-    onDragEnd?: (() => void) | undefined;
 } & React.RefAttributes<HTMLTableRowElement>>;
 export { TableInputRow };

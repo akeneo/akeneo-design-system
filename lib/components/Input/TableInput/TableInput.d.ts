@@ -15,12 +15,10 @@ declare const TableInput: {
     Body: React.ForwardRefExoticComponent<{
         children?: React.ReactNode;
     } & React.RefAttributes<HTMLTableSectionElement>>;
-    Row: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "onDragEnd" | "onDragStart" | "highlighted" | "rowIndex"> & {
+    Row: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLTableRowElement>, "children" | "highlighted" | "rowIndex"> & {
         children?: React.ReactNode;
         highlighted?: boolean | undefined;
         rowIndex?: number | undefined;
-        onDragStart?: ((rowIndex: number) => void) | undefined;
-        onDragEnd?: (() => void) | undefined;
     } & React.RefAttributes<HTMLTableRowElement>>;
     Cell: React.ForwardRefExoticComponent<React.TdHTMLAttributes<HTMLTableCellElement> & React.RefAttributes<HTMLTableCellElement>>;
     CellContent: {
@@ -87,3 +85,4 @@ declare const TableInput: {
     }>;
 };
 export { TableInput };
+export type { TableInputProps };

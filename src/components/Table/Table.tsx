@@ -8,6 +8,7 @@ import {TableRow} from './TableRow/TableRow';
 import {TableContext} from './TableContext';
 import {TableBody} from './TableBody/TableBody';
 import {Override} from '../../shared';
+import {DraggedElementProvider} from '../../contexts/DraggedElementContext';
 
 const TableContainer = styled.table`
   border-collapse: collapse;
@@ -60,7 +61,7 @@ type TableProps = Override<
         /**
          * Called when an element has been dragged and dropped on the table.
          */
-        onReorder: (updatedIndices: number[]) => void;
+        onReorder: (updatedIndices: number[], draggedIndex?: number, droppedIndex?: number) => void;
       }
   )
 >;
@@ -85,7 +86,9 @@ const Table = ({
 
   return (
     <TableContext.Provider value={providerValue}>
-      <TableContainer {...rest}>{children}</TableContainer>
+      <DraggedElementProvider>
+        <TableContainer {...rest}>{children}</TableContainer>
+      </DraggedElementProvider>
     </TableContext.Provider>
   );
 };
@@ -105,3 +108,4 @@ Table.Cell = TableCell;
 Table.ActionCell = TableActionCell;
 
 export {Table};
+export type {TableProps};

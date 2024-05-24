@@ -37,7 +37,7 @@ test('it can drag and drop', () => {
   render(
     <TableInput isDragAndDroppable={true} onReorder={handleReorder}>
       <TableInput.Header>
-        <TableInput.HeaderCell>An header</TableInput.HeaderCell>
+        <TableInput.HeaderCell>A header</TableInput.HeaderCell>
         <TableInput.HeaderCell>Another header</TableInput.HeaderCell>
       </TableInput.Header>
       <TableInput.Body>
@@ -76,7 +76,7 @@ test('it can drag and drop', () => {
   fireEvent.drop(screen.getAllByRole('row')[3], {dataTransfer});
   fireEvent.dragEnd(screen.getAllByRole('row')[1], {dataTransfer});
 
-  expect(handleReorder).toHaveBeenCalledWith([1, 2, 0]);
+  expect(handleReorder).toHaveBeenCalledWith([1, 2, 0], 0, 2);
 });
 
 test('TableInput supports ...rest props', () => {

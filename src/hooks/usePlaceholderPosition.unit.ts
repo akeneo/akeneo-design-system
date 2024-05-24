@@ -41,5 +41,11 @@ test('it does not give placeholder when dragged element is the same than the dro
     dragEnter(2);
   });
 
-  expect(result.current[0]).toBe('top');
+  expect(result.current[0]).toBe('none');
+
+  void act(() => {
+    dragEnter(1);
+  });
+
+  expect(result.current[0]).toBe('bottom');
 });

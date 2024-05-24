@@ -60,7 +60,45 @@ test('it does not on reorder callback when user drag and drop', () => {
   // @ts-ignore
   handleDrop(event);
 
-  expect(onReorder).toHaveBeenCalledWith([0, 2, 1, 3]);
+  expect(onReorder).toHaveBeenCalledWith([0, 2, 1, 3], 1, 2);
+  expect(stopPropagation).toHaveBeenCalled();
+  expect(preventDefault).toHaveBeenCalled();
+});
+
+test('it does on reorder callback with only one argument', () => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const onReorderWithOneArgument = jest.fn((newIndices: number[]) => {
+    newIndices.map(x => x);
+  });
+  const stopPropagation = jest.fn();
+  const preventDefault = jest.fn();
+  const {result} = renderHook(() => useDrop(4, 1, onReorderWithOneArgument));
+
+  const [tableId, handleDrop] = result.current;
+  const event = {
+    currentTarget: {
+      dataset: {
+        tableId,
+      },
+    },
+    target: {
+      dataset: {},
+      parentElement: {
+        dataset: {
+          draggableIndex: '2',
+        },
+      },
+    },
+    stopPropagation,
+    preventDefault,
+  };
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  handleDrop(event);
+
+  expect(onReorderWithOneArgument).toHaveBeenCalledWith([0, 2, 1, 3]);
   expect(stopPropagation).toHaveBeenCalled();
   expect(preventDefault).toHaveBeenCalled();
 });

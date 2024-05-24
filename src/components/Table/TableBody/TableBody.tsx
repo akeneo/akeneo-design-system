@@ -2,7 +2,7 @@ import React, {Ref, cloneElement, Children, useContext, ReactElement} from 'reac
 import {TableRowProps} from '../TableRow/TableRow';
 import {TableContext} from '../TableContext';
 import {useDrop} from '../../../hooks/useDrop';
-import {useDragElementIndex} from '../../../hooks/useDragElementIndex';
+import {DraggedElementContext} from '../../../contexts/DraggedElementContext';
 
 type TableBodyChild = TableBodyChild[] | ReactElement<TableRowProps> | boolean | undefined;
 
@@ -15,8 +15,8 @@ type TableBodyProps = {
 
 const TableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProps>(
   ({children, ...rest}: TableBodyProps, forwardedRef: Ref<HTMLTableSectionElement>) => {
-    const [draggedElementIndex, onDragStart, onDragEnd] = useDragElementIndex();
     const {isDragAndDroppable, onReorder} = useContext(TableContext);
+    const {index: draggedElementIndex} = useContext(DraggedElementContext);
     const decoratedChildren = isDragAndDroppable
       ? Children.map(children, (child, rowIndex) => {
           if (!React.isValidElement<TableRowProps>(child)) {
@@ -26,8 +26,6 @@ const TableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProps>(
           return cloneElement(child, {
             rowIndex,
             draggable: rowIndex === draggedElementIndex,
-            onDragStart,
-            onDragEnd,
           });
         })
       : children;

@@ -132,7 +132,7 @@ test('it renders table with drag and drop', () => {
   fireEvent.drop(screen.getAllByRole('row')[3], {dataTransfer});
   fireEvent.dragEnd(screen.getAllByRole('row')[1], {dataTransfer});
 
-  expect(handleReorder).toHaveBeenCalledWith([1, 2, 0]);
+  expect(handleReorder).toHaveBeenCalledWith([1, 2, 0], 0, 2);
 });
 
 test('Table supports ...rest props', () => {

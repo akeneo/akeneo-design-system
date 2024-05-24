@@ -15,6 +15,7 @@ import {TableInputContext} from './TableInputContext';
 import {AkeneoThemedProps} from '../../../theme';
 import {TableInputCellContent} from './TableInputCellContent/TableInputCellContent';
 import {TableInputMeasurement} from './TableInputMeasurement/TableInputMeasurement';
+import {DraggedElementProvider} from '../../../contexts/DraggedElementContext';
 
 const TableInputContainer = styled.div`
   width: 100%;
@@ -90,9 +91,11 @@ const TableInput = ({children, readOnly = false, isDragAndDroppable = false, onR
   return (
     <TableInputContext.Provider value={{readOnly, isDragAndDroppable, onReorder}}>
       <TableInputContainer onScroll={handleScroll} {...rest}>
-        <TableInputTable className={shadowed ? 'shadowed' : ''} isDragAndDroppable={isDragAndDroppable}>
-          {children}
-        </TableInputTable>
+        <DraggedElementProvider>
+          <TableInputTable className={shadowed ? 'shadowed' : ''} isDragAndDroppable={isDragAndDroppable}>
+            {children}
+          </TableInputTable>
+        </DraggedElementProvider>
       </TableInputContainer>
     </TableInputContext.Provider>
   );
@@ -112,3 +115,4 @@ TableInput.Select = TableInputSelect;
 TableInput.Measurement = TableInputMeasurement;
 
 export {TableInput};
+export type {TableInputProps};
