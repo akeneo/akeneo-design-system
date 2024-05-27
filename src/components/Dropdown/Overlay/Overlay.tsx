@@ -35,7 +35,7 @@ const Container = styled.div<
     fixedWidth: number | null;
   } & AkeneoThemedProps
 >`
-  ${CommonStyle}
+  ${CommonStyle};
   background: ${getColor('white')};
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
   padding: 10px 0;
@@ -45,8 +45,7 @@ const Container = styled.div<
   z-index: 1901;
   top: ${({top}) => top}px;
   left: ${({left}) => left}px;
-
-  ${getWidthProperties}
+  ${getWidthProperties};
 `;
 
 type OverlayProps = Override<
@@ -84,7 +83,7 @@ type OverlayProps = Override<
   }
 >;
 
-const Backdrop = styled.div<{isOpen: boolean} & AkeneoThemedProps>`
+const Backdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -120,6 +119,12 @@ const getOverlayPosition = (
   if (dropdownOpenerVisible) {
     top = 'up' === verticalPosition ? parentRect.top - elementRect.height : parentRect.bottom + 1;
   }
+
+  // Adjust the vertical position to top if the dropdown list height exceeds the screen
+  const spaceBelow = window.innerHeight - parentRect.bottom;
+  const exceedsScreen = spaceBelow < elementRect.height && parentRect.top > elementRect.height;
+  top = exceedsScreen ? parentRect.bottom - elementRect.height + BORDER_SHADOW_OFFSET : top;
+  top = exceedsScreen && dropdownOpenerVisible ? parentRect.top - elementRect.height : top;
 
   const left = 'left' === horizontalPosition ? parentRect.right - elementRect.width : parentRect.left;
 
