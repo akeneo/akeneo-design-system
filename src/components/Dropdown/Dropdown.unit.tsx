@@ -107,6 +107,7 @@ test('it renders Surtitle item', () => {
         </Dropdown.Header>
         <Dropdown.ItemCollection>
           <Dropdown.Item data-testid="item_with_surtitle">
+            <Image src="image.png" alt="my image" />
             <Surtitle label="Item label">Item</Surtitle>
           </Dropdown.Item>
           <Dropdown.Item>Simple Item</Dropdown.Item>

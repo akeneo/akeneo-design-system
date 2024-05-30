@@ -104,7 +104,9 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
     {children, onKeyDown, disabled = false, isActive = false, onClick, title, ...rest}: ItemProps,
     forwardedRef: Ref<HTMLDivElement>
   ): React.ReactElement => {
-    let size = 'default';
+    let hasImageChild = false;
+    let hasSurtitleChild = false;
+
     const actionableRef = useRef<HTMLAnchorElement>(null);
     const handleClick = useCallback(
       (event: SyntheticEvent) => {
@@ -143,7 +145,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
 
       // Change size of Image children
       if (isValidElement(child) && child.type === Image) {
-        if (size === 'default') size = 'big';
+        hasImageChild = true;
 
         return React.cloneElement(child, {
           width: 34,
@@ -178,11 +180,15 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
       }
 
       if (isValidElement(child) && child.type === Surtitle) {
-        size = 'bigger';
+        hasSurtitleChild = true;
       }
 
       return child;
     });
+
+    let size = 'default';
+    if (hasImageChild || hasSurtitleChild) size = 'big';
+    if (hasImageChild && hasSurtitleChild) size = 'bigger';
 
     return (
       <ItemContainer
