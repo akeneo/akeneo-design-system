@@ -29,10 +29,8 @@ const ImageContainer = styled.img<
         3px -3px 0 0 ${getColor('white')}, 4px -4px 0 0 ${getColor('grey', 80)};
     `}
 
-  ${({isLoading}) => isLoading && placeholderStyle}
-  
-  ${({background}) =>
-    background === 'checkerboard'
+  ${({background, isLoading}) =>
+    background === 'checkerboard' && !isLoading
       ? css`
           background-image: linear-gradient(45deg, ${getColor('grey', 60)} 25%, transparent 25%),
             linear-gradient(135deg, ${getColor('grey', 60)} 25%, transparent 25%),
@@ -44,6 +42,8 @@ const ImageContainer = styled.img<
       : css`
           background: ${getColor(background)};
         `}
+
+  ${({isLoading}) => isLoading && placeholderStyle}
 `;
 
 type ImageProps = Override<
