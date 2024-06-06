@@ -14,6 +14,7 @@ declare type NumberInputProps = Override<Override<React.InputHTMLAttributes<HTML
     step?: number;
     invalid?: boolean;
     onSubmit?: () => void;
+    withIncrementIcons?: boolean;
 }>;
 declare const NumberInput: React.ForwardRefExoticComponent<NumberInputProps & React.RefAttributes<HTMLInputElement>>;
 export { NumberInput };

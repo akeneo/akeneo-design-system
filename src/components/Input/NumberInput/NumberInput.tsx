@@ -116,6 +116,11 @@ type NumberInputProps = Override<
      * Callback called when the user hit enter on the field.
      */
     onSubmit?: () => void;
+
+    /**
+     * @internal
+     */
+    withIncrementIcons?: boolean;
   }
 >;
 
@@ -123,7 +128,10 @@ type NumberInputProps = Override<
  * Number input allows the user to enter content and data when the expected user input is only numbers.
  */
 const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
-  ({invalid, onChange, readOnly, step, value, onSubmit, ...rest}: NumberInputProps, forwardedRef) => {
+  (
+    {invalid, onChange, readOnly, step, value, onSubmit, withIncrementIcons = true, ...rest}: NumberInputProps,
+    forwardedRef
+  ) => {
     const internalRef = useRef<HTMLInputElement | null>(null);
     forwardedRef = forwardedRef ?? internalRef;
 
@@ -168,7 +176,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           {...rest}
         />
         {readOnly && <ReadOnlyIcon size={16} />}
-        {!readOnly && (
+        {!readOnly && withIncrementIcons && (
           <IncrementIconContainer>
             <ArrowUpIcon size={16} data-testid="increment-number-input" onClick={handleIncrement} />
             <ArrowDownIcon size={16} data-testid="decrement-number-input" onClick={handleDecrement} />

@@ -54,10 +54,11 @@ const ActionContainer = styled.div`
 `;
 
 const SelectedOptionContainer = styled.div<{readOnly: boolean; clearable: boolean} & AkeneoThemedProps>`
-  position: absolute;
-  top: 0;
+  position: relative;
+  margin-bottom: -34px;
+  top: 3px;
   width: 100%;
-  height: 100%;
+  height: 34px;
   display: flex;
   align-items: center;
   padding: 0 ${({clearable}) => (clearable ? 68 : 38)}px 0 16px;
@@ -382,6 +383,7 @@ const SelectInput = ({
           aria-labelledby={ariaLabelledby}
           onKeyDown={handleInputKeyDown}
           data-form-type={'other'}
+          size={1}
         />
         {!readOnly && (
           <ActionContainer>

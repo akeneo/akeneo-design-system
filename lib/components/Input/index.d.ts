@@ -4,6 +4,7 @@ export * from './ColorInput/ColorInput';
 export * from './MediaFileInput/FileInfo';
 export * from './MediaFileInput/MediaFileInput';
 export * from './MediaLinkInput/MediaLinkInput';
+export * from './MetricInput/MetricInput';
 export * from './MultiSelectInput/MultiSelectInput';
 export * from './NumberInput/NumberInput';
 export * from './SelectInput/SelectInput';

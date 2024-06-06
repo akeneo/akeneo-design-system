@@ -1,0 +1,67 @@
+import {useState} from 'react';
+import {ArgsTable, Canvas, Meta, Story} from '@storybook/addon-docs';
+import {MetricInput} from './MetricInput.tsx';
+
+<Meta
+  title="Components/Inputs/Metric input"
+  component={MetricInput}
+  argTypes={{
+    amount: {control: {type: 'text'}},
+    unit: {control: {type: 'select'}, options: ['day', 'week', 'month', 'year']},
+    unitOptions: {control: {type: 'object'}},
+  }}
+  args={{
+    amount: '12',
+    unit: 'week',
+    unitOptions: [{value: 'day', label: 'Days'}, {value: 'week', label: 'Weeks'}, {value: 'month', label: 'Months'}, {value: 'year', label: 'Years'}]
+  }}
+/>
+
+# Metric Input [Beta]
+
+## Usage
+
+This input allows the user to set metric. This input is a styled container with 2 sub inputs:
+
+- A Number Input to set an amount
+- A Select Input to set a unit
+
+## Playground
+
+<Canvas>
+  <Story name="Standard">
+    {args => {
+      return (
+        <>
+          <MetricInput {...args}></MetricInput>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Standard" />
+
+## With functions for labels
+
+Instead of setting a string as label for option, you can set a function. With this feature, you can display plural for options.
+
+<Canvas>
+  <Story name="With functions for labels">
+    {args => {
+      const [amount, setAmount] = useState(args.amount);
+      const [unit, setUnit] = useState(args.unit);
+      const unitOptions = [
+        {value: 'day', label: value => value > 1 ? 'Days' : 'Day'},
+        {value: 'week', label: value => value > 1 ? 'Weeks' : 'Week'},
+        {value: 'month', label: value => value > 1 ? 'Months' : 'Month'},
+        {value: 'year', label: value => value > 1 ? 'Years' : 'Year'},
+      ];
+      return (
+        <>
+          <MetricInput amount={amount} unit={unit} onUnitChange={setUnit} onAmountChange={setAmount} unitOptions={unitOptions}></MetricInput>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
