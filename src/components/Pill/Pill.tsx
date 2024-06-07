@@ -1,4 +1,4 @@
-import React, {Ref} from 'react';
+import React, {HTMLAttributes, Ref} from 'react';
 import styled from 'styled-components';
 import {AkeneoThemedProps, getColorForLevel} from '../../theme';
 
@@ -18,7 +18,7 @@ type PillProps = {
    * The level of the Pill.
    */
   level?: PillLevel;
-};
+} & HTMLAttributes<HTMLDivElement>;
 
 const Pill = React.forwardRef<HTMLDivElement, PillProps>(
   ({level = 'warning', ...rest}: PillProps, forwardedRef: Ref<HTMLDivElement>) => {
