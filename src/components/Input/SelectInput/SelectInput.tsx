@@ -18,6 +18,9 @@ import {AkeneoThemedProps, getColor} from '../../../theme';
 import {ArrowDownIcon, CloseIcon, LockIcon} from '../../../icons';
 import {usePagination} from '../../../hooks/usePagination';
 
+const areEveryChildrenDisabled = (children: ReactElement<OptionProps>[]) =>
+  children.length > 0 && children.every(option => option.props?.disabled ?? false);
+
 const SelectInputContainer = styled.div<{value: string | null; readOnly: boolean} & AkeneoThemedProps>`
   width: 100%;
 
@@ -244,7 +247,7 @@ const SelectInput = ({
     isValidElement<OptionProps>(child)
   );
 
-  readOnly = readOnly || validChildren.every(option => option.props?.disabled ?? false);
+  readOnly = readOnly || areEveryChildrenDisabled(validChildren);
 
   validChildren.reduce<string[]>((optionCodes: string[], child) => {
     if (optionCodes.includes(child.props.value)) {

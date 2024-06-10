@@ -485,3 +485,20 @@ test('it becomes read only when every children are disabled', () => {
   const input = screen.getByRole('textbox');
   expect(input).toBeDisabled();
 });
+
+test('it displays empty result label when no child and value are provided', () => {
+  const onChange = jest.fn();
+  render(
+    <SelectInput
+      openLabel="Open"
+      value={null}
+      onChange={onChange}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+    ></SelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  expect(screen.getByText('Empty result')).toBeInTheDocument();
+});
