@@ -341,6 +341,31 @@ The placeholder text provides tips or examples of items to enter. Placeholder te
   </Story>
 </Canvas>
 
+## Variation on disabled options
+
+<Canvas>
+    <Story name="Disabled options">
+        {args => {
+            const [value, setValue] = useState(null);
+            return (
+                <SpaceContainer height={170}>
+                    <SelectInput {...args} value={value} onChange={setValue}>
+                        <SelectInput.Option value="en_US" title="English (United States)">
+                            <Locale code="en_US" languageLabel="English" />
+                        </SelectInput.Option>
+                        <SelectInput.Option value="fr_FR" title="French (France)">
+                            <Locale code="fr_FR" languageLabel="French" />
+                        </SelectInput.Option>
+                        <SelectInput.Option value="de_DE" title="German (Germany)" disabled={true}>
+                            <Locale code="de_DE" languageLabel="German" />
+                        </SelectInput.Option>
+                    </SelectInput>
+                </SpaceContainer>
+            );
+        }}
+    </Story>
+</Canvas>
+
 ## Pagination
 
 <Canvas>

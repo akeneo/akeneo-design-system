@@ -393,11 +393,6 @@ test('it handles keyboard navigation with initial value', () => {
 
   const input = screen.getByRole('textbox');
   fireEvent.focus(input);
-  /*fireEvent.keyDown(input, {key: 'ArrowUp', code: 'ArrowUp'});
-  expect(onChange).toBeCalledWith('en_US');
-  fireEvent.keyDown(input, {key: 'ArrowDown', code: 'ArrowDown'});
-  expect(onChange).toBeCalledWith('de_DE');*/
-
   fireEvent.click(input);
   const englishOption = screen.queryByTestId('en_US');
   const frenchOption = screen.queryByTestId('fr_FR');
@@ -438,4 +433,55 @@ test('SelectInput does not support duplicated options', () => {
     );
   }).toThrowError('Duplicate option value en_US');
   mockConsole.mockRestore();
+});
+
+test('its children could be disabled', () => {
+  const onChange = jest.fn();
+  render(
+    <SelectInput
+      openLabel="Open"
+      value="fr_FR"
+      onChange={onChange}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+    >
+      <SelectInput.Option value="en_US" title="English (United States)" disabled={true}>
+        <Locale code="en_US" languageLabel="English" />
+      </SelectInput.Option>
+      <SelectInput.Option value="fr_FR" title="French (France)">
+        <Locale code="fr_FR" languageLabel="French" />
+      </SelectInput.Option>
+    </SelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  const englishOption = screen.getByTestId('en_US');
+  expect(englishOption).toBeInTheDocument();
+  fireEvent.click(englishOption);
+
+  expect(onChange).not.toHaveBeenCalled();
+});
+
+test('it becomes read only when every children are disabled', () => {
+  const onChange = jest.fn();
+  render(
+    <SelectInput
+      openLabel="Open"
+      value="fr_FR"
+      onChange={onChange}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+    >
+      <SelectInput.Option value="en_US" title="English (United States)" disabled={true}>
+        <Locale code="en_US" languageLabel="English" />
+      </SelectInput.Option>
+      <SelectInput.Option value="fr_FR" title="French (France)" disabled={true}>
+        <Locale code="fr_FR" languageLabel="French" />
+      </SelectInput.Option>
+    </SelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  expect(input).toBeDisabled();
 });

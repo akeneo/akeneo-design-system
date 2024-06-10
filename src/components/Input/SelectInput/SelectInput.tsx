@@ -8,14 +8,14 @@ import React, {
   useCallback,
   SyntheticEvent,
 } from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {Key, Override} from '../../../shared';
 import {InputProps, Overlay} from '../common';
 import {IconButton} from '../../../components/IconButton/IconButton';
 import {TextInput} from '../../../components/Input/TextInput/TextInput';
 import {useBooleanState, useShortcut, VerticalPosition} from '../../../hooks';
 import {AkeneoThemedProps, getColor} from '../../../theme';
-import {ArrowDownIcon, CloseIcon} from '../../../icons';
+import {ArrowDownIcon, CloseIcon, LockIcon} from '../../../icons';
 import {usePagination} from '../../../hooks/usePagination';
 
 const SelectInputContainer = styled.div<{value: string | null; readOnly: boolean} & AkeneoThemedProps>`
@@ -67,34 +67,37 @@ const SelectedOptionContainer = styled.div<{readOnly: boolean; clearable: boolea
   color: ${({readOnly}) => (readOnly ? getColor('grey', 100) : getColor('grey', 140))};
 `;
 
-const OptionContainer = styled.div`
+const OptionContainer = styled.div<{disabled: boolean} & AkeneoThemedProps>`
   background: ${getColor('white')};
   height: 34px;
   padding: 0 20px;
   align-items: center;
   gap: 10px;
-  cursor: pointer;
+  cursor: ${({disabled}) => (disabled ? 'not-allowed' : 'pointer')};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: ${getColor('grey', 120)};
+  color: ${({disabled}) => (disabled ? getColor('grey', 100) : getColor('grey', 120))};
   line-height: 34px;
+  display: flex;
+  justify-content: space-between;
 
-  &:focus {
-    background: ${getColor('grey', 20)};
-    color: ${getColor('brand', 140)};
-  }
-  &:hover {
-    background: ${getColor('grey', 20)};
-    color: ${getColor('brand', 140)};
-  }
-  &:active {
-    color: ${getColor('brand', 100)};
-    font-weight: 700;
-  }
-  &:disabled {
-    color: ${getColor('grey', 100)};
-  }
+  ${({disabled}) =>
+    !disabled &&
+    css`
+      &:focus {
+        background: ${getColor('grey', 20)};
+        color: ${getColor('brand', 140)};
+      }
+      &:hover {
+        background: ${getColor('grey', 20)};
+        color: ${getColor('brand', 140)};
+      }
+      &:active {
+        color: ${getColor('brand', 100)};
+        font-weight: 700;
+      }
+    `}
 `;
 
 const EmptyResultContainer = styled.div`
@@ -115,7 +118,15 @@ const OptionCollection = styled.div`
   overflow-y: auto;
 `;
 
-const Option = styled.span<{value: string}>`
+type OptionProps = Override<
+  React.HTMLAttributes<HTMLSpanElement>,
+  {
+    value: string;
+    disabled?: boolean;
+  }
+>;
+
+const Option = styled.span<OptionProps>`
   display: block;
   line-height: 34px;
   min-height: 34px;
@@ -229,10 +240,11 @@ const SelectInput = ({
   const lastOptionRef = useRef<HTMLDivElement>(null);
   const selectedOptionRef = useRef<HTMLDivElement>(null);
 
-  const validChildren = React.Children.toArray(children).filter(
-    (child): child is ReactElement<{value: string} & React.HTMLAttributes<HTMLSpanElement>> =>
-      isValidElement<{value: string}>(child)
+  const validChildren = React.Children.toArray(children).filter((child): child is ReactElement<OptionProps> =>
+    isValidElement<OptionProps>(child)
   );
+
+  readOnly = readOnly || validChildren.every(option => option.props?.disabled ?? false);
 
   validChildren.reduce<string[]>((optionCodes: string[], child) => {
     if (optionCodes.includes(child.props.value)) {
@@ -268,7 +280,10 @@ const SelectInput = ({
     openOverlay();
   };
 
-  const handleOptionClick = (value: string) => () => {
+  const handleOptionClick = (value: string, isOptionDisabled: boolean) => () => {
+    if (isOptionDisabled) {
+      return;
+    }
     onChange?.(value);
     handleEscape();
   };
@@ -324,7 +339,7 @@ const SelectInput = ({
   }, [dropdownIsOpen, selectedOptionRef.current]);
 
   const handleOptionKeyDown = useCallback(
-    (event: KeyboardEvent<HTMLDivElement>) => {
+    (event: KeyboardEvent<HTMLDivElement>, isOptionDisabled: boolean) => {
       if (null !== event.currentTarget) {
         if (event.key === Key.Tab) {
           setSearchValue('');
@@ -341,7 +356,7 @@ const SelectInput = ({
             previousSibling?.focus();
             event.preventDefault();
           }
-          if (event.key === Key.Enter) {
+          if (event.key === Key.Enter && !isOptionDisabled) {
             const value = (event.currentTarget.firstChild as HTMLElement)?.getAttribute('value') as string;
             onChange?.(value);
             handleEscape();
@@ -432,16 +447,20 @@ const SelectInput = ({
                   ref = selectedOptionRef;
                 }
 
+                const isOptionDisabled = child.props?.disabled ?? false;
+
                 return (
                   <OptionContainer
                     data-testid={childValue}
                     key={childValue}
-                    onClick={handleOptionClick(childValue)}
-                    onKeyDown={handleOptionKeyDown}
+                    onClick={handleOptionClick(childValue, isOptionDisabled)}
+                    onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => handleOptionKeyDown(e, isOptionDisabled)}
                     tabIndex={0}
                     ref={ref}
+                    disabled={isOptionDisabled}
                   >
                     {React.cloneElement(child)}
+                    {isOptionDisabled && <LockIcon size={18} />}
                   </OptionContainer>
                 );
               })
