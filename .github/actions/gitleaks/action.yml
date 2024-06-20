@@ -1,0 +1,13 @@
+name: "Gitleaks"
+description: "Runs Gitleaks in your CI/CD workflow"
+branding:
+  color: red
+  icon: shield
+inputs:
+  soft_fail:
+    description: "Should we soft-fail in case of a problem? Defaults to false."
+    required: true
+    default: "false"
+runs:
+  using: "docker"
+  image: "Dockerfile"
