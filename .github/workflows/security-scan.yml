@@ -14,6 +14,6 @@ jobs:
           fetch-depth: 0
 
       - name: Scan for secrets
-        uses: akeneo/akeneo-design-system/.github/actions/gitleaks@${{ github.event.pull_request.head.ref }}
+        uses: akeneo/akeneo-design-system/.github/actions/gitleaks@${{ vars.GITHUB_HEAD_REF }}
         with:
           soft_fail: 'false'
