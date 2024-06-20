@@ -1,0 +1,19 @@
+name: Security tests
+
+on:
+  workflow_call:
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # pinned to v4.1.1
+        with:
+          fetch-depth: 0
+
+      - name: Scan for secrets
+        uses: akeneo/akeneo-design-system/.github/actions/gitleaks
+        with:
+          soft_fail: 'false'
