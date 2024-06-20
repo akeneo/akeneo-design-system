@@ -11,4 +11,4 @@ permissions:
 
 jobs:
   compliance-checks:
-    uses: ./.github/workflows/security-scan.yml@master
+    uses: ./.github/workflows/security-scan.yml
