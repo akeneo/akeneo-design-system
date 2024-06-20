@@ -11,4 +11,4 @@ permissions:
 
 jobs:
   compliance-checks:
-    uses: ./.github/workflows/security-scan.yml
+    uses: ./.github/workflows/security-scan.yml@${{ vars.GITHUB_HEAD_REF }}
