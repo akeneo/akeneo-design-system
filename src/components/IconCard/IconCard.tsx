@@ -117,7 +117,7 @@ const IconCard = React.forwardRef<HTMLDivElement, IconCardProps>(
     const validIcon = isValidElement<IconProps>(icon) && React.cloneElement(icon, {size: 30});
 
     return (
-      <Container ref={forwardedRef} disabled={disabled} onClick={onClick} {...rest}>
+      <Container role="button" ref={forwardedRef} disabled={disabled} onClick={onClick} {...rest}>
         <IconContainer>{validIcon}</IconContainer>
         <ContentContainer>
           <Label>{label}</Label>

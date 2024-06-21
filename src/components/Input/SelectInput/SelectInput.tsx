@@ -454,6 +454,7 @@ const SelectInput = ({
 
                 return (
                   <OptionContainer
+                    role="option"
                     data-testid={childValue}
                     key={childValue}
                     onClick={handleOptionClick(childValue, isOptionDisabled)}

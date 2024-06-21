@@ -93,6 +93,7 @@ const SubNavigationItem = React.forwardRef<HTMLAnchorElement, Props>(
         active={active}
         disabled={disabled}
         aria-disabled={disabled}
+        role="link"
         onClick={handleClick}
         {...rest}
       >
