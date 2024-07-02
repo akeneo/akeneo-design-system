@@ -145,8 +145,8 @@ const getFileMetrics = async filePath => {
         const isShared = -1 !== filePath.indexOf('/shared/') || -1 !== filePath.indexOf('common/components');
         const isComponent = !isSVG && !isTest && !isShared;
         const usesStyledComponents = -1 !== fileContent.indexOf(`from 'styled-components';`);
-        const usesPimShared = -1 !== fileContent.indexOf(`from '@akeneo-pim-community/shared';`);
-        const usesLegacyBridge = -1 !== fileContent.indexOf(`from '@akeneo-pim-community/legacy-bridge';`);
+        const usesPimShared = -1 !== fileContent.indexOf(`from '@akeneo-pim/shared';`);
+        const usesLegacyBridge = -1 !== fileContent.indexOf(`from '@akeneo-pim/legacy-bridge';`);
         const usesDSM = -1 !== fileContent.indexOf(`from 'akeneo-design-system';`);
         const usesBEM =
           -1 !== fileContent.indexOf(`className='Akn`) ||
