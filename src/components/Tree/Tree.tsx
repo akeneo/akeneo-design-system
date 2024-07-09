@@ -133,7 +133,7 @@ type TreeProps<T = string> = {
   value: T;
   label: string;
   isLeaf?: boolean;
-  selected?: boolean;
+  selected?: CheckboxChecked;
   isLoading?: boolean;
   selectable?: boolean;
   readOnly?: boolean;
@@ -169,7 +169,18 @@ const Tree = <T,>({
     subTrees.push(child);
   });
 
-  const [isOpen, setOpen] = React.useState<boolean>(subTrees.length > 0);
+  if (subTrees.length > 0 && selectable) {
+    const selectedChildren = subTrees.filter(
+      (subTree: React.ReactElement<TreeProps<T>>) => subTree.props.selected === true
+    );
+    if (selectedChildren.length === subTrees.length) {
+      selected = true;
+    } else if (selectedChildren.length > 0) {
+      selected = 'mixed';
+    }
+  }
+
+  const [isOpen, setOpen] = React.useState<boolean>(_isRoot ? subTrees.length > 0 : false);
 
   const handleOpen = React.useCallback(() => {
     setOpen(true);
@@ -221,7 +232,7 @@ const Tree = <T,>({
         {selectable && <NodeCheckbox checked={selected} onChange={handleSelect} readOnly={readOnly} />}
 
         <LabelWithFolder onClick={handleClick} $selected={selected} title={label} aria-selected={selected}>
-          <TreeIcon isLoading={isLoading} isLeaf={isLeaf} selected={selected} />
+          <TreeIcon isLoading={isLoading} isLeaf={isLeaf} selected={selected === true || selected === 'mixed'} />
           {label}
         </LabelWithFolder>
       </TreeLine>

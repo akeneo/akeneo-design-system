@@ -68,7 +68,9 @@ The Tree component uses its value to trigger onOpen, onClose and other events. B
     {args => {
       return (
         <Tree value={'master'} label={'Master'} {...args}>
-          <Tree value={'tvs'} label={'TVs and projectors'} {...args}/>
+          <Tree value={'tvs'} label={'TVs and projectors'} {...args}>
+            <Tree value={'pc_monitors'} label={'PC Monitors'} isLeaf={true} {...args} />
+          </Tree>
           <Tree value={'cameras'} label={'Cameras'} {...args}/>
           <Tree value={'audio'} label={'Audio and Video'} {...args}/>
         </Tree>
@@ -161,4 +163,23 @@ The Tree component uses its value to trigger onOpen, onClose and other events. B
   </Story>
 </Canvas>
 
+## Variation on indeterminate checked when child is selected
 
+<Canvas>
+  <Story name="IndeterminateChecked">
+    {args => {
+      return (
+        <>
+           <Tree {...args} label='Indeterminate' selectable={true}>
+                <Tree {...args} label='Child1' selectable={true} selected={true} />
+                <Tree {...args} label='Child2' selectable={true} />
+           </Tree>
+           <Tree {...args} label='All Checked' selectable={true}>
+                <Tree {...args} label='Child1' selectable={true} selected={true} />
+                <Tree {...args} label='Child2' selectable={true} selected={true}/>
+           </Tree>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>

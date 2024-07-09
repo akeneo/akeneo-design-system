@@ -14,6 +14,32 @@ test('it renders tree with children properly and is loading', () => {
   expect(screen.getByText('Camcorders')).toBeInTheDocument();
 });
 
+test("it set selected to 'mixed' when a children is selected ", () => {
+  render(
+    <Tree value={'master'} label={'Master'} selected={true} selectable={true}>
+      <Tree value={'camcorders'} label={'Camcorders'} />
+      <Tree value={'radio'} label={'Radio'} isLeaf={true} selected={true} selectable={true} />
+    </Tree>
+  );
+
+  const masterTree = screen.getByText('Master');
+  expect(masterTree).toBeInTheDocument();
+  expect(masterTree.getAttribute('aria-selected')).toBe('mixed');
+});
+
+test("it set selected to 'true' when all children are selected ", () => {
+  render(
+    <Tree value={'master'} label={'Master'} selected={true} selectable={true}>
+      <Tree value={'camcorders'} label={'Camcorders'} selected={true} selectable={true} />
+      <Tree value={'radio'} label={'Radio'} isLeaf={true} selected={true} selectable={true} />
+    </Tree>
+  );
+
+  const masterTree = screen.getByText('Master');
+  expect(masterTree).toBeInTheDocument();
+  expect(masterTree.getAttribute('aria-selected')).toBe('true');
+});
+
 test('Tree supports ...rest props', () => {
   render(<Tree value={'master'} label={'Master'} data-testid="my_value" />);
   expect(screen.getByTestId('my_value')).toBeInTheDocument();
