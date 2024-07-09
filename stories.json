@@ -2789,6 +2789,16 @@
         "__isArgsStory": true
       }
     },
+    "components-tree--indeterminate-checked": {
+      "id": "components-tree--indeterminate-checked",
+      "name": "IndeterminateChecked",
+      "kind": "Components/Tree",
+      "story": "IndeterminateChecked",
+      "parameters": {
+        "__id": "components-tree--indeterminate-checked",
+        "__isArgsStory": true
+      }
+    },
     "patterns-bulk-actions--big-table": {
       "id": "patterns-bulk-actions--big-table",
       "name": "Big Table",
