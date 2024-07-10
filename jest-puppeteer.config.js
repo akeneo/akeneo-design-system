@@ -5,7 +5,7 @@ module.exports = {
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   },
   server: {
-    command: 'yarn http-server storybook-static -p 6006',
+    command: 'npx http-server storybook-static -p 6006',
     launchTimeout: 90000
   },
 }

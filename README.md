@@ -34,13 +34,10 @@ Latest version is available here: https://dsm.akeneo.com
 
 **Locally**
 
-To build this project, you need to have the following package installed:
-- Yarn (https://classic.yarnpkg.com/docs/install)
-
 You should execute the following commands:
 ```shell
-$ yarn install
-$ yarn storybook:start
+$ npm install
+$ npm run storybook:start
 ```
 
 Then open http://localhost:6006 on your browser.
@@ -50,7 +47,7 @@ You don't have to relaunch the command at each time you create or update a compo
 
 To add Akeneo Design System to your React application, run:
 ```shell
-$ yarn add akeneo-design-system
+$ npm add akeneo-design-system
 ```
 
 Once the package installed, you should provide the theme related to your project at the top of your application:
@@ -117,10 +114,10 @@ There is two type of tests, unit and visual tests.
 Unit tests can be launched with the following commands:
 ```shell
 # Launch only one time
-$ yarn test:unit:run
+$ npm run test:unit:run
 
 # Launch in watch mode
-$ yarn test:unit:watch
+$ npm run test:unit:watch
 ```
 
 Unit test should validate all component behaviors => coverage of 100% is required for component in this project.

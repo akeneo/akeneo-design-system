@@ -14,9 +14,9 @@ As a general advice, you should ask the assigned designer what to do and make su
 
 ```bash
 $ front/akeneo-design-system/bin/dsm generate ComponentName
-$ yarn --cwd=front/akeneo-design-system storybook:start
+$ npm --prefix front/akeneo-design-system run storybook:start
 # Or with Docker
-$ docker compose run --rm -p 6006:6006 node yarn --cwd=front/akeneo-design-system storybook:start
+$ docker compose run --rm -p 6006:6006 node npm --prefix front/akeneo-design-system run storybook:start
 ```
 
 - Then implement your Component logic in the newly created file `src/components/ComponentName/ComponentName.tsx`
@@ -59,7 +59,7 @@ Github Action will deploy a new version of the storybook give the url to designe
 - Component should be strongly typed with TypeScript
 - All properties should be documented
 - Simple components should be stateless
-- Coding style should follow rules defined in .eslintrc (`yarn lint:check`)
+- Coding style should follow rules defined in .eslintrc (`npm run lint:check`)
 - Component should manage forwardRef and ...props
 - Component should provide aria attributes if necessary
 - Components should be keyboard accessible

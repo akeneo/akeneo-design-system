@@ -24,7 +24,7 @@ jobs:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
       - name: Install node modules
-        run: yarn install
+        run: npm ci
       - name: Publish package to NPM
         run: npm publish --access public
         env:
