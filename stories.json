@@ -1,268 +1,17 @@
 {
-  "v": 2,
-  "globalParameters": {},
-  "kindParameters": {
-    "Introduction": {
-      "fileName": 721,
-      "framework": "react"
-    },
-    "Guidelines/Colors": {
-      "fileName": 303,
-      "framework": "react"
-    },
-    "Guidelines/Iconography": {
-      "fileName": 680,
-      "framework": "react"
-    },
-    "Guidelines/Illustrations": {
-      "fileName": 681,
-      "framework": "react"
-    },
-    "Build": {
-      "fileName": 1462,
-      "framework": "react"
-    },
-    "Contributing": {
-      "fileName": 1463,
-      "framework": "react"
-    },
-    "Components/Avatar": {
-      "fileName": 1294,
-      "framework": "react"
-    },
-    "Components/Badge": {
-      "fileName": 1296,
-      "framework": "react"
-    },
-    "Components/Block": {
-      "fileName": 1297,
-      "framework": "react"
-    },
-    "Components/Buttons/BlockButton": {
-      "fileName": 1298,
-      "framework": "react"
-    },
-    "Components/Breadcrumb": {
-      "fileName": 1392,
-      "framework": "react"
-    },
-    "Components/Buttons/Button": {
-      "fileName": 1393,
-      "framework": "react"
-    },
-    "Components/Card": {
-      "fileName": 1394,
-      "framework": "react"
-    },
-    "Components/Checkbox": {
-      "fileName": 1395,
-      "framework": "react"
-    },
-    "Components/Collapse": {
-      "fileName": 1396,
-      "framework": "react"
-    },
-    "Components/Dropdown": {
-      "fileName": 1397,
-      "framework": "react"
-    },
-    "Components/Field": {
-      "fileName": 1398,
-      "framework": "react"
-    },
-    "Components/Helper": {
-      "fileName": 1399,
-      "framework": "react"
-    },
-    "Components/Buttons/Icon button": {
-      "fileName": 1400,
-      "framework": "react"
-    },
-    "Components/IconCard": {
-      "fileName": 1405,
-      "framework": "react"
-    },
-    "Components/Image": {
-      "fileName": 1406,
-      "framework": "react"
-    },
-    "Components/Information": {
-      "fileName": 1407,
-      "framework": "react"
-    },
-    "Components/Inputs/Boolean input": {
-      "fileName": 1408,
-      "framework": "react"
-    },
-    "Components/Inputs/Color input": {
-      "fileName": 1409,
-      "framework": "react"
-    },
-    "Components/Inputs/Date input": {
-      "fileName": 1410,
-      "framework": "react"
-    },
-    "Components/Inputs/Media File input": {
-      "fileName": 1411,
-      "framework": "react"
-    },
-    "Components/Inputs/Media Link input": {
-      "fileName": 1412,
-      "framework": "react"
-    },
-    "Components/Inputs/Metric input": {
-      "fileName": 1413,
-      "framework": "react"
-    },
-    "Components/Inputs/Multi Select input": {
-      "fileName": 1414,
-      "framework": "react"
-    },
-    "Components/Inputs/Number input": {
-      "fileName": 1415,
-      "framework": "react"
-    },
-    "Components/Inputs/Select input": {
-      "fileName": 1416,
-      "framework": "react"
-    },
-    "Components/Inputs/Table input": {
-      "fileName": 1464,
-      "framework": "react"
-    },
-    "Components/Inputs/Tag input": {
-      "fileName": 1417,
-      "framework": "react"
-    },
-    "Components/Inputs/Textarea input": {
-      "fileName": 1418,
-      "framework": "react"
-    },
-    "Components/Inputs/Text input": {
-      "fileName": 1419,
-      "framework": "react"
-    },
-    "Components/KeyFigure": {
-      "fileName": 1420,
-      "framework": "react"
-    },
-    "Components/Link": {
-      "fileName": 1421,
-      "framework": "react"
-    },
-    "Components/List": {
-      "fileName": 1422,
-      "framework": "react"
-    },
-    "Components/Locale": {
-      "fileName": 1423,
-      "framework": "react"
-    },
-    "Components/Message bar": {
-      "fileName": 1424,
-      "framework": "react"
-    },
-    "Components/Modal": {
-      "fileName": 1425,
-      "framework": "react"
-    },
-    "Components/Navigation/MainNavigationItem": {
-      "fileName": 1426,
-      "framework": "react"
-    },
-    "Components/Navigation/SubNavigationItem": {
-      "fileName": 1427,
-      "framework": "react"
-    },
-    "Components/Navigation/SubNavigationPanel": {
-      "fileName": 1428,
-      "framework": "react"
-    },
-    "Components/Pagination": {
-      "fileName": 1429,
-      "framework": "react"
-    },
-    "Components/Pill": {
-      "fileName": 1430,
-      "framework": "react"
-    },
-    "Components/Placeholder": {
-      "fileName": 1431,
-      "framework": "react"
-    },
-    "Components/Preview": {
-      "fileName": 1432,
-      "framework": "react"
-    },
-    "Components/Progress bar": {
-      "fileName": 1433,
-      "framework": "react"
-    },
-    "Components/Progress indicator": {
-      "fileName": 1434,
-      "framework": "react"
-    },
-    "Components/Search": {
-      "fileName": 1435,
-      "framework": "react"
-    },
-    "Components/Section title": {
-      "fileName": 1436,
-      "framework": "react"
-    },
-    "Components/Buttons/SplitButton": {
-      "fileName": 1437,
-      "framework": "react"
-    },
-    "Components/Switcher Button": {
-      "fileName": 1438,
-      "framework": "react"
-    },
-    "Components/TabBar": {
-      "fileName": 1439,
-      "framework": "react"
-    },
-    "Components/Table": {
-      "fileName": 1440,
-      "framework": "react"
-    },
-    "Components/Tags": {
-      "fileName": 1445,
-      "framework": "react"
-    },
-    "Components/Tiles": {
-      "fileName": 1446,
-      "framework": "react"
-    },
-    "Components/Toolbar": {
-      "fileName": 1447,
-      "framework": "react"
-    },
-    "Components/Tooltip": {
-      "fileName": 1448,
-      "framework": "react"
-    },
-    "Components/Tree": {
-      "fileName": 1449,
-      "framework": "react"
-    },
-    "Patterns/Bulk Actions": {
-      "fileName": 1450,
-      "framework": "react"
-    },
-    "Patterns/Overlays": {
-      "fileName": 1451,
-      "framework": "react"
-    }
-  },
+  "v": 3,
   "stories": {
     "introduction--page": {
       "id": "introduction--page",
       "name": "Page",
+      "title": "Introduction",
+      "importPath": "./src/Introduction.stories.mdx",
       "kind": "Introduction",
       "story": "Page",
       "parameters": {
+        "fileName": "./src/Introduction.stories.mdx",
         "docsOnly": true,
+        "framework": "react",
         "__id": "introduction--page",
         "__isArgsStory": false
       }
@@ -270,9 +19,13 @@
     "guidelines-colors--standard": {
       "id": "guidelines-colors--standard",
       "name": "Standard",
+      "title": "Guidelines/Colors",
+      "importPath": "./src/guidelines/Colors.stories.mdx",
       "kind": "Guidelines/Colors",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/guidelines/Colors.stories.mdx",
+        "framework": "react",
         "__id": "guidelines-colors--standard",
         "__isArgsStory": false
       }
@@ -280,9 +33,13 @@
     "guidelines-colors--alternative": {
       "id": "guidelines-colors--alternative",
       "name": "Alternative",
+      "title": "Guidelines/Colors",
+      "importPath": "./src/guidelines/Colors.stories.mdx",
       "kind": "Guidelines/Colors",
       "story": "Alternative",
       "parameters": {
+        "fileName": "./src/guidelines/Colors.stories.mdx",
+        "framework": "react",
         "__id": "guidelines-colors--alternative",
         "__isArgsStory": false
       }
@@ -290,9 +47,13 @@
     "guidelines-iconography--standard": {
       "id": "guidelines-iconography--standard",
       "name": "Standard",
+      "title": "Guidelines/Iconography",
+      "importPath": "./src/guidelines/Iconography.stories.mdx",
       "kind": "Guidelines/Iconography",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/guidelines/Iconography.stories.mdx",
+        "framework": "react",
         "__id": "guidelines-iconography--standard",
         "__isArgsStory": true
       }
@@ -300,9 +61,13 @@
     "guidelines-illustrations--standard": {
       "id": "guidelines-illustrations--standard",
       "name": "Standard",
+      "title": "Guidelines/Illustrations",
+      "importPath": "./src/guidelines/Illustration.stories.mdx",
       "kind": "Guidelines/Illustrations",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/guidelines/Illustration.stories.mdx",
+        "framework": "react",
         "__id": "guidelines-illustrations--standard",
         "__isArgsStory": true
       }
@@ -310,10 +75,14 @@
     "build--page": {
       "id": "build--page",
       "name": "Page",
+      "title": "Build",
+      "importPath": "./src/BuildInfrastructure.stories.mdx",
       "kind": "Build",
       "story": "Page",
       "parameters": {
+        "fileName": "./src/BuildInfrastructure.stories.mdx",
         "docsOnly": true,
+        "framework": "react",
         "__id": "build--page",
         "__isArgsStory": false
       }
@@ -321,10 +90,14 @@
     "contributing--page": {
       "id": "contributing--page",
       "name": "Page",
+      "title": "Contributing",
+      "importPath": "./src/Contributing.stories.mdx",
       "kind": "Contributing",
       "story": "Page",
       "parameters": {
+        "fileName": "./src/Contributing.stories.mdx",
         "docsOnly": true,
+        "framework": "react",
         "__id": "contributing--page",
         "__isArgsStory": false
       }
@@ -332,9 +105,13 @@
     "components-avatar--standard": {
       "id": "components-avatar--standard",
       "name": "Standard",
+      "title": "Components/Avatar",
+      "importPath": "./src/components/Avatar/Avatar.stories.mdx",
       "kind": "Components/Avatar",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Avatar/Avatar.stories.mdx",
+        "framework": "react",
         "__id": "components-avatar--standard",
         "__isArgsStory": true
       }
@@ -342,9 +119,13 @@
     "components-avatar--background-colors": {
       "id": "components-avatar--background-colors",
       "name": "Background colors",
+      "title": "Components/Avatar",
+      "importPath": "./src/components/Avatar/Avatar.stories.mdx",
       "kind": "Components/Avatar",
       "story": "Background colors",
       "parameters": {
+        "fileName": "./src/components/Avatar/Avatar.stories.mdx",
+        "framework": "react",
         "__id": "components-avatar--background-colors",
         "__isArgsStory": true
       }
@@ -352,9 +133,13 @@
     "components-avatar--with-image": {
       "id": "components-avatar--with-image",
       "name": "With image",
+      "title": "Components/Avatar",
+      "importPath": "./src/components/Avatar/Avatar.stories.mdx",
       "kind": "Components/Avatar",
       "story": "With image",
       "parameters": {
+        "fileName": "./src/components/Avatar/Avatar.stories.mdx",
+        "framework": "react",
         "__id": "components-avatar--with-image",
         "__isArgsStory": true
       }
@@ -362,9 +147,13 @@
     "components-avatar--avatar-list": {
       "id": "components-avatar--avatar-list",
       "name": "Avatar list",
+      "title": "Components/Avatar",
+      "importPath": "./src/components/Avatar/Avatar.stories.mdx",
       "kind": "Components/Avatar",
       "story": "Avatar list",
       "parameters": {
+        "fileName": "./src/components/Avatar/Avatar.stories.mdx",
+        "framework": "react",
         "__id": "components-avatar--avatar-list",
         "__isArgsStory": true
       }
@@ -372,9 +161,13 @@
     "components-avatar--avatar-size": {
       "id": "components-avatar--avatar-size",
       "name": "Avatar size",
+      "title": "Components/Avatar",
+      "importPath": "./src/components/Avatar/Avatar.stories.mdx",
       "kind": "Components/Avatar",
       "story": "Avatar size",
       "parameters": {
+        "fileName": "./src/components/Avatar/Avatar.stories.mdx",
+        "framework": "react",
         "__id": "components-avatar--avatar-size",
         "__isArgsStory": true
       }
@@ -382,9 +175,13 @@
     "components-badge--standard": {
       "id": "components-badge--standard",
       "name": "Standard",
+      "title": "Components/Badge",
+      "importPath": "./src/components/Badge/Badge.stories.mdx",
       "kind": "Components/Badge",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Badge/Badge.stories.mdx",
+        "framework": "react",
         "__id": "components-badge--standard",
         "__isArgsStory": true
       }
@@ -392,9 +189,13 @@
     "components-badge--level": {
       "id": "components-badge--level",
       "name": "Level",
+      "title": "Components/Badge",
+      "importPath": "./src/components/Badge/Badge.stories.mdx",
       "kind": "Components/Badge",
       "story": "Level",
       "parameters": {
+        "fileName": "./src/components/Badge/Badge.stories.mdx",
+        "framework": "react",
         "__id": "components-badge--level",
         "__isArgsStory": true
       }
@@ -402,9 +203,13 @@
     "components-block--standard": {
       "id": "components-block--standard",
       "name": "Standard",
+      "title": "Components/Block",
+      "importPath": "./src/components/Block/Block.stories.mdx",
       "kind": "Components/Block",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Block/Block.stories.mdx",
+        "framework": "react",
         "__id": "components-block--standard",
         "__isArgsStory": true
       }
@@ -412,9 +217,13 @@
     "components-block--without-actions": {
       "id": "components-block--without-actions",
       "name": "Without Actions",
+      "title": "Components/Block",
+      "importPath": "./src/components/Block/Block.stories.mdx",
       "kind": "Components/Block",
       "story": "Without Actions",
       "parameters": {
+        "fileName": "./src/components/Block/Block.stories.mdx",
+        "framework": "react",
         "__id": "components-block--without-actions",
         "__isArgsStory": true
       }
@@ -422,9 +231,13 @@
     "components-block--with-actions": {
       "id": "components-block--with-actions",
       "name": "With Actions",
+      "title": "Components/Block",
+      "importPath": "./src/components/Block/Block.stories.mdx",
       "kind": "Components/Block",
       "story": "With Actions",
       "parameters": {
+        "fileName": "./src/components/Block/Block.stories.mdx",
+        "framework": "react",
         "__id": "components-block--with-actions",
         "__isArgsStory": true
       }
@@ -432,9 +245,13 @@
     "components-buttons-blockbutton--standard": {
       "id": "components-buttons-blockbutton--standard",
       "name": "Standard",
+      "title": "Components/Buttons/BlockButton",
+      "importPath": "./src/components/BlockButton/BlockButton.stories.mdx",
       "kind": "Components/Buttons/BlockButton",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/BlockButton/BlockButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-blockbutton--standard",
         "__isArgsStory": true
       }
@@ -442,9 +259,13 @@
     "components-buttons-blockbutton--disabled": {
       "id": "components-buttons-blockbutton--disabled",
       "name": "Disabled",
+      "title": "Components/Buttons/BlockButton",
+      "importPath": "./src/components/BlockButton/BlockButton.stories.mdx",
       "kind": "Components/Buttons/BlockButton",
       "story": "Disabled",
       "parameters": {
+        "fileName": "./src/components/BlockButton/BlockButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-blockbutton--disabled",
         "__isArgsStory": true
       }
@@ -452,9 +273,13 @@
     "components-buttons-blockbutton--with-an-icon-children": {
       "id": "components-buttons-blockbutton--with-an-icon-children",
       "name": "With an Icon (children)",
+      "title": "Components/Buttons/BlockButton",
+      "importPath": "./src/components/BlockButton/BlockButton.stories.mdx",
       "kind": "Components/Buttons/BlockButton",
       "story": "With an Icon (children)",
       "parameters": {
+        "fileName": "./src/components/BlockButton/BlockButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-blockbutton--with-an-icon-children",
         "__isArgsStory": true
       }
@@ -462,9 +287,13 @@
     "components-buttons-blockbutton--with-dropdown-and-blocks": {
       "id": "components-buttons-blockbutton--with-dropdown-and-blocks",
       "name": "With Dropdown and Blocks",
+      "title": "Components/Buttons/BlockButton",
+      "importPath": "./src/components/BlockButton/BlockButton.stories.mdx",
       "kind": "Components/Buttons/BlockButton",
       "story": "With Dropdown and Blocks",
       "parameters": {
+        "fileName": "./src/components/BlockButton/BlockButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-blockbutton--with-dropdown-and-blocks",
         "__isArgsStory": true
       }
@@ -472,9 +301,13 @@
     "components-breadcrumb--standard": {
       "id": "components-breadcrumb--standard",
       "name": "Standard",
+      "title": "Components/Breadcrumb",
+      "importPath": "./src/components/Breadcrumb/Breadcrumb.stories.mdx",
       "kind": "Components/Breadcrumb",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Breadcrumb/Breadcrumb.stories.mdx",
+        "framework": "react",
         "__id": "components-breadcrumb--standard",
         "__isArgsStory": true
       }
@@ -482,9 +315,13 @@
     "components-breadcrumb--steps": {
       "id": "components-breadcrumb--steps",
       "name": "Steps",
+      "title": "Components/Breadcrumb",
+      "importPath": "./src/components/Breadcrumb/Breadcrumb.stories.mdx",
       "kind": "Components/Breadcrumb",
       "story": "Steps",
       "parameters": {
+        "fileName": "./src/components/Breadcrumb/Breadcrumb.stories.mdx",
+        "framework": "react",
         "__id": "components-breadcrumb--steps",
         "__isArgsStory": true
       }
@@ -492,9 +329,13 @@
     "components-buttons-button--standard": {
       "id": "components-buttons-button--standard",
       "name": "Standard",
+      "title": "Components/Buttons/Button",
+      "importPath": "./src/components/Button/Button.stories.mdx",
       "kind": "Components/Buttons/Button",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Button/Button.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-button--standard",
         "__isArgsStory": true
       }
@@ -502,9 +343,13 @@
     "components-buttons-button--level": {
       "id": "components-buttons-button--level",
       "name": "Level",
+      "title": "Components/Buttons/Button",
+      "importPath": "./src/components/Button/Button.stories.mdx",
       "kind": "Components/Buttons/Button",
       "story": "Level",
       "parameters": {
+        "fileName": "./src/components/Button/Button.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-button--level",
         "__isArgsStory": true
       }
@@ -512,9 +357,13 @@
     "components-buttons-button--ghost": {
       "id": "components-buttons-button--ghost",
       "name": "Ghost",
+      "title": "Components/Buttons/Button",
+      "importPath": "./src/components/Button/Button.stories.mdx",
       "kind": "Components/Buttons/Button",
       "story": "Ghost",
       "parameters": {
+        "fileName": "./src/components/Button/Button.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-button--ghost",
         "__isArgsStory": true
       }
@@ -522,9 +371,13 @@
     "components-buttons-button--active": {
       "id": "components-buttons-button--active",
       "name": "Active",
+      "title": "Components/Buttons/Button",
+      "importPath": "./src/components/Button/Button.stories.mdx",
       "kind": "Components/Buttons/Button",
       "story": "Active",
       "parameters": {
+        "fileName": "./src/components/Button/Button.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-button--active",
         "__isArgsStory": true
       }
@@ -532,9 +385,13 @@
     "components-buttons-button--disabled": {
       "id": "components-buttons-button--disabled",
       "name": "Disabled",
+      "title": "Components/Buttons/Button",
+      "importPath": "./src/components/Button/Button.stories.mdx",
       "kind": "Components/Buttons/Button",
       "story": "Disabled",
       "parameters": {
+        "fileName": "./src/components/Button/Button.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-button--disabled",
         "__isArgsStory": true
       }
@@ -542,9 +399,13 @@
     "components-buttons-button--size": {
       "id": "components-buttons-button--size",
       "name": "Size",
+      "title": "Components/Buttons/Button",
+      "importPath": "./src/components/Button/Button.stories.mdx",
       "kind": "Components/Buttons/Button",
       "story": "Size",
       "parameters": {
+        "fileName": "./src/components/Button/Button.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-button--size",
         "__isArgsStory": true
       }
@@ -552,9 +413,13 @@
     "components-buttons-button--link": {
       "id": "components-buttons-button--link",
       "name": "Link",
+      "title": "Components/Buttons/Button",
+      "importPath": "./src/components/Button/Button.stories.mdx",
       "kind": "Components/Buttons/Button",
       "story": "Link",
       "parameters": {
+        "fileName": "./src/components/Button/Button.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-button--link",
         "__isArgsStory": true
       }
@@ -562,9 +427,13 @@
     "components-buttons-button--with-an-icon": {
       "id": "components-buttons-button--with-an-icon",
       "name": "With an Icon",
+      "title": "Components/Buttons/Button",
+      "importPath": "./src/components/Button/Button.stories.mdx",
       "kind": "Components/Buttons/Button",
       "story": "With an Icon",
       "parameters": {
+        "fileName": "./src/components/Button/Button.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-button--with-an-icon",
         "__isArgsStory": false
       }
@@ -572,9 +441,13 @@
     "components-card--standard": {
       "id": "components-card--standard",
       "name": "Standard",
+      "title": "Components/Card",
+      "importPath": "./src/components/Card/Card.stories.mdx",
       "kind": "Components/Card",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Card/Card.stories.mdx",
+        "framework": "react",
         "__id": "components-card--standard",
         "__isArgsStory": true
       }
@@ -582,9 +455,13 @@
     "components-card--selectable": {
       "id": "components-card--selectable",
       "name": "Selectable",
+      "title": "Components/Card",
+      "importPath": "./src/components/Card/Card.stories.mdx",
       "kind": "Components/Card",
       "story": "Selectable",
       "parameters": {
+        "fileName": "./src/components/Card/Card.stories.mdx",
+        "framework": "react",
         "__id": "components-card--selectable",
         "__isArgsStory": true
       }
@@ -592,9 +469,13 @@
     "components-card--with-badges": {
       "id": "components-card--with-badges",
       "name": "With Badges",
+      "title": "Components/Card",
+      "importPath": "./src/components/Card/Card.stories.mdx",
       "kind": "Components/Card",
       "story": "With Badges",
       "parameters": {
+        "fileName": "./src/components/Card/Card.stories.mdx",
+        "framework": "react",
         "__id": "components-card--with-badges",
         "__isArgsStory": true
       }
@@ -602,9 +483,13 @@
     "components-card--with-links": {
       "id": "components-card--with-links",
       "name": "With Links",
+      "title": "Components/Card",
+      "importPath": "./src/components/Card/Card.stories.mdx",
       "kind": "Components/Card",
       "story": "With Links",
       "parameters": {
+        "fileName": "./src/components/Card/Card.stories.mdx",
+        "framework": "react",
         "__id": "components-card--with-links",
         "__isArgsStory": true
       }
@@ -612,9 +497,13 @@
     "components-card--card-grid": {
       "id": "components-card--card-grid",
       "name": "CardGrid",
+      "title": "Components/Card",
+      "importPath": "./src/components/Card/Card.stories.mdx",
       "kind": "Components/Card",
       "story": "CardGrid",
       "parameters": {
+        "fileName": "./src/components/Card/Card.stories.mdx",
+        "framework": "react",
         "__id": "components-card--card-grid",
         "__isArgsStory": true
       }
@@ -622,9 +511,13 @@
     "components-card--size": {
       "id": "components-card--size",
       "name": "Size",
+      "title": "Components/Card",
+      "importPath": "./src/components/Card/Card.stories.mdx",
       "kind": "Components/Card",
       "story": "Size",
       "parameters": {
+        "fileName": "./src/components/Card/Card.stories.mdx",
+        "framework": "react",
         "__id": "components-card--size",
         "__isArgsStory": true
       }
@@ -632,9 +525,13 @@
     "components-card--small-stacked-card": {
       "id": "components-card--small-stacked-card",
       "name": "SmallStackedCard",
+      "title": "Components/Card",
+      "importPath": "./src/components/Card/Card.stories.mdx",
       "kind": "Components/Card",
       "story": "SmallStackedCard",
       "parameters": {
+        "fileName": "./src/components/Card/Card.stories.mdx",
+        "framework": "react",
         "__id": "components-card--small-stacked-card",
         "__isArgsStory": true
       }
@@ -642,9 +539,13 @@
     "components-card--big-stacked-card": {
       "id": "components-card--big-stacked-card",
       "name": "BigStackedCard",
+      "title": "Components/Card",
+      "importPath": "./src/components/Card/Card.stories.mdx",
       "kind": "Components/Card",
       "story": "BigStackedCard",
       "parameters": {
+        "fileName": "./src/components/Card/Card.stories.mdx",
+        "framework": "react",
         "__id": "components-card--big-stacked-card",
         "__isArgsStory": true
       }
@@ -652,9 +553,13 @@
     "components-checkbox--standard": {
       "id": "components-checkbox--standard",
       "name": "Standard",
+      "title": "Components/Checkbox",
+      "importPath": "./src/components/Checkbox/Checkbox.stories.mdx",
       "kind": "Components/Checkbox",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Checkbox/Checkbox.stories.mdx",
+        "framework": "react",
         "__id": "components-checkbox--standard",
         "__isArgsStory": true
       }
@@ -662,9 +567,13 @@
     "components-checkbox--state": {
       "id": "components-checkbox--state",
       "name": "State",
+      "title": "Components/Checkbox",
+      "importPath": "./src/components/Checkbox/Checkbox.stories.mdx",
       "kind": "Components/Checkbox",
       "story": "State",
       "parameters": {
+        "fileName": "./src/components/Checkbox/Checkbox.stories.mdx",
+        "framework": "react",
         "__id": "components-checkbox--state",
         "__isArgsStory": true
       }
@@ -672,9 +581,13 @@
     "components-checkbox--disabled": {
       "id": "components-checkbox--disabled",
       "name": "Disabled",
+      "title": "Components/Checkbox",
+      "importPath": "./src/components/Checkbox/Checkbox.stories.mdx",
       "kind": "Components/Checkbox",
       "story": "Disabled",
       "parameters": {
+        "fileName": "./src/components/Checkbox/Checkbox.stories.mdx",
+        "framework": "react",
         "__id": "components-checkbox--disabled",
         "__isArgsStory": true
       }
@@ -682,9 +595,13 @@
     "components-checkbox--animation": {
       "id": "components-checkbox--animation",
       "name": "Animation",
+      "title": "Components/Checkbox",
+      "importPath": "./src/components/Checkbox/Checkbox.stories.mdx",
       "kind": "Components/Checkbox",
       "story": "Animation",
       "parameters": {
+        "fileName": "./src/components/Checkbox/Checkbox.stories.mdx",
+        "framework": "react",
         "__id": "components-checkbox--animation",
         "__isArgsStory": true
       }
@@ -692,9 +609,13 @@
     "components-collapse--standard": {
       "id": "components-collapse--standard",
       "name": "Standard",
+      "title": "Components/Collapse",
+      "importPath": "./src/components/Collapse/Collapse.stories.mdx",
       "kind": "Components/Collapse",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Collapse/Collapse.stories.mdx",
+        "framework": "react",
         "__id": "components-collapse--standard",
         "__isArgsStory": true
       }
@@ -702,9 +623,13 @@
     "components-collapse--with-pill": {
       "id": "components-collapse--with-pill",
       "name": "With Pill",
+      "title": "Components/Collapse",
+      "importPath": "./src/components/Collapse/Collapse.stories.mdx",
       "kind": "Components/Collapse",
       "story": "With Pill",
       "parameters": {
+        "fileName": "./src/components/Collapse/Collapse.stories.mdx",
+        "framework": "react",
         "__id": "components-collapse--with-pill",
         "__isArgsStory": true
       }
@@ -712,9 +637,13 @@
     "components-collapse--with-badge": {
       "id": "components-collapse--with-badge",
       "name": "With Badge",
+      "title": "Components/Collapse",
+      "importPath": "./src/components/Collapse/Collapse.stories.mdx",
       "kind": "Components/Collapse",
       "story": "With Badge",
       "parameters": {
+        "fileName": "./src/components/Collapse/Collapse.stories.mdx",
+        "framework": "react",
         "__id": "components-collapse--with-badge",
         "__isArgsStory": true
       }
@@ -722,9 +651,13 @@
     "components-collapse--with-content": {
       "id": "components-collapse--with-content",
       "name": "With content",
+      "title": "Components/Collapse",
+      "importPath": "./src/components/Collapse/Collapse.stories.mdx",
       "kind": "Components/Collapse",
       "story": "With content",
       "parameters": {
+        "fileName": "./src/components/Collapse/Collapse.stories.mdx",
+        "framework": "react",
         "__id": "components-collapse--with-content",
         "__isArgsStory": true
       }
@@ -732,9 +665,13 @@
     "components-dropdown--standard": {
       "id": "components-dropdown--standard",
       "name": "Standard",
+      "title": "Components/Dropdown",
+      "importPath": "./src/components/Dropdown/Dropdown.stories.mdx",
       "kind": "Components/Dropdown",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Dropdown/Dropdown.stories.mdx",
+        "framework": "react",
         "__id": "components-dropdown--standard",
         "__isArgsStory": true
       }
@@ -742,9 +679,13 @@
     "components-dropdown--simple-item": {
       "id": "components-dropdown--simple-item",
       "name": "Simple Item",
+      "title": "Components/Dropdown",
+      "importPath": "./src/components/Dropdown/Dropdown.stories.mdx",
       "kind": "Components/Dropdown",
       "story": "Simple Item",
       "parameters": {
+        "fileName": "./src/components/Dropdown/Dropdown.stories.mdx",
+        "framework": "react",
         "__id": "components-dropdown--simple-item",
         "__isArgsStory": true
       }
@@ -752,9 +693,13 @@
     "components-dropdown--no-result": {
       "id": "components-dropdown--no-result",
       "name": "No result",
+      "title": "Components/Dropdown",
+      "importPath": "./src/components/Dropdown/Dropdown.stories.mdx",
       "kind": "Components/Dropdown",
       "story": "No result",
       "parameters": {
+        "fileName": "./src/components/Dropdown/Dropdown.stories.mdx",
+        "framework": "react",
         "__id": "components-dropdown--no-result",
         "__isArgsStory": true
       }
@@ -762,9 +707,13 @@
     "components-dropdown--position": {
       "id": "components-dropdown--position",
       "name": "Position",
+      "title": "Components/Dropdown",
+      "importPath": "./src/components/Dropdown/Dropdown.stories.mdx",
       "kind": "Components/Dropdown",
       "story": "Position",
       "parameters": {
+        "fileName": "./src/components/Dropdown/Dropdown.stories.mdx",
+        "framework": "react",
         "__id": "components-dropdown--position",
         "__isArgsStory": true
       }
@@ -772,9 +721,13 @@
     "components-dropdown--search-pagination": {
       "id": "components-dropdown--search-pagination",
       "name": "Search & pagination",
+      "title": "Components/Dropdown",
+      "importPath": "./src/components/Dropdown/Dropdown.stories.mdx",
       "kind": "Components/Dropdown",
       "story": "Search & pagination",
       "parameters": {
+        "fileName": "./src/components/Dropdown/Dropdown.stories.mdx",
+        "framework": "react",
         "__id": "components-dropdown--search-pagination",
         "__isArgsStory": true
       }
@@ -782,9 +735,13 @@
     "components-dropdown--item-with-selection": {
       "id": "components-dropdown--item-with-selection",
       "name": "Item with selection",
+      "title": "Components/Dropdown",
+      "importPath": "./src/components/Dropdown/Dropdown.stories.mdx",
       "kind": "Components/Dropdown",
       "story": "Item with selection",
       "parameters": {
+        "fileName": "./src/components/Dropdown/Dropdown.stories.mdx",
+        "framework": "react",
         "__id": "components-dropdown--item-with-selection",
         "__isArgsStory": true
       }
@@ -792,9 +749,13 @@
     "components-dropdown--with-section": {
       "id": "components-dropdown--with-section",
       "name": "With section",
+      "title": "Components/Dropdown",
+      "importPath": "./src/components/Dropdown/Dropdown.stories.mdx",
       "kind": "Components/Dropdown",
       "story": "With section",
       "parameters": {
+        "fileName": "./src/components/Dropdown/Dropdown.stories.mdx",
+        "framework": "react",
         "__id": "components-dropdown--with-section",
         "__isArgsStory": true
       }
@@ -802,9 +763,13 @@
     "components-dropdown--item-with-image": {
       "id": "components-dropdown--item-with-image",
       "name": "Item with image",
+      "title": "Components/Dropdown",
+      "importPath": "./src/components/Dropdown/Dropdown.stories.mdx",
       "kind": "Components/Dropdown",
       "story": "Item with image",
       "parameters": {
+        "fileName": "./src/components/Dropdown/Dropdown.stories.mdx",
+        "framework": "react",
         "__id": "components-dropdown--item-with-image",
         "__isArgsStory": true
       }
@@ -812,9 +777,13 @@
     "components-dropdown--surtitle-item": {
       "id": "components-dropdown--surtitle-item",
       "name": "Surtitle Item",
+      "title": "Components/Dropdown",
+      "importPath": "./src/components/Dropdown/Dropdown.stories.mdx",
       "kind": "Components/Dropdown",
       "story": "Surtitle Item",
       "parameters": {
+        "fileName": "./src/components/Dropdown/Dropdown.stories.mdx",
+        "framework": "react",
         "__id": "components-dropdown--surtitle-item",
         "__isArgsStory": true
       }
@@ -822,9 +791,13 @@
     "components-dropdown--full-width": {
       "id": "components-dropdown--full-width",
       "name": "Full Width",
+      "title": "Components/Dropdown",
+      "importPath": "./src/components/Dropdown/Dropdown.stories.mdx",
       "kind": "Components/Dropdown",
       "story": "Full Width",
       "parameters": {
+        "fileName": "./src/components/Dropdown/Dropdown.stories.mdx",
+        "framework": "react",
         "__id": "components-dropdown--full-width",
         "__isArgsStory": true
       }
@@ -832,9 +805,13 @@
     "components-field--standard": {
       "id": "components-field--standard",
       "name": "Standard",
+      "title": "Components/Field",
+      "importPath": "./src/components/Field/Field.stories.mdx",
       "kind": "Components/Field",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Field/Field.stories.mdx",
+        "framework": "react",
         "__id": "components-field--standard",
         "__isArgsStory": true
       }
@@ -842,9 +819,13 @@
     "components-field--completeness": {
       "id": "components-field--completeness",
       "name": "Completeness",
+      "title": "Components/Field",
+      "importPath": "./src/components/Field/Field.stories.mdx",
       "kind": "Components/Field",
       "story": "Completeness",
       "parameters": {
+        "fileName": "./src/components/Field/Field.stories.mdx",
+        "framework": "react",
         "__id": "components-field--completeness",
         "__isArgsStory": true
       }
@@ -852,9 +833,13 @@
     "components-field--channel-and-locale": {
       "id": "components-field--channel-and-locale",
       "name": "Channel and Locale",
+      "title": "Components/Field",
+      "importPath": "./src/components/Field/Field.stories.mdx",
       "kind": "Components/Field",
       "story": "Channel and Locale",
       "parameters": {
+        "fileName": "./src/components/Field/Field.stories.mdx",
+        "framework": "react",
         "__id": "components-field--channel-and-locale",
         "__isArgsStory": true
       }
@@ -862,9 +847,13 @@
     "components-field--helpers": {
       "id": "components-field--helpers",
       "name": "Helpers",
+      "title": "Components/Field",
+      "importPath": "./src/components/Field/Field.stories.mdx",
       "kind": "Components/Field",
       "story": "Helpers",
       "parameters": {
+        "fileName": "./src/components/Field/Field.stories.mdx",
+        "framework": "react",
         "__id": "components-field--helpers",
         "__isArgsStory": true
       }
@@ -872,9 +861,13 @@
     "components-field--actions": {
       "id": "components-field--actions",
       "name": "Actions",
+      "title": "Components/Field",
+      "importPath": "./src/components/Field/Field.stories.mdx",
       "kind": "Components/Field",
       "story": "Actions",
       "parameters": {
+        "fileName": "./src/components/Field/Field.stories.mdx",
+        "framework": "react",
         "__id": "components-field--actions",
         "__isArgsStory": true
       }
@@ -882,9 +875,13 @@
     "components-field--full-width": {
       "id": "components-field--full-width",
       "name": "Full width",
+      "title": "Components/Field",
+      "importPath": "./src/components/Field/Field.stories.mdx",
       "kind": "Components/Field",
       "story": "Full width",
       "parameters": {
+        "fileName": "./src/components/Field/Field.stories.mdx",
+        "framework": "react",
         "__id": "components-field--full-width",
         "__isArgsStory": true
       }
@@ -892,9 +889,13 @@
     "components-field--block": {
       "id": "components-field--block",
       "name": "Block",
+      "title": "Components/Field",
+      "importPath": "./src/components/Field/Field.stories.mdx",
       "kind": "Components/Field",
       "story": "Block",
       "parameters": {
+        "fileName": "./src/components/Field/Field.stories.mdx",
+        "framework": "react",
         "__id": "components-field--block",
         "__isArgsStory": true
       }
@@ -902,9 +903,13 @@
     "components-helper--standard": {
       "id": "components-helper--standard",
       "name": "Standard",
+      "title": "Components/Helper",
+      "importPath": "./src/components/Helper/Helper.stories.mdx",
       "kind": "Components/Helper",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Helper/Helper.stories.mdx",
+        "framework": "react",
         "__id": "components-helper--standard",
         "__isArgsStory": true
       }
@@ -912,9 +917,13 @@
     "components-helper--composition": {
       "id": "components-helper--composition",
       "name": "Composition",
+      "title": "Components/Helper",
+      "importPath": "./src/components/Helper/Helper.stories.mdx",
       "kind": "Components/Helper",
       "story": "Composition",
       "parameters": {
+        "fileName": "./src/components/Helper/Helper.stories.mdx",
+        "framework": "react",
         "__id": "components-helper--composition",
         "__isArgsStory": true
       }
@@ -922,9 +931,13 @@
     "components-helper--level": {
       "id": "components-helper--level",
       "name": "Level",
+      "title": "Components/Helper",
+      "importPath": "./src/components/Helper/Helper.stories.mdx",
       "kind": "Components/Helper",
       "story": "Level",
       "parameters": {
+        "fileName": "./src/components/Helper/Helper.stories.mdx",
+        "framework": "react",
         "__id": "components-helper--level",
         "__isArgsStory": true
       }
@@ -932,9 +945,13 @@
     "components-helper--inline": {
       "id": "components-helper--inline",
       "name": "Inline",
+      "title": "Components/Helper",
+      "importPath": "./src/components/Helper/Helper.stories.mdx",
       "kind": "Components/Helper",
       "story": "Inline",
       "parameters": {
+        "fileName": "./src/components/Helper/Helper.stories.mdx",
+        "framework": "react",
         "__id": "components-helper--inline",
         "__isArgsStory": true
       }
@@ -942,9 +959,13 @@
     "components-helper--sticky": {
       "id": "components-helper--sticky",
       "name": "Sticky",
+      "title": "Components/Helper",
+      "importPath": "./src/components/Helper/Helper.stories.mdx",
       "kind": "Components/Helper",
       "story": "Sticky",
       "parameters": {
+        "fileName": "./src/components/Helper/Helper.stories.mdx",
+        "framework": "react",
         "__id": "components-helper--sticky",
         "__isArgsStory": true
       }
@@ -952,9 +973,13 @@
     "components-helper--custom-icon": {
       "id": "components-helper--custom-icon",
       "name": "Custom Icon",
+      "title": "Components/Helper",
+      "importPath": "./src/components/Helper/Helper.stories.mdx",
       "kind": "Components/Helper",
       "story": "Custom Icon",
       "parameters": {
+        "fileName": "./src/components/Helper/Helper.stories.mdx",
+        "framework": "react",
         "__id": "components-helper--custom-icon",
         "__isArgsStory": true
       }
@@ -962,9 +987,13 @@
     "components-buttons-icon-button--standard": {
       "id": "components-buttons-icon-button--standard",
       "name": "Standard",
+      "title": "Components/Buttons/Icon button",
+      "importPath": "./src/components/IconButton/IconButton.stories.mdx",
       "kind": "Components/Buttons/Icon button",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/IconButton/IconButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-icon-button--standard",
         "__isArgsStory": true
       }
@@ -972,9 +1001,13 @@
     "components-buttons-icon-button--level": {
       "id": "components-buttons-icon-button--level",
       "name": "Level",
+      "title": "Components/Buttons/Icon button",
+      "importPath": "./src/components/IconButton/IconButton.stories.mdx",
       "kind": "Components/Buttons/Icon button",
       "story": "Level",
       "parameters": {
+        "fileName": "./src/components/IconButton/IconButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-icon-button--level",
         "__isArgsStory": true
       }
@@ -982,9 +1015,13 @@
     "components-buttons-icon-button--ghost": {
       "id": "components-buttons-icon-button--ghost",
       "name": "Ghost",
+      "title": "Components/Buttons/Icon button",
+      "importPath": "./src/components/IconButton/IconButton.stories.mdx",
       "kind": "Components/Buttons/Icon button",
       "story": "Ghost",
       "parameters": {
+        "fileName": "./src/components/IconButton/IconButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-icon-button--ghost",
         "__isArgsStory": true
       }
@@ -992,9 +1029,13 @@
     "components-buttons-icon-button--disabled": {
       "id": "components-buttons-icon-button--disabled",
       "name": "Disabled",
+      "title": "Components/Buttons/Icon button",
+      "importPath": "./src/components/IconButton/IconButton.stories.mdx",
       "kind": "Components/Buttons/Icon button",
       "story": "Disabled",
       "parameters": {
+        "fileName": "./src/components/IconButton/IconButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-icon-button--disabled",
         "__isArgsStory": true
       }
@@ -1002,9 +1043,13 @@
     "components-buttons-icon-button--size": {
       "id": "components-buttons-icon-button--size",
       "name": "Size",
+      "title": "Components/Buttons/Icon button",
+      "importPath": "./src/components/IconButton/IconButton.stories.mdx",
       "kind": "Components/Buttons/Icon button",
       "story": "Size",
       "parameters": {
+        "fileName": "./src/components/IconButton/IconButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-icon-button--size",
         "__isArgsStory": true
       }
@@ -1012,9 +1057,13 @@
     "components-buttons-icon-button--link": {
       "id": "components-buttons-icon-button--link",
       "name": "Link",
+      "title": "Components/Buttons/Icon button",
+      "importPath": "./src/components/IconButton/IconButton.stories.mdx",
       "kind": "Components/Buttons/Icon button",
       "story": "Link",
       "parameters": {
+        "fileName": "./src/components/IconButton/IconButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-icon-button--link",
         "__isArgsStory": true
       }
@@ -1022,9 +1071,13 @@
     "components-iconcard--standard": {
       "id": "components-iconcard--standard",
       "name": "Standard",
+      "title": "Components/IconCard",
+      "importPath": "./src/components/IconCard/IconCard.stories.mdx",
       "kind": "Components/IconCard",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/IconCard/IconCard.stories.mdx",
+        "framework": "react",
         "__id": "components-iconcard--standard",
         "__isArgsStory": true
       }
@@ -1032,9 +1085,13 @@
     "components-iconcard--readonly": {
       "id": "components-iconcard--readonly",
       "name": "Readonly",
+      "title": "Components/IconCard",
+      "importPath": "./src/components/IconCard/IconCard.stories.mdx",
       "kind": "Components/IconCard",
       "story": "Readonly",
       "parameters": {
+        "fileName": "./src/components/IconCard/IconCard.stories.mdx",
+        "framework": "react",
         "__id": "components-iconcard--readonly",
         "__isArgsStory": true
       }
@@ -1042,9 +1099,13 @@
     "components-iconcard--with-no-content": {
       "id": "components-iconcard--with-no-content",
       "name": "With no content",
+      "title": "Components/IconCard",
+      "importPath": "./src/components/IconCard/IconCard.stories.mdx",
       "kind": "Components/IconCard",
       "story": "With no content",
       "parameters": {
+        "fileName": "./src/components/IconCard/IconCard.stories.mdx",
+        "framework": "react",
         "__id": "components-iconcard--with-no-content",
         "__isArgsStory": true
       }
@@ -1052,9 +1113,13 @@
     "components-iconcard--icon-card-grid": {
       "id": "components-iconcard--icon-card-grid",
       "name": "IconCard grid",
+      "title": "Components/IconCard",
+      "importPath": "./src/components/IconCard/IconCard.stories.mdx",
       "kind": "Components/IconCard",
       "story": "IconCard grid",
       "parameters": {
+        "fileName": "./src/components/IconCard/IconCard.stories.mdx",
+        "framework": "react",
         "__id": "components-iconcard--icon-card-grid",
         "__isArgsStory": true
       }
@@ -1062,9 +1127,13 @@
     "components-image--standard": {
       "id": "components-image--standard",
       "name": "Standard",
+      "title": "Components/Image",
+      "importPath": "./src/components/Image/Image.stories.mdx",
       "kind": "Components/Image",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Image/Image.stories.mdx",
+        "framework": "react",
         "__id": "components-image--standard",
         "__isArgsStory": true
       }
@@ -1072,9 +1141,13 @@
     "components-image--fit": {
       "id": "components-image--fit",
       "name": "Fit",
+      "title": "Components/Image",
+      "importPath": "./src/components/Image/Image.stories.mdx",
       "kind": "Components/Image",
       "story": "Fit",
       "parameters": {
+        "fileName": "./src/components/Image/Image.stories.mdx",
+        "framework": "react",
         "__id": "components-image--fit",
         "__isArgsStory": true
       }
@@ -1082,9 +1155,13 @@
     "components-image--stack": {
       "id": "components-image--stack",
       "name": "Stack",
+      "title": "Components/Image",
+      "importPath": "./src/components/Image/Image.stories.mdx",
       "kind": "Components/Image",
       "story": "Stack",
       "parameters": {
+        "fileName": "./src/components/Image/Image.stories.mdx",
+        "framework": "react",
         "__id": "components-image--stack",
         "__isArgsStory": true
       }
@@ -1092,9 +1169,13 @@
     "components-image--loading": {
       "id": "components-image--loading",
       "name": "Loading",
+      "title": "Components/Image",
+      "importPath": "./src/components/Image/Image.stories.mdx",
       "kind": "Components/Image",
       "story": "Loading",
       "parameters": {
+        "fileName": "./src/components/Image/Image.stories.mdx",
+        "framework": "react",
         "__id": "components-image--loading",
         "__isArgsStory": true
       }
@@ -1102,9 +1183,13 @@
     "components-image--background": {
       "id": "components-image--background",
       "name": "Background",
+      "title": "Components/Image",
+      "importPath": "./src/components/Image/Image.stories.mdx",
       "kind": "Components/Image",
       "story": "Background",
       "parameters": {
+        "fileName": "./src/components/Image/Image.stories.mdx",
+        "framework": "react",
         "__id": "components-image--background",
         "__isArgsStory": true
       }
@@ -1112,9 +1197,13 @@
     "components-information--standard": {
       "id": "components-information--standard",
       "name": "Standard",
+      "title": "Components/Information",
+      "importPath": "./src/components/Information/Information.stories.mdx",
       "kind": "Components/Information",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Information/Information.stories.mdx",
+        "framework": "react",
         "__id": "components-information--standard",
         "__isArgsStory": true
       }
@@ -1122,9 +1211,13 @@
     "components-information--composition": {
       "id": "components-information--composition",
       "name": "Composition",
+      "title": "Components/Information",
+      "importPath": "./src/components/Information/Information.stories.mdx",
       "kind": "Components/Information",
       "story": "Composition",
       "parameters": {
+        "fileName": "./src/components/Information/Information.stories.mdx",
+        "framework": "react",
         "__id": "components-information--composition",
         "__isArgsStory": true
       }
@@ -1132,9 +1225,13 @@
     "components-information--fit-content-height": {
       "id": "components-information--fit-content-height",
       "name": "Fit content height",
+      "title": "Components/Information",
+      "importPath": "./src/components/Information/Information.stories.mdx",
       "kind": "Components/Information",
       "story": "Fit content height",
       "parameters": {
+        "fileName": "./src/components/Information/Information.stories.mdx",
+        "framework": "react",
         "__id": "components-information--fit-content-height",
         "__isArgsStory": true
       }
@@ -1142,9 +1239,13 @@
     "components-inputs-boolean-input--standard": {
       "id": "components-inputs-boolean-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Boolean input",
+      "importPath": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
       "kind": "Components/Inputs/Boolean input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-boolean-input--standard",
         "__isArgsStory": true
       }
@@ -1152,9 +1253,13 @@
     "components-inputs-boolean-input--value": {
       "id": "components-inputs-boolean-input--value",
       "name": "Value",
+      "title": "Components/Inputs/Boolean input",
+      "importPath": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
       "kind": "Components/Inputs/Boolean input",
       "story": "Value",
       "parameters": {
+        "fileName": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-boolean-input--value",
         "__isArgsStory": true
       }
@@ -1162,9 +1267,13 @@
     "components-inputs-boolean-input--readonly": {
       "id": "components-inputs-boolean-input--readonly",
       "name": "Readonly",
+      "title": "Components/Inputs/Boolean input",
+      "importPath": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
       "kind": "Components/Inputs/Boolean input",
       "story": "Readonly",
       "parameters": {
+        "fileName": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-boolean-input--readonly",
         "__isArgsStory": true
       }
@@ -1172,9 +1281,13 @@
     "components-inputs-boolean-input--invalid": {
       "id": "components-inputs-boolean-input--invalid",
       "name": "Invalid",
+      "title": "Components/Inputs/Boolean input",
+      "importPath": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
       "kind": "Components/Inputs/Boolean input",
       "story": "Invalid",
       "parameters": {
+        "fileName": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-boolean-input--invalid",
         "__isArgsStory": true
       }
@@ -1182,9 +1295,13 @@
     "components-inputs-boolean-input--small": {
       "id": "components-inputs-boolean-input--small",
       "name": "Small",
+      "title": "Components/Inputs/Boolean input",
+      "importPath": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
       "kind": "Components/Inputs/Boolean input",
       "story": "Small",
       "parameters": {
+        "fileName": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-boolean-input--small",
         "__isArgsStory": true
       }
@@ -1192,9 +1309,13 @@
     "components-inputs-color-input--standard": {
       "id": "components-inputs-color-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Color input",
+      "importPath": "./src/components/Input/ColorInput/ColorInput.stories.mdx",
       "kind": "Components/Inputs/Color input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/ColorInput/ColorInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-color-input--standard",
         "__isArgsStory": true
       }
@@ -1202,9 +1323,13 @@
     "components-inputs-color-input--read-only": {
       "id": "components-inputs-color-input--read-only",
       "name": "Read only",
+      "title": "Components/Inputs/Color input",
+      "importPath": "./src/components/Input/ColorInput/ColorInput.stories.mdx",
       "kind": "Components/Inputs/Color input",
       "story": "Read only",
       "parameters": {
+        "fileName": "./src/components/Input/ColorInput/ColorInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-color-input--read-only",
         "__isArgsStory": true
       }
@@ -1212,9 +1337,13 @@
     "components-inputs-color-input--invalid": {
       "id": "components-inputs-color-input--invalid",
       "name": "Invalid",
+      "title": "Components/Inputs/Color input",
+      "importPath": "./src/components/Input/ColorInput/ColorInput.stories.mdx",
       "kind": "Components/Inputs/Color input",
       "story": "Invalid",
       "parameters": {
+        "fileName": "./src/components/Input/ColorInput/ColorInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-color-input--invalid",
         "__isArgsStory": true
       }
@@ -1222,9 +1351,13 @@
     "components-inputs-date-input--standard": {
       "id": "components-inputs-date-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Date input",
+      "importPath": "./src/components/Input/DateInput/DateInput.stories.mdx",
       "kind": "Components/Inputs/Date input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/DateInput/DateInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-date-input--standard",
         "__isArgsStory": true
       }
@@ -1232,9 +1365,13 @@
     "components-inputs-date-input--read-only": {
       "id": "components-inputs-date-input--read-only",
       "name": "Read only",
+      "title": "Components/Inputs/Date input",
+      "importPath": "./src/components/Input/DateInput/DateInput.stories.mdx",
       "kind": "Components/Inputs/Date input",
       "story": "Read only",
       "parameters": {
+        "fileName": "./src/components/Input/DateInput/DateInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-date-input--read-only",
         "__isArgsStory": true
       }
@@ -1242,9 +1379,13 @@
     "components-inputs-date-input--invalid": {
       "id": "components-inputs-date-input--invalid",
       "name": "Invalid",
+      "title": "Components/Inputs/Date input",
+      "importPath": "./src/components/Input/DateInput/DateInput.stories.mdx",
       "kind": "Components/Inputs/Date input",
       "story": "Invalid",
       "parameters": {
+        "fileName": "./src/components/Input/DateInput/DateInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-date-input--invalid",
         "__isArgsStory": true
       }
@@ -1252,9 +1393,13 @@
     "components-inputs-date-input--html-props-max-min": {
       "id": "components-inputs-date-input--html-props-max-min",
       "name": "HTML props (max, min)",
+      "title": "Components/Inputs/Date input",
+      "importPath": "./src/components/Input/DateInput/DateInput.stories.mdx",
       "kind": "Components/Inputs/Date input",
       "story": "HTML props (max, min)",
       "parameters": {
+        "fileName": "./src/components/Input/DateInput/DateInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-date-input--html-props-max-min",
         "__isArgsStory": true
       }
@@ -1262,9 +1407,13 @@
     "components-inputs-media-file-input--standard": {
       "id": "components-inputs-media-file-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Media File input",
+      "importPath": "./src/components/Input/MediaFileInput/MediaFileInput.stories.mdx",
       "kind": "Components/Inputs/Media File input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/MediaFileInput/MediaFileInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-media-file-input--standard",
         "__isArgsStory": true
       }
@@ -1272,9 +1421,13 @@
     "components-inputs-media-file-input--size": {
       "id": "components-inputs-media-file-input--size",
       "name": "Size",
+      "title": "Components/Inputs/Media File input",
+      "importPath": "./src/components/Input/MediaFileInput/MediaFileInput.stories.mdx",
       "kind": "Components/Inputs/Media File input",
       "story": "Size",
       "parameters": {
+        "fileName": "./src/components/Input/MediaFileInput/MediaFileInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-media-file-input--size",
         "__isArgsStory": true
       }
@@ -1282,9 +1435,13 @@
     "components-inputs-media-file-input--clearable": {
       "id": "components-inputs-media-file-input--clearable",
       "name": "Clearable",
+      "title": "Components/Inputs/Media File input",
+      "importPath": "./src/components/Input/MediaFileInput/MediaFileInput.stories.mdx",
       "kind": "Components/Inputs/Media File input",
       "story": "Clearable",
       "parameters": {
+        "fileName": "./src/components/Input/MediaFileInput/MediaFileInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-media-file-input--clearable",
         "__isArgsStory": true
       }
@@ -1292,9 +1449,13 @@
     "components-inputs-media-file-input--read-only": {
       "id": "components-inputs-media-file-input--read-only",
       "name": "Read only",
+      "title": "Components/Inputs/Media File input",
+      "importPath": "./src/components/Input/MediaFileInput/MediaFileInput.stories.mdx",
       "kind": "Components/Inputs/Media File input",
       "story": "Read only",
       "parameters": {
+        "fileName": "./src/components/Input/MediaFileInput/MediaFileInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-media-file-input--read-only",
         "__isArgsStory": true
       }
@@ -1302,9 +1463,13 @@
     "components-inputs-media-file-input--invalid": {
       "id": "components-inputs-media-file-input--invalid",
       "name": "Invalid",
+      "title": "Components/Inputs/Media File input",
+      "importPath": "./src/components/Input/MediaFileInput/MediaFileInput.stories.mdx",
       "kind": "Components/Inputs/Media File input",
       "story": "Invalid",
       "parameters": {
+        "fileName": "./src/components/Input/MediaFileInput/MediaFileInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-media-file-input--invalid",
         "__isArgsStory": true
       }
@@ -1312,9 +1477,13 @@
     "components-inputs-media-link-input--standard": {
       "id": "components-inputs-media-link-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Media Link input",
+      "importPath": "./src/components/Input/MediaLinkInput/MediaLinkInput.stories.mdx",
       "kind": "Components/Inputs/Media Link input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/MediaLinkInput/MediaLinkInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-media-link-input--standard",
         "__isArgsStory": true
       }
@@ -1322,9 +1491,13 @@
     "components-inputs-media-link-input--read-only": {
       "id": "components-inputs-media-link-input--read-only",
       "name": "Read only",
+      "title": "Components/Inputs/Media Link input",
+      "importPath": "./src/components/Input/MediaLinkInput/MediaLinkInput.stories.mdx",
       "kind": "Components/Inputs/Media Link input",
       "story": "Read only",
       "parameters": {
+        "fileName": "./src/components/Input/MediaLinkInput/MediaLinkInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-media-link-input--read-only",
         "__isArgsStory": true
       }
@@ -1332,9 +1505,13 @@
     "components-inputs-media-link-input--invalid": {
       "id": "components-inputs-media-link-input--invalid",
       "name": "Invalid",
+      "title": "Components/Inputs/Media Link input",
+      "importPath": "./src/components/Input/MediaLinkInput/MediaLinkInput.stories.mdx",
       "kind": "Components/Inputs/Media Link input",
       "story": "Invalid",
       "parameters": {
+        "fileName": "./src/components/Input/MediaLinkInput/MediaLinkInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-media-link-input--invalid",
         "__isArgsStory": true
       }
@@ -1342,9 +1519,13 @@
     "components-inputs-metric-input--standard": {
       "id": "components-inputs-metric-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Metric input",
+      "importPath": "./src/components/Input/MetricInput/MetricInput.stories.mdx",
       "kind": "Components/Inputs/Metric input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/MetricInput/MetricInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-metric-input--standard",
         "__isArgsStory": true
       }
@@ -1352,9 +1533,13 @@
     "components-inputs-metric-input--with-functions-for-labels": {
       "id": "components-inputs-metric-input--with-functions-for-labels",
       "name": "With functions for labels",
+      "title": "Components/Inputs/Metric input",
+      "importPath": "./src/components/Input/MetricInput/MetricInput.stories.mdx",
       "kind": "Components/Inputs/Metric input",
       "story": "With functions for labels",
       "parameters": {
+        "fileName": "./src/components/Input/MetricInput/MetricInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-metric-input--with-functions-for-labels",
         "__isArgsStory": true
       }
@@ -1362,9 +1547,13 @@
     "components-inputs-multi-select-input--standard": {
       "id": "components-inputs-multi-select-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Multi Select input",
+      "importPath": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
       "kind": "Components/Inputs/Multi Select input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-multi-select-input--standard",
         "__isArgsStory": true
       }
@@ -1372,9 +1561,13 @@
     "components-inputs-multi-select-input--read-only": {
       "id": "components-inputs-multi-select-input--read-only",
       "name": "ReadOnly",
+      "title": "Components/Inputs/Multi Select input",
+      "importPath": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
       "kind": "Components/Inputs/Multi Select input",
       "story": "ReadOnly",
       "parameters": {
+        "fileName": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-multi-select-input--read-only",
         "__isArgsStory": true
       }
@@ -1382,9 +1575,13 @@
     "components-inputs-multi-select-input--locked-values": {
       "id": "components-inputs-multi-select-input--locked-values",
       "name": "LockedValues",
+      "title": "Components/Inputs/Multi Select input",
+      "importPath": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
       "kind": "Components/Inputs/Multi Select input",
       "story": "LockedValues",
       "parameters": {
+        "fileName": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-multi-select-input--locked-values",
         "__isArgsStory": true
       }
@@ -1392,9 +1589,13 @@
     "components-inputs-multi-select-input--invalid": {
       "id": "components-inputs-multi-select-input--invalid",
       "name": "Invalid",
+      "title": "Components/Inputs/Multi Select input",
+      "importPath": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
       "kind": "Components/Inputs/Multi Select input",
       "story": "Invalid",
       "parameters": {
+        "fileName": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-multi-select-input--invalid",
         "__isArgsStory": true
       }
@@ -1402,9 +1603,13 @@
     "components-inputs-multi-select-input--invalid-value": {
       "id": "components-inputs-multi-select-input--invalid-value",
       "name": "InvalidValue",
+      "title": "Components/Inputs/Multi Select input",
+      "importPath": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
       "kind": "Components/Inputs/Multi Select input",
       "story": "InvalidValue",
       "parameters": {
+        "fileName": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-multi-select-input--invalid-value",
         "__isArgsStory": true
       }
@@ -1412,9 +1617,13 @@
     "components-inputs-multi-select-input--vertical-position": {
       "id": "components-inputs-multi-select-input--vertical-position",
       "name": "Vertical position",
+      "title": "Components/Inputs/Multi Select input",
+      "importPath": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
       "kind": "Components/Inputs/Multi Select input",
       "story": "Vertical position",
       "parameters": {
+        "fileName": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-multi-select-input--vertical-position",
         "__isArgsStory": true
       }
@@ -1422,9 +1631,13 @@
     "components-inputs-multi-select-input--large": {
       "id": "components-inputs-multi-select-input--large",
       "name": "Large",
+      "title": "Components/Inputs/Multi Select input",
+      "importPath": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
       "kind": "Components/Inputs/Multi Select input",
       "story": "Large",
       "parameters": {
+        "fileName": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-multi-select-input--large",
         "__isArgsStory": true
       }
@@ -1432,9 +1645,13 @@
     "components-inputs-multi-select-input--pagination": {
       "id": "components-inputs-multi-select-input--pagination",
       "name": "Pagination",
+      "title": "Components/Inputs/Multi Select input",
+      "importPath": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
       "kind": "Components/Inputs/Multi Select input",
       "story": "Pagination",
       "parameters": {
+        "fileName": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-multi-select-input--pagination",
         "__isArgsStory": true
       }
@@ -1442,9 +1659,13 @@
     "components-inputs-number-input--standard": {
       "id": "components-inputs-number-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Number input",
+      "importPath": "./src/components/Input/NumberInput/NumberInput.stories.mdx",
       "kind": "Components/Inputs/Number input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/NumberInput/NumberInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-number-input--standard",
         "__isArgsStory": true
       }
@@ -1452,9 +1673,13 @@
     "components-inputs-number-input--read-only": {
       "id": "components-inputs-number-input--read-only",
       "name": "ReadOnly",
+      "title": "Components/Inputs/Number input",
+      "importPath": "./src/components/Input/NumberInput/NumberInput.stories.mdx",
       "kind": "Components/Inputs/Number input",
       "story": "ReadOnly",
       "parameters": {
+        "fileName": "./src/components/Input/NumberInput/NumberInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-number-input--read-only",
         "__isArgsStory": true
       }
@@ -1462,9 +1687,13 @@
     "components-inputs-number-input--invalid": {
       "id": "components-inputs-number-input--invalid",
       "name": "Invalid",
+      "title": "Components/Inputs/Number input",
+      "importPath": "./src/components/Input/NumberInput/NumberInput.stories.mdx",
       "kind": "Components/Inputs/Number input",
       "story": "Invalid",
       "parameters": {
+        "fileName": "./src/components/Input/NumberInput/NumberInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-number-input--invalid",
         "__isArgsStory": true
       }
@@ -1472,9 +1701,13 @@
     "components-inputs-select-input--standard": {
       "id": "components-inputs-select-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Select input",
+      "importPath": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
       "kind": "Components/Inputs/Select input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-select-input--standard",
         "__isArgsStory": true
       }
@@ -1482,9 +1715,13 @@
     "components-inputs-select-input--read-only": {
       "id": "components-inputs-select-input--read-only",
       "name": "ReadOnly",
+      "title": "Components/Inputs/Select input",
+      "importPath": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
       "kind": "Components/Inputs/Select input",
       "story": "ReadOnly",
       "parameters": {
+        "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-select-input--read-only",
         "__isArgsStory": true
       }
@@ -1492,9 +1729,13 @@
     "components-inputs-select-input--invalid": {
       "id": "components-inputs-select-input--invalid",
       "name": "Invalid",
+      "title": "Components/Inputs/Select input",
+      "importPath": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
       "kind": "Components/Inputs/Select input",
       "story": "Invalid",
       "parameters": {
+        "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-select-input--invalid",
         "__isArgsStory": true
       }
@@ -1502,9 +1743,13 @@
     "components-inputs-select-input--vertical-position": {
       "id": "components-inputs-select-input--vertical-position",
       "name": "Vertical position",
+      "title": "Components/Inputs/Select input",
+      "importPath": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
       "kind": "Components/Inputs/Select input",
       "story": "Vertical position",
       "parameters": {
+        "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-select-input--vertical-position",
         "__isArgsStory": true
       }
@@ -1512,9 +1757,13 @@
     "components-inputs-select-input--large": {
       "id": "components-inputs-select-input--large",
       "name": "Large",
+      "title": "Components/Inputs/Select input",
+      "importPath": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
       "kind": "Components/Inputs/Select input",
       "story": "Large",
       "parameters": {
+        "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-select-input--large",
         "__isArgsStory": true
       }
@@ -1522,9 +1771,13 @@
     "components-inputs-select-input--large-options": {
       "id": "components-inputs-select-input--large-options",
       "name": "Large Options",
+      "title": "Components/Inputs/Select input",
+      "importPath": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
       "kind": "Components/Inputs/Select input",
       "story": "Large Options",
       "parameters": {
+        "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-select-input--large-options",
         "__isArgsStory": true
       }
@@ -1532,9 +1785,13 @@
     "components-inputs-select-input--clearable": {
       "id": "components-inputs-select-input--clearable",
       "name": "Clearable",
+      "title": "Components/Inputs/Select input",
+      "importPath": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
       "kind": "Components/Inputs/Select input",
       "story": "Clearable",
       "parameters": {
+        "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-select-input--clearable",
         "__isArgsStory": true
       }
@@ -1542,9 +1799,13 @@
     "components-inputs-select-input--disabled-options": {
       "id": "components-inputs-select-input--disabled-options",
       "name": "Disabled options",
+      "title": "Components/Inputs/Select input",
+      "importPath": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
       "kind": "Components/Inputs/Select input",
       "story": "Disabled options",
       "parameters": {
+        "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-select-input--disabled-options",
         "__isArgsStory": true
       }
@@ -1552,9 +1813,13 @@
     "components-inputs-select-input--pagination": {
       "id": "components-inputs-select-input--pagination",
       "name": "Pagination",
+      "title": "Components/Inputs/Select input",
+      "importPath": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
       "kind": "Components/Inputs/Select input",
       "story": "Pagination",
       "parameters": {
+        "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-select-input--pagination",
         "__isArgsStory": true
       }
@@ -1562,9 +1827,13 @@
     "components-inputs-table-input--standard": {
       "id": "components-inputs-table-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Table input",
+      "importPath": "./src/components/Input/TableInput/TableInput.stories.mdx",
       "kind": "Components/Inputs/Table input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/TableInput/TableInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-table-input--standard",
         "__isArgsStory": true
       }
@@ -1572,9 +1841,13 @@
     "components-inputs-table-input--highlight-cells": {
       "id": "components-inputs-table-input--highlight-cells",
       "name": "Highlight cells",
+      "title": "Components/Inputs/Table input",
+      "importPath": "./src/components/Input/TableInput/TableInput.stories.mdx",
       "kind": "Components/Inputs/Table input",
       "story": "Highlight cells",
       "parameters": {
+        "fileName": "./src/components/Input/TableInput/TableInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-table-input--highlight-cells",
         "__isArgsStory": true
       }
@@ -1582,9 +1855,13 @@
     "components-inputs-table-input--readonly": {
       "id": "components-inputs-table-input--readonly",
       "name": "Readonly",
+      "title": "Components/Inputs/Table input",
+      "importPath": "./src/components/Input/TableInput/TableInput.stories.mdx",
       "kind": "Components/Inputs/Table input",
       "story": "Readonly",
       "parameters": {
+        "fileName": "./src/components/Input/TableInput/TableInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-table-input--readonly",
         "__isArgsStory": true
       }
@@ -1592,9 +1869,13 @@
     "components-inputs-table-input--draggable": {
       "id": "components-inputs-table-input--draggable",
       "name": "Draggable",
+      "title": "Components/Inputs/Table input",
+      "importPath": "./src/components/Input/TableInput/TableInput.stories.mdx",
       "kind": "Components/Inputs/Table input",
       "story": "Draggable",
       "parameters": {
+        "fileName": "./src/components/Input/TableInput/TableInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-table-input--draggable",
         "__isArgsStory": true
       }
@@ -1602,9 +1883,13 @@
     "components-inputs-table-input--highlighted-rows": {
       "id": "components-inputs-table-input--highlighted-rows",
       "name": "Highlighted rows",
+      "title": "Components/Inputs/Table input",
+      "importPath": "./src/components/Input/TableInput/TableInput.stories.mdx",
       "kind": "Components/Inputs/Table input",
       "story": "Highlighted rows",
       "parameters": {
+        "fileName": "./src/components/Input/TableInput/TableInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-table-input--highlighted-rows",
         "__isArgsStory": true
       }
@@ -1612,9 +1897,13 @@
     "components-inputs-tag-input--standard": {
       "id": "components-inputs-tag-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Tag input",
+      "importPath": "./src/components/Input/TagInput/TagInput.stories.mdx",
       "kind": "Components/Inputs/Tag input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/TagInput/TagInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-tag-input--standard",
         "__isArgsStory": true
       }
@@ -1622,9 +1911,13 @@
     "components-inputs-tag-input--existing-value": {
       "id": "components-inputs-tag-input--existing-value",
       "name": "Existing value",
+      "title": "Components/Inputs/Tag input",
+      "importPath": "./src/components/Input/TagInput/TagInput.stories.mdx",
       "kind": "Components/Inputs/Tag input",
       "story": "Existing value",
       "parameters": {
+        "fileName": "./src/components/Input/TagInput/TagInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-tag-input--existing-value",
         "__isArgsStory": true
       }
@@ -1632,9 +1925,13 @@
     "components-inputs-tag-input--existing-value-and-labels": {
       "id": "components-inputs-tag-input--existing-value-and-labels",
       "name": "Existing value and labels",
+      "title": "Components/Inputs/Tag input",
+      "importPath": "./src/components/Input/TagInput/TagInput.stories.mdx",
       "kind": "Components/Inputs/Tag input",
       "story": "Existing value and labels",
       "parameters": {
+        "fileName": "./src/components/Input/TagInput/TagInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-tag-input--existing-value-and-labels",
         "__isArgsStory": true
       }
@@ -1642,9 +1939,13 @@
     "components-inputs-tag-input--with-a-high-number-of-tags": {
       "id": "components-inputs-tag-input--with-a-high-number-of-tags",
       "name": "With a high number of tags",
+      "title": "Components/Inputs/Tag input",
+      "importPath": "./src/components/Input/TagInput/TagInput.stories.mdx",
       "kind": "Components/Inputs/Tag input",
       "story": "With a high number of tags",
       "parameters": {
+        "fileName": "./src/components/Input/TagInput/TagInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-tag-input--with-a-high-number-of-tags",
         "__isArgsStory": true
       }
@@ -1652,9 +1953,13 @@
     "components-inputs-tag-input--variation-on-invalid": {
       "id": "components-inputs-tag-input--variation-on-invalid",
       "name": "Variation on invalid",
+      "title": "Components/Inputs/Tag input",
+      "importPath": "./src/components/Input/TagInput/TagInput.stories.mdx",
       "kind": "Components/Inputs/Tag input",
       "story": "Variation on invalid",
       "parameters": {
+        "fileName": "./src/components/Input/TagInput/TagInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-tag-input--variation-on-invalid",
         "__isArgsStory": true
       }
@@ -1662,9 +1967,13 @@
     "components-inputs-tag-input--variation-on-invalid-values": {
       "id": "components-inputs-tag-input--variation-on-invalid-values",
       "name": "Variation on invalid values",
+      "title": "Components/Inputs/Tag input",
+      "importPath": "./src/components/Input/TagInput/TagInput.stories.mdx",
       "kind": "Components/Inputs/Tag input",
       "story": "Variation on invalid values",
       "parameters": {
+        "fileName": "./src/components/Input/TagInput/TagInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-tag-input--variation-on-invalid-values",
         "__isArgsStory": true
       }
@@ -1672,9 +1981,13 @@
     "components-inputs-tag-input--variation-on-readonly": {
       "id": "components-inputs-tag-input--variation-on-readonly",
       "name": "Variation on readonly",
+      "title": "Components/Inputs/Tag input",
+      "importPath": "./src/components/Input/TagInput/TagInput.stories.mdx",
       "kind": "Components/Inputs/Tag input",
       "story": "Variation on readonly",
       "parameters": {
+        "fileName": "./src/components/Input/TagInput/TagInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-tag-input--variation-on-readonly",
         "__isArgsStory": true
       }
@@ -1682,9 +1995,13 @@
     "components-inputs-textarea-input--standard": {
       "id": "components-inputs-textarea-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Textarea input",
+      "importPath": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
       "kind": "Components/Inputs/Textarea input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-textarea-input--standard",
         "__isArgsStory": true
       }
@@ -1692,9 +2009,13 @@
     "components-inputs-textarea-input--read-only": {
       "id": "components-inputs-textarea-input--read-only",
       "name": "ReadOnly",
+      "title": "Components/Inputs/Textarea input",
+      "importPath": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
       "kind": "Components/Inputs/Textarea input",
       "story": "ReadOnly",
       "parameters": {
+        "fileName": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-textarea-input--read-only",
         "__isArgsStory": true
       }
@@ -1702,9 +2023,13 @@
     "components-inputs-textarea-input--invalid": {
       "id": "components-inputs-textarea-input--invalid",
       "name": "Invalid",
+      "title": "Components/Inputs/Textarea input",
+      "importPath": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
       "kind": "Components/Inputs/Textarea input",
       "story": "Invalid",
       "parameters": {
+        "fileName": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-textarea-input--invalid",
         "__isArgsStory": true
       }
@@ -1712,9 +2037,13 @@
     "components-inputs-textarea-input--character-left-label": {
       "id": "components-inputs-textarea-input--character-left-label",
       "name": "Character left label",
+      "title": "Components/Inputs/Textarea input",
+      "importPath": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
       "kind": "Components/Inputs/Textarea input",
       "story": "Character left label",
       "parameters": {
+        "fileName": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-textarea-input--character-left-label",
         "__isArgsStory": true
       }
@@ -1722,9 +2051,13 @@
     "components-inputs-textarea-input--rich-text-editor": {
       "id": "components-inputs-textarea-input--rich-text-editor",
       "name": "Rich Text Editor",
+      "title": "Components/Inputs/Textarea input",
+      "importPath": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
       "kind": "Components/Inputs/Textarea input",
       "story": "Rich Text Editor",
       "parameters": {
+        "fileName": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-textarea-input--rich-text-editor",
         "__isArgsStory": true
       }
@@ -1732,9 +2065,13 @@
     "components-inputs-text-input--standard": {
       "id": "components-inputs-text-input--standard",
       "name": "Standard",
+      "title": "Components/Inputs/Text input",
+      "importPath": "./src/components/Input/TextInput/TextInput.stories.mdx",
       "kind": "Components/Inputs/Text input",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Input/TextInput/TextInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-text-input--standard",
         "__isArgsStory": true
       }
@@ -1742,9 +2079,13 @@
     "components-inputs-text-input--read-only": {
       "id": "components-inputs-text-input--read-only",
       "name": "ReadOnly",
+      "title": "Components/Inputs/Text input",
+      "importPath": "./src/components/Input/TextInput/TextInput.stories.mdx",
       "kind": "Components/Inputs/Text input",
       "story": "ReadOnly",
       "parameters": {
+        "fileName": "./src/components/Input/TextInput/TextInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-text-input--read-only",
         "__isArgsStory": true
       }
@@ -1752,9 +2093,13 @@
     "components-inputs-text-input--invalid": {
       "id": "components-inputs-text-input--invalid",
       "name": "Invalid",
+      "title": "Components/Inputs/Text input",
+      "importPath": "./src/components/Input/TextInput/TextInput.stories.mdx",
       "kind": "Components/Inputs/Text input",
       "story": "Invalid",
       "parameters": {
+        "fileName": "./src/components/Input/TextInput/TextInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-text-input--invalid",
         "__isArgsStory": true
       }
@@ -1762,9 +2107,13 @@
     "components-inputs-text-input--character-left-label": {
       "id": "components-inputs-text-input--character-left-label",
       "name": "Character left label",
+      "title": "Components/Inputs/Text input",
+      "importPath": "./src/components/Input/TextInput/TextInput.stories.mdx",
       "kind": "Components/Inputs/Text input",
       "story": "Character left label",
       "parameters": {
+        "fileName": "./src/components/Input/TextInput/TextInput.stories.mdx",
+        "framework": "react",
         "__id": "components-inputs-text-input--character-left-label",
         "__isArgsStory": true
       }
@@ -1772,9 +2121,13 @@
     "components-keyfigure--standard": {
       "id": "components-keyfigure--standard",
       "name": "Standard",
+      "title": "Components/KeyFigure",
+      "importPath": "./src/components/KeyFigure/KeyFigure.stories.mdx",
       "kind": "Components/KeyFigure",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/KeyFigure/KeyFigure.stories.mdx",
+        "framework": "react",
         "__id": "components-keyfigure--standard",
         "__isArgsStory": true
       }
@@ -1782,9 +2135,13 @@
     "components-keyfigure--value-only": {
       "id": "components-keyfigure--value-only",
       "name": "Value only",
+      "title": "Components/KeyFigure",
+      "importPath": "./src/components/KeyFigure/KeyFigure.stories.mdx",
       "kind": "Components/KeyFigure",
       "story": "Value only",
       "parameters": {
+        "fileName": "./src/components/KeyFigure/KeyFigure.stories.mdx",
+        "framework": "react",
         "__id": "components-keyfigure--value-only",
         "__isArgsStory": true
       }
@@ -1792,9 +2149,13 @@
     "components-keyfigure--key-figure-grid": {
       "id": "components-keyfigure--key-figure-grid",
       "name": "KeyFigure grid",
+      "title": "Components/KeyFigure",
+      "importPath": "./src/components/KeyFigure/KeyFigure.stories.mdx",
       "kind": "Components/KeyFigure",
       "story": "KeyFigure grid",
       "parameters": {
+        "fileName": "./src/components/KeyFigure/KeyFigure.stories.mdx",
+        "framework": "react",
         "__id": "components-keyfigure--key-figure-grid",
         "__isArgsStory": true
       }
@@ -1802,9 +2163,13 @@
     "components-link--standard": {
       "id": "components-link--standard",
       "name": "Standard",
+      "title": "Components/Link",
+      "importPath": "./src/components/Link/Link.stories.mdx",
       "kind": "Components/Link",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Link/Link.stories.mdx",
+        "framework": "react",
         "__id": "components-link--standard",
         "__isArgsStory": true
       }
@@ -1812,9 +2177,13 @@
     "components-link--status": {
       "id": "components-link--status",
       "name": "Status",
+      "title": "Components/Link",
+      "importPath": "./src/components/Link/Link.stories.mdx",
       "kind": "Components/Link",
       "story": "Status",
       "parameters": {
+        "fileName": "./src/components/Link/Link.stories.mdx",
+        "framework": "react",
         "__id": "components-link--status",
         "__isArgsStory": true
       }
@@ -1822,9 +2191,13 @@
     "components-list--standard": {
       "id": "components-list--standard",
       "name": "Standard",
+      "title": "Components/List",
+      "importPath": "./src/components/List/List.stories.mdx",
       "kind": "Components/List",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/List/List.stories.mdx",
+        "framework": "react",
         "__id": "components-list--standard",
         "__isArgsStory": false
       }
@@ -1832,9 +2205,13 @@
     "components-list--actions": {
       "id": "components-list--actions",
       "name": "Actions",
+      "title": "Components/List",
+      "importPath": "./src/components/List/List.stories.mdx",
       "kind": "Components/List",
       "story": "Actions",
       "parameters": {
+        "fileName": "./src/components/List/List.stories.mdx",
+        "framework": "react",
         "__id": "components-list--actions",
         "__isArgsStory": false
       }
@@ -1842,9 +2219,13 @@
     "components-list--error": {
       "id": "components-list--error",
       "name": "Error",
+      "title": "Components/List",
+      "importPath": "./src/components/List/List.stories.mdx",
       "kind": "Components/List",
       "story": "Error",
       "parameters": {
+        "fileName": "./src/components/List/List.stories.mdx",
+        "framework": "react",
         "__id": "components-list--error",
         "__isArgsStory": false
       }
@@ -1852,9 +2233,13 @@
     "components-list--selected": {
       "id": "components-list--selected",
       "name": "Selected",
+      "title": "Components/List",
+      "importPath": "./src/components/List/List.stories.mdx",
       "kind": "Components/List",
       "story": "Selected",
       "parameters": {
+        "fileName": "./src/components/List/List.stories.mdx",
+        "framework": "react",
         "__id": "components-list--selected",
         "__isArgsStory": false
       }
@@ -1862,9 +2247,13 @@
     "components-list--complex": {
       "id": "components-list--complex",
       "name": "Complex",
+      "title": "Components/List",
+      "importPath": "./src/components/List/List.stories.mdx",
       "kind": "Components/List",
       "story": "Complex",
       "parameters": {
+        "fileName": "./src/components/List/List.stories.mdx",
+        "framework": "react",
         "__id": "components-list--complex",
         "__isArgsStory": true
       }
@@ -1872,9 +2261,13 @@
     "components-locale--standard": {
       "id": "components-locale--standard",
       "name": "Standard",
+      "title": "Components/Locale",
+      "importPath": "./src/components/Locale/Locale.stories.mdx",
       "kind": "Components/Locale",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Locale/Locale.stories.mdx",
+        "framework": "react",
         "__id": "components-locale--standard",
         "__isArgsStory": true
       }
@@ -1882,9 +2275,13 @@
     "components-locale--label": {
       "id": "components-locale--label",
       "name": "Label",
+      "title": "Components/Locale",
+      "importPath": "./src/components/Locale/Locale.stories.mdx",
       "kind": "Components/Locale",
       "story": "Label",
       "parameters": {
+        "fileName": "./src/components/Locale/Locale.stories.mdx",
+        "framework": "react",
         "__id": "components-locale--label",
         "__isArgsStory": true
       }
@@ -1892,9 +2289,13 @@
     "components-message-bar--standard": {
       "id": "components-message-bar--standard",
       "name": "Standard",
+      "title": "Components/Message bar",
+      "importPath": "./src/components/MessageBar/MessageBar.stories.mdx",
       "kind": "Components/Message bar",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/MessageBar/MessageBar.stories.mdx",
+        "framework": "react",
         "__id": "components-message-bar--standard",
         "__isArgsStory": true
       }
@@ -1902,9 +2303,13 @@
     "components-message-bar--level": {
       "id": "components-message-bar--level",
       "name": "Level",
+      "title": "Components/Message bar",
+      "importPath": "./src/components/MessageBar/MessageBar.stories.mdx",
       "kind": "Components/Message bar",
       "story": "Level",
       "parameters": {
+        "fileName": "./src/components/MessageBar/MessageBar.stories.mdx",
+        "framework": "react",
         "__id": "components-message-bar--level",
         "__isArgsStory": true
       }
@@ -1912,9 +2317,13 @@
     "components-message-bar--content": {
       "id": "components-message-bar--content",
       "name": "Content",
+      "title": "Components/Message bar",
+      "importPath": "./src/components/MessageBar/MessageBar.stories.mdx",
       "kind": "Components/Message bar",
       "story": "Content",
       "parameters": {
+        "fileName": "./src/components/MessageBar/MessageBar.stories.mdx",
+        "framework": "react",
         "__id": "components-message-bar--content",
         "__isArgsStory": true
       }
@@ -1922,9 +2331,13 @@
     "components-message-bar--animate": {
       "id": "components-message-bar--animate",
       "name": "Animate",
+      "title": "Components/Message bar",
+      "importPath": "./src/components/MessageBar/MessageBar.stories.mdx",
       "kind": "Components/Message bar",
       "story": "Animate",
       "parameters": {
+        "fileName": "./src/components/MessageBar/MessageBar.stories.mdx",
+        "framework": "react",
         "__id": "components-message-bar--animate",
         "__isArgsStory": true
       }
@@ -1932,9 +2345,13 @@
     "components-modal--standard": {
       "id": "components-modal--standard",
       "name": "Standard",
+      "title": "Components/Modal",
+      "importPath": "./src/components/Modal/Modal.stories.mdx",
       "kind": "Components/Modal",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Modal/Modal.stories.mdx",
+        "framework": "react",
         "__id": "components-modal--standard",
         "__isArgsStory": true
       }
@@ -1942,9 +2359,13 @@
     "components-modal--with-illustration": {
       "id": "components-modal--with-illustration",
       "name": "With Illustration",
+      "title": "Components/Modal",
+      "importPath": "./src/components/Modal/Modal.stories.mdx",
       "kind": "Components/Modal",
       "story": "With Illustration",
       "parameters": {
+        "fileName": "./src/components/Modal/Modal.stories.mdx",
+        "framework": "react",
         "__id": "components-modal--with-illustration",
         "__isArgsStory": true
       }
@@ -1952,9 +2373,13 @@
     "components-navigation-mainnavigationitem--standard": {
       "id": "components-navigation-mainnavigationitem--standard",
       "name": "Standard",
+      "title": "Components/Navigation/MainNavigationItem",
+      "importPath": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
       "kind": "Components/Navigation/MainNavigationItem",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-mainnavigationitem--standard",
         "__isArgsStory": true
       }
@@ -1962,9 +2387,13 @@
     "components-navigation-mainnavigationitem--label": {
       "id": "components-navigation-mainnavigationitem--label",
       "name": "Label",
+      "title": "Components/Navigation/MainNavigationItem",
+      "importPath": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
       "kind": "Components/Navigation/MainNavigationItem",
       "story": "Label",
       "parameters": {
+        "fileName": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-mainnavigationitem--label",
         "__isArgsStory": true
       }
@@ -1972,9 +2401,13 @@
     "components-navigation-mainnavigationitem--active": {
       "id": "components-navigation-mainnavigationitem--active",
       "name": "Active",
+      "title": "Components/Navigation/MainNavigationItem",
+      "importPath": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
       "kind": "Components/Navigation/MainNavigationItem",
       "story": "Active",
       "parameters": {
+        "fileName": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-mainnavigationitem--active",
         "__isArgsStory": true
       }
@@ -1982,9 +2415,13 @@
     "components-navigation-mainnavigationitem--disabled": {
       "id": "components-navigation-mainnavigationitem--disabled",
       "name": "Disabled",
+      "title": "Components/Navigation/MainNavigationItem",
+      "importPath": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
       "kind": "Components/Navigation/MainNavigationItem",
       "story": "Disabled",
       "parameters": {
+        "fileName": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-mainnavigationitem--disabled",
         "__isArgsStory": true
       }
@@ -1992,9 +2429,13 @@
     "components-navigation-mainnavigationitem--icon": {
       "id": "components-navigation-mainnavigationitem--icon",
       "name": "Icon",
+      "title": "Components/Navigation/MainNavigationItem",
+      "importPath": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
       "kind": "Components/Navigation/MainNavigationItem",
       "story": "Icon",
       "parameters": {
+        "fileName": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-mainnavigationitem--icon",
         "__isArgsStory": true
       }
@@ -2002,9 +2443,13 @@
     "components-navigation-mainnavigationitem--tag": {
       "id": "components-navigation-mainnavigationitem--tag",
       "name": "Tag",
+      "title": "Components/Navigation/MainNavigationItem",
+      "importPath": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
       "kind": "Components/Navigation/MainNavigationItem",
       "story": "Tag",
       "parameters": {
+        "fileName": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-mainnavigationitem--tag",
         "__isArgsStory": true
       }
@@ -2012,9 +2457,13 @@
     "components-navigation-mainnavigationitem--link": {
       "id": "components-navigation-mainnavigationitem--link",
       "name": "Link",
+      "title": "Components/Navigation/MainNavigationItem",
+      "importPath": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
       "kind": "Components/Navigation/MainNavigationItem",
       "story": "Link",
       "parameters": {
+        "fileName": "./src/components/Navigation/MainNavigationItem/MainNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-mainnavigationitem--link",
         "__isArgsStory": true
       }
@@ -2022,9 +2471,13 @@
     "components-navigation-subnavigationitem--standard": {
       "id": "components-navigation-subnavigationitem--standard",
       "name": "Standard",
+      "title": "Components/Navigation/SubNavigationItem",
+      "importPath": "./src/components/Navigation/SubNavigationItem/SubNavigationItem.stories.mdx",
       "kind": "Components/Navigation/SubNavigationItem",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Navigation/SubNavigationItem/SubNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-subnavigationitem--standard",
         "__isArgsStory": true
       }
@@ -2032,9 +2485,13 @@
     "components-navigation-subnavigationitem--label": {
       "id": "components-navigation-subnavigationitem--label",
       "name": "Label",
+      "title": "Components/Navigation/SubNavigationItem",
+      "importPath": "./src/components/Navigation/SubNavigationItem/SubNavigationItem.stories.mdx",
       "kind": "Components/Navigation/SubNavigationItem",
       "story": "Label",
       "parameters": {
+        "fileName": "./src/components/Navigation/SubNavigationItem/SubNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-subnavigationitem--label",
         "__isArgsStory": true
       }
@@ -2042,9 +2499,13 @@
     "components-navigation-subnavigationitem--active": {
       "id": "components-navigation-subnavigationitem--active",
       "name": "Active",
+      "title": "Components/Navigation/SubNavigationItem",
+      "importPath": "./src/components/Navigation/SubNavigationItem/SubNavigationItem.stories.mdx",
       "kind": "Components/Navigation/SubNavigationItem",
       "story": "Active",
       "parameters": {
+        "fileName": "./src/components/Navigation/SubNavigationItem/SubNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-subnavigationitem--active",
         "__isArgsStory": true
       }
@@ -2052,9 +2513,13 @@
     "components-navigation-subnavigationitem--disabled": {
       "id": "components-navigation-subnavigationitem--disabled",
       "name": "Disabled",
+      "title": "Components/Navigation/SubNavigationItem",
+      "importPath": "./src/components/Navigation/SubNavigationItem/SubNavigationItem.stories.mdx",
       "kind": "Components/Navigation/SubNavigationItem",
       "story": "Disabled",
       "parameters": {
+        "fileName": "./src/components/Navigation/SubNavigationItem/SubNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-subnavigationitem--disabled",
         "__isArgsStory": true
       }
@@ -2062,9 +2527,13 @@
     "components-navigation-subnavigationitem--tag": {
       "id": "components-navigation-subnavigationitem--tag",
       "name": "Tag",
+      "title": "Components/Navigation/SubNavigationItem",
+      "importPath": "./src/components/Navigation/SubNavigationItem/SubNavigationItem.stories.mdx",
       "kind": "Components/Navigation/SubNavigationItem",
       "story": "Tag",
       "parameters": {
+        "fileName": "./src/components/Navigation/SubNavigationItem/SubNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-subnavigationitem--tag",
         "__isArgsStory": true
       }
@@ -2072,9 +2541,13 @@
     "components-navigation-subnavigationitem--link": {
       "id": "components-navigation-subnavigationitem--link",
       "name": "Link",
+      "title": "Components/Navigation/SubNavigationItem",
+      "importPath": "./src/components/Navigation/SubNavigationItem/SubNavigationItem.stories.mdx",
       "kind": "Components/Navigation/SubNavigationItem",
       "story": "Link",
       "parameters": {
+        "fileName": "./src/components/Navigation/SubNavigationItem/SubNavigationItem.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-subnavigationitem--link",
         "__isArgsStory": true
       }
@@ -2082,9 +2555,13 @@
     "components-navigation-subnavigationpanel--standard": {
       "id": "components-navigation-subnavigationpanel--standard",
       "name": "Standard",
+      "title": "Components/Navigation/SubNavigationPanel",
+      "importPath": "./src/components/Navigation/SubNavigationPanel/SubNavigationPanel.stories.mdx",
       "kind": "Components/Navigation/SubNavigationPanel",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Navigation/SubNavigationPanel/SubNavigationPanel.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-subnavigationpanel--standard",
         "__isArgsStory": true
       }
@@ -2092,9 +2569,13 @@
     "components-navigation-subnavigationpanel--scrollable-content": {
       "id": "components-navigation-subnavigationpanel--scrollable-content",
       "name": "ScrollableContent",
+      "title": "Components/Navigation/SubNavigationPanel",
+      "importPath": "./src/components/Navigation/SubNavigationPanel/SubNavigationPanel.stories.mdx",
       "kind": "Components/Navigation/SubNavigationPanel",
       "story": "ScrollableContent",
       "parameters": {
+        "fileName": "./src/components/Navigation/SubNavigationPanel/SubNavigationPanel.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-subnavigationpanel--scrollable-content",
         "__isArgsStory": true
       }
@@ -2102,9 +2583,13 @@
     "components-navigation-subnavigationpanel--collapsed-expanded-content": {
       "id": "components-navigation-subnavigationpanel--collapsed-expanded-content",
       "name": "CollapsedExpandedContent",
+      "title": "Components/Navigation/SubNavigationPanel",
+      "importPath": "./src/components/Navigation/SubNavigationPanel/SubNavigationPanel.stories.mdx",
       "kind": "Components/Navigation/SubNavigationPanel",
       "story": "CollapsedExpandedContent",
       "parameters": {
+        "fileName": "./src/components/Navigation/SubNavigationPanel/SubNavigationPanel.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-subnavigationpanel--collapsed-expanded-content",
         "__isArgsStory": true
       }
@@ -2112,9 +2597,13 @@
     "components-navigation-subnavigationpanel--content-without-padding": {
       "id": "components-navigation-subnavigationpanel--content-without-padding",
       "name": "ContentWithoutPadding",
+      "title": "Components/Navigation/SubNavigationPanel",
+      "importPath": "./src/components/Navigation/SubNavigationPanel/SubNavigationPanel.stories.mdx",
       "kind": "Components/Navigation/SubNavigationPanel",
       "story": "ContentWithoutPadding",
       "parameters": {
+        "fileName": "./src/components/Navigation/SubNavigationPanel/SubNavigationPanel.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-subnavigationpanel--content-without-padding",
         "__isArgsStory": true
       }
@@ -2122,9 +2611,13 @@
     "components-navigation-subnavigationpanel--content-with-collapse-component": {
       "id": "components-navigation-subnavigationpanel--content-with-collapse-component",
       "name": "ContentWithCollapseComponent",
+      "title": "Components/Navigation/SubNavigationPanel",
+      "importPath": "./src/components/Navigation/SubNavigationPanel/SubNavigationPanel.stories.mdx",
       "kind": "Components/Navigation/SubNavigationPanel",
       "story": "ContentWithCollapseComponent",
       "parameters": {
+        "fileName": "./src/components/Navigation/SubNavigationPanel/SubNavigationPanel.stories.mdx",
+        "framework": "react",
         "__id": "components-navigation-subnavigationpanel--content-with-collapse-component",
         "__isArgsStory": true
       }
@@ -2132,9 +2625,13 @@
     "components-pagination--standard": {
       "id": "components-pagination--standard",
       "name": "Standard",
+      "title": "Components/Pagination",
+      "importPath": "./src/components/Pagination/Pagination.stories.mdx",
       "kind": "Components/Pagination",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Pagination/Pagination.stories.mdx",
+        "framework": "react",
         "__id": "components-pagination--standard",
         "__isArgsStory": true
       }
@@ -2142,9 +2639,13 @@
     "components-pagination--small-number-of-pages": {
       "id": "components-pagination--small-number-of-pages",
       "name": "Small number of pages",
+      "title": "Components/Pagination",
+      "importPath": "./src/components/Pagination/Pagination.stories.mdx",
       "kind": "Components/Pagination",
       "story": "Small number of pages",
       "parameters": {
+        "fileName": "./src/components/Pagination/Pagination.stories.mdx",
+        "framework": "react",
         "__id": "components-pagination--small-number-of-pages",
         "__isArgsStory": true
       }
@@ -2152,9 +2653,13 @@
     "components-pill--standard": {
       "id": "components-pill--standard",
       "name": "Standard",
+      "title": "Components/Pill",
+      "importPath": "./src/components/Pill/Pill.stories.mdx",
       "kind": "Components/Pill",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Pill/Pill.stories.mdx",
+        "framework": "react",
         "__id": "components-pill--standard",
         "__isArgsStory": true
       }
@@ -2162,9 +2667,13 @@
     "components-pill--level": {
       "id": "components-pill--level",
       "name": "Level",
+      "title": "Components/Pill",
+      "importPath": "./src/components/Pill/Pill.stories.mdx",
       "kind": "Components/Pill",
       "story": "Level",
       "parameters": {
+        "fileName": "./src/components/Pill/Pill.stories.mdx",
+        "framework": "react",
         "__id": "components-pill--level",
         "__isArgsStory": true
       }
@@ -2172,9 +2681,13 @@
     "components-placeholder--standard": {
       "id": "components-placeholder--standard",
       "name": "Standard",
+      "title": "Components/Placeholder",
+      "importPath": "./src/components/Placeholder/Placeholder.stories.mdx",
       "kind": "Components/Placeholder",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Placeholder/Placeholder.stories.mdx",
+        "framework": "react",
         "__id": "components-placeholder--standard",
         "__isArgsStory": true
       }
@@ -2182,9 +2695,13 @@
     "components-placeholder--size": {
       "id": "components-placeholder--size",
       "name": "Size",
+      "title": "Components/Placeholder",
+      "importPath": "./src/components/Placeholder/Placeholder.stories.mdx",
       "kind": "Components/Placeholder",
       "story": "Size",
       "parameters": {
+        "fileName": "./src/components/Placeholder/Placeholder.stories.mdx",
+        "framework": "react",
         "__id": "components-placeholder--size",
         "__isArgsStory": true
       }
@@ -2192,9 +2709,13 @@
     "components-preview--standard": {
       "id": "components-preview--standard",
       "name": "Standard",
+      "title": "Components/Preview",
+      "importPath": "./src/components/Preview/Preview.stories.mdx",
       "kind": "Components/Preview",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Preview/Preview.stories.mdx",
+        "framework": "react",
         "__id": "components-preview--standard",
         "__isArgsStory": true
       }
@@ -2202,9 +2723,13 @@
     "components-preview--highlight": {
       "id": "components-preview--highlight",
       "name": "Highlight",
+      "title": "Components/Preview",
+      "importPath": "./src/components/Preview/Preview.stories.mdx",
       "kind": "Components/Preview",
       "story": "Highlight",
       "parameters": {
+        "fileName": "./src/components/Preview/Preview.stories.mdx",
+        "framework": "react",
         "__id": "components-preview--highlight",
         "__isArgsStory": true
       }
@@ -2212,9 +2737,13 @@
     "components-preview--row": {
       "id": "components-preview--row",
       "name": "Row",
+      "title": "Components/Preview",
+      "importPath": "./src/components/Preview/Preview.stories.mdx",
       "kind": "Components/Preview",
       "story": "Row",
       "parameters": {
+        "fileName": "./src/components/Preview/Preview.stories.mdx",
+        "framework": "react",
         "__id": "components-preview--row",
         "__isArgsStory": true
       }
@@ -2222,9 +2751,13 @@
     "components-preview--collapsable": {
       "id": "components-preview--collapsable",
       "name": "Collapsable",
+      "title": "Components/Preview",
+      "importPath": "./src/components/Preview/Preview.stories.mdx",
       "kind": "Components/Preview",
       "story": "Collapsable",
       "parameters": {
+        "fileName": "./src/components/Preview/Preview.stories.mdx",
+        "framework": "react",
         "__id": "components-preview--collapsable",
         "__isArgsStory": true
       }
@@ -2232,9 +2765,13 @@
     "components-progress-bar--standard": {
       "id": "components-progress-bar--standard",
       "name": "Standard",
+      "title": "Components/Progress bar",
+      "importPath": "./src/components/ProgressBar/ProgressBar.stories.mdx",
       "kind": "Components/Progress bar",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/ProgressBar/ProgressBar.stories.mdx",
+        "framework": "react",
         "__id": "components-progress-bar--standard",
         "__isArgsStory": true
       }
@@ -2242,9 +2779,13 @@
     "components-progress-bar--progress": {
       "id": "components-progress-bar--progress",
       "name": "Progress",
+      "title": "Components/Progress bar",
+      "importPath": "./src/components/ProgressBar/ProgressBar.stories.mdx",
       "kind": "Components/Progress bar",
       "story": "Progress",
       "parameters": {
+        "fileName": "./src/components/ProgressBar/ProgressBar.stories.mdx",
+        "framework": "react",
         "__id": "components-progress-bar--progress",
         "__isArgsStory": true
       }
@@ -2252,9 +2793,13 @@
     "components-progress-bar--level": {
       "id": "components-progress-bar--level",
       "name": "Level",
+      "title": "Components/Progress bar",
+      "importPath": "./src/components/ProgressBar/ProgressBar.stories.mdx",
       "kind": "Components/Progress bar",
       "story": "Level",
       "parameters": {
+        "fileName": "./src/components/ProgressBar/ProgressBar.stories.mdx",
+        "framework": "react",
         "__id": "components-progress-bar--level",
         "__isArgsStory": true
       }
@@ -2262,9 +2807,13 @@
     "components-progress-bar--light": {
       "id": "components-progress-bar--light",
       "name": "Light",
+      "title": "Components/Progress bar",
+      "importPath": "./src/components/ProgressBar/ProgressBar.stories.mdx",
       "kind": "Components/Progress bar",
       "story": "Light",
       "parameters": {
+        "fileName": "./src/components/ProgressBar/ProgressBar.stories.mdx",
+        "framework": "react",
         "__id": "components-progress-bar--light",
         "__isArgsStory": true
       }
@@ -2272,9 +2821,13 @@
     "components-progress-bar--size": {
       "id": "components-progress-bar--size",
       "name": "Size",
+      "title": "Components/Progress bar",
+      "importPath": "./src/components/ProgressBar/ProgressBar.stories.mdx",
       "kind": "Components/Progress bar",
       "story": "Size",
       "parameters": {
+        "fileName": "./src/components/ProgressBar/ProgressBar.stories.mdx",
+        "framework": "react",
         "__id": "components-progress-bar--size",
         "__isArgsStory": true
       }
@@ -2282,9 +2835,13 @@
     "components-progress-bar--width": {
       "id": "components-progress-bar--width",
       "name": "Width",
+      "title": "Components/Progress bar",
+      "importPath": "./src/components/ProgressBar/ProgressBar.stories.mdx",
       "kind": "Components/Progress bar",
       "story": "Width",
       "parameters": {
+        "fileName": "./src/components/ProgressBar/ProgressBar.stories.mdx",
+        "framework": "react",
         "__id": "components-progress-bar--width",
         "__isArgsStory": true
       }
@@ -2292,9 +2849,13 @@
     "components-progress-bar--header": {
       "id": "components-progress-bar--header",
       "name": "Header",
+      "title": "Components/Progress bar",
+      "importPath": "./src/components/ProgressBar/ProgressBar.stories.mdx",
       "kind": "Components/Progress bar",
       "story": "Header",
       "parameters": {
+        "fileName": "./src/components/ProgressBar/ProgressBar.stories.mdx",
+        "framework": "react",
         "__id": "components-progress-bar--header",
         "__isArgsStory": true
       }
@@ -2302,9 +2863,13 @@
     "components-progress-indicator--standard": {
       "id": "components-progress-indicator--standard",
       "name": "Standard",
+      "title": "Components/Progress indicator",
+      "importPath": "./src/components/ProgressIndicator/ProgressIndicator.stories.mdx",
       "kind": "Components/Progress indicator",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/ProgressIndicator/ProgressIndicator.stories.mdx",
+        "framework": "react",
         "__id": "components-progress-indicator--standard",
         "__isArgsStory": true
       }
@@ -2312,9 +2877,13 @@
     "components-progress-indicator--states": {
       "id": "components-progress-indicator--states",
       "name": "States",
+      "title": "Components/Progress indicator",
+      "importPath": "./src/components/ProgressIndicator/ProgressIndicator.stories.mdx",
       "kind": "Components/Progress indicator",
       "story": "States",
       "parameters": {
+        "fileName": "./src/components/ProgressIndicator/ProgressIndicator.stories.mdx",
+        "framework": "react",
         "__id": "components-progress-indicator--states",
         "__isArgsStory": false
       }
@@ -2322,9 +2891,13 @@
     "components-progress-indicator--disabled": {
       "id": "components-progress-indicator--disabled",
       "name": "Disabled",
+      "title": "Components/Progress indicator",
+      "importPath": "./src/components/ProgressIndicator/ProgressIndicator.stories.mdx",
       "kind": "Components/Progress indicator",
       "story": "Disabled",
       "parameters": {
+        "fileName": "./src/components/ProgressIndicator/ProgressIndicator.stories.mdx",
+        "framework": "react",
         "__id": "components-progress-indicator--disabled",
         "__isArgsStory": false
       }
@@ -2332,9 +2905,13 @@
     "components-search--standard": {
       "id": "components-search--standard",
       "name": "Standard",
+      "title": "Components/Search",
+      "importPath": "./src/components/Search/Search.stories.mdx",
       "kind": "Components/Search",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Search/Search.stories.mdx",
+        "framework": "react",
         "__id": "components-search--standard",
         "__isArgsStory": true
       }
@@ -2342,9 +2919,13 @@
     "components-search--basic-search-input": {
       "id": "components-search--basic-search-input",
       "name": "Basic search input",
+      "title": "Components/Search",
+      "importPath": "./src/components/Search/Search.stories.mdx",
       "kind": "Components/Search",
       "story": "Basic search input",
       "parameters": {
+        "fileName": "./src/components/Search/Search.stories.mdx",
+        "framework": "react",
         "__id": "components-search--basic-search-input",
         "__isArgsStory": true
       }
@@ -2352,9 +2933,13 @@
     "components-search--with-results-and-a-filter": {
       "id": "components-search--with-results-and-a-filter",
       "name": "With results and a filter",
+      "title": "Components/Search",
+      "importPath": "./src/components/Search/Search.stories.mdx",
       "kind": "Components/Search",
       "story": "With results and a filter",
       "parameters": {
+        "fileName": "./src/components/Search/Search.stories.mdx",
+        "framework": "react",
         "__id": "components-search--with-results-and-a-filter",
         "__isArgsStory": true
       }
@@ -2362,9 +2947,13 @@
     "components-search--with-only-a-filter": {
       "id": "components-search--with-only-a-filter",
       "name": "With only a filter",
+      "title": "Components/Search",
+      "importPath": "./src/components/Search/Search.stories.mdx",
       "kind": "Components/Search",
       "story": "With only a filter",
       "parameters": {
+        "fileName": "./src/components/Search/Search.stories.mdx",
+        "framework": "react",
         "__id": "components-search--with-only-a-filter",
         "__isArgsStory": true
       }
@@ -2372,9 +2961,13 @@
     "components-search--inside-a-dropdown": {
       "id": "components-search--inside-a-dropdown",
       "name": "Inside a dropdown",
+      "title": "Components/Search",
+      "importPath": "./src/components/Search/Search.stories.mdx",
       "kind": "Components/Search",
       "story": "Inside a dropdown",
       "parameters": {
+        "fileName": "./src/components/Search/Search.stories.mdx",
+        "framework": "react",
         "__id": "components-search--inside-a-dropdown",
         "__isArgsStory": true
       }
@@ -2382,9 +2975,13 @@
     "components-section-title--standard": {
       "id": "components-section-title--standard",
       "name": "Standard",
+      "title": "Components/Section title",
+      "importPath": "./src/components/SectionTitle/SectionTitle.stories.mdx",
       "kind": "Components/Section title",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/SectionTitle/SectionTitle.stories.mdx",
+        "framework": "react",
         "__id": "components-section-title--standard",
         "__isArgsStory": true
       }
@@ -2392,9 +2989,13 @@
     "components-section-title--actions": {
       "id": "components-section-title--actions",
       "name": "Actions",
+      "title": "Components/Section title",
+      "importPath": "./src/components/SectionTitle/SectionTitle.stories.mdx",
       "kind": "Components/Section title",
       "story": "Actions",
       "parameters": {
+        "fileName": "./src/components/SectionTitle/SectionTitle.stories.mdx",
+        "framework": "react",
         "__id": "components-section-title--actions",
         "__isArgsStory": false
       }
@@ -2402,9 +3003,13 @@
     "components-section-title--sticky": {
       "id": "components-section-title--sticky",
       "name": "Sticky",
+      "title": "Components/Section title",
+      "importPath": "./src/components/SectionTitle/SectionTitle.stories.mdx",
       "kind": "Components/Section title",
       "story": "Sticky",
       "parameters": {
+        "fileName": "./src/components/SectionTitle/SectionTitle.stories.mdx",
+        "framework": "react",
         "__id": "components-section-title--sticky",
         "__isArgsStory": false
       }
@@ -2412,9 +3017,13 @@
     "components-section-title--title-level": {
       "id": "components-section-title--title-level",
       "name": "Title level",
+      "title": "Components/Section title",
+      "importPath": "./src/components/SectionTitle/SectionTitle.stories.mdx",
       "kind": "Components/Section title",
       "story": "Title level",
       "parameters": {
+        "fileName": "./src/components/SectionTitle/SectionTitle.stories.mdx",
+        "framework": "react",
         "__id": "components-section-title--title-level",
         "__isArgsStory": false
       }
@@ -2422,9 +3031,13 @@
     "components-buttons-splitbutton--standard": {
       "id": "components-buttons-splitbutton--standard",
       "name": "Standard",
+      "title": "Components/Buttons/SplitButton",
+      "importPath": "./src/components/SplitButton/SplitButton.stories.mdx",
       "kind": "Components/Buttons/SplitButton",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/SplitButton/SplitButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-splitbutton--standard",
         "__isArgsStory": true
       }
@@ -2432,9 +3045,13 @@
     "components-buttons-splitbutton--level": {
       "id": "components-buttons-splitbutton--level",
       "name": "Level",
+      "title": "Components/Buttons/SplitButton",
+      "importPath": "./src/components/SplitButton/SplitButton.stories.mdx",
       "kind": "Components/Buttons/SplitButton",
       "story": "Level",
       "parameters": {
+        "fileName": "./src/components/SplitButton/SplitButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-splitbutton--level",
         "__isArgsStory": true
       }
@@ -2442,9 +3059,13 @@
     "components-buttons-splitbutton--ghost": {
       "id": "components-buttons-splitbutton--ghost",
       "name": "Ghost",
+      "title": "Components/Buttons/SplitButton",
+      "importPath": "./src/components/SplitButton/SplitButton.stories.mdx",
       "kind": "Components/Buttons/SplitButton",
       "story": "Ghost",
       "parameters": {
+        "fileName": "./src/components/SplitButton/SplitButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-splitbutton--ghost",
         "__isArgsStory": true
       }
@@ -2452,9 +3073,13 @@
     "components-buttons-splitbutton--active": {
       "id": "components-buttons-splitbutton--active",
       "name": "Active",
+      "title": "Components/Buttons/SplitButton",
+      "importPath": "./src/components/SplitButton/SplitButton.stories.mdx",
       "kind": "Components/Buttons/SplitButton",
       "story": "Active",
       "parameters": {
+        "fileName": "./src/components/SplitButton/SplitButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-splitbutton--active",
         "__isArgsStory": true
       }
@@ -2462,9 +3087,13 @@
     "components-buttons-splitbutton--disabled": {
       "id": "components-buttons-splitbutton--disabled",
       "name": "Disabled",
+      "title": "Components/Buttons/SplitButton",
+      "importPath": "./src/components/SplitButton/SplitButton.stories.mdx",
       "kind": "Components/Buttons/SplitButton",
       "story": "Disabled",
       "parameters": {
+        "fileName": "./src/components/SplitButton/SplitButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-splitbutton--disabled",
         "__isArgsStory": true
       }
@@ -2472,9 +3101,13 @@
     "components-buttons-splitbutton--size": {
       "id": "components-buttons-splitbutton--size",
       "name": "Size",
+      "title": "Components/Buttons/SplitButton",
+      "importPath": "./src/components/SplitButton/SplitButton.stories.mdx",
       "kind": "Components/Buttons/SplitButton",
       "story": "Size",
       "parameters": {
+        "fileName": "./src/components/SplitButton/SplitButton.stories.mdx",
+        "framework": "react",
         "__id": "components-buttons-splitbutton--size",
         "__isArgsStory": true
       }
@@ -2482,9 +3115,13 @@
     "components-switcher-button--standard": {
       "id": "components-switcher-button--standard",
       "name": "Standard",
+      "title": "Components/Switcher Button",
+      "importPath": "./src/components/SwitcherButton/SwitcherButton.stories.mdx",
       "kind": "Components/Switcher Button",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/SwitcherButton/SwitcherButton.stories.mdx",
+        "framework": "react",
         "__id": "components-switcher-button--standard",
         "__isArgsStory": true
       }
@@ -2492,9 +3129,13 @@
     "components-switcher-button--inline": {
       "id": "components-switcher-button--inline",
       "name": "Inline",
+      "title": "Components/Switcher Button",
+      "importPath": "./src/components/SwitcherButton/SwitcherButton.stories.mdx",
       "kind": "Components/Switcher Button",
       "story": "Inline",
       "parameters": {
+        "fileName": "./src/components/SwitcherButton/SwitcherButton.stories.mdx",
+        "framework": "react",
         "__id": "components-switcher-button--inline",
         "__isArgsStory": true
       }
@@ -2502,9 +3143,13 @@
     "components-switcher-button--deletable": {
       "id": "components-switcher-button--deletable",
       "name": "Deletable",
+      "title": "Components/Switcher Button",
+      "importPath": "./src/components/SwitcherButton/SwitcherButton.stories.mdx",
       "kind": "Components/Switcher Button",
       "story": "Deletable",
       "parameters": {
+        "fileName": "./src/components/SwitcherButton/SwitcherButton.stories.mdx",
+        "framework": "react",
         "__id": "components-switcher-button--deletable",
         "__isArgsStory": true
       }
@@ -2512,9 +3157,13 @@
     "components-switcher-button--flag": {
       "id": "components-switcher-button--flag",
       "name": "Flag",
+      "title": "Components/Switcher Button",
+      "importPath": "./src/components/SwitcherButton/SwitcherButton.stories.mdx",
       "kind": "Components/Switcher Button",
       "story": "Flag",
       "parameters": {
+        "fileName": "./src/components/SwitcherButton/SwitcherButton.stories.mdx",
+        "framework": "react",
         "__id": "components-switcher-button--flag",
         "__isArgsStory": true
       }
@@ -2522,9 +3171,13 @@
     "components-tabbar--standard": {
       "id": "components-tabbar--standard",
       "name": "Standard",
+      "title": "Components/TabBar",
+      "importPath": "./src/components/TabBar/TabBar.stories.mdx",
       "kind": "Components/TabBar",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/TabBar/TabBar.stories.mdx",
+        "framework": "react",
         "__id": "components-tabbar--standard",
         "__isArgsStory": true
       }
@@ -2532,9 +3185,13 @@
     "components-tabbar--with-badges": {
       "id": "components-tabbar--with-badges",
       "name": "With Badges",
+      "title": "Components/TabBar",
+      "importPath": "./src/components/TabBar/TabBar.stories.mdx",
       "kind": "Components/TabBar",
       "story": "With Badges",
       "parameters": {
+        "fileName": "./src/components/TabBar/TabBar.stories.mdx",
+        "framework": "react",
         "__id": "components-tabbar--with-badges",
         "__isArgsStory": true
       }
@@ -2542,9 +3199,13 @@
     "components-tabbar--with-pills": {
       "id": "components-tabbar--with-pills",
       "name": "With Pills",
+      "title": "Components/TabBar",
+      "importPath": "./src/components/TabBar/TabBar.stories.mdx",
       "kind": "Components/TabBar",
       "story": "With Pills",
       "parameters": {
+        "fileName": "./src/components/TabBar/TabBar.stories.mdx",
+        "framework": "react",
         "__id": "components-tabbar--with-pills",
         "__isArgsStory": true
       }
@@ -2552,9 +3213,13 @@
     "components-tabbar--lot-of-tabs": {
       "id": "components-tabbar--lot-of-tabs",
       "name": "Lot of tabs",
+      "title": "Components/TabBar",
+      "importPath": "./src/components/TabBar/TabBar.stories.mdx",
       "kind": "Components/TabBar",
       "story": "Lot of tabs",
       "parameters": {
+        "fileName": "./src/components/TabBar/TabBar.stories.mdx",
+        "framework": "react",
         "__id": "components-tabbar--lot-of-tabs",
         "__isArgsStory": true
       }
@@ -2562,9 +3227,13 @@
     "components-tabbar--sticky": {
       "id": "components-tabbar--sticky",
       "name": "Sticky",
+      "title": "Components/TabBar",
+      "importPath": "./src/components/TabBar/TabBar.stories.mdx",
       "kind": "Components/TabBar",
       "story": "Sticky",
       "parameters": {
+        "fileName": "./src/components/TabBar/TabBar.stories.mdx",
+        "framework": "react",
         "__id": "components-tabbar--sticky",
         "__isArgsStory": true
       }
@@ -2572,9 +3241,13 @@
     "components-table--standard": {
       "id": "components-table--standard",
       "name": "Standard",
+      "title": "Components/Table",
+      "importPath": "./src/components/Table/Table.stories.mdx",
       "kind": "Components/Table",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Table/Table.stories.mdx",
+        "framework": "react",
         "__id": "components-table--standard",
         "__isArgsStory": true
       }
@@ -2582,9 +3255,13 @@
     "components-table--sortable-header": {
       "id": "components-table--sortable-header",
       "name": "Sortable header",
+      "title": "Components/Table",
+      "importPath": "./src/components/Table/Table.stories.mdx",
       "kind": "Components/Table",
       "story": "Sortable header",
       "parameters": {
+        "fileName": "./src/components/Table/Table.stories.mdx",
+        "framework": "react",
         "__id": "components-table--sortable-header",
         "__isArgsStory": true
       }
@@ -2592,9 +3269,13 @@
     "components-table--draggable-rows": {
       "id": "components-table--draggable-rows",
       "name": "Draggable rows",
+      "title": "Components/Table",
+      "importPath": "./src/components/Table/Table.stories.mdx",
       "kind": "Components/Table",
       "story": "Draggable rows",
       "parameters": {
+        "fileName": "./src/components/Table/Table.stories.mdx",
+        "framework": "react",
         "__id": "components-table--draggable-rows",
         "__isArgsStory": false
       }
@@ -2602,9 +3283,13 @@
     "components-table--selectable-lines": {
       "id": "components-table--selectable-lines",
       "name": "Selectable lines",
+      "title": "Components/Table",
+      "importPath": "./src/components/Table/Table.stories.mdx",
       "kind": "Components/Table",
       "story": "Selectable lines",
       "parameters": {
+        "fileName": "./src/components/Table/Table.stories.mdx",
+        "framework": "react",
         "__id": "components-table--selectable-lines",
         "__isArgsStory": true
       }
@@ -2612,9 +3297,13 @@
     "components-table--clickable-lines": {
       "id": "components-table--clickable-lines",
       "name": "Clickable lines",
+      "title": "Components/Table",
+      "importPath": "./src/components/Table/Table.stories.mdx",
       "kind": "Components/Table",
       "story": "Clickable lines",
       "parameters": {
+        "fileName": "./src/components/Table/Table.stories.mdx",
+        "framework": "react",
         "__id": "components-table--clickable-lines",
         "__isArgsStory": true
       }
@@ -2622,9 +3311,13 @@
     "components-table--table-with-actions": {
       "id": "components-table--table-with-actions",
       "name": "Table with actions",
+      "title": "Components/Table",
+      "importPath": "./src/components/Table/Table.stories.mdx",
       "kind": "Components/Table",
       "story": "Table with actions",
       "parameters": {
+        "fileName": "./src/components/Table/Table.stories.mdx",
+        "framework": "react",
         "__id": "components-table--table-with-actions",
         "__isArgsStory": true
       }
@@ -2632,9 +3325,13 @@
     "components-table--complex-table": {
       "id": "components-table--complex-table",
       "name": "Complex table",
+      "title": "Components/Table",
+      "importPath": "./src/components/Table/Table.stories.mdx",
       "kind": "Components/Table",
       "story": "Complex table",
       "parameters": {
+        "fileName": "./src/components/Table/Table.stories.mdx",
+        "framework": "react",
         "__id": "components-table--complex-table",
         "__isArgsStory": true
       }
@@ -2642,9 +3339,13 @@
     "components-table--sticky-header": {
       "id": "components-table--sticky-header",
       "name": "Sticky header",
+      "title": "Components/Table",
+      "importPath": "./src/components/Table/Table.stories.mdx",
       "kind": "Components/Table",
       "story": "Sticky header",
       "parameters": {
+        "fileName": "./src/components/Table/Table.stories.mdx",
+        "framework": "react",
         "__id": "components-table--sticky-header",
         "__isArgsStory": true
       }
@@ -2652,9 +3353,13 @@
     "components-table--warning-and-locked-rows": {
       "id": "components-table--warning-and-locked-rows",
       "name": "Warning and locked rows",
+      "title": "Components/Table",
+      "importPath": "./src/components/Table/Table.stories.mdx",
       "kind": "Components/Table",
       "story": "Warning and locked rows",
       "parameters": {
+        "fileName": "./src/components/Table/Table.stories.mdx",
+        "framework": "react",
         "__id": "components-table--warning-and-locked-rows",
         "__isArgsStory": true
       }
@@ -2662,9 +3367,13 @@
     "components-table--multiple-actions": {
       "id": "components-table--multiple-actions",
       "name": "Multiple actions",
+      "title": "Components/Table",
+      "importPath": "./src/components/Table/Table.stories.mdx",
       "kind": "Components/Table",
       "story": "Multiple actions",
       "parameters": {
+        "fileName": "./src/components/Table/Table.stories.mdx",
+        "framework": "react",
         "__id": "components-table--multiple-actions",
         "__isArgsStory": true
       }
@@ -2672,9 +3381,13 @@
     "components-tags--standard": {
       "id": "components-tags--standard",
       "name": "Standard",
+      "title": "Components/Tags",
+      "importPath": "./src/components/Tags/Tags.stories.mdx",
       "kind": "Components/Tags",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Tags/Tags.stories.mdx",
+        "framework": "react",
         "__id": "components-tags--standard",
         "__isArgsStory": true
       }
@@ -2682,9 +3395,13 @@
     "components-tiles--standard": {
       "id": "components-tiles--standard",
       "name": "Standard",
+      "title": "Components/Tiles",
+      "importPath": "./src/components/Tiles/Tiles.stories.mdx",
       "kind": "Components/Tiles",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Tiles/Tiles.stories.mdx",
+        "framework": "react",
         "__id": "components-tiles--standard",
         "__isArgsStory": true
       }
@@ -2692,9 +3409,13 @@
     "components-tiles--size": {
       "id": "components-tiles--size",
       "name": "Size",
+      "title": "Components/Tiles",
+      "importPath": "./src/components/Tiles/Tiles.stories.mdx",
       "kind": "Components/Tiles",
       "story": "Size",
       "parameters": {
+        "fileName": "./src/components/Tiles/Tiles.stories.mdx",
+        "framework": "react",
         "__id": "components-tiles--size",
         "__isArgsStory": true
       }
@@ -2702,9 +3423,13 @@
     "components-toolbar--standard": {
       "id": "components-toolbar--standard",
       "name": "Standard",
+      "title": "Components/Toolbar",
+      "importPath": "./src/components/Toolbar/Toolbar.stories.mdx",
       "kind": "Components/Toolbar",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Toolbar/Toolbar.stories.mdx",
+        "framework": "react",
         "__id": "components-toolbar--standard",
         "__isArgsStory": true
       }
@@ -2712,9 +3437,13 @@
     "components-tooltip--standard": {
       "id": "components-tooltip--standard",
       "name": "Standard",
+      "title": "Components/Tooltip",
+      "importPath": "./src/components/Tooltip/Tooltip.stories.mdx",
       "kind": "Components/Tooltip",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Tooltip/Tooltip.stories.mdx",
+        "framework": "react",
         "__id": "components-tooltip--standard",
         "__isArgsStory": true
       }
@@ -2722,9 +3451,13 @@
     "components-tooltip--with-title": {
       "id": "components-tooltip--with-title",
       "name": "With title",
+      "title": "Components/Tooltip",
+      "importPath": "./src/components/Tooltip/Tooltip.stories.mdx",
       "kind": "Components/Tooltip",
       "story": "With title",
       "parameters": {
+        "fileName": "./src/components/Tooltip/Tooltip.stories.mdx",
+        "framework": "react",
         "__id": "components-tooltip--with-title",
         "__isArgsStory": true
       }
@@ -2732,9 +3465,13 @@
     "components-tree--standard": {
       "id": "components-tree--standard",
       "name": "Standard",
+      "title": "Components/Tree",
+      "importPath": "./src/components/Tree/Tree.stories.mdx",
       "kind": "Components/Tree",
       "story": "Standard",
       "parameters": {
+        "fileName": "./src/components/Tree/Tree.stories.mdx",
+        "framework": "react",
         "__id": "components-tree--standard",
         "__isArgsStory": true
       }
@@ -2742,9 +3479,13 @@
     "components-tree--selected": {
       "id": "components-tree--selected",
       "name": "Selected",
+      "title": "Components/Tree",
+      "importPath": "./src/components/Tree/Tree.stories.mdx",
       "kind": "Components/Tree",
       "story": "Selected",
       "parameters": {
+        "fileName": "./src/components/Tree/Tree.stories.mdx",
+        "framework": "react",
         "__id": "components-tree--selected",
         "__isArgsStory": true
       }
@@ -2752,9 +3493,13 @@
     "components-tree--is-loading": {
       "id": "components-tree--is-loading",
       "name": "IsLoading",
+      "title": "Components/Tree",
+      "importPath": "./src/components/Tree/Tree.stories.mdx",
       "kind": "Components/Tree",
       "story": "IsLoading",
       "parameters": {
+        "fileName": "./src/components/Tree/Tree.stories.mdx",
+        "framework": "react",
         "__id": "components-tree--is-loading",
         "__isArgsStory": true
       }
@@ -2762,9 +3507,13 @@
     "components-tree--is-leaf": {
       "id": "components-tree--is-leaf",
       "name": "IsLeaf",
+      "title": "Components/Tree",
+      "importPath": "./src/components/Tree/Tree.stories.mdx",
       "kind": "Components/Tree",
       "story": "IsLeaf",
       "parameters": {
+        "fileName": "./src/components/Tree/Tree.stories.mdx",
+        "framework": "react",
         "__id": "components-tree--is-leaf",
         "__isArgsStory": true
       }
@@ -2772,9 +3521,13 @@
     "components-tree--selectable": {
       "id": "components-tree--selectable",
       "name": "Selectable",
+      "title": "Components/Tree",
+      "importPath": "./src/components/Tree/Tree.stories.mdx",
       "kind": "Components/Tree",
       "story": "Selectable",
       "parameters": {
+        "fileName": "./src/components/Tree/Tree.stories.mdx",
+        "framework": "react",
         "__id": "components-tree--selectable",
         "__isArgsStory": true
       }
@@ -2782,9 +3535,13 @@
     "components-tree--read-only": {
       "id": "components-tree--read-only",
       "name": "ReadOnly",
+      "title": "Components/Tree",
+      "importPath": "./src/components/Tree/Tree.stories.mdx",
       "kind": "Components/Tree",
       "story": "ReadOnly",
       "parameters": {
+        "fileName": "./src/components/Tree/Tree.stories.mdx",
+        "framework": "react",
         "__id": "components-tree--read-only",
         "__isArgsStory": true
       }
@@ -2792,9 +3549,13 @@
     "components-tree--indeterminate-checked": {
       "id": "components-tree--indeterminate-checked",
       "name": "IndeterminateChecked",
+      "title": "Components/Tree",
+      "importPath": "./src/components/Tree/Tree.stories.mdx",
       "kind": "Components/Tree",
       "story": "IndeterminateChecked",
       "parameters": {
+        "fileName": "./src/components/Tree/Tree.stories.mdx",
+        "framework": "react",
         "__id": "components-tree--indeterminate-checked",
         "__isArgsStory": true
       }
@@ -2802,9 +3563,13 @@
     "patterns-bulk-actions--big-table": {
       "id": "patterns-bulk-actions--big-table",
       "name": "Big Table",
+      "title": "Patterns/Bulk Actions",
+      "importPath": "./src/patterns/BulkActions/BulkActions.stories.mdx",
       "kind": "Patterns/Bulk Actions",
       "story": "Big Table",
       "parameters": {
+        "fileName": "./src/patterns/BulkActions/BulkActions.stories.mdx",
+        "framework": "react",
         "__id": "patterns-bulk-actions--big-table",
         "__isArgsStory": false
       }
@@ -2812,9 +3577,13 @@
     "patterns-bulk-actions--small-table": {
       "id": "patterns-bulk-actions--small-table",
       "name": "Small Table",
+      "title": "Patterns/Bulk Actions",
+      "importPath": "./src/patterns/BulkActions/BulkActions.stories.mdx",
       "kind": "Patterns/Bulk Actions",
       "story": "Small Table",
       "parameters": {
+        "fileName": "./src/patterns/BulkActions/BulkActions.stories.mdx",
+        "framework": "react",
         "__id": "patterns-bulk-actions--small-table",
         "__isArgsStory": false
       }
@@ -2822,9 +3591,13 @@
     "patterns-bulk-actions--with-cards": {
       "id": "patterns-bulk-actions--with-cards",
       "name": "With Cards",
+      "title": "Patterns/Bulk Actions",
+      "importPath": "./src/patterns/BulkActions/BulkActions.stories.mdx",
       "kind": "Patterns/Bulk Actions",
       "story": "With Cards",
       "parameters": {
+        "fileName": "./src/patterns/BulkActions/BulkActions.stories.mdx",
+        "framework": "react",
         "__id": "patterns-bulk-actions--with-cards",
         "__isArgsStory": false
       }
@@ -2832,9 +3605,13 @@
     "patterns-overlays--confirm-modal": {
       "id": "patterns-overlays--confirm-modal",
       "name": "Confirm Modal",
+      "title": "Patterns/Overlays",
+      "importPath": "./src/patterns/Overlays/Overlays.stories.mdx",
       "kind": "Patterns/Overlays",
       "story": "Confirm Modal",
       "parameters": {
+        "fileName": "./src/patterns/Overlays/Overlays.stories.mdx",
+        "framework": "react",
         "__id": "patterns-overlays--confirm-modal",
         "__isArgsStory": true
       }
@@ -2842,9 +3619,13 @@
     "patterns-overlays--fullscreen-overlay": {
       "id": "patterns-overlays--fullscreen-overlay",
       "name": "Fullscreen Overlay",
+      "title": "Patterns/Overlays",
+      "importPath": "./src/patterns/Overlays/Overlays.stories.mdx",
       "kind": "Patterns/Overlays",
       "story": "Fullscreen Overlay",
       "parameters": {
+        "fileName": "./src/patterns/Overlays/Overlays.stories.mdx",
+        "framework": "react",
         "__id": "patterns-overlays--fullscreen-overlay",
         "__isArgsStory": true
       }
@@ -2852,9 +3633,13 @@
     "patterns-overlays--split-screen-overlay": {
       "id": "patterns-overlays--split-screen-overlay",
       "name": "Split screen Overlay",
+      "title": "Patterns/Overlays",
+      "importPath": "./src/patterns/Overlays/Overlays.stories.mdx",
       "kind": "Patterns/Overlays",
       "story": "Split screen Overlay",
       "parameters": {
+        "fileName": "./src/patterns/Overlays/Overlays.stories.mdx",
+        "framework": "react",
         "__id": "patterns-overlays--split-screen-overlay",
         "__isArgsStory": true
       }
