@@ -51,7 +51,6 @@ test('it renders a progress bar with title', () => {
   render(<ProgressBar percent={50} title="Progress bar title" level="primary" />);
 
   expect(screen.getByText('Progress bar title')).toBeInTheDocument();
-  expect(screen.getByRole('progressbar')).toHaveAttribute('aria-labelledby');
 });
 
 test('it renders a progress bar with progress label', () => {

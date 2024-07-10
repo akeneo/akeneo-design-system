@@ -2,7 +2,7 @@ import React from 'react';
 import { InputProps } from '../common/InputProps';
 import { Override } from '../../../shared';
 import { EditorProps } from './RichTextEditor';
-declare type TextAreaInputProps = Override<Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, ({
+type TextAreaInputProps = Override<Override<React.InputHTMLAttributes<HTMLTextAreaElement>, InputProps<string>>, ({
     readOnly: true;
 } | {
     readOnly?: boolean;
@@ -15,6 +15,6 @@ declare type TextAreaInputProps = Override<Override<React.InputHTMLAttributes<HT
     isRichText?: boolean;
     richTextEditorProps?: EditorProps;
 }>;
-declare const TextAreaInput: React.ForwardRefExoticComponent<TextAreaInputProps & React.RefAttributes<HTMLInputElement>>;
+declare const TextAreaInput: React.ForwardRefExoticComponent<TextAreaInputProps & React.RefAttributes<HTMLTextAreaElement>>;
 export { TextAreaInput };
 export type { TextAreaInputProps };

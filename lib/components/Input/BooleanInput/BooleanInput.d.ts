@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { InputProps } from '../common';
 import { Override } from '../../../shared';
-declare type BooleanInputProps = Override<InputProps<boolean>, ({
+type BooleanInputProps = Override<InputProps<boolean>, ({
     clearable?: true;
     value: boolean | null;
     onChange?: (value: boolean | null) => void;

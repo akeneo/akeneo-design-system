@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, ReactNode } from 'react';
 import { Override } from '../../../../shared';
-export declare type TableInputRowProps = Override<HTMLAttributes<HTMLTableRowElement>, {
+export type TableInputRowProps = Override<HTMLAttributes<HTMLTableRowElement>, {
     children?: ReactNode;
     highlighted?: boolean;
     rowIndex?: number;

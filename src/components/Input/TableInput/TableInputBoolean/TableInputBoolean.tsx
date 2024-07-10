@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {MouseEvent} from 'react';
 import {Badge} from '../../../Badge/Badge';
 import styled from 'styled-components';
 import {AkeneoThemedProps, getColor} from '../../../../theme';
@@ -93,7 +93,7 @@ const TableInputBoolean: React.FC<TableInputBooleanProps> = ({
       <BooleanButton
         tabIndex={-1}
         highlighted={highlighted}
-        onClick={(e: MouseEvent) => {
+        onClick={(e: MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           open();
         }}

@@ -21,12 +21,12 @@ const sizeMap = {
   bigger: 64,
 };
 
-const ItemContainer = styled.div<
-  {size: 'default' | 'big' | 'bigger'; disabled: boolean; isActive: boolean} & AkeneoThemedProps
->`
+type SIZE = keyof typeof sizeMap;
+
+const ItemContainer = styled.div<{size: SIZE; disabled: boolean; isActive: boolean} & AkeneoThemedProps>`
   background: ${getColor('white')};
-  height: ${({size}) => sizeMap[size]}px;
-  line-height: ${({size}) => sizeMap[size]}px;
+  height: ${({size}: {size: SIZE}) => sizeMap[size]}px;
+  line-height: ${({size}: {size: SIZE}) => sizeMap[size]}px;
   margin: 0 20px;
   display: flex;
   align-items: center;
@@ -147,7 +147,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
       if (isValidElement(child) && child.type === Image) {
         hasImageChild = true;
 
-        return React.cloneElement(child, {
+        return React.cloneElement(child as any, {
           width: 34,
           height: 34,
         });
@@ -158,7 +158,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
         return (
           <>
             <ItemLabel>
-              {React.cloneElement(child, {
+              {React.cloneElement(child as any, {
                 ref: actionableRef,
                 decorated: false,
                 disabled,
@@ -172,7 +172,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
 
       // Same for Checkboxes
       if (isValidElement(child) && child.type === Checkbox) {
-        return React.cloneElement(child, {
+        return React.cloneElement(child as any, {
           ref: actionableRef,
           readOnly: disabled,
           tabIndex: -1,
@@ -186,7 +186,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
       return child;
     });
 
-    let size = 'default';
+    let size: SIZE = 'default';
     if (hasImageChild || hasSurtitleChild) size = 'big';
     if (hasImageChild && hasSurtitleChild) size = 'bigger';
 

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Override } from '../../../shared';
-declare type TableInputProps = Override<React.HTMLAttributes<HTMLTableElement>, {
+type TableInputProps = Override<React.HTMLAttributes<HTMLTableElement>, {
     children?: ReactNode;
     readOnly?: boolean;
     isDragAndDroppable?: boolean;
@@ -30,15 +30,15 @@ declare const TableInput: {
         }): React.JSX.Element;
         displayName: string;
     };
-    Text: ({ children, value, ...rest }: Omit<Override<React.InputHTMLAttributes<HTMLInputElement>, import("../common/InputProps").InputProps<string>>, "highlighted" | "inError"> & {
+    Text: ({ children, value, ...rest }: Omit<import("../TextInput/TextInput").TextInputProps, "highlighted" | "inError"> & {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;
     }) => React.JSX.Element;
-    Date: ({ children, value, ...rest }: Omit<Override<React.InputHTMLAttributes<HTMLInputElement>, import("../common/InputProps").InputProps<string>>, "highlighted" | "inError"> & {
+    Date: ({ children, value, ...rest }: Omit<import("../DateInput/DateInput").DateInputProps, "highlighted" | "inError"> & {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;
     }) => React.JSX.Element;
-    Number: ({ children, value, ...rest }: Omit<Override<React.InputHTMLAttributes<HTMLInputElement>, import("../common/InputProps").InputProps<string>>, "highlighted" | "inError"> & {
+    Number: ({ children, value, ...rest }: Omit<import("../NumberInput/NumberInput").NumberInputProps, "highlighted" | "inError"> & {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;
     }) => React.JSX.Element;
@@ -68,6 +68,7 @@ declare const TableInput: {
         bottomHelper?: React.ReactElement<any, string | React.JSXElementConstructor<any>> | undefined;
         withSearch?: boolean | undefined;
         onOpenChange?: ((isOpen: boolean) => void) | undefined;
+        children?: React.ReactNode;
     }>;
     Measurement: React.FC<{
         amount: string;

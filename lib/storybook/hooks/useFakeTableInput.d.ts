@@ -1,5 +1,13 @@
-declare type RowCode = 'nutritionScore' | 'part' | 'quantity' | 'is_allergenic' | 'origin' | 'length';
-declare type RowValue = '1' | '2' | '3' | string | number | boolean | null | 'french' | 'english' | 'german' | {
+/// <reference types="react" />
+type Row = {
+    nutritionScore: '1' | '2' | '3';
+    part: string;
+    quantity: number;
+    is_allergenic: boolean | null;
+    origin: 'french' | 'english' | 'german' | null;
+};
+type RowCode = keyof Row;
+type RowValue = '1' | '2' | '3' | string | number | boolean | null | 'french' | 'english' | 'german' | {
     unit: string;
     amount: string;
 };

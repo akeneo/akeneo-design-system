@@ -1,9 +1,9 @@
 import React from 'react';
-declare type ChipValue = {
+type ChipValue = {
     code: string;
     label: string;
 };
-declare type ChipInputProps = {
+type ChipInputProps = {
     id?: string;
     value: ChipValue[];
     invalidValue: string[];

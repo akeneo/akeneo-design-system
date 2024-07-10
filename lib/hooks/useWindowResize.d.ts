@@ -1,4 +1,4 @@
-declare type WindowSize = {
+type WindowSize = {
     width: number;
     height: number;
 };

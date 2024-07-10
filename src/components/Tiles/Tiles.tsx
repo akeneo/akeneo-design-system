@@ -202,7 +202,7 @@ const Tile: FC<TileProps> = ({
       inline={inline}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      tabIndex={'0'}
+      tabIndex={0}
       aria-disabled={disabled}
       disabled={disabled}
       {...rest}
@@ -230,7 +230,7 @@ const Tile: FC<TileProps> = ({
 const Tiles = React.forwardRef<HTMLDivElement, TilesProps>(
   ({size = 'small', inline = false, children, ...rest}: TilesProps, forwardedRef: Ref<HTMLDivElement>) => {
     return (
-      <TilesContainer size={size} inline={inline} ref={forwardedRef} {...rest}>
+      <TilesContainer size={size} ref={forwardedRef} {...rest}>
         {React.Children.map(children, child => {
           if (isValidElement<TileProps>(child) && child.type === Tile) {
             return React.cloneElement(child, {size, inline});

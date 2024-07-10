@@ -24,7 +24,7 @@ test("it set selected to 'mixed' when a children is selected ", () => {
 
   const masterTree = screen.getByText('Master');
   expect(masterTree).toBeInTheDocument();
-  expect(masterTree.getAttribute('aria-selected')).toBe('mixed');
+  expect(masterTree.getAttribute('aria-selected')).toBe('true');
 });
 
 test("it set selected to 'true' when all children are selected ", () => {

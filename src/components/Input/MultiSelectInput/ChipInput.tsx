@@ -6,7 +6,7 @@ import {IconButton} from '../../IconButton/IconButton';
 import {useBooleanState, useShortcut, useTheme} from '../../../hooks';
 import {Key} from '../../../shared';
 
-const Container = styled.ul<AkeneoThemedProps & {invalid: boolean}>`
+const Container = styled.ul<AkeneoThemedProps & {readOnly?: boolean; invalid?: boolean}>`
   border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
   padding: 4px 30px 4px 4px;
@@ -25,7 +25,7 @@ const Container = styled.ul<AkeneoThemedProps & {invalid: boolean}>`
 `;
 
 const Chip = styled.li<
-  AkeneoThemedProps & {isSelected: boolean; readOnly: boolean; isErrored: boolean; isLocked: boolean}
+  AkeneoThemedProps & {isSelected?: boolean; readOnly?: boolean; isErrored?: boolean; isLocked?: boolean}
 >`
   list-style-type: none;
   padding: 3px 15px;

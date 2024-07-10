@@ -1,5 +1,5 @@
 import React from 'react';
-declare type TableInputMeasurementProps = {
+type TableInputMeasurementProps = {
     amount: string;
     unit: string;
     emptyResultLabel: string;

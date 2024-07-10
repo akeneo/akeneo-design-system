@@ -1,7 +1,7 @@
 import React, { ReactNode, HTMLAttributes, MouseEvent } from 'react';
 import { Override } from '../../../shared';
-declare type Level = 'warning' | 'tertiary';
-declare type TableRowProps = Override<HTMLAttributes<HTMLTableRowElement>, {
+type Level = 'warning' | 'tertiary';
+type TableRowProps = Override<HTMLAttributes<HTMLTableRowElement>, {
     children?: ReactNode;
     onSelectToggle?: (isSelected: boolean) => void;
     isSelected?: boolean | 'mixed';

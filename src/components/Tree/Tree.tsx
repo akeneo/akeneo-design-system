@@ -51,7 +51,7 @@ const TreeLoaderIcon = styled(LoaderIcon)`
   color: ${getColor('grey100')};
 `;
 
-const TreeLine = styled.div<{$selected: boolean} & AkeneoThemedProps>`
+const TreeLine = styled.div<{$selected?: CheckboxChecked} & AkeneoThemedProps>`
   height: 40px;
   line-height: 40px;
   overflow: hidden;
@@ -85,7 +85,7 @@ const ArrowButton = styled.button`
   }
 `;
 
-const LabelWithFolder = styled.button<{$selected: boolean} & AkeneoThemedProps>`
+const LabelWithFolder = styled.button<{$selected?: CheckboxChecked} & AkeneoThemedProps>`
   ${CommonStyle}
   height: 30px;
   vertical-align: middle;
@@ -231,7 +231,7 @@ const Tree = <T,>({
 
         {selectable && <NodeCheckbox checked={selected} onChange={handleSelect} readOnly={readOnly} />}
 
-        <LabelWithFolder onClick={handleClick} $selected={selected} title={label} aria-selected={selected}>
+        <LabelWithFolder onClick={handleClick} $selected={selected} title={label} aria-selected={Boolean(selected)}>
           <TreeIcon isLoading={isLoading} isLeaf={isLeaf} selected={selected === true || selected === 'mixed'} />
           {label}
         </LabelWithFolder>

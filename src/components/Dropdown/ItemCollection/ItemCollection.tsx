@@ -77,7 +77,7 @@ const ItemCollection = React.forwardRef<HTMLDivElement, ItemCollectionProps>(
 
     const decoratedChildren = Children.map(children, (child, index) => {
       if (isValidElement(child)) {
-        return cloneElement(child, {
+        return cloneElement(child as any, {
           ref: 0 === index ? firstItemRef : index === childrenCount - 1 ? lastItemRef : undefined,
           onKeyDown: handleKeyDown,
         });

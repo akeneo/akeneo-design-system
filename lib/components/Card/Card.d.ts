@@ -1,9 +1,13 @@
 import React, { ReactNode } from 'react';
-declare type CardGridProps = {
+import { AkeneoThemedProps } from '../../theme';
+type CardGridProps = {
     size?: 'normal' | 'big';
 };
-declare const CardGrid: import("styled-components").StyledComponent<"div", any, CardGridProps & Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
-declare const Card: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "disabled" | "children" | "onSelect" | "src" | "loading" | "fit" | "isSelected" | "stacked"> & {
+declare const CardGrid: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, CardGridProps & AkeneoThemedProps>> & string;
+type BadgeContainerProps = {
+    stacked?: boolean;
+} & AkeneoThemedProps;
+declare const Card: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "onSelect" | "disabled" | "src" | "loading" | "fit" | "isSelected" | "stacked"> & {
     src: string | null;
     fit?: "contain" | "cover" | undefined;
     loading?: "eager" | "lazy" | undefined;
@@ -12,9 +16,7 @@ declare const Card: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HT
     onSelect?: ((isSelected: boolean) => void) | undefined;
     stacked?: boolean | undefined;
     children: ReactNode;
-} & React.RefAttributes<HTMLButtonElement>> & {
-    BadgeContainer: import("styled-components").StyledComponent<"div", any, {
-        stacked: boolean;
-    } & Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
+} & React.RefAttributes<HTMLDivElement>> & {
+    BadgeContainer: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, BadgeContainerProps>> & string;
 };
 export { Card, CardGrid };

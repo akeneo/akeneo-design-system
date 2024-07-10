@@ -1,5 +1,5 @@
 import React from 'react';
-declare type LocaleProps = {
+type LocaleProps = {
     code: string;
     languageLabel?: string;
 };

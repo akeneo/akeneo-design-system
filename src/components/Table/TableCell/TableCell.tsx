@@ -51,7 +51,7 @@ const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
           {React.Children.map(children, child => {
             if (!React.isValidElement(child) || child.type !== Image) return child;
 
-            return React.cloneElement(child, {
+            return React.cloneElement(child as any, {
               width: 44,
               height: 44,
             });

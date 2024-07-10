@@ -1,7 +1,7 @@
 import React from 'react';
+import { TextInputProps } from '../../TextInput/TextInput';
 import { Override } from '../../../../shared';
-import { InputProps } from '../../common/InputProps';
-declare type TableInputTextProps = Override<Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, {
+type TableInputTextProps = Override<TextInputProps, {
     highlighted?: boolean;
     inError?: boolean;
 }>;

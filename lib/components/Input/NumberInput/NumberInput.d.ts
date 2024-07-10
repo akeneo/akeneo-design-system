@@ -1,11 +1,11 @@
 import React from 'react';
 import { InputProps } from '../common/InputProps';
 import { Override } from '../../../shared';
-declare type NumberInputProps = Override<Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, ({
+type NumberInputProps = Override<Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, ({
     readOnly: true;
 } | {
     readOnly?: boolean;
-    onChange: (newValue: string) => void;
+    onChange?: (newValue: string) => void;
 }) & {
     value: string;
     placeholder?: string;

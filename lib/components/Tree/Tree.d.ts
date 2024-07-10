@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, ReactNode, PropsWithChildren } from 'react';
 import { CheckboxChecked } from '../Checkbox/Checkbox';
-declare type TreeProps<T = string> = {
+type TreeProps<T = string> = {
     value: T;
     label: string;
     isLeaf?: boolean;

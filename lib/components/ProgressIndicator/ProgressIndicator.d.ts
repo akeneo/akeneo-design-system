@@ -1,12 +1,12 @@
 import React, { HTMLAttributes, ReactNode } from 'react';
 import { Override } from '../../shared';
-declare type StepState = 'done' | 'inprogress' | 'todo';
-declare type ProgressIndicatorProps = Override<HTMLAttributes<HTMLUListElement>, {
+type StepState = 'done' | 'inprogress' | 'todo';
+type ProgressIndicatorProps = Override<HTMLAttributes<HTMLUListElement>, {
     children?: ReactNode;
 }>;
 declare const ProgressIndicator: {
     ({ children, ...rest }: ProgressIndicatorProps): React.JSX.Element;
-    Step: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLLIElement>, "current" | "disabled" | "children" | "index" | "state"> & {
+    Step: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLLIElement>, "current" | "children" | "disabled" | "state" | "index"> & {
         current?: boolean | undefined;
         state?: StepState | undefined;
         disabled?: boolean | undefined;

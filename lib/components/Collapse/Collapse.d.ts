@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-declare type CollapseProps = {
+type CollapseProps = {
     label: ReactNode;
     collapseButtonLabel: string;
     isOpen: boolean;

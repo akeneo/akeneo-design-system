@@ -9,9 +9,9 @@ const BooleanInputContainer = styled.div``;
 
 const BooleanButton = styled.button<
   {
-    value?: boolean;
-    readOnly: boolean;
-    invalid: boolean;
+    value: boolean | null;
+    readOnly?: boolean;
+    invalid?: boolean;
     size: 'normal' | 'small';
   } & AkeneoThemedProps
 >`
@@ -97,7 +97,6 @@ const ClearButton = styled.button`
   vertical-align: middle;
   background: ${getColor('white')};
   color: ${getColor('grey', 100)};
-  ${({readOnly}) => !readOnly && 'cursor: pointer'};
 `;
 
 const BooleanInputEraseIcon = styled(EraseIcon)`
@@ -179,10 +178,11 @@ const BooleanInput = React.forwardRef<HTMLDivElement, BooleanInputProps>(
     forwardedRef: Ref<HTMLDivElement>
   ) => {
     const handleChange = useCallback(
-      value => {
+      (value: boolean | null) => {
         if (!onChange) {
           return;
         }
+        // @ts-ignore
         onChange(value);
       },
       [onChange, readOnly]

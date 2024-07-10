@@ -5,7 +5,7 @@ import {VerticalPosition, useVerticalPosition, useWindowResize} from '../../../h
 import {AkeneoThemedProps, CommonStyle, getColor} from '../../../theme';
 import {Override} from '../../../shared';
 
-const OverlayContent = styled.div<{visible: number; top: number; width: number; left: number} & AkeneoThemedProps>`
+const OverlayContent = styled.div<{visible?: boolean; top: number; width: number; left: number} & AkeneoThemedProps>`
   ${CommonStyle}
   background: ${getColor('white')};
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);

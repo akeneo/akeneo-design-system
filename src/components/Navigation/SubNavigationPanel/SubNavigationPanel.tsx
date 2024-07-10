@@ -132,7 +132,6 @@ const SubNavigationPanel: SubNavigationPanelCompoundType = React.forwardRef<HTML
           {isOpen && contentElements}
         </Content>
         <ToggleButton
-          isOpen={isOpen}
           onClick={() => (isOpen ? close() : open())}
           title={isOpen ? closeTitle : openTitle}
           data-testid="open-subnavigation-button"

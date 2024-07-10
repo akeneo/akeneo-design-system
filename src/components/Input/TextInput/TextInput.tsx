@@ -13,7 +13,7 @@ const TextInputContainer = styled.div`
   width: 100%;
 `;
 
-const Input = styled.input<{readOnly: boolean; invalid: boolean} & AkeneoThemedProps>`
+const Input = styled.input<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
   width: 100%;
   height: 40px;
   border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
@@ -64,7 +64,7 @@ type TextInputProps = Override<
       }
     | {
         readOnly?: boolean;
-        onChange: (newValue: string) => void;
+        onChange?: (newValue: string) => void;
       }
   ) & {
     /**

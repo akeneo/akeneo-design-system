@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, ReactNode } from 'react';
 import { Override } from '../../shared';
-declare type DropdownProps = Override<HTMLAttributes<HTMLDivElement>, {
+type DropdownProps = Override<HTMLAttributes<HTMLDivElement>, {
     children?: ReactNode;
 }>;
 declare const Dropdown: {
@@ -20,12 +20,12 @@ declare const Dropdown: {
     Header: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & {
         children: React.ReactNode;
     } & React.RefAttributes<HTMLDivElement>>;
-    Item: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "disabled" | "children" | "isActive"> & {
+    Item: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "disabled" | "isActive"> & {
         disabled?: boolean | undefined;
         isActive?: boolean | undefined;
         children: React.ReactNode;
     } & React.RefAttributes<HTMLDivElement>>;
-    Section: import("styled-components").StyledComponent<"div", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
+    Section: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;
     Title: React.ForwardRefExoticComponent<Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & {
         children: React.ReactNode;
     } & React.RefAttributes<HTMLDivElement>>;

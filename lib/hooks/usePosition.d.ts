@@ -1,7 +1,7 @@
 import { RefObject } from 'react';
-declare type VerticalPosition = 'up' | 'down';
-declare type HorizontalPosition = 'left' | 'right';
-declare const useVerticalPosition: (ref: RefObject<HTMLElement>, forcedPosition?: VerticalPosition | undefined) => VerticalPosition | undefined;
-declare const useHorizontalPosition: (ref: RefObject<HTMLElement>, forcedPosition?: HorizontalPosition | undefined) => HorizontalPosition | undefined;
+type VerticalPosition = 'up' | 'down';
+type HorizontalPosition = 'left' | 'right';
+declare const useVerticalPosition: (ref: RefObject<HTMLElement>, forcedPosition?: VerticalPosition) => VerticalPosition | undefined;
+declare const useHorizontalPosition: (ref: RefObject<HTMLElement>, forcedPosition?: HorizontalPosition) => HorizontalPosition | undefined;
 export { useVerticalPosition, useHorizontalPosition };
 export type { VerticalPosition, HorizontalPosition };

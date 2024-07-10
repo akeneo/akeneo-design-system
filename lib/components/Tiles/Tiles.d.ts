@@ -1,13 +1,13 @@
 import React, { FC, ReactNode } from 'react';
 import { IconProps } from '../../icons';
 import { Override } from '../../';
-declare type Size = 'small' | 'big';
-declare type TilesProps = {
+type Size = 'small' | 'big';
+type TilesProps = {
     children?: ReactNode;
     size?: Size;
     inline?: boolean;
 };
-declare type TileProps = Override<React.HTMLAttributes<HTMLDivElement>, ({
+type TileProps = Override<React.HTMLAttributes<HTMLDivElement>, ({
     icon: React.ReactElement<IconProps>;
     size?: 'big' | 'small';
     inline?: false;

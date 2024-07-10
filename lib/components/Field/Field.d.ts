@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react';
 import { HelperProps, InputProps, LocaleProps } from '../../components';
-declare type FieldChild = ReactElement<InputProps<unknown>> | ReactElement<HelperProps> | FieldChild[] | false | null | undefined;
-declare type FieldProps = {
+type FieldChild = ReactElement<InputProps<unknown>> | ReactElement<HelperProps> | FieldChild[] | false | null | undefined;
+type FieldProps = {
     label: string;
     incomplete?: boolean;
     locale?: ReactElement<LocaleProps> | string | null;

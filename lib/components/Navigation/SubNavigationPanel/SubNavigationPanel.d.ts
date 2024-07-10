@@ -1,5 +1,5 @@
 import React, { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
-declare type SubNavigationPanelProps = {
+type SubNavigationPanelProps = {
     children?: React.ReactNode;
     isOpen?: boolean;
     open: () => void;
@@ -8,7 +8,7 @@ declare type SubNavigationPanelProps = {
     openTitle?: string;
     noPadding?: boolean;
 };
-declare type SubNavigationPanelCompoundType = ForwardRefExoticComponent<PropsWithoutRef<SubNavigationPanelProps> & RefAttributes<HTMLDivElement>> & {
+type SubNavigationPanelCompoundType = ForwardRefExoticComponent<PropsWithoutRef<SubNavigationPanelProps> & RefAttributes<HTMLDivElement>> & {
     Collapsed?: any;
     Section?: any;
 };

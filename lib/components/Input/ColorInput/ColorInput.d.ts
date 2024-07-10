@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes } from 'react';
 import { InputProps } from '../common/InputProps';
 import { Override } from '../../../shared';
-declare type ColorInputProps = Override<Override<InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, ({
+type ColorInputProps = Override<Override<InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, ({
     readOnly?: true;
 } | {
     readOnly?: false;

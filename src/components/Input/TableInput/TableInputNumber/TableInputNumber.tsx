@@ -1,15 +1,14 @@
 import React from 'react';
 import {TableInputRow} from '../TableInputRow/TableInputRow';
 import styled from 'styled-components';
-import {NumberInput} from '../../NumberInput/NumberInput';
+import {NumberInput, NumberInputProps} from '../../NumberInput/NumberInput';
 import {AkeneoThemedProps, getColor} from '../../../../theme';
 import {Override} from '../../../../shared';
-import {InputProps} from '../../common/InputProps';
 import {TableInputReadOnlyCell} from '../shared/TableInputReadOnlyCell';
 import {TableInputContext} from '../TableInputContext';
 import {highlightCell} from '../shared/highlightCell';
 
-const EditableTableInputNumber = styled(NumberInput)<{highlighted: boolean; inError: boolean} & AkeneoThemedProps>`
+const EditableTableInputNumber = styled(NumberInput)<{highlighted?: boolean; inError?: boolean} & AkeneoThemedProps>`
   height: 39px;
   padding-left: 10px;
   padding-right: 35px;
@@ -25,7 +24,7 @@ const EditableTableInputNumber = styled(NumberInput)<{highlighted: boolean; inEr
 `;
 
 type TableInputNumberProps = Override<
-  Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>,
+  NumberInputProps,
   {
     highlighted?: boolean;
     inError?: boolean;

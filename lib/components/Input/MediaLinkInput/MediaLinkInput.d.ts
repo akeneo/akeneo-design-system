@@ -1,8 +1,8 @@
 import React from 'react';
 import { Override } from '../../../shared';
 import { InputProps } from '../common/InputProps';
-declare type PreviewType = 'preview' | 'thumbnail';
-declare type MediaLinkInputProps = Override<Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, ({
+type PreviewType = 'preview' | 'thumbnail';
+type MediaLinkInputProps = Override<Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, ({
     readOnly: true;
 } | {
     readOnly?: boolean;

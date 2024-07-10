@@ -11,9 +11,11 @@ const IconContainer = styled.div`
   display: inline-flex;
 `;
 
-const Progress = styled.svg.attrs(({ratio}: {ratio: number; level: MessageBarLevel}) => ({
-  style: {strokeDashoffset: `calc(100% * ${Math.PI * ratio - Math.PI})`},
-}))<{ratio: number; level: MessageBarLevel} & AkeneoThemedProps>`
+const Progress = styled.svg.attrs<{ratio: number; level: MessageBarLevel}>(
+  ({ratio}: {ratio: number; level: MessageBarLevel}) => ({
+    style: {strokeDashoffset: `calc(100% * ${Math.PI * ratio - Math.PI})`},
+  })
+)<{ratio: number; level: MessageBarLevel} & AkeneoThemedProps>`
   position: absolute;
   overflow: visible;
   top: -10%;

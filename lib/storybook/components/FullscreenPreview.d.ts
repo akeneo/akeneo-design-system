@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-declare type FullscreenPreviewProps = {
+type FullscreenPreviewProps = {
     title: string;
     src: string;
     onClose: () => void;

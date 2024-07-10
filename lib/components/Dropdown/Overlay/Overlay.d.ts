@@ -1,7 +1,7 @@
 import React, { ReactNode, RefObject } from 'react';
 import { Override } from '../../../shared';
 import { HorizontalPosition, VerticalPosition } from '../../../hooks';
-declare type OverlayProps = Override<React.HTMLAttributes<HTMLDivElement>, {
+type OverlayProps = Override<React.HTMLAttributes<HTMLDivElement>, {
     verticalPosition?: VerticalPosition;
     horizontalPosition?: HorizontalPosition;
     dropdownOpenerVisible?: boolean;

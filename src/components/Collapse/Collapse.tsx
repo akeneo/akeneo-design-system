@@ -6,7 +6,7 @@ import {CheckPartialIcon, PlusIcon} from '../../icons';
 
 const ANIMATION_DURATION = 100;
 
-const CollapseContainer = styled.div`
+const CollapseContainer = styled.div<{isOpen: boolean}>`
   width: 100%;
   border: solid ${getColor('grey', 40)};
   border-width: 0 0 1px 0;

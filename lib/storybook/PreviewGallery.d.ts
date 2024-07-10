@@ -1,28 +1,30 @@
-declare const StoryStyle: import("styled-components").StyledComponent<"div", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../theme/theme").Theme>, never>;
-declare const PreviewGrid: import("styled-components").StyledComponent<"div", any, {
+/// <reference types="react" />
+import { AkeneoThemedProps } from '../theme';
+declare const StoryStyle: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;
+declare const PreviewGrid: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
     width: number;
-}, never>;
-declare const PreviewCard: import("styled-components").StyledComponent<"div", any, {}, never>;
-declare const PreviewContainer: import("styled-components").StyledComponent<"div", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../theme/theme").Theme>, never>;
-declare const LabelContainer: import("styled-components").StyledComponent<"div", any, {}, never>;
-declare const Subtitle: import("styled-components").StyledComponent<"h2", any, {}, never>;
-declare const Content: import("styled-components").StyledComponent<"div", any, {
+}>> & string;
+declare const PreviewCard: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;
+declare const PreviewContainer: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;
+declare const LabelContainer: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;
+declare const Subtitle: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>, never>> & string;
+declare const Content: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
     width: number;
     height: number;
-} & Record<string, unknown> & import("styled-components").ThemeProps<import("../theme/theme").Theme>, never>;
-declare const ListContextContainer: import("styled-components").StyledComponent<"div", any, {}, never>;
-declare const Section: import("styled-components").StyledComponent<"div", any, {}, never>;
-declare const SpaceBetweenContainer: import("styled-components").StyledComponent<"div", any, {
+} & AkeneoThemedProps>> & string;
+declare const ListContextContainer: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;
+declare const Section: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;
+declare const SpaceBetweenContainer: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
     direction: string;
-}, never>;
-declare const MessageBarContainer: import("styled-components").StyledComponent<"div", any, {}, never>;
-declare const Scrollable: import("styled-components").StyledComponent<"div", any, {
+}>> & string;
+declare const MessageBarContainer: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;
+declare const Scrollable: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
     height: number;
-}, never>;
-declare const SpaceContainer: import("styled-components").StyledComponent<"div", any, {
+}>> & string;
+declare const SpaceContainer: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
     width?: number | undefined;
     height?: number | undefined;
     gap?: number | undefined;
-}, never>;
+}>> & string;
 declare const fakeFetcher: (page?: number, searchValue?: string) => Promise<unknown>;
 export { Content, fakeFetcher, LabelContainer, ListContextContainer, MessageBarContainer, PreviewCard, PreviewContainer, PreviewGrid, Scrollable, Section, SpaceBetweenContainer, SpaceContainer, StoryStyle, Subtitle, };

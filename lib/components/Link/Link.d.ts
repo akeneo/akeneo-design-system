@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-declare type LinkProps = {
+type LinkProps = {
     disabled?: boolean;
     decorated?: boolean;
     children: ReactNode;

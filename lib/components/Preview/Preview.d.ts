@@ -1,11 +1,11 @@
 import React, { ReactNode, HTMLAttributes, ReactElement } from 'react';
 import { Override } from '../../shared';
 import { IconButtonProps } from '../IconButton/IconButton';
-declare type RowProps = Override<HTMLAttributes<HTMLDivElement>, {
+type RowProps = Override<HTMLAttributes<HTMLDivElement>, {
     action?: ReactElement<IconButtonProps>;
     children?: ReactNode;
 }>;
-declare type PreviewProps = Override<HTMLAttributes<HTMLDivElement>, {
+type PreviewProps = Override<HTMLAttributes<HTMLDivElement>, {
     title: string;
     children?: ReactNode;
 } & ({
@@ -19,7 +19,7 @@ declare type PreviewProps = Override<HTMLAttributes<HTMLDivElement>, {
 })>;
 declare const Preview: {
     ({ title, isOpen, collapseButtonLabel, onCollapse, children, ...rest }: PreviewProps): React.JSX.Element;
-    Highlight: import("styled-components").StyledComponent<"span", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
+    Highlight: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, never>> & string;
     Row: {
         ({ action, children }: RowProps): React.JSX.Element;
         displayName: string;

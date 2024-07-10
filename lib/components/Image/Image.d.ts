@@ -1,6 +1,6 @@
 import React from 'react';
-declare type Fit = 'cover' | 'contain';
-declare type Background = 'white' | 'checkerboard';
+type Fit = 'cover' | 'contain';
+type Background = 'white' | 'checkerboard';
 declare const Image: React.ForwardRefExoticComponent<Omit<React.ImgHTMLAttributes<HTMLImageElement>, "height" | "width" | "alt" | "src" | "fit" | "isStacked" | "background"> & {
     src: string | null;
     alt: string;

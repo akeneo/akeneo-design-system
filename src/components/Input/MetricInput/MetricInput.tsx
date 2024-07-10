@@ -70,7 +70,13 @@ export const MetricInput: React.FC<MetricInputProps> = ({
   return (
     <MetricInputContainer>
       <CustomNumberInput value={amount} onChange={onAmountChange} withIncrementIcons={false} min={min} max={max} />
-      <CustomSelectInput onChange={onUnitChange} value={unit} clearable={false} openLabel={openLabel}>
+      <CustomSelectInput
+        onChange={onUnitChange}
+        value={unit}
+        clearable={false}
+        openLabel={openLabel}
+        emptyResultLabel="No result found"
+      >
         {unitOptions.map(unitOption => (
           <SelectInput.Option
             key={unitOption.value}

@@ -2,7 +2,7 @@ import React from 'react';
 import { EditorProps } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Override } from '../../../shared';
-declare type RichTextEditorProps = Override<EditorProps, {
+type RichTextEditorProps = Override<EditorProps, {
     value: string;
     readOnly?: boolean;
     onChange: (value: string) => void;

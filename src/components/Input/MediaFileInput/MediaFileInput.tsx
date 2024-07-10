@@ -12,7 +12,9 @@ import {useBooleanState, useShortcut} from '../../../hooks';
 import {FileInfo} from './FileInfo';
 import DefaultPictureIllustration from '../../../../static/illustrations/DefaultPicture.svg';
 
-const MediaFileInputContainer = styled.div<{isCompact: boolean; readOnly: boolean} & AkeneoThemedProps>`
+const MediaFileInputContainer = styled.div<
+  {isCompact?: boolean; readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps
+>`
   position: relative;
   display: flex;
   flex-direction: ${({isCompact}) => (isCompact ? 'row' : 'column')};

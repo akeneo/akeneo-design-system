@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react';
 import { IconProps } from '../../icons';
-declare type Level = 'info' | 'warning' | 'error' | 'success';
-declare type HelperProps = {
+type Level = 'info' | 'warning' | 'error' | 'success';
+type HelperProps = {
     inline?: boolean;
     level?: Level;
     sticky?: number;

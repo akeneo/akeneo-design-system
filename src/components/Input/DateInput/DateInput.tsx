@@ -1,4 +1,4 @@
-import React, {ChangeEvent, forwardRef, InputHTMLAttributes, Ref, useCallback, useRef} from 'react';
+import React, {ChangeEvent, forwardRef, InputHTMLAttributes, MouseEvent, Ref, useCallback, useRef} from 'react';
 import styled, {css} from 'styled-components';
 import {InputProps} from '../common';
 import {Key, Override} from '../../../shared';
@@ -13,7 +13,7 @@ const InputContainer = styled.div`
   width: 100%;
 `;
 
-const Input = styled.input<{readOnly: boolean; invalid: boolean} & AkeneoThemedProps>`
+const Input = styled.input<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
   z-index: 0;
   width: 100%;
   height: 40px;
@@ -62,7 +62,7 @@ const Input = styled.input<{readOnly: boolean; invalid: boolean} & AkeneoThemedP
   }
 `;
 
-const IconContainer = styled.div<{readOnly: boolean} & AkeneoThemedProps>`
+const IconContainer = styled.div<{readOnly?: boolean} & AkeneoThemedProps>`
   position: absolute;
   right: 12px;
   top: 0;
@@ -87,7 +87,7 @@ type DateInputProps = Override<
       }
     | {
         readOnly?: boolean;
-        onChange: (newValue: string) => void;
+        onChange?: (newValue: string) => void;
       }
   ) & {
     /**
@@ -113,7 +113,7 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     forwardedRef = forwardedRef ?? internalRef;
 
     const handleClick = useCallback(
-      (event: MouseEvent) => {
+      (event: MouseEvent<HTMLInputElement>) => {
         const input = event?.target as (HTMLInputElement & {showPicker?: () => void}) | null;
         !readOnly && input?.showPicker?.();
       },
@@ -159,3 +159,4 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
   }
 );
 export {DateInput};
+export type {DateInputProps};

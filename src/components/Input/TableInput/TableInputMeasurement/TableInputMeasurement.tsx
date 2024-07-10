@@ -7,7 +7,7 @@ import {TableInputContext} from '../TableInputContext';
 import {TableInputReadOnlyCell} from '../shared/TableInputReadOnlyCell';
 import {highlightCell} from '../shared/highlightCell';
 
-const TableInputMeasurementContainer = styled.div<{highlighted: boolean; inError: boolean} & AkeneoThemedProps>`
+const TableInputMeasurementContainer = styled.div<{highlighted?: boolean; inError?: boolean} & AkeneoThemedProps>`
   display: flex;
   & > *:nth-child(1) {
     margin-right: -5px;

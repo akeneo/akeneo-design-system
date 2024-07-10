@@ -8,7 +8,7 @@ type Row = {
   origin: 'french' | 'english' | 'german' | null;
 };
 
-type RowCode = 'nutritionScore' | 'part' | 'quantity' | 'is_allergenic' | 'origin' | 'length';
+type RowCode = keyof Row;
 type RowValue =
   | '1'
   | '2'

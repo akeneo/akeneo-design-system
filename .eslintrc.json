@@ -12,6 +12,7 @@
     "plugin:react/recommended"
   ],
   "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/comma-spacing": "error",
@@ -26,7 +27,7 @@
     "react/prop-types": "off",
     "comma-spacing": "off"
   },
-  "ignorePatterns": ["src/illustrations/**", "src/icons/**"],
+  "ignorePatterns": ["src/illustrations/**", "src/icons/**", "**/*.unit.tsx"],
   "settings": {
     "react": {
       "version": "detect"

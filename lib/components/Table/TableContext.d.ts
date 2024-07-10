@@ -1,4 +1,5 @@
-declare type TableContextType = {
+/// <reference types="react" />
+type TableContextType = {
     isSelectable: boolean;
     hasWarningRows: boolean;
     hasLockedRows: boolean;

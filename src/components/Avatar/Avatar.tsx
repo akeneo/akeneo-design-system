@@ -32,7 +32,7 @@ const AvatarContainer = styled.span<AvatarContainerProps & AkeneoThemedProps>`
   background-color: ${getColor('white')};
 `;
 
-const AvatarImage = styled.span<AvatarProps & AkeneoThemedProps>`
+const AvatarImage = styled.span<Partial<AvatarProps> & AkeneoThemedProps>`
   ${({size}) =>
     size === 'default'
       ? css`

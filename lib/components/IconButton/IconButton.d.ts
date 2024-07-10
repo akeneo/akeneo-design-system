@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { IconProps } from '../../icons';
 import { ButtonProps } from '../../components/Button/Button';
 import { Override } from '../../shared';
-declare type IconButtonProps = Override<Omit<ButtonProps, 'children'>, {
+type IconButtonProps = Override<Omit<ButtonProps, 'children'>, {
     ghost?: boolean | 'borderless';
     icon: ReactElement<IconProps>;
     title: string;

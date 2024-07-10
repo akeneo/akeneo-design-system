@@ -141,7 +141,7 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
     const labelId = useId('label_');
     const progressBarId = useId('progress_');
 
-    const progressBarProps = {};
+    const progressBarProps: HTMLAttributes<HTMLDivElement> = {};
 
     if (percent !== 'indeterminate' && isNaN(percent)) {
       percent = 'indeterminate';
@@ -153,21 +153,17 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
       progressBarProps['aria-valuemax'] = 100;
     }
 
-    if (title) {
-      progressBarProps['aria-labelledby'] = labelId;
-    }
-
     return (
       <ProgressBarContainer ref={forwardedRef} {...rest}>
         {(title || progressLabel) && (
           <Header>
-            <Title title={title} id={labelId} htmlFor={progressBarId}>
+            <Title title={title} id={labelId}>
               {title}
             </Title>
             {progressLabel && <ProgressLabel title={progressLabel}>{progressLabel}</ProgressLabel>}
           </Header>
         )}
-        <ProgressBarBackground id={progressBarId} role="progressbar" {...progressBarProps} size={size}>
+        <ProgressBarBackground id={progressBarId} {...progressBarProps} role="progressbar" size={size}>
           <ProgressBarFill
             level={level}
             light={light}

@@ -23,7 +23,7 @@ type Level = 'warning' | 'tertiary';
 const RowContainer = styled.tr<
   {
     isSelected: boolean;
-    level: Level;
+    level?: Level;
     isClickable: boolean;
     isDragAndDroppable: boolean;
     placeholderPosition: PlaceholderPosition;

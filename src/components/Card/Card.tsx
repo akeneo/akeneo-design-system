@@ -1,4 +1,4 @@
-import React, {isValidElement, ReactElement, ReactNode, MouseEvent, forwardRef, Ref} from 'react';
+import React, {isValidElement, ReactElement, ReactNode, forwardRef, Ref, MouseEvent} from 'react';
 import styled, {css} from 'styled-components';
 import {Checkbox, Link, LinkProps, Image} from '../../components';
 import {AkeneoThemedProps, getColor, getFontSize} from '../../theme';
@@ -75,7 +75,13 @@ const Overlay = styled.div<{stacked: boolean} & AkeneoThemedProps>`
 `;
 
 const CardContainer = styled.div<
-  {disabled: boolean; actionable: boolean; isLoading: boolean; isSelected: boolean} & AkeneoThemedProps
+  {
+    disabled?: boolean;
+    actionable?: boolean;
+    isLoading?: boolean;
+    isSelected?: boolean;
+    stacked?: boolean;
+  } & AkeneoThemedProps
 >`
   position: relative;
   display: flex;
@@ -106,7 +112,7 @@ const CardContainer = styled.div<
 const ImageContainer = styled.div`
   position: relative;
 
-  ::before {
+  &::before {
     content: '';
     display: block;
     padding-bottom: 100%;
@@ -133,7 +139,7 @@ const CardText = styled.span`
   overflow: hidden;
 `;
 
-type BadgeContainerProps = {stacked: boolean} & AkeneoThemedProps;
+type BadgeContainerProps = {stacked?: boolean} & AkeneoThemedProps;
 const BadgeContainer = styled.div<BadgeContainerProps>`
   position: absolute;
   z-index: 5;
@@ -194,7 +200,7 @@ type CardProps = Override<
  * Cards are used to have a good visual representation of the items to display.
  * Cards can be used in a grid or in a collection.
  */
-const CardComponent = forwardRef<HTMLButtonElement, CardProps>(
+const CardComponent = forwardRef<HTMLDivElement, CardProps>(
   (
     {
       src,
@@ -208,7 +214,7 @@ const CardComponent = forwardRef<HTMLButtonElement, CardProps>(
       stacked = false,
       ...rest
     }: CardProps,
-    forwardedRef: Ref<HTMLButtonElement>
+    forwardedRef: Ref<HTMLDivElement>
   ) => {
     const nonLabelChildren: ReactElement[] = [];
     const texts: string[] = [];
@@ -251,6 +257,7 @@ const CardComponent = forwardRef<HTMLButtonElement, CardProps>(
         isSelected={isSelected}
         as={isLink ? 'a' : undefined}
         actionable={isLink || undefined !== onClick}
+        // @ts-ignore
         onClick={handleClick}
         disabled={disabled}
         stacked={stacked}

@@ -10,7 +10,7 @@ import {LockIcon} from '../../../icons';
 import {useShortcut} from '../../../hooks';
 import DefaultPicture from '../../../../static/illustrations/DefaultPicture.svg';
 
-const MediaLinkInputContainer = styled.div<{readOnly: boolean} & AkeneoThemedProps>`
+const MediaLinkInputContainer = styled.div<{invalid?: boolean; readOnly?: boolean} & AkeneoThemedProps>`
   position: relative;
   display: flex;
   flex-direction: row;

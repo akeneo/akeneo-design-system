@@ -4,7 +4,7 @@ import {Override} from '../../shared';
 import {AkeneoThemedProps, getColor} from '../../theme';
 import {AvatarProps} from './types';
 
-const AvatarListContainer = styled.div<AvatarsProps & AkeneoThemedProps>`
+const AvatarListContainer = styled.div<Partial<AvatarsProps> & AkeneoThemedProps>`
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;

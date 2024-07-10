@@ -74,7 +74,7 @@ test('it throws when using TabBar.Tab without TabBar', () => {
   mockConsole.mockRestore();
 });
 
-test('it displays a Dropdown button when having a lot of tabs', () => {
+test('it displays a Dropdown button when having a lot of tabs', async () => {
   const handleClick = jest.fn();
 
   render(
@@ -92,7 +92,7 @@ test('it displays a Dropdown button when having a lot of tabs', () => {
   });
 
   userEvent.click(screen.getByTitle('More'));
-  userEvent.click(screen.getByTitle('Last tab'));
+  userEvent.click(await screen.findByTitle('Last tab'));
 
   expect(handleClick).toHaveBeenCalled();
 

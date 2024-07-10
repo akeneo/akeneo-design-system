@@ -13,7 +13,7 @@ const TextAreaInputContainer = styled.div`
   width: 100%;
 `;
 
-const CommonStyle = css<{readOnly: boolean; invalid: boolean} & AkeneoThemedProps>`
+const CommonStyle = css<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
   border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
   color: ${({readOnly}) => (readOnly ? getColor('grey', 100) : getColor('grey', 140))};
@@ -35,7 +35,7 @@ const CommonStyle = css<{readOnly: boolean; invalid: boolean} & AkeneoThemedProp
   }
 `;
 
-const RichTextEditorContainer = styled.div<{readOnly: boolean; invalid: boolean} & AkeneoThemedProps>`
+const RichTextEditorContainer = styled.div<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
   ${CommonStyle}
   padding: 0;
   padding-bottom: 10px;
@@ -67,7 +67,7 @@ const RichTextEditorContainer = styled.div<{readOnly: boolean; invalid: boolean}
   }
 `;
 
-const Textarea = styled.textarea<{readOnly: boolean; invalid: boolean} & AkeneoThemedProps>`
+const Textarea = styled.textarea<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
   ${CommonStyle}
   resize: none;
   height: 200px;
@@ -94,7 +94,7 @@ const CharacterLeftLabel = styled.div`
 `;
 
 type TextAreaInputProps = Override<
-  Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>,
+  Override<React.InputHTMLAttributes<HTMLTextAreaElement>, InputProps<string>>,
   (
     | {
         readOnly: true;
@@ -139,7 +139,7 @@ type TextAreaInputProps = Override<
 /**
  * The TextAreaInput component allows the user to enter large text content and can also display a Rich Text Editor.
  */
-const TextAreaInput = React.forwardRef<HTMLInputElement, TextAreaInputProps>(
+const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
   (
     {
       value,
@@ -151,10 +151,10 @@ const TextAreaInput = React.forwardRef<HTMLInputElement, TextAreaInputProps>(
       richTextEditorProps,
       ...rest
     }: TextAreaInputProps,
-    forwardedRef: Ref<HTMLInputElement>
+    forwardedRef: Ref<HTMLTextAreaElement>
   ) => {
     const handleChange = useCallback(
-      (event: ChangeEvent<HTMLInputElement>) => {
+      (event: ChangeEvent<HTMLTextAreaElement>) => {
         if (!readOnly && onChange) onChange(event.currentTarget.value);
       },
       [readOnly, onChange]

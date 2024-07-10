@@ -1,7 +1,7 @@
 import React from 'react';
 import { Level } from '../../theme';
-declare type ProgressBarSize = 'small' | 'large';
-declare type ProgressBarPercent = number | 'indeterminate';
+type ProgressBarSize = 'small' | 'large';
+type ProgressBarPercent = number | 'indeterminate';
 declare const ProgressBar: React.ForwardRefExoticComponent<{
     level: Level;
     percent: ProgressBarPercent;

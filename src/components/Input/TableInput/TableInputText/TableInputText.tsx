@@ -1,15 +1,14 @@
 import React from 'react';
 import {TableInputRow} from '../TableInputRow/TableInputRow';
 import styled from 'styled-components';
-import {TextInput} from '../../TextInput/TextInput';
+import {TextInput, TextInputProps} from '../../TextInput/TextInput';
 import {AkeneoThemedProps, getColor} from '../../../../theme';
 import {TableInputContext} from '../TableInputContext';
 import {TableInputReadOnlyCell} from '../shared/TableInputReadOnlyCell';
 import {Override} from '../../../../shared';
-import {InputProps} from '../../common/InputProps';
 import {highlightCell} from '../shared/highlightCell';
 
-const EditableTableInputText = styled(TextInput)<{highlighted: boolean; inError: boolean} & AkeneoThemedProps>`
+const EditableTableInputText = styled(TextInput)<{highlighted?: boolean; inError?: boolean} & AkeneoThemedProps>`
   height: 39px;
   padding-left: 10px;
   padding-right: 10px;
@@ -25,7 +24,7 @@ const EditableTableInputText = styled(TextInput)<{highlighted: boolean; inError:
 `;
 
 type TableInputTextProps = Override<
-  Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>,
+  TextInputProps,
   {
     highlighted?: boolean;
     inError?: boolean;

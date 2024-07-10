@@ -1,6 +1,6 @@
 import { RefObject, SVGProps } from 'react';
 import { Override } from '../shared';
-declare type IllustrationProps = Override<SVGProps<SVGSVGElement>, {
+type IllustrationProps = Override<SVGProps<SVGSVGElement>, {
     title?: string;
     size?: number | string;
     className?: string;

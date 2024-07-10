@@ -1,2 +1,3 @@
-declare const TableInputReadOnlyCell: import("styled-components").StyledComponent<"div", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../../../theme/theme").Theme>, never>;
+/// <reference types="react" />
+declare const TableInputReadOnlyCell: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;
 export { TableInputReadOnlyCell };

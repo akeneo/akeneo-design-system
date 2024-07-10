@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-declare type TableHeaderProps = {
+type TableHeaderProps = {
     sticky?: number;
     children?: ReactNode;
 };

@@ -1,6 +1,6 @@
 import { RefObject, SVGProps } from 'react';
 import { Override } from '../shared';
-declare type IconProps = Override<SVGProps<SVGSVGElement>, {
+type IconProps = Override<SVGProps<SVGSVGElement>, {
     title?: string;
     size?: number;
     color?: string;

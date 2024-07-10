@@ -4,7 +4,7 @@ import {Override} from '../../../shared';
 import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme';
 import {Tag} from '../../Tags/Tags';
 
-const Container = styled.a<{active: boolean; disabled: boolean} & AkeneoThemedProps>`
+const Container = styled.a<{active?: boolean; disabled?: boolean} & AkeneoThemedProps>`
   box-sizing: border-box;
   cursor: ${({disabled}) => (disabled ? 'not-allowed' : 'pointer')};
   color: ${({active, disabled}) =>

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-declare type PaginationProps = {
+type PaginationProps = {
     currentPage: number;
     totalItems: number;
     itemsPerPage?: number;

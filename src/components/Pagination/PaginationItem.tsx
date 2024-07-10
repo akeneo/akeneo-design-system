@@ -24,7 +24,6 @@ const PaginationItem: FC<PaginationItemProps> = ({currentPage, page, followPage}
       title={page !== PAGINATION_SEPARATOR ? `No. ${page}` : ''}
       disabled={page === PAGINATION_SEPARATOR}
       currentPage={currentPage}
-      page={page}
       type="button"
     >
       {page}

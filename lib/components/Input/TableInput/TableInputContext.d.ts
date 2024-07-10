@@ -1,4 +1,5 @@
-declare type TableInputContextType = {
+/// <reference types="react" />
+type TableInputContextType = {
     readOnly: boolean;
     isDragAndDroppable: boolean;
     onReorder: ((reorderedIndices: number[], draggedIndex?: number, droppedIndex?: number) => void) | undefined;

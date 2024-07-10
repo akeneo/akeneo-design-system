@@ -1,12 +1,11 @@
-import { ThemedStyledProps } from 'styled-components';
-declare type FontSize = {
+type FontSize = {
     big: string;
     bigger: string;
     default: string;
     small: string;
     title: string;
 };
-declare type Color = {
+type Color = {
     blue10: string;
     blue100: string;
     blue120: string;
@@ -62,7 +61,7 @@ declare type Color = {
     brand140: string;
     white: string;
 };
-declare type ColorAlternative = {
+type ColorAlternative = {
     blue10: string;
     blue100: string;
     blue120: string;
@@ -106,14 +105,14 @@ declare type ColorAlternative = {
     yellow100: string;
     yellow120: string;
 };
-declare type Palette = {
+type Palette = {
     primary: string;
     secondary: string;
     tertiary: string;
     warning: string;
     danger: string;
 };
-declare type Theme = {
+type Theme = {
     name: string;
     palette: Palette;
     fontSize: FontSize;
@@ -121,16 +120,18 @@ declare type Theme = {
     colorAlternative: ColorAlternative;
     fontFamily: FontFamily;
 };
-declare type FontFamily = {
+type FontFamily = {
     default: string;
     monospace: string;
 };
-declare type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
-declare const getColor: (color: string, gradient?: number | undefined) => (props: AkeneoThemedProps) => string;
+type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
+declare const getColor: (color: string, gradient?: number) => (props: AkeneoThemedProps) => string;
 declare const getColorForLevel: (level: Level, gradient: number) => (props: AkeneoThemedProps) => string;
-declare const getColorAlternative: (color: string, gradient?: number | undefined) => (props: AkeneoThemedProps) => string;
+declare const getColorAlternative: (color: string, gradient?: number) => (props: AkeneoThemedProps) => string;
 declare const getFontSize: (fontSize: keyof FontSize) => (props: AkeneoThemedProps) => string;
 declare const getFontFamily: (fontFamilyType: keyof FontFamily) => (props: AkeneoThemedProps) => string;
-export declare type AkeneoThemedProps<P = Record<string, unknown>> = ThemedStyledProps<P, Theme>;
+export type AkeneoThemedProps = {
+    theme: Theme;
+};
 export type { Theme, FontSize, FontFamily, Color, ColorAlternative, Level, Palette };
 export { getColor, getFontFamily, getColorForLevel, getColorAlternative, getFontSize };

@@ -1,4 +1,4 @@
-declare type InputProps<T> = {
+type InputProps<T> = {
     id?: string;
     value: T;
     onChange?: (newValue: T) => void;

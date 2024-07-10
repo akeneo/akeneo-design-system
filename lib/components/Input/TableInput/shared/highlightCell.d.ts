@@ -1,5 +1,6 @@
-declare const highlightCell: import("styled-components").FlattenInterpolation<import("styled-components").ThemedStyledProps<{
+import { AkeneoThemedProps } from '../../../../theme';
+declare const highlightCell: import("styled-components").RuleSet<{
     highlighted?: boolean | undefined;
     inError?: boolean | undefined;
-} & Record<string, unknown> & import("styled-components").ThemeProps<import("../../../../theme/theme").Theme>, any>>;
+} & AkeneoThemedProps>;
 export { highlightCell };

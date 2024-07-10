@@ -1,7 +1,7 @@
 import React from 'react';
+import { DateInputProps } from '../../DateInput/DateInput';
 import { Override } from '../../../../shared';
-import { InputProps } from '../../common/InputProps';
-declare type TableInputDateProps = Override<Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, {
+type TableInputDateProps = Override<DateInputProps, {
     highlighted?: boolean;
     inError?: boolean;
 }>;

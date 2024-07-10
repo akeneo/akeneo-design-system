@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Override } from '../../shared';
-declare type TableProps = Override<React.HTMLAttributes<HTMLTableElement>, {
+type TableProps = Override<React.HTMLAttributes<HTMLTableElement>, {
     isSelectable?: boolean;
     hasWarningRows?: boolean;
     hasLockedRows?: boolean;

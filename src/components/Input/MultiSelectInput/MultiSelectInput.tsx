@@ -9,7 +9,7 @@ import {ArrowDownIcon} from '../../../icons';
 import {ChipInput, ChipValue} from './ChipInput';
 import {usePagination} from '../../../hooks/usePagination';
 
-const MultiSelectInputContainer = styled.div<{value: string | null; readOnly: boolean} & AkeneoThemedProps>`
+const MultiSelectInputContainer = styled.div<{value: string[] | null; readOnly: boolean} & AkeneoThemedProps>`
   width: 100%;
 
   & input[type='text'] {

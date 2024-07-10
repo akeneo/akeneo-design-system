@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Override } from '../../shared';
 import { Level } from '../../theme';
-declare type BadgeProps = Override<React.HTMLAttributes<HTMLSpanElement>, {
+type BadgeProps = Override<React.HTMLAttributes<HTMLSpanElement>, {
     level?: Level;
     children?: ReactNode;
 }>;

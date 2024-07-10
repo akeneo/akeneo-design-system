@@ -6,7 +6,7 @@ import {ArrowDownIcon, ArrowUpIcon} from '../../icons';
 import {IconButton} from '../IconButton/IconButton';
 
 type BlockProps = Override<
-  Override<React.ButtonHTMLAttributes<HTMLButtonElement>, React.AnchorHTMLAttributes<HTMLAnchorElement>>,
+  React.HTMLAttributes<HTMLDivElement>,
   {
     /**
      * Title of the block.
@@ -117,7 +117,7 @@ const Container = styled.div<AkeneoThemedProps>`
   }
 `;
 
-const Block = React.forwardRef<HTMLButtonElement, BlockProps>(
+const Block = React.forwardRef<HTMLDivElement, BlockProps>(
   (
     {
       title,
@@ -131,7 +131,7 @@ const Block = React.forwardRef<HTMLButtonElement, BlockProps>(
       children,
       ...rest
     }: BlockProps,
-    forwardedRef: Ref<HTMLButtonElement>
+    forwardedRef: Ref<HTMLDivElement>
   ) => {
     const [contentHeight, setContentHeight] = useState<number>(0);
     const [shouldAnimate, setShouldAnimate] = useState<boolean>(false);

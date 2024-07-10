@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Override } from '../../shared';
 import { ButtonProps } from '../Button/Button';
-declare type SplitButtonProps = Omit<Override<ButtonProps, {
+type SplitButtonProps = Omit<Override<ButtonProps, {
     label: string;
 }>, 'href'>;
 declare const SplitButton: {

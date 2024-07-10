@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import React from 'react';
 import { TableProps, TableInputProps } from '../components';
-declare type DraggedElementType = {
+type DraggedElementType = {
     index: number | null;
     onDragStart: (rowIndex: number) => void;
     onDragEnd?: () => void;

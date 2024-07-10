@@ -1,15 +1,14 @@
 import React from 'react';
 import {TableInputRow} from '../TableInputRow/TableInputRow';
 import styled from 'styled-components';
-import {DateInput} from '../../DateInput/DateInput';
+import {DateInput, DateInputProps} from '../../DateInput/DateInput';
 import {AkeneoThemedProps, getColor} from '../../../../theme';
 import {TableInputContext} from '../TableInputContext';
 import {TableInputReadOnlyCell} from '../shared/TableInputReadOnlyCell';
 import {Override} from '../../../../shared';
-import {InputProps} from '../../common/InputProps';
 import {highlightCell} from '../shared/highlightCell';
 
-const EditableTableInputDate = styled(DateInput)<{highlighted: boolean; inError: boolean} & AkeneoThemedProps>`
+const EditableTableInputDate = styled(DateInput)<{highlighted?: boolean; inError?: boolean} & AkeneoThemedProps>`
   height: 39px;
   padding-left: 10px;
   padding-right: 10px;
@@ -25,7 +24,7 @@ const EditableTableInputDate = styled(DateInput)<{highlighted: boolean; inError:
 `;
 
 type TableInputDateProps = Override<
-  Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>,
+  DateInputProps,
   {
     highlighted?: boolean;
     inError?: boolean;

@@ -1,5 +1,5 @@
 import React from 'react';
-declare type SurtitleProps = {
+type SurtitleProps = {
     label: string;
     children?: React.ReactNode;
 };

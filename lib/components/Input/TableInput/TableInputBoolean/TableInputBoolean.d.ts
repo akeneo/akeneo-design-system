@@ -1,6 +1,6 @@
 import React from 'react';
 import { Override } from '../../../../shared';
-declare type TableInputBooleanProps = Override<React.HTMLAttributes<HTMLDivElement>, {
+type TableInputBooleanProps = Override<React.HTMLAttributes<HTMLDivElement>, {
     value: boolean | null;
     onChange: (value: boolean | null) => void;
     yesLabel: string;

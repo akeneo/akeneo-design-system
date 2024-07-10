@@ -1,5 +1,5 @@
 import React from 'react';
-declare type MetricInputProps = {
+type MetricInputProps = {
     amount: string;
     onAmountChange: (amount: string) => void;
     unit: string | null;

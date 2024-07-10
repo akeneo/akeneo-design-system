@@ -1,4 +1,4 @@
-declare type Selection<Type = string> = {
+type Selection<Type = string> = {
     mode: 'in' | 'not_in';
     collection: Type[];
 };

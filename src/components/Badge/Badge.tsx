@@ -3,7 +3,11 @@ import {Override} from '../../shared';
 import styled, {css} from 'styled-components';
 import {AkeneoThemedProps, getColor, getColorForLevel, getFontSize, Level} from '../../theme';
 
-const BadgeContainer = styled.span<BadgeProps & AkeneoThemedProps>`
+type BadgeContainerProps = {
+  $level?: Level;
+} & AkeneoThemedProps;
+
+const BadgeContainer = styled.span<BadgeContainerProps>`
   display: inline-flex;
   height: 18px;
   line-height: 16px;
@@ -20,9 +24,9 @@ const BadgeContainer = styled.span<BadgeProps & AkeneoThemedProps>`
   overflow: hidden;
   flex-shrink: 0;
 
-  ${({level = 'primary'}: BadgeProps & AkeneoThemedProps) => css`
-    color: ${getColorForLevel(level, 140)};
-    border-color: ${getColorForLevel(level, 100)};
+  ${({$level = 'primary'}: BadgeContainerProps) => css`
+    color: ${getColorForLevel($level, 140)};
+    border-color: ${getColorForLevel($level, 100)};
   `}
 `;
 
@@ -47,7 +51,7 @@ type BadgeProps = Override<
 const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   ({level = 'primary', children, ...rest}: BadgeProps, forwardedRef: Ref<HTMLSpanElement>) => {
     return (
-      <BadgeContainer level={level} ref={forwardedRef} {...rest}>
+      <BadgeContainer $level={level} ref={forwardedRef} {...rest}>
         {children}
       </BadgeContainer>
     );

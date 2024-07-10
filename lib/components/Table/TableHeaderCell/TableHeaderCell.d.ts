@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-declare type TableSortDirection = 'descending' | 'ascending' | 'none';
-declare type TableHeaderCellProps = {
+type TableSortDirection = 'descending' | 'ascending' | 'none';
+type TableHeaderCellProps = {
     isSortable?: boolean;
     onDirectionChange?: (direction: TableSortDirection) => void;
     sortDirection?: TableSortDirection;

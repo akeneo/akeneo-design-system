@@ -55,7 +55,8 @@ test('it accepts multiple separators', () => {
   render(<TagInput value={[]} onChange={handleChange} />);
 
   /*eslint-disable */
-  const input = 'gucci    samsung \
+  const input =
+    'gucci    samsung \
 apple \
 dior,renault;porsche';
   /*eslint-enable */

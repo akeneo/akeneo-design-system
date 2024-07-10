@@ -1,4 +1,4 @@
-import React, {ReactElement, ReactNode} from 'react';
+import React, {MouseEvent, ReactElement, ReactNode} from 'react';
 import {Dropdown} from '../../../Dropdown/Dropdown';
 import {useBooleanState} from '../../../../hooks';
 import {ArrowDownIcon, CloseIcon} from '../../../../icons';
@@ -15,7 +15,7 @@ const SelectButtonDropdown = styled(Dropdown)`
   color: ${getColor('grey', 140)};
 `;
 
-const SelectButton = styled.button<{highlighted: boolean; inError: boolean} & AkeneoThemedProps>`
+const SelectButton = styled.button<{highlighted?: boolean; inError?: boolean} & AkeneoThemedProps>`
   color: ${getColor('grey', 140)};
   width: 100%;
   background: none;
@@ -61,6 +61,7 @@ type TableInputSelectProps = {
   bottomHelper?: ReactElement;
   withSearch?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
+  children?: ReactNode;
 };
 
 const TableInputSelect: React.FC<TableInputSelectProps> = ({
@@ -120,19 +121,19 @@ const TableInputSelect: React.FC<TableInputSelectProps> = ({
   const {readOnly} = React.useContext(TableInputContext);
 
   if (readOnly) {
-    return <TableInputReadOnlyCell title={value}>{value}</TableInputReadOnlyCell>;
+    return <TableInputReadOnlyCell title={value?.toString()}>{value}</TableInputReadOnlyCell>;
   }
 
   return (
     <SelectButtonDropdown {...rest}>
       <SelectButton
-        onClick={(e: MouseEvent) => {
+        onClick={(e: MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           handleOpen();
         }}
         tabIndex={-1}
         highlighted={highlighted}
-        title={value}
+        title={value?.toString()}
         inError={inError}
       >
         {value}&nbsp;

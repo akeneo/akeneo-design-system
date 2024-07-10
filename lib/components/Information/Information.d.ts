@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react';
-declare type InformationProps = {
+import { AkeneoThemedProps } from '../../theme';
+type InformationProps = {
     illustration: ReactNode;
     title: ReactNode;
     children: ReactNode;
 };
 declare const Information: React.ForwardRefExoticComponent<InformationProps & React.RefAttributes<HTMLDivElement>>;
-declare const HighlightTitle: import("styled-components").StyledComponent<"span", any, Record<string, unknown> & import("styled-components").ThemeProps<import("../../theme/theme").Theme>, never>;
+declare const HighlightTitle: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, AkeneoThemedProps>> & string;
 export { Information, HighlightTitle };

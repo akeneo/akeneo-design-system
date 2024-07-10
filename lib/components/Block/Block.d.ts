@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Override } from '../../shared';
-declare type BlockProps = Override<Override<React.ButtonHTMLAttributes<HTMLButtonElement>, React.AnchorHTMLAttributes<HTMLAnchorElement>>, {
+type BlockProps = Override<React.HTMLAttributes<HTMLDivElement>, {
     title: string;
     actions?: ReactNode;
     ariaLabel?: string;
@@ -16,6 +16,6 @@ declare type BlockProps = Override<Override<React.ButtonHTMLAttributes<HTMLButto
     collapseButtonLabel?: undefined;
     onCollapse?: undefined;
 })>;
-declare const Block: React.ForwardRefExoticComponent<BlockProps & React.RefAttributes<HTMLButtonElement>>;
+declare const Block: React.ForwardRefExoticComponent<BlockProps & React.RefAttributes<HTMLDivElement>>;
 export { Block };
 export type { BlockProps };

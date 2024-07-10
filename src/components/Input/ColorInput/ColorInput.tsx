@@ -6,7 +6,7 @@ import {Override} from '../../../shared';
 import {AkeneoThemedProps, getColor} from '../../../theme';
 import {isValidColor, convertColorToLongHexColor} from './Color';
 
-const ColorInputContainer = styled.div<{readOnly: boolean} & AkeneoThemedProps>`
+const ColorInputContainer = styled.div<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -48,7 +48,7 @@ const ColorPicker = styled.input`
   }
 `;
 
-const TextInput = styled.input<{readOnly: boolean} & AkeneoThemedProps>`
+const TextInput = styled.input<{readOnly?: boolean} & AkeneoThemedProps>`
   border: none;
   flex: 1;
   outline: none;

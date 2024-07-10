@@ -1,6 +1,6 @@
 import { FC } from 'react';
 declare const PAGINATION_SEPARATOR = "\u2026";
-declare type PaginationItemProps = {
+type PaginationItemProps = {
     currentPage: boolean;
     page: string;
     followPage: (page: number) => void;

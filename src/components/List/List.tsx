@@ -10,7 +10,7 @@ const ListContainer = styled.div`
   flex-direction: column;
 `;
 
-const CellContainer = styled.div<{width: 'auto' | number} & AkeneoThemedProps>`
+const CellContainer = styled.div<{width?: 'auto' | number} & AkeneoThemedProps>`
   min-height: 54px;
   padding: 17px 0;
   box-sizing: border-box;

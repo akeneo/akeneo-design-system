@@ -8,7 +8,7 @@ import {AkeneoThemedProps, getColorAlternative, getFontSize} from '../../theme';
  * https://www.notion.so/akeneo/Alternative-colors-0f5283c1b02f4fd4a418f1e20f2efa99
  * Those colors will most likely only be used with the tags components
  */
-type Tint =
+type TagTint =
   | 'green'
   | 'blue'
   | 'dark_blue'
@@ -32,7 +32,7 @@ const convertTintToColorCode = (str: string) => {
 };
 
 type TagProps = {
-  tint: Tint;
+  tint: TagTint;
 } & React.HTMLAttributes<HTMLLIElement>;
 const Tag = styled.li<TagProps & AkeneoThemedProps>`
   border: 1px solid;
@@ -102,3 +102,4 @@ const Tags = React.forwardRef<HTMLUListElement, TagsProps>(
 );
 
 export {Tags, Tag};
+export type {TagTint};

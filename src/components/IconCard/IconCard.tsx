@@ -4,7 +4,7 @@ import {AkeneoThemedProps, getColor, getFontSize} from '../../theme';
 import {IconProps} from '../../icons';
 import {Override} from '../../shared';
 
-const Container = styled.div<{disabled: boolean; onClick: () => void} & AkeneoThemedProps>`
+const Container = styled.div<{disabled: boolean; onClick?: () => void} & AkeneoThemedProps>`
   min-height: 80px;
   border: 1px ${getColor('grey', 40)} solid;
   box-sizing: border-box;
@@ -14,8 +14,6 @@ const Container = styled.div<{disabled: boolean; onClick: () => void} & AkeneoTh
   cursor: ${({disabled, onClick}) => (disabled ? 'not-allowed' : onClick !== undefined ? 'pointer' : 'inherit')};
   background: ${getColor('white')}
 }
-
-;
 
 :hover {
   border-color: ${({disabled}) => !disabled && getColor('grey', 60)};

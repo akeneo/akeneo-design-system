@@ -2,11 +2,11 @@ import React, { ReactElement } from 'react';
 import { Override } from '../../../shared';
 import { InputProps } from '../common';
 import { VerticalPosition } from '../../../hooks';
-declare type OptionProps = {
+type OptionProps = {
     value: string;
     children: string;
 } & React.HTMLAttributes<HTMLSpanElement>;
-declare type MultiMultiSelectInputProps = Override<Override<React.InputHTMLAttributes<HTMLDivElement>, InputProps<string[]>>, ({
+type MultiMultiSelectInputProps = Override<Override<React.InputHTMLAttributes<HTMLDivElement>, InputProps<string[]>>, ({
     readOnly: true;
 } | {
     readOnly?: boolean;

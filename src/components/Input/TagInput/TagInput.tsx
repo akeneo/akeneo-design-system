@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, KeyboardEvent, useCallback, useRef, useState} from 'react';
+import React, {ChangeEvent, FC, KeyboardEvent, MouseEvent, useCallback, useRef, useState} from 'react';
 import styled from 'styled-components';
 import {AkeneoThemedProps, getColor, getFontFamily} from '../../../theme';
 import {CloseIcon, LockIcon} from '../../../icons';
@@ -14,7 +14,7 @@ const RemoveTagIcon = styled(CloseIcon)<AkeneoThemedProps & {$isErrored: boolean
   color: ${({$isErrored}) => ($isErrored ? getColor('red', 100) : getColor('grey', 120))};
 `;
 
-const TagContainer = styled.ul<AkeneoThemedProps & {invalid: boolean}>`
+const TagContainer = styled.ul<AkeneoThemedProps & {invalid?: boolean; readOnly?: boolean}>`
   border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
   padding: 4px;
@@ -33,7 +33,7 @@ const TagContainer = styled.ul<AkeneoThemedProps & {invalid: boolean}>`
   }
 `;
 
-const Tag = styled.li<AkeneoThemedProps & {isSelected: boolean; readOnly: boolean; isErrored: boolean}>`
+const Tag = styled.li<AkeneoThemedProps & {isSelected: boolean; readOnly?: boolean; isErrored: boolean}>`
   list-style-type: none;
   padding: ${({readOnly}) => (readOnly ? '3px 17px 3px 17px' : '3px 17px 3px 4px')};
   border: 1px ${({isErrored}) => (isErrored ? getColor('red', 80) : getColor('grey', 80))} solid;
@@ -183,7 +183,7 @@ const TagInput: FC<TagInputProps> = ({
     onChange(clonedTags);
   };
 
-  const focusOnInputField = (event: MouseEvent) => {
+  const focusOnInputField = (event: MouseEvent<HTMLElement>) => {
     if (
       inputRef &&
       inputRef.current &&

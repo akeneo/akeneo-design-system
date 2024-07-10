@@ -1,4 +1,4 @@
-declare type FileInfo = {
+type FileInfo = {
     filePath: string;
     originalFilename: string;
     size?: number;

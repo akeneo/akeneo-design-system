@@ -19,7 +19,7 @@ import {MoreIcon} from '../../icons';
 import {useBooleanState} from '../../hooks';
 import {Key, Override} from '../../shared';
 
-const Container = styled.div<{sticky: number} & AkeneoThemedProps>`
+const Container = styled.div<{sticky?: number} & AkeneoThemedProps>`
   display: flex;
   align-items: center;
   border-bottom: 1px solid ${getColor('grey', 80)};

@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from 'react';
-declare type TableInputSelectProps = {
+type TableInputSelectProps = {
     value: ReactNode | null;
     onClear: () => void;
     highlighted?: boolean;
@@ -15,6 +15,7 @@ declare type TableInputSelectProps = {
     bottomHelper?: ReactElement;
     withSearch?: boolean;
     onOpenChange?: (isOpen: boolean) => void;
+    children?: ReactNode;
 };
 declare const TableInputSelect: React.FC<TableInputSelectProps>;
 export { TableInputSelect };
