@@ -12,11 +12,12 @@ type TreeProps<T = string> = {
     onClose?: (value: T) => void;
     onChange?: (value: T, checked: boolean, event: SyntheticEvent) => void;
     onClick?: (value: T) => void;
+    defaultOpen?: boolean;
     _isRoot?: boolean;
     children?: ReactNode;
 };
 declare const Tree: {
-    <T>({ label, value, children, isLeaf, selected, isLoading, selectable, readOnly, onChange, onOpen, onClose, onClick, _isRoot, ...rest }: React.PropsWithChildren<TreeProps<T>>): React.JSX.Element;
+    <T>({ label, value, children, isLeaf, selected, isLoading, selectable, readOnly, onChange, onOpen, onClose, onClick, defaultOpen, _isRoot, ...rest }: React.PropsWithChildren<TreeProps<T>>): React.JSX.Element;
     displayName: string;
 };
 export { Tree };

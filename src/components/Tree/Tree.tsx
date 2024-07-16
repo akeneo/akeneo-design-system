@@ -141,6 +141,7 @@ type TreeProps<T = string> = {
   onClose?: (value: T) => void;
   onChange?: (value: T, checked: boolean, event: SyntheticEvent) => void;
   onClick?: (value: T) => void;
+  defaultOpen?: boolean;
   _isRoot?: boolean;
   children?: ReactNode;
 };
@@ -158,6 +159,7 @@ const Tree = <T,>({
   onOpen,
   onClose,
   onClick,
+  defaultOpen = false,
   _isRoot = true,
   ...rest
 }: PropsWithChildren<TreeProps<T>>) => {
@@ -180,7 +182,7 @@ const Tree = <T,>({
     }
   }
 
-  const [isOpen, setOpen] = React.useState<boolean>(_isRoot ? subTrees.length > 0 : false);
+  const [isOpen, setOpen] = React.useState<boolean>(_isRoot || defaultOpen ? subTrees.length > 0 : false);
 
   const handleOpen = React.useCallback(() => {
     setOpen(true);
@@ -241,6 +243,7 @@ const Tree = <T,>({
           {subTrees.map(subTree =>
             React.cloneElement(subTree, {
               key: JSON.stringify(subTree.props.value),
+              defaultOpen: defaultOpen,
               _isRoot: false,
             })
           )}

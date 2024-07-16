@@ -38,6 +38,9 @@ import {Tree} from './Tree.tsx';
     onClick:{
       description: 'Triggered when the user clicks on a node. If not specified, a click opens or closes the node.'
     },
+    defaultOpen:{
+      description: 'Allow to open automatically children when present.'
+    },
     _isRoot:{
         table:{
           disable: true
@@ -171,13 +174,40 @@ The Tree component uses its value to trigger onOpen, onClose and other events. B
       return (
         <>
            <Tree {...args} label='Indeterminate' selectable={true}>
-                <Tree {...args} label='Child1' selectable={true} selected={true} />
-                <Tree {...args} label='Child2' selectable={true} />
+                <Tree {...args} label='Child1' isLeaf={true} selectable={true} selected={true} />
+                <Tree {...args} label='Child2' isLeaf={true} selectable={true} />
            </Tree>
            <Tree {...args} label='All Checked' selectable={true}>
-                <Tree {...args} label='Child1' selectable={true} selected={true} />
-                <Tree {...args} label='Child2' selectable={true} selected={true}/>
+                <Tree {...args} label='Child1' isLeaf={true} selectable={true} selected={true} />
+                <Tree {...args} label='Child2' isLeaf={true} selectable={true} selected={true}/>
            </Tree>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation with open children when present
+
+<Canvas>
+  <Story name="defaultOpen">
+    {args => {
+      return (
+        <>
+           <Tree {...args} label='Parent1' defaultOpen={true}>
+               <Tree {...args} label='Child1'>
+                   <Tree {...args} label='Child1 Sub1' isLeaf={true} />
+                   <Tree {...args} label='Child1 Sub2' isLeaf={true} />
+               </Tree>
+               <Tree {...args} label='Child2' isLeaf={true} />
+          </Tree>
+          <Tree {...args} label='Parent 2' defaultOpen={true}>
+               <Tree {...args} label='Child1' isLeaf={true} />
+               <Tree {...args} label='Child2'>
+                   <Tree {...args} label='Child2 Sub1' isLeaf={true} />
+                   <Tree {...args} label='Child2 Sub2' isLeaf={true} />
+               </Tree>
+          </Tree>
         </>
       );
     }}
