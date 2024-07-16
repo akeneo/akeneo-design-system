@@ -3560,6 +3560,20 @@
         "__isArgsStory": true
       }
     },
+    "components-tree--default-open": {
+      "id": "components-tree--default-open",
+      "name": "defaultOpen",
+      "title": "Components/Tree",
+      "importPath": "./src/components/Tree/Tree.stories.mdx",
+      "kind": "Components/Tree",
+      "story": "defaultOpen",
+      "parameters": {
+        "fileName": "./src/components/Tree/Tree.stories.mdx",
+        "framework": "react",
+        "__id": "components-tree--default-open",
+        "__isArgsStory": true
+      }
+    },
     "patterns-bulk-actions--big-table": {
       "id": "patterns-bulk-actions--big-table",
       "name": "Big Table",
