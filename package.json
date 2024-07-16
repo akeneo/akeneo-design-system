@@ -1,6 +1,6 @@
 {
   "name": "akeneo-design-system",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Akeneo design system",
   "main": "lib/index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "test:visual:update": "npm run storybook:extract && jest --config ./jest.visual.config.js -u",
     "lint:fix": "prettier --config .prettierrc.json --parser typescript --write \"./{src,generator}/**/*.{ts,tsx}\" && npx eslint --config .eslintrc.json --quiet \"./src/**/*.{ts,tsx}\" --fix",
     "lint:check": "npx prettier --config .prettierrc.json --parser typescript --check \"./{src,generator}/**/*.{ts,tsx}\" && npx eslint --config .eslintrc.json --quiet \"./src/**/*.{ts,tsx}\"",
-    "storybook:start": "npm run storybook:copy-public && NODE_OPTIONS=--openssl-legacy-provider npm run start-storybook -p 6006 -s ./public",
+    "storybook:start": "npm run storybook:copy-public && NODE_OPTIONS=--openssl-legacy-provider npx start-storybook -p 6006 -s ./public",
     "storybook:build": "npm run storybook:copy-public && NODE_OPTIONS=--openssl-legacy-provider npx build-storybook -s ./public && npx sb extract",
     "storybook:ci:start": "NODE_OPTIONS=--openssl-legacy-provider npm run start-storybook -p 6006 --ci",
     "storybook:copy-public": "cp ./src/__image_snapshots__/*standard-correctly-1-snap.png ./public/",
