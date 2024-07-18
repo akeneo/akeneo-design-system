@@ -1,5 +1,4 @@
-import {Theme} from '../theme';
-import {color, fontSize, palette, fontFamily, colorAlternative} from '../common';
+import {Theme, color, fontSize, palette, fontFamily, colorAlternative} from '../../theme';
 
 const sharedCatalogsTheme: Theme = {
   name: 'Shared Catalogs',

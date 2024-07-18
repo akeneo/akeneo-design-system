@@ -1,7 +1,7 @@
 import React, {ComponentType, ReactElement, ReactNode} from 'react';
 import {render, RenderOptions} from '@testing-library/react';
 import {ThemeProvider} from 'styled-components';
-import {pimTheme} from '../theme/pim';
+import {pimTheme} from '../themes';
 
 const wrapper: ComponentType = ({children}: {children?: ReactNode}) => (
   <ThemeProvider theme={pimTheme}>{children}</ThemeProvider>

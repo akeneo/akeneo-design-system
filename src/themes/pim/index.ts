@@ -1,5 +1,4 @@
-import {Theme} from '../theme';
-import {color, colorAlternative, fontSize, palette, fontFamily} from '../common';
+import {Theme, color, fontSize, palette, fontFamily, colorAlternative} from '../../theme';
 
 const pimTheme: Theme = {
   name: 'PIM',

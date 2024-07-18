@@ -5,4 +5,4 @@ import {connectorTheme} from './connector';
 
 const themes = [pimTheme, onboarderTheme, sharedCatalogsTheme, connectorTheme];
 
-export {themes};
+export {themes, pimTheme, onboarderTheme, sharedCatalogsTheme, connectorTheme};

@@ -1,3 +1,3 @@
-import { Theme } from '../theme';
+import { Theme } from '../../theme';
 declare const pimTheme: Theme;
 export { pimTheme };
