@@ -242,6 +242,20 @@
         "__isArgsStory": true
       }
     },
+    "components-block--with-rich-title": {
+      "id": "components-block--with-rich-title",
+      "name": "With Rich Title",
+      "title": "Components/Block",
+      "importPath": "./src/components/Block/Block.stories.mdx",
+      "kind": "Components/Block",
+      "story": "With Rich Title",
+      "parameters": {
+        "fileName": "./src/components/Block/Block.stories.mdx",
+        "framework": "react",
+        "__id": "components-block--with-rich-title",
+        "__isArgsStory": true
+      }
+    },
     "components-buttons-blockbutton--standard": {
       "id": "components-buttons-blockbutton--standard",
       "name": "Standard",
@@ -1558,6 +1572,20 @@
         "__isArgsStory": true
       }
     },
+    "components-inputs-multi-select-input--option-group": {
+      "id": "components-inputs-multi-select-input--option-group",
+      "name": "OptionGroup",
+      "title": "Components/Inputs/Multi Select input",
+      "importPath": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+      "kind": "Components/Inputs/Multi Select input",
+      "story": "OptionGroup",
+      "parameters": {
+        "fileName": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+        "framework": "react",
+        "__id": "components-inputs-multi-select-input--option-group",
+        "__isArgsStory": true
+      }
+    },
     "components-inputs-multi-select-input--read-only": {
       "id": "components-inputs-multi-select-input--read-only",
       "name": "ReadOnly",
@@ -1709,6 +1737,20 @@
         "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
         "framework": "react",
         "__id": "components-inputs-select-input--standard",
+        "__isArgsStory": true
+      }
+    },
+    "components-inputs-select-input--option-group": {
+      "id": "components-inputs-select-input--option-group",
+      "name": "OptionGroup",
+      "title": "Components/Inputs/Select input",
+      "importPath": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+      "kind": "Components/Inputs/Select input",
+      "story": "OptionGroup",
+      "parameters": {
+        "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+        "framework": "react",
+        "__id": "components-inputs-select-input--option-group",
         "__isArgsStory": true
       }
     },
