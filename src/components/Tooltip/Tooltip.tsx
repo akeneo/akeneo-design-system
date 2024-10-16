@@ -1,10 +1,11 @@
 import React, {HTMLAttributes, ReactNode, useRef, useEffect, RefObject, useState} from 'react';
 import {createPortal} from 'react-dom';
 import styled from 'styled-components';
-import {Override} from '../../shared';
-import {HelpPlainIcon} from '../../icons';
-import {AkeneoThemedProps, CommonStyle, getColor, getFontSize} from '../../theme';
-import {useBooleanState} from '../../hooks';
+import {Override} from '../../shared/override';
+import {HelpPlainIcon} from '../../icons/HelpPlainIcon';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
+import {CommonStyle} from '../../theme/common';
+import {useBooleanState} from '../../hooks/useBooleanState';
 
 type Direction = 'top' | 'right' | 'bottom' | 'left';
 

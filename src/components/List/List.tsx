@@ -1,7 +1,7 @@
 import React, {isValidElement, ReactElement, ReactNode} from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../theme';
-import {Override} from '../../shared';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
+import {Override} from '../../shared/override';
 import {Button, ButtonProps} from '../Button/Button';
 import {IconButton} from '../IconButton/IconButton';
 

@@ -1,9 +1,10 @@
 import React, {Children, FC, isValidElement, KeyboardEvent, ReactNode, Ref, useCallback} from 'react';
 import styled, {css} from 'styled-components';
-import {IconProps} from '../../icons';
-import {AkeneoThemedProps, getColor} from '../../theme';
-import {Key, Override} from '../../';
-import {Tooltip} from '../../components';
+import {IconProps} from '../../icons/IconProps';
+import {AkeneoThemedProps, getColor} from '../../theme/theme';
+import {Key} from '../../shared/key';
+import {Override} from '../../shared/override';
+import {Tooltip} from '../Tooltip/Tooltip';
 
 type Size = 'small' | 'big';
 
@@ -181,19 +182,23 @@ const Tile: FC<TileProps> = ({
     onClick?.();
   };
 
-  const tooltipChildren = Children.map(children, child => {
+  let tooltipChildren = Children.map(children, child => {
     if (isValidElement(child) && child.type === Tooltip) {
       return child;
     }
     return undefined;
-  })?.filter(e => !!e);
+  });
+  tooltipChildren = Array.isArray(tooltipChildren) ? tooltipChildren.filter(e => !!e) : tooltipChildren;
 
-  const childrenWithoutTooltips = Children.map(children, child => {
+  let childrenWithoutTooltips = Children.map(children, child => {
     if (isValidElement(child) && child.type === Tooltip) {
       return undefined;
     }
     return child;
-  })?.filter(e => !!e);
+  });
+  childrenWithoutTooltips = Array.isArray(childrenWithoutTooltips)
+    ? childrenWithoutTooltips.filter(e => !!e)
+    : childrenWithoutTooltips;
 
   return (
     <TileContainer

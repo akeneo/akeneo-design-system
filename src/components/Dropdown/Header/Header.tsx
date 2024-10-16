@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import {getColor} from '../../../theme';
-import {Override} from '../../../shared';
+import {getColor} from '../../../theme/theme';
+import {Override} from '../../../shared/override';
 import React, {ReactNode, Ref} from 'react';
 
 const HeaderContainer = styled.div`

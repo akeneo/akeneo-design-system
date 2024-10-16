@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react';
 import styled from 'styled-components';
 import {Image, Modal} from '../../components';
-import {getColor} from '../../theme';
+import {getColor} from '../../theme/theme';
 
 const Border = styled.div`
   display: flex;

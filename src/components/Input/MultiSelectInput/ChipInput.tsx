@@ -1,10 +1,13 @@
 import React, {Ref, useEffect} from 'react';
 import styled from 'styled-components';
-import {CloseIcon, LockIcon} from '../../../icons';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme';
+import {CloseIcon} from '../../../icons/CloseIcon';
+import {LockIcon} from '../../../icons/LockIcon';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme/theme';
 import {IconButton} from '../../IconButton/IconButton';
-import {useBooleanState, useShortcut, useTheme} from '../../../hooks';
-import {Key} from '../../../shared';
+import {useBooleanState} from '../../../hooks/useBooleanState';
+import {useShortcut} from '../../../hooks/useShortcut';
+import {useTheme} from '../../../hooks/useTheme';
+import {Key} from '../../../shared/key';
 
 const Container = styled.ul<AkeneoThemedProps & {readOnly?: boolean; invalid?: boolean}>`
   border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};

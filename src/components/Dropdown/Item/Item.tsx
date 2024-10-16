@@ -1,11 +1,12 @@
 import React, {isValidElement, KeyboardEvent, ReactNode, Ref, SyntheticEvent, useCallback, useRef} from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor} from '../../../theme';
+import {AkeneoThemedProps, getColor} from '../../../theme/theme';
 import {Image} from '../../../components/Image/Image';
 import {Checkbox} from '../../../components/Checkbox/Checkbox';
 import {Link} from '../../../components/Link/Link';
-import {Key, Override} from '../../../shared';
-import {LockIcon} from '../../../icons';
+import {Key} from '../../../shared/key';
+import {Override} from '../../../shared/override';
+import {LockIcon} from '../../../icons/LockIcon';
 import {Surtitle} from '../Surtitle/Surtitle';
 
 const ItemLabel = styled.span`

@@ -1,7 +1,7 @@
 import React from 'react';
 import {IllustrationProps} from './IllustrationProps';
 import NoResults from '../../static/illustrations/NoResults.svg';
-import {BrandedPath} from '../theme';
+import {BrandedPath} from '../theme/common';
 
 const NoResultsIllustration = ({title, size = 256, ...props}: IllustrationProps) => (
   <svg width={size} height={size} viewBox="0 0 256 256" {...props}>

@@ -4,7 +4,7 @@ import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import {ContentState, convertToRaw, EditorState} from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import {Override} from '../../../shared';
+import {Override} from '../../../shared/override';
 
 const editorStateToRaw = (editorState: EditorState): string =>
   draftToHtml(convertToRaw(editorState.getCurrentContent()));

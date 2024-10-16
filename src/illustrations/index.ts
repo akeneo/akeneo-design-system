@@ -59,3 +59,4 @@ export * from './UsersIllustration';
 export * from './UsingIllustration';
 export * from './ViewsIllustration';
 export * from './WarningIllustration';
+export type {IllustrationProps} from './IllustrationProps';

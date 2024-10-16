@@ -1,8 +1,9 @@
 import React, {Children, cloneElement, HTMLAttributes, isValidElement, ReactNode} from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../theme';
-import {Button, ButtonProps, IconButton, IconButtonProps} from '../../components';
-import {Override} from '../../shared';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
+import {Button, ButtonProps} from '../Button/Button';
+import {IconButton, IconButtonProps} from '../IconButton/IconButton';
+import {Override} from '../../shared/override';
 
 const SectionTitleContainer = styled.div<{sticky?: number} & AkeneoThemedProps>`
   display: flex;

@@ -1,8 +1,8 @@
 import React, {ReactNode, Ref} from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor} from '../../../theme';
-import {Image} from '../../../components';
-import {Override} from '../../../shared';
+import {AkeneoThemedProps, getColor} from '../../../theme/theme';
+import {Image} from '../../../components/Image/Image';
+import {Override} from '../../../shared/override';
 
 const TableCellContainer = styled.td<{rowTitle: boolean} & AkeneoThemedProps>`
   color: ${getColor('grey', 140)};

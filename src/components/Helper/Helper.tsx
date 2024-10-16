@@ -1,7 +1,10 @@
 import React, {ReactElement, ReactNode, Ref} from 'react';
 import styled, {css} from 'styled-components';
-import {CheckRoundIcon, DangerIcon, IconProps, InfoRoundIcon} from '../../icons';
-import {AkeneoThemedProps, getColor} from '../../theme';
+import {CheckRoundIcon} from '../../icons/CheckRoundIcon';
+import {DangerIcon} from '../../icons/DangerIcon';
+import {IconProps} from '../../icons/IconProps';
+import {InfoRoundIcon} from '../../icons/InfoRoundIcon';
+import {AkeneoThemedProps, getColor} from '../../theme/theme';
 
 const getBackgroundColor = (level: Level) => {
   switch (level) {
@@ -81,17 +84,17 @@ const getLinkColor = (level: Level, inline: boolean) => {
   }
 };
 
-const Container = styled.div<{level: Level; inline: boolean; sticky?: number} & AkeneoThemedProps>`
+const Container = styled.div<{$level: Level; $inline: boolean; sticky?: number} & AkeneoThemedProps>`
   display: flex;
   font-weight: 400;
   padding-right: 20px;
-  color: ${props => getFontColor(props.level, props.inline)};
+  color: ${props => getFontColor(props.$level, props.$inline)};
 
   ${props =>
-    !props.inline &&
+    !props.$inline &&
     css`
       min-height: 44px;
-      background-color: ${getBackgroundColor(props.level)};
+      background-color: ${getBackgroundColor(props.$level)};
     `}
 
   ${({sticky}) =>
@@ -105,26 +108,26 @@ const Container = styled.div<{level: Level; inline: boolean; sticky?: number} & 
 
 type Level = 'info' | 'warning' | 'error' | 'success';
 
-const IconContainer = styled.span<{level: Level; inline: boolean} & AkeneoThemedProps>`
-  height: ${({inline}) => (inline ? '16px' : '20px')};
-  margin: ${({inline}) => (inline ? '2px 0' : '12px 10px')};
-  color: ${props => getIconColor(props.level, props.inline)};
+const IconContainer = styled.span<{$level: Level; $inline: boolean} & AkeneoThemedProps>`
+  height: ${({$inline}) => ($inline ? '16px' : '20px')};
+  margin: ${({$inline}) => ($inline ? '2px 0' : '12px 10px')};
+  color: ${props => getIconColor(props.$level, props.$inline)};
 `;
 
-const TextContainer = styled.div<{level: Level; inline: boolean} & AkeneoThemedProps>`
-  padding-left: ${({inline}) => (inline ? '4px' : '10px')};
+const TextContainer = styled.div<{$level: Level; $inline: boolean} & AkeneoThemedProps>`
+  padding-left: ${({$inline}) => ($inline ? '4px' : '10px')};
   white-space: break-spaces;
   flex: 1;
 
   a {
-    color: ${({level, inline}) => getLinkColor(level, inline)};
+    color: ${({$level, $inline}) => getLinkColor($level, $inline)};
   }
 
-  ${({inline, level}) =>
-    !inline &&
+  ${({$inline, $level}) =>
+    !$inline &&
     css`
       margin: 12px 0;
-      border-left: 1px solid ${getSeparatorColor(level)};
+      border-left: 1px solid ${getSeparatorColor($level)};
     `}
 `;
 
@@ -160,11 +163,11 @@ type HelperProps = {
 const Helper = React.forwardRef<HTMLDivElement, HelperProps>(
   ({level = 'info', inline = false, icon, children, ...rest}: HelperProps, forwardedRef: Ref<HTMLDivElement>) => {
     return (
-      <Container ref={forwardedRef} level={level} inline={inline} {...rest}>
-        <IconContainer inline={inline} level={level}>
+      <Container ref={forwardedRef} $level={level} $inline={inline} {...rest}>
+        <IconContainer $inline={inline} $level={level}>
           {React.cloneElement(undefined === icon ? getIcon(level) : icon, {size: inline ? 16 : 20})}
         </IconContainer>
-        <TextContainer level={level} inline={inline}>
+        <TextContainer $level={level} $inline={inline}>
           {children}
         </TextContainer>
       </Container>

@@ -1,8 +1,9 @@
 import React, {ReactNode, Ref, useEffect, useRef, useState} from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../theme';
-import {Override} from '../../shared';
-import {ArrowDownIcon, ArrowUpIcon} from '../../icons';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
+import {Override} from '../../shared/override';
+import {ArrowDownIcon} from '../../icons/ArrowDownIcon';
+import {ArrowUpIcon} from '../../icons/ArrowUpIcon';
 import {IconButton} from '../IconButton/IconButton';
 
 type BlockProps = Override<
@@ -11,7 +12,7 @@ type BlockProps = Override<
     /**
      * Title of the block.
      */
-    title: string;
+    title: string | ReactNode;
 
     /**
      * Add an action that will be displayed on the right of the block.
@@ -70,6 +71,8 @@ const ActionsContainer = styled.div`
   column-gap: 10px;
   justify-content: space-between;
 `;
+
+const TitleContainer = styled.div``;
 
 const BlockTitle = styled.div`
   display: flex;
@@ -168,7 +171,7 @@ const Block = React.forwardRef<HTMLDivElement, BlockProps>(
         {...rest}
       >
         <BlockTitle>
-          {title}
+          <TitleContainer>{title}</TitleContainer>
           <ActionsContainer>
             {actions}
             {!isCollapsable ? null : (

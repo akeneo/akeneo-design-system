@@ -1,6 +1,6 @@
 import React, {isValidElement, ReactElement, ReactNode} from 'react';
 import styled from 'styled-components';
-import {getColor, getFontSize} from '../../theme';
+import {getColor, getFontSize} from '../../theme/theme';
 import {IconProps} from '../../icons';
 
 type FigureProps = {

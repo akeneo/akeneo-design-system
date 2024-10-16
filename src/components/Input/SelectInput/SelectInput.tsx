@@ -1,5 +1,7 @@
 import React, {
   ReactNode,
+  useEffect,
+  useMemo,
   useState,
   useRef,
   isValidElement,
@@ -7,15 +9,22 @@ import React, {
   KeyboardEvent,
   useCallback,
   SyntheticEvent,
+  NamedExoticComponent,
 } from 'react';
 import styled, {css} from 'styled-components';
-import {Key, Override} from '../../../shared';
-import {InputProps, Overlay} from '../common';
+import {Override} from '../../../shared/override';
+import {Key} from '../../../shared/key';
+import {InputProps} from '../common/InputProps';
+import {Overlay} from '../common/Overlay';
 import {IconButton} from '../../../components/IconButton/IconButton';
 import {TextInput} from '../../../components/Input/TextInput/TextInput';
-import {useBooleanState, useShortcut, VerticalPosition} from '../../../hooks';
-import {AkeneoThemedProps, getColor} from '../../../theme';
-import {ArrowDownIcon, CloseIcon, LockIcon} from '../../../icons';
+import {useBooleanState} from '../../../hooks/useBooleanState';
+import {useShortcut} from '../../../hooks/useShortcut';
+import {VerticalPosition} from '../../../hooks/usePosition';
+import {AkeneoThemedProps, getColor} from '../../../theme/theme';
+import {ArrowDownIcon} from '../../../icons/ArrowDownIcon';
+import {CloseIcon} from '../../../icons/CloseIcon';
+import {LockIcon} from '../../../icons/LockIcon';
 import {usePagination} from '../../../hooks/usePagination';
 
 const areEveryChildrenDisabled = (children: ReactElement<OptionProps>[]) =>
@@ -116,9 +125,10 @@ const EmptyResultContainer = styled.div`
   text-align: center;
 `;
 
-const OptionCollection = styled.div`
+const OptionCollection = styled.div<{withGroups: boolean}>`
   max-height: 320px;
   overflow-y: auto;
+  padding-left: ${({withGroups}) => (withGroups ? '20px' : '0')};
 `;
 
 type OptionProps = Override<
@@ -129,13 +139,37 @@ type OptionProps = Override<
   }
 >;
 
-const Option = styled.span<OptionProps>`
+const optionStyle = css`
   display: block;
   line-height: 34px;
   min-height: 34px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+`;
+
+const Option = styled.span<OptionProps>`
+  ${optionStyle};
+`;
+
+const OptionGroup = styled.span`
+  ${optionStyle};
+`;
+
+const OptionGroupContainer = styled.div`
+  background: ${getColor('white')};
+  height: 34px;
+  padding: 0 20px 0 0;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: ${getColor('grey', 100)};
+  line-height: 34px;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
 `;
 
 type SelectInputProps = Override<
@@ -236,6 +270,7 @@ const SelectInput = ({
   ...rest
 }: SelectInputProps) => {
   const [searchValue, setSearchValue] = useState<string>('');
+  const [withGroups, setWithGroups] = useState<boolean>(false);
   const [dropdownIsOpen, openOverlay, closeOverlay] = useBooleanState();
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -243,13 +278,25 @@ const SelectInput = ({
   const lastOptionRef = useRef<HTMLDivElement>(null);
   const selectedOptionRef = useRef<HTMLDivElement>(null);
 
-  const validChildren = React.Children.toArray(children).filter((child): child is ReactElement<OptionProps> =>
-    isValidElement<OptionProps>(child)
+  const isOptionGroup = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean => {
+    return component?.type.displayName === 'SelectInput.OptionGroup';
+  };
+
+  const isOption = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean => {
+    return component?.type.displayName === 'SelectInput.Option';
+  };
+
+  const validChildren = React.Children.toArray(children).filter(
+    (child): child is ReactElement<OptionProps, NamedExoticComponent> => isValidElement<OptionProps>(child)
   );
 
   readOnly = readOnly || areEveryChildrenDisabled(validChildren);
 
   validChildren.reduce<string[]>((optionCodes: string[], child) => {
+    if (isOptionGroup(child)) {
+      return optionCodes;
+    }
+
     if (optionCodes.includes(child.props.value)) {
       throw new Error(`Duplicate option value ${child.props.value}`);
     }
@@ -267,8 +314,16 @@ const SelectInput = ({
         const value = child.props.value;
         const optionValue = value + content + title;
 
-        return optionValue.toLowerCase().includes(searchValue.toLowerCase());
+        return isOptionGroup(child) || optionValue.toLowerCase().includes(searchValue.toLowerCase());
       });
+
+  const hasChildren = useMemo(() => {
+    return filteredChildren.some(child => isOption(child));
+  }, [filteredChildren]);
+
+  const firstOptionIndex = useMemo(() => {
+    return filteredChildren.findIndex(child => isOption(child));
+  }, [filteredChildren]);
 
   const currentValueElement =
     validChildren.find(child => {
@@ -335,11 +390,17 @@ const SelectInput = ({
     [value, dropdownIsOpen]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (dropdownIsOpen && searchValue === '') {
       (selectedOptionRef.current || firstOptionRef.current)?.focus();
     }
   }, [dropdownIsOpen, selectedOptionRef.current]);
+
+  useEffect(() => {
+    if (filteredChildren.some(child => isOptionGroup(child))) {
+      setWithGroups(true);
+    }
+  }, [filteredChildren]);
 
   const handleOptionKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>, isOptionDisabled: boolean) => {
@@ -431,15 +492,15 @@ const SelectInput = ({
       </InputContainer>
       {dropdownIsOpen && !readOnly && (
         <Overlay parentRef={inputRef} verticalPosition={verticalPosition} onClose={handleEscape}>
-          <OptionCollection ref={containerRef}>
-            {filteredChildren.length === 0 ? (
+          <OptionCollection ref={containerRef} withGroups={withGroups}>
+            {!hasChildren ? (
               <EmptyResultContainer>{emptyResultLabel}</EmptyResultContainer>
             ) : (
               filteredChildren.map((child, index) => {
                 const childValue = child.props.value;
                 let ref = undefined;
                 switch (index) {
-                  case 0:
+                  case firstOptionIndex:
                     ref = firstOptionRef;
                     break;
                   case filteredChildren.length - 1:
@@ -451,6 +512,17 @@ const SelectInput = ({
                 }
 
                 const isOptionDisabled = child.props?.disabled ?? false;
+
+                if (isOptionGroup(child)) {
+                  if (!isOption(filteredChildren[index + 1])) {
+                    return null;
+                  }
+                  return (
+                    <OptionGroupContainer role="option-group" data-testid={child.props?.title} key={child.props?.title}>
+                      {React.cloneElement(child)}
+                    </OptionGroupContainer>
+                  );
+                }
 
                 return (
                   <OptionContainer
@@ -477,6 +549,8 @@ const SelectInput = ({
 };
 
 Option.displayName = 'SelectInput.Option';
+OptionGroup.displayName = 'SelectInput.OptionGroup';
 SelectInput.Option = Option;
+SelectInput.OptionGroup = OptionGroup;
 
 export {SelectInput};

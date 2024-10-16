@@ -1,9 +1,10 @@
 import React, {ChangeEvent, forwardRef, InputHTMLAttributes, Ref, useCallback} from 'react';
 import styled, {css} from 'styled-components';
 import {InputProps} from '../common/InputProps';
-import {DangerIcon, LockIcon} from '../../../icons';
-import {Override} from '../../../shared';
-import {AkeneoThemedProps, getColor} from '../../../theme';
+import {DangerIcon} from '../../../icons/DangerIcon';
+import {LockIcon} from '../../../icons/LockIcon';
+import {Override} from '../../../shared/override';
+import {AkeneoThemedProps, getColor} from '../../../theme/theme';
 import {isValidColor, convertColorToLongHexColor} from './Color';
 
 const ColorInputContainer = styled.div<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`

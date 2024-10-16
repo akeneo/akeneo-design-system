@@ -1,8 +1,9 @@
 import React, {Ref, ReactNode, useRef, useState, useEffect} from 'react';
 import styled from 'styled-components';
-import {getColor, getFontSize} from '../../theme';
-import {IconButton} from '../../components';
-import {CheckPartialIcon, PlusIcon} from '../../icons';
+import {getColor, getFontSize} from '../../theme/theme';
+import {IconButton} from '../IconButton/IconButton';
+import {CheckPartialIcon} from '../../icons/CheckPartialIcon';
+import {PlusIcon} from '../../icons/PlusIcon';
 
 const ANIMATION_DURATION = 100;
 

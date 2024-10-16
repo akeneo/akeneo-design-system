@@ -63,6 +63,42 @@ The placeholder text provides tips or examples of items to enter. Placeholder te
 
 <ArgsTable story="Standard" />
 
+## Variation on option group
+
+<Canvas>
+  <Story name="OptionGroup">
+    {args => {
+      const [value, setValue] = useState(null);
+      return (
+        <SpaceContainer height={170}>
+          <SelectInput {...args} value={value} onChange={setValue}>
+            <SelectInput.OptionGroup title="Europe">
+              Europe
+            </SelectInput.OptionGroup>
+            <SelectInput.Option value="en_GB" title="English (United Kingdom)">
+              <Locale code="en_GB" languageLabel="English" />
+            </SelectInput.Option>
+            <SelectInput.Option value="fr_FR" title="French (France)">
+              <Locale code="fr_FR" languageLabel="French" />
+            </SelectInput.Option>
+            <SelectInput.Option value="de_DE" title="German (Germany)">
+              <Locale code="de_DE" languageLabel="German" />
+            </SelectInput.Option>
+            <SelectInput.OptionGroup title="America">
+              America
+            </SelectInput.OptionGroup>
+            <SelectInput.Option value="en_US" title="English (United States)">
+              <Locale code="en_US" languageLabel="English (United States)" />
+            </SelectInput.Option>
+          </SelectInput>
+        </SpaceContainer>
+      );
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable story="OptionGroup" />
+
 ## Variation on readOnly
 
 <Canvas>

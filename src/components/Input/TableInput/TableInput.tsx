@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react';
 import styled, {css} from 'styled-components';
-import {Override} from '../../../shared';
+import {Override} from '../../../shared/override';
 import {TableInputHeader} from './TableInputHeader/TableInputHeader';
 import {TableInputHeaderCell} from './TableInputHeaderCell/TableInputHeaderCell';
 import {TableInputBody} from './TableInputBody/TableInputBody';

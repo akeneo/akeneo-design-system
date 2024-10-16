@@ -1,4 +1,4 @@
-import {AkeneoThemedProps, getColor} from '../../../../theme';
+import {AkeneoThemedProps, getColor} from '../../../../theme/theme';
 import {css} from 'styled-components';
 
 const highlightCell = css<{highlighted?: boolean; inError?: boolean} & AkeneoThemedProps>`

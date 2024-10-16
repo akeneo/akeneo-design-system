@@ -1,6 +1,6 @@
 import React, {isValidElement, ReactNode, Ref} from 'react';
 import styled from 'styled-components';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../theme';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
 import {IllustrationProps} from '../../illustrations/IllustrationProps';
 
 const Container = styled.div`

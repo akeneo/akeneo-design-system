@@ -7,7 +7,7 @@ import {TableActionCell} from './TableActionCell/TableActionCell';
 import {TableRow} from './TableRow/TableRow';
 import {TableContext} from './TableContext';
 import {TableBody} from './TableBody/TableBody';
-import {Override} from '../../shared';
+import {Override} from '../../shared/override';
 import {DraggedElementProvider} from '../../contexts/DraggedElementContext';
 
 const TableContainer = styled.table`

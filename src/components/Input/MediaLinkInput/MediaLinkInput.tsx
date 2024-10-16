@@ -1,13 +1,14 @@
 import React, {ChangeEvent, Ref, useRef, isValidElement, cloneElement, useState, useEffect} from 'react';
 import styled, {css} from 'styled-components';
-import {Key, Override} from '../../../shared';
+import {Override} from '../../../shared/override';
+import {Key} from '../../../shared/key';
 import {InputProps} from '../common/InputProps';
-import {AkeneoThemedProps, getColor} from '../../../theme';
-import {DefaultPictureIllustration} from '../../../illustrations';
+import {AkeneoThemedProps, getColor} from '../../../theme/theme';
+import {DefaultPictureIllustration} from '../../../illustrations/DefaultPictureIllustration';
 import {IconButton, IconButtonProps} from '../../IconButton/IconButton';
 import {Image} from '../../Image/Image';
-import {LockIcon} from '../../../icons';
-import {useShortcut} from '../../../hooks';
+import {LockIcon} from '../../../icons/LockIcon';
+import {useShortcut} from '../../../hooks/useShortcut';
 import DefaultPicture from '../../../../static/illustrations/DefaultPicture.svg';
 
 const MediaLinkInputContainer = styled.div<{invalid?: boolean; readOnly?: boolean} & AkeneoThemedProps>`

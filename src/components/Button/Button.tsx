@@ -10,8 +10,8 @@ import React, {
   SyntheticEvent,
 } from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor, getColorForLevel, getFontSize, Level} from '../../theme';
-import {Override} from '../../shared';
+import {AkeneoThemedProps, getColor, getColorForLevel, getFontSize, Level} from '../../theme/theme';
+import {Override} from '../../shared/override';
 import {IconProps} from '../../icons';
 
 type ButtonSize = 'small' | 'default';
@@ -78,54 +78,54 @@ type ButtonProps = Override<
 >;
 
 const getColorStyle = ({
-  level,
-  ghost,
+  $level,
+  $ghost,
+  $active,
   disabled,
-  active,
-}: {level: Level; ghost: boolean; disabled: boolean; active: boolean} & AkeneoThemedProps) => {
-  if (ghost) {
+}: {$level: Level; $ghost: boolean; $active: boolean; disabled: boolean} & AkeneoThemedProps) => {
+  if ($ghost) {
     return css`
-      color: ${getColorForLevel(level, disabled ? 80 : active ? 140 : 120)};
+      color: ${getColorForLevel($level, disabled ? 80 : $active ? 140 : 120)};
       background-color: ${getColor('white')};
-      border-color: ${getColorForLevel(level, disabled ? 60 : active ? 140 : 100)};
+      border-color: ${getColorForLevel($level, disabled ? 60 : $active ? 140 : 100)};
 
       &:hover:not([disabled]) {
-        color: ${getColorForLevel(level, 140)};
-        background-color: ${getColorForLevel(level, 20)};
-        border-color: ${getColorForLevel(level, 120)};
+        color: ${getColorForLevel($level, 140)};
+        background-color: ${getColorForLevel($level, 20)};
+        border-color: ${getColorForLevel($level, 120)};
       }
 
       &:active:not([disabled]) {
-        color: ${getColorForLevel(level, 140)};
-        border-color: ${getColorForLevel(level, 140)};
+        color: ${getColorForLevel($level, 140)};
+        border-color: ${getColorForLevel($level, 140)};
       }
     `;
   }
 
   return css`
     color: ${getColor('white')};
-    background-color: ${getColorForLevel(level, disabled ? 40 : active ? 140 : 100)};
-    border-color: ${getColorForLevel(level, disabled ? 40 : active ? 140 : 100)};
+    background-color: ${getColorForLevel($level, disabled ? 40 : $active ? 140 : 100)};
+    border-color: ${getColorForLevel($level, disabled ? 40 : $active ? 140 : 100)};
 
     &:hover:not([disabled]) {
-      background-color: ${getColorForLevel(level, 120)};
-      border-color: ${getColorForLevel(level, 120)};
+      background-color: ${getColorForLevel($level, 120)};
+      border-color: ${getColorForLevel($level, 120)};
     }
 
     &:active:not([disabled]) {
-      background-color: ${getColorForLevel(level, 140)};
-      border-color: ${getColorForLevel(level, 140)};
+      background-color: ${getColorForLevel($level, 140)};
+      border-color: ${getColorForLevel($level, 140)};
     }
   `;
 };
 
-const Container = styled.button<
+const ContainerAsButton = styled.button<
   {
-    level: Level;
-    ghost: boolean;
+    $level: Level;
+    $ghost: boolean;
+    $active: boolean;
+    $size: ButtonSize;
     disabled: boolean;
-    active: boolean;
-    size: ButtonSize;
   } & AkeneoThemedProps
 >`
   display: inline-flex;
@@ -137,8 +137,42 @@ const Container = styled.button<
   text-transform: uppercase;
   border-radius: 16px;
   border-style: solid;
-  padding: ${({size}) => (size === 'small' ? '0 10px' : '0 15px')};
-  height: ${({size}) => (size === 'small' ? '24px' : '32px')};
+  padding: ${({$size}) => ($size === 'small' ? '0 10px' : '0 15px')};
+  height: ${({$size}) => ($size === 'small' ? '24px' : '32px')};
+  cursor: ${({disabled}) => (disabled ? 'not-allowed' : 'pointer')};
+  font-family: inherit;
+  transition: background-color 0.1s ease;
+  outline-style: none;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:focus {
+    box-shadow: 0 0 0 2px ${getColor('blue', 40)};
+  }
+
+  ${getColorStyle}
+`;
+
+const ContainerAsLink = styled.a<
+  {
+    $level: Level;
+    $ghost: boolean;
+    $active: boolean;
+    $size: ButtonSize;
+    disabled: boolean;
+  } & AkeneoThemedProps
+>`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-width: 1px;
+  font-size: ${getFontSize('default')};
+  font-weight: 400;
+  text-transform: uppercase;
+  border-radius: 16px;
+  border-style: solid;
+  padding: ${({$size}) => ($size === 'small' ? '0 10px' : '0 15px')};
+  height: ${({$size}) => ($size === 'small' ? '24px' : '32px')};
   cursor: ${({disabled}) => (disabled ? 'not-allowed' : 'pointer')};
   font-family: inherit;
   transition: background-color 0.1s ease;
@@ -174,7 +208,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       type = 'button',
       ...rest
     }: ButtonProps,
-    forwardedRef: Ref<HTMLButtonElement>
+    forwardedRef: Ref<HTMLButtonElement | HTMLAnchorElement>
   ) => {
     const handleAction = (event: SyntheticEvent) => {
       if (disabled || undefined === onClick) return;
@@ -182,23 +216,51 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onClick(event);
     };
 
+    if (undefined !== href) {
+      return (
+        <ContainerAsLink
+          $level={level}
+          $ghost={ghost}
+          $active={active}
+          $size={size}
+          disabled={disabled}
+          aria-describedby={ariaDescribedBy}
+          aria-disabled={disabled}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
+          ref={forwardedRef as Ref<HTMLAnchorElement>}
+          role="button"
+          type={type}
+          onClick={handleAction}
+          href={disabled ? undefined : href}
+          {...rest}
+        >
+          {Children.map(children, child => {
+            if (isValidElement<IconProps>(child)) {
+              return cloneElement(child, {size: child.props.size ?? 18});
+            }
+
+            return child;
+          })}
+        </ContainerAsLink>
+      );
+    }
+
     return (
-      <Container
-        as={undefined !== href ? 'a' : 'button'}
-        level={level}
-        ghost={ghost}
+      <ContainerAsButton
+        $level={level}
+        $ghost={ghost}
+        $active={active}
+        $size={size}
         disabled={disabled}
-        active={active}
-        size={size}
         aria-describedby={ariaDescribedBy}
         aria-disabled={disabled}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
-        ref={forwardedRef}
+        ref={forwardedRef as Ref<HTMLButtonElement>}
         role="button"
         type={type}
         onClick={handleAction}
-        href={disabled ? undefined : href}
         {...rest}
       >
         {Children.map(children, child => {
@@ -208,7 +270,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
           return child;
         })}
-      </Container>
+      </ContainerAsButton>
     );
   }
 );

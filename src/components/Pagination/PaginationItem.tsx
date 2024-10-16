@@ -1,6 +1,6 @@
 import React, {FC, useCallback} from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor} from '../../theme';
+import {AkeneoThemedProps, getColor} from '../../theme/theme';
 
 const PAGINATION_SEPARATOR = '…';
 

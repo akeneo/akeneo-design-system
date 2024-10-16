@@ -1,7 +1,13 @@
 import styled from 'styled-components';
-import {getColor} from '../../../theme';
+import {getColor} from '../../../theme/theme';
 import React from 'react';
-import {ItemLabel} from '../Item/Item';
+
+const ItemLabel = styled.span`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+`;
 
 const SurtitleContainer = styled.div`
   display: flex;

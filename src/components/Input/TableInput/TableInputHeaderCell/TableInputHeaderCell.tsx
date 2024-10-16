@@ -1,6 +1,6 @@
 import React, {Ref} from 'react';
 import styled from 'styled-components';
-import {getColor} from '../../../../theme';
+import {getColor} from '../../../../theme/theme';
 
 const TableInputTh = styled.th`
   white-space: nowrap;

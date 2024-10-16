@@ -14,10 +14,12 @@ test('it renders its children properly', () => {
       openLabel="Open"
       emptyResultLabel="Empty result"
     >
-      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+      <MultiSelectInput.OptionGroup title="Europe">Europe</MultiSelectInput.OptionGroup>
       <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
       <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
       <MultiSelectInput.Option value="es_ES">Spanish</MultiSelectInput.Option>
+      <MultiSelectInput.OptionGroup title="America">America</MultiSelectInput.OptionGroup>
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
     </MultiSelectInput>
   );
 
@@ -25,6 +27,8 @@ test('it renders its children properly', () => {
   fireEvent.focus(input);
 
   expect(screen.queryByText('German')).toBeInTheDocument();
+
+  expect(screen.getByTitle('Europe')).toBeInTheDocument();
 
   fireEvent.click(screen.getByTestId('backdrop'));
   expect(screen.queryByText('German')).not.toBeInTheDocument();
@@ -49,10 +53,12 @@ test('it handles search', () => {
       openLabel="Open"
       emptyResultLabel="Empty result"
     >
-      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+      <MultiSelectInput.OptionGroup title="Europe">Europe</MultiSelectInput.OptionGroup>
       <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
       <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
       <MultiSelectInput.Option value="es_ES">Spanish</MultiSelectInput.Option>
+      <MultiSelectInput.OptionGroup title="America">America</MultiSelectInput.OptionGroup>
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
     </MultiSelectInput>
   );
 

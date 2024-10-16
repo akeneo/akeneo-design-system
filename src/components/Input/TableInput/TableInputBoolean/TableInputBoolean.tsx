@@ -1,11 +1,12 @@
 import React, {MouseEvent} from 'react';
 import {Badge} from '../../../Badge/Badge';
 import styled from 'styled-components';
-import {AkeneoThemedProps, getColor} from '../../../../theme';
-import {Override} from '../../../../shared';
+import {AkeneoThemedProps, getColor} from '../../../../theme/theme';
+import {Override} from '../../../../shared/override';
 import {Dropdown} from '../../../Dropdown/Dropdown';
-import {ArrowDownIcon, CloseIcon} from '../../../../icons';
-import {useBooleanState} from '../../../../hooks';
+import {ArrowDownIcon} from '../../../../icons/ArrowDownIcon';
+import {CloseIcon} from '../../../../icons/CloseIcon';
+import {useBooleanState} from '../../../../hooks/useBooleanState';
 import {IconButton} from '../../../IconButton/IconButton';
 import {TableInputReadOnlyCell} from '../shared/TableInputReadOnlyCell';
 import {TableInputContext} from '../TableInputContext';

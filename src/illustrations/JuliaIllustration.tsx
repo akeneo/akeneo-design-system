@@ -1,7 +1,7 @@
 import React from 'react';
 import {IllustrationProps} from './IllustrationProps';
 import Julia from '../../static/illustrations/Julia.svg';
-import {BrandedPath} from '../theme';
+import {BrandedPath} from '../theme/common';
 
 const JuliaIllustration = ({title, size = 256, ...props}: IllustrationProps) => (
   <svg width={size} height={size} viewBox="0 0 256 256" {...props}>

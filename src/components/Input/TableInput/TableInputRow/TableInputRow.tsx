@@ -1,9 +1,9 @@
 import styled, {css} from 'styled-components';
 import React, {forwardRef, HTMLAttributes, ReactNode, Ref, useContext, DragEvent} from 'react';
-import {AkeneoThemedProps, getColor} from '../../../../theme';
-import {Override} from '../../../../shared';
+import {AkeneoThemedProps, getColor} from '../../../../theme/theme';
+import {Override} from '../../../../shared/override';
 import {TableInputContext} from '../TableInputContext';
-import {RowIcon} from '../../../../icons';
+import {RowIcon} from '../../../../icons/RowIcon';
 import {TableInputCell} from '../TableInputCell/TableInputCell';
 import {PlaceholderPosition, usePlaceholderPosition} from '../../../../hooks/usePlaceholderPosition';
 import {DraggedElementContext} from '../../../../contexts/DraggedElementContext';

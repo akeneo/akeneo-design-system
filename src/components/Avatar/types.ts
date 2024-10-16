@@ -1,4 +1,4 @@
-import {Override} from '../../shared';
+import {Override} from '../../shared/override';
 import React from 'react';
 
 export type User = {

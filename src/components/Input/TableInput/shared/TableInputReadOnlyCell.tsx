@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {getColor} from '../../../../theme';
+import {getColor} from '../../../../theme/theme';
 
 const TableInputReadOnlyCell = styled.div`
   white-space: nowrap;

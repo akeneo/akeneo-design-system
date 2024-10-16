@@ -2,10 +2,10 @@ import React from 'react';
 import {TableInputRow} from '../TableInputRow/TableInputRow';
 import styled from 'styled-components';
 import {TextInput, TextInputProps} from '../../TextInput/TextInput';
-import {AkeneoThemedProps, getColor} from '../../../../theme';
+import {AkeneoThemedProps, getColor} from '../../../../theme/theme';
 import {TableInputContext} from '../TableInputContext';
 import {TableInputReadOnlyCell} from '../shared/TableInputReadOnlyCell';
-import {Override} from '../../../../shared';
+import {Override} from '../../../../shared/override';
 import {highlightCell} from '../shared/highlightCell';
 
 const EditableTableInputText = styled(TextInput)<{highlighted?: boolean; inError?: boolean} & AkeneoThemedProps>`

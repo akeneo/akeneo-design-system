@@ -11,6 +11,7 @@ const CardIcon = ({title, size = 24, color = 'currentColor', ...props}: IconProp
       fillRule="evenodd"
       strokeLinecap="round"
       strokeLinejoin="round"
+      shapeRendering="crispEdges"
     />
   </svg>
 );

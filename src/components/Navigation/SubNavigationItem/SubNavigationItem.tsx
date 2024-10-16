@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Override} from '../../../shared';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme';
+import {Override} from '../../../shared/override';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme/theme';
 import {Tag} from '../../Tags/Tags';
 
 const Container = styled.a<{active?: boolean; disabled?: boolean} & AkeneoThemedProps>`

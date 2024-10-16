@@ -1,9 +1,9 @@
 import React, {Children, cloneElement, forwardRef, HTMLAttributes, isValidElement, ReactNode, Ref} from 'react';
-import {Override} from '../../shared';
-import {ArrowDownIcon} from '../../icons';
+import {Override} from '../../shared/override';
+import {ArrowDownIcon} from '../../icons/ArrowDownIcon';
 import {Button, ButtonProps} from '../Button/Button';
 import {Dropdown} from '../Dropdown/Dropdown';
-import {useBooleanState} from '../../hooks';
+import {useBooleanState} from '../../hooks/useBooleanState';
 import styled from 'styled-components';
 
 type SplitButtonProps = Omit<

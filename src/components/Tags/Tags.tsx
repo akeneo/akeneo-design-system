@@ -1,6 +1,6 @@
 import React, {Ref, ReactNode, isValidElement} from 'react';
 import styled from 'styled-components';
-import {AkeneoThemedProps, getColorAlternative, getFontSize} from '../../theme';
+import {AkeneoThemedProps, getColorAlternative, getFontSize} from '../../theme/theme';
 
 /**
  * The colors defined in this file are the alternative ones

@@ -12,12 +12,13 @@ import React, {
   KeyboardEvent,
 } from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../theme';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
 import {Dropdown} from '../Dropdown/Dropdown';
 import {IconButton} from '../IconButton/IconButton';
-import {MoreIcon} from '../../icons';
-import {useBooleanState} from '../../hooks';
-import {Key, Override} from '../../shared';
+import {MoreIcon} from '../../icons/MoreIcon';
+import {useBooleanState} from '../../hooks/useBooleanState';
+import {Key} from '../../shared/key';
+import {Override} from '../../shared/override';
 
 const Container = styled.div<{sticky?: number} & AkeneoThemedProps>`
   display: flex;

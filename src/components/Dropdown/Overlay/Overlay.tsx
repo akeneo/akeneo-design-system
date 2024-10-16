@@ -1,16 +1,14 @@
 import React, {ReactNode, useRef, useState, useEffect, RefObject} from 'react';
 import {createPortal} from 'react-dom';
 import styled, {css} from 'styled-components';
-import {Key, Override} from '../../../shared';
-import {
-  HorizontalPosition,
-  useHorizontalPosition,
-  useShortcut,
-  useVerticalPosition,
-  useWindowResize,
-  VerticalPosition,
-} from '../../../hooks';
-import {AkeneoThemedProps, CommonStyle, getColor} from '../../../theme';
+import {Override} from '../../../shared/override';
+import {Key} from '../../../shared/key';
+import {useHorizontalPosition, HorizontalPosition} from '../../../hooks/usePosition';
+import {useShortcut} from '../../../hooks/useShortcut';
+import {useVerticalPosition, VerticalPosition} from '../../../hooks/usePosition';
+import {useWindowResize} from '../../../hooks/useWindowResize';
+import {AkeneoThemedProps, getColor} from '../../../theme/theme';
+import {CommonStyle} from '../../../theme/common';
 
 const BORDER_SHADOW_OFFSET = 2;
 

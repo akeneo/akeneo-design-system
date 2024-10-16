@@ -1,5 +1,5 @@
-import {useId} from './index';
 import {DragEvent} from 'react';
+import {useId} from './useId';
 
 /**
  * Recursively find the draggable parent not to know which element got dropped on.

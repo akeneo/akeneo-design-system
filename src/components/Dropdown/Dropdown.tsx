@@ -5,9 +5,9 @@ import {Item} from './Item/Item';
 import {ItemCollection} from './ItemCollection/ItemCollection';
 import {Header} from './Header/Header';
 import {Title} from './Header/Title';
-import {getColor} from '../../theme';
+import {getColor} from '../../theme/theme';
 import {Surtitle} from './Surtitle/Surtitle';
-import {Override} from '../../shared';
+import {Override} from '../../shared/override';
 
 const Section = styled.div`
   background: ${getColor('white')};

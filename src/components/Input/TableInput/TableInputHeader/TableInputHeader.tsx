@@ -1,6 +1,6 @@
 import React, {Children, ReactNode, Ref, useContext} from 'react';
 import styled from 'styled-components';
-import {getColor} from '../../../../theme';
+import {getColor} from '../../../../theme/theme';
 import {TableInputContext} from '../TableInputContext';
 import {TableInputHeaderCellProps} from '../TableInputHeaderCell/TableInputHeaderCell';
 

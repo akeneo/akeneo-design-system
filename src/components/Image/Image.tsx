@@ -1,8 +1,8 @@
 import React, {Ref} from 'react';
 import styled, {css} from 'styled-components';
-import {getColor, placeholderStyle} from '../../theme';
-import {AkeneoThemedProps} from '../../theme';
-import {Override} from '../../shared';
+import {getColor, AkeneoThemedProps} from '../../theme/theme';
+import {placeholderStyle} from '../../theme/common';
+import {Override} from '../../shared/override';
 
 const EMPTY_IMAGE = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"/>';
 

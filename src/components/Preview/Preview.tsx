@@ -9,10 +9,11 @@ import React, {
   useEffect,
 } from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../theme';
-import {Override} from '../../shared';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
+import {Override} from '../../shared/override';
 import {IconButton, IconButtonProps} from '../IconButton/IconButton';
-import {ArrowDownIcon, ArrowUpIcon} from '../../icons';
+import {ArrowDownIcon} from '../../icons/ArrowDownIcon';
+import {ArrowUpIcon} from '../../icons/ArrowUpIcon';
 
 const ANIMATION_DURATION = 100;
 

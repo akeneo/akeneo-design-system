@@ -27,7 +27,7 @@
     "react/prop-types": "off",
     "comma-spacing": "off"
   },
-  "ignorePatterns": ["src/illustrations/**", "src/icons/**", "**/*.unit.tsx"],
+  "ignorePatterns": ["src/illustrations/**", "src/icons/**", "**/*.unit.tsx", "**/*.unit.ts"],
   "settings": {
     "react": {
       "version": "detect"

@@ -1,6 +1,6 @@
 import React from 'react';
 import {IllustrationProps} from './IllustrationProps';
-import {useTheme} from '../hooks';
+import {useTheme} from '../hooks/useTheme';
 import Proposals from '../../static/illustrations/Proposals.svg';
 
 const ProposalsIllustration = ({title, size = 256, ...props}: IllustrationProps) => (

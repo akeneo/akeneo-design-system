@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components';
 import React, {ReactNode} from 'react';
-import {AkeneoThemedProps, getColor} from '../../../../theme';
-import {Override} from '../../../../shared';
+import {AkeneoThemedProps, getColor} from '../../../../theme/theme';
+import {Override} from '../../../../shared/override';
 import {highlightCell} from '../shared/highlightCell';
 
 const TableInputCellContainer = styled.div<
@@ -25,7 +25,7 @@ const TableInputCellContainer = styled.div<
 `;
 
 type TableInputCellContentProps = Override<
-  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+  Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, 'ref'>,
   {
     rowTitle?: boolean;
     highlighted?: boolean;

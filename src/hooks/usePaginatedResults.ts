@@ -1,4 +1,5 @@
-import {useBooleanState, useIsMounted} from '.';
+import {useBooleanState} from './useBooleanState';
+import {useIsMounted} from './useIsMounted';
 import {DependencyList, useEffect, useState} from 'react';
 
 const usePaginatedResults = <Type>(

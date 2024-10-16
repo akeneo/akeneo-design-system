@@ -1,15 +1,18 @@
 import React, {ReactNode, Ref, useCallback} from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, CommonStyle, getColor} from '../../../theme';
-import {DangerIcon, EraseIcon, LockIcon} from '../../../icons';
+import {AkeneoThemedProps, getColor} from '../../../theme/theme';
+import {CommonStyle} from '../../../theme/common';
+import {DangerIcon} from '../../../icons/DangerIcon';
+import {EraseIcon} from '../../../icons/EraseIcon';
+import {LockIcon} from '../../../icons/LockIcon';
 import {InputProps} from '../common';
-import {Override} from '../../../shared';
+import {Override} from '../../../shared/override';
 
 const BooleanInputContainer = styled.div``;
 
 const BooleanButton = styled.button<
   {
-    value: boolean | null;
+    $value: boolean | null;
     readOnly?: boolean;
     invalid?: boolean;
     size: 'normal' | 'small';
@@ -51,8 +54,8 @@ const NoButton = styled(BooleanButton)`
   border-radius: 2px 0 0 2px;
   border-right-width: 1px;
 
-  ${({value, readOnly, invalid}) =>
-    value === false &&
+  ${({$value, readOnly, invalid}) =>
+    $value === false &&
     css`
       background: ${getColor('grey', readOnly ? 80 : 100)};
       border-color: ${invalid ? getColor('red', 100) : getColor('grey', readOnly ? 80 : 100)};
@@ -71,8 +74,8 @@ const YesButton = styled(BooleanButton)`
   border-radius: 0 2px 2px 0;
   border-left-width: 0;
 
-  ${({value, readOnly, invalid}) =>
-    value === true &&
+  ${({$value, readOnly, invalid}) =>
+    $value === true &&
     css`
       background: ${getColor('blue', readOnly ? 60 : 100)};
       border-color: ${invalid ? getColor('red', 100) : getColor('grey', readOnly ? 60 : 100)};
@@ -196,7 +199,7 @@ const BooleanInput = React.forwardRef<HTMLDivElement, BooleanInputProps>(
         {...rest}
       >
         <NoButton
-          value={value}
+          $value={value}
           readOnly={readOnly}
           aria-readonly={readOnly}
           disabled={readOnly}
@@ -212,7 +215,7 @@ const BooleanInput = React.forwardRef<HTMLDivElement, BooleanInputProps>(
         </NoButton>
 
         <YesButton
-          value={value}
+          $value={value}
           readOnly={readOnly}
           aria-readonly={readOnly}
           disabled={readOnly}

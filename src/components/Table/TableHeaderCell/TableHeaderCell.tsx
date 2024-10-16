@@ -1,7 +1,8 @@
 import React, {ReactNode, Ref} from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor} from '../../../theme';
-import {ArrowDownIcon, ArrowUpIcon} from '../../../icons';
+import {AkeneoThemedProps, getColor} from '../../../theme/theme';
+import {ArrowDownIcon} from '../../../icons/ArrowDownIcon';
+import {ArrowUpIcon} from '../../../icons/ArrowUpIcon';
 
 type TableSortDirection = 'descending' | 'ascending' | 'none';
 

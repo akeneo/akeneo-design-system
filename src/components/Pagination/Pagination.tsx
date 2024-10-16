@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor} from '../../theme';
+import {AkeneoThemedProps, getColor} from '../../theme/theme';
 import {PAGINATION_SEPARATOR, PaginationItem} from './PaginationItem';
 
 type PaginationProps = {

@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import {IconProps} from '../../../icons';
-import {Override} from '../../../shared';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme';
+import {Override} from '../../../shared/override';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme/theme';
 import {Tag} from '../../Tags/Tags';
 
-const Link = styled.a<{active: boolean; disabled: boolean} & AkeneoThemedProps>`
+const Link = styled.a<{$active: boolean; $disabled: boolean} & AkeneoThemedProps>`
   align-items: center;
   box-sizing: border-box;
-  cursor: ${({disabled}) => (disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${({$disabled}) => ($disabled ? 'not-allowed' : 'pointer')};
   display: flex;
   flex-direction: column;
   font-size: ${getFontSize('small')};
@@ -23,29 +23,29 @@ const Link = styled.a<{active: boolean; disabled: boolean} & AkeneoThemedProps>`
   width: 80px;
 
   border-left: 4px solid
-    ${({active, disabled}) => {
-      return !disabled && active ? getColor('brand', 100) : 'transparent';
+    ${({$active, $disabled}) => {
+      return !$disabled && $active ? getColor('brand', 100) : 'transparent';
     }};
 
-  color: ${({active, disabled}) => {
-    return disabled ? getColor('grey', 100) : active ? getColor('brand', 100) : getColor('grey', 120);
+  color: ${({$active, $disabled}) => {
+    return $disabled ? getColor('grey', 100) : $active ? getColor('brand', 100) : getColor('grey', 120);
   }};
 
   svg {
-    color: ${({active, disabled}) => {
-      return disabled ? getColor('grey', 80) : active ? getColor('brand', 100) : getColor('grey', 100);
+    color: ${({$active, $disabled}) => {
+      return $disabled ? getColor('grey', 80) : $active ? getColor('brand', 100) : getColor('grey', 100);
     }};
   }
 
-  :hover {
-    border-color: ${({disabled}) => !disabled && getColor('brand', 100)};
-    color: ${({disabled}) => !disabled && getColor('brand', 100)};
+  &:hover {
+    border-color: ${({$disabled}) => !$disabled && getColor('brand', 100)};
+    color: ${({$disabled}) => !$disabled && getColor('brand', 100)};
     svg {
-      color: ${({disabled}) => !disabled && getColor('brand', 100)};
+      color: ${({$disabled}) => !$disabled && getColor('brand', 100)};
     }
   }
 
-  :focus:not(:active) {
+  &:focus:not(:active) {
     box-shadow: 0 0 0 2px ${getColor('blue', 40)};
     outline: none;
   }
@@ -127,8 +127,8 @@ const MainNavigationItem = React.forwardRef<HTMLAnchorElement, MainNavigationIte
       <Link
         ref={forwardedRef}
         href={disabled ? undefined : href}
-        active={active}
-        disabled={disabled}
+        $active={active}
+        $disabled={disabled}
         aria-disabled={disabled}
         onClick={handleClick}
         {...rest}

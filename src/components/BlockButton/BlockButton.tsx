@@ -10,8 +10,8 @@ import React, {
   SyntheticEvent,
 } from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../theme';
-import {Override} from '../../shared';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
+import {Override} from '../../shared/override';
 import {IconProps} from '../../icons';
 
 type BlockButtonProps = Override<

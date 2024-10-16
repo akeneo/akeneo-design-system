@@ -1,8 +1,12 @@
 import React, {ReactNode, ReactElement, useEffect, useState, useCallback, useRef} from 'react';
 import styled, {keyframes} from 'styled-components';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../theme';
-import {CheckIcon, CloseIcon, DangerIcon, IconProps, InfoIcon} from '../../icons';
-import {useAutoFocus} from '../../hooks';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
+import {CheckIcon} from '../../icons/CheckIcon';
+import {CloseIcon} from '../../icons/CloseIcon';
+import {DangerIcon} from '../../icons/DangerIcon';
+import {IconProps} from '../../icons/IconProps';
+import {InfoIcon} from '../../icons/InfoIcon';
+import {useAutoFocus} from '../../hooks/useAutoFocus';
 
 type MessageBarLevel = 'info' | 'success' | 'warning' | 'error';
 
@@ -11,11 +15,11 @@ const IconContainer = styled.div`
   display: inline-flex;
 `;
 
-const Progress = styled.svg.attrs<{ratio: number; level: MessageBarLevel}>(
-  ({ratio}: {ratio: number; level: MessageBarLevel}) => ({
-    style: {strokeDashoffset: `calc(100% * ${Math.PI * ratio - Math.PI})`},
+const Progress = styled.svg.attrs<{$ratio: number; $level: MessageBarLevel}>(
+  ({$ratio}: {$ratio: number; $level: MessageBarLevel}) => ({
+    style: {strokeDashoffset: `calc(100% * ${Math.PI * $ratio - Math.PI})`},
   })
-)<{ratio: number; level: MessageBarLevel} & AkeneoThemedProps>`
+)<{$ratio: number; $level: MessageBarLevel} & AkeneoThemedProps>`
   position: absolute;
   overflow: visible;
   top: -10%;
@@ -25,7 +29,7 @@ const Progress = styled.svg.attrs<{ratio: number; level: MessageBarLevel}>(
 
   circle {
     fill: transparent;
-    stroke: ${({level}) => getLevelColor(level)};
+    stroke: ${({$level}) => getLevelColor($level)};
     stroke-linecap: round;
     stroke-width: 5%;
     stroke-dasharray: calc(100% * ${Math.PI});
@@ -58,7 +62,7 @@ const Timer = styled.div`
 
 const Icon = styled(CloseIcon)``;
 
-const CloseButton = styled.button<{showIcon: boolean} & AkeneoThemedProps>`
+const CloseButton = styled.button<{$showIcon: boolean} & AkeneoThemedProps>`
   position: relative;
   width: 24px;
   height: 24px;
@@ -79,7 +83,7 @@ const CloseButton = styled.button<{showIcon: boolean} & AkeneoThemedProps>`
   }
 
   ${Icon} {
-    opacity: ${({showIcon}) => (showIcon ? 1 : 0)};
+    opacity: ${({$showIcon}) => ($showIcon ? 1 : 0)};
   }
 
   :hover {
@@ -118,8 +122,8 @@ const MessageBarDisplayAnimation = keyframes`
 `;
 
 const ANIMATION_DURATION = 1000;
-const AnimateContainer = styled.div<{unmounting: boolean}>`
-  animation: ${({unmounting}) => (unmounting ? MessageBarHideAnimation : MessageBarDisplayAnimation)}
+const AnimateContainer = styled.div<{$unmounting: boolean}>`
+  animation: ${({$unmounting}) => ($unmounting ? MessageBarHideAnimation : MessageBarDisplayAnimation)}
     ${ANIMATION_DURATION}ms forwards;
   max-height: 150px;
 `;
@@ -139,10 +143,10 @@ const AnimateMessageBar = ({children}: {children: ReactElement<MessageBarProps>}
     }, ANIMATION_DURATION);
   };
 
-  return <AnimateContainer unmounting={unmounting}>{React.cloneElement(children, {onClose})}</AnimateContainer>;
+  return <AnimateContainer $unmounting={unmounting}>{React.cloneElement(children, {onClose})}</AnimateContainer>;
 };
 
-const Container = styled.div<{level: MessageBarLevel} & AkeneoThemedProps>`
+const Container = styled.div<{$level: MessageBarLevel} & AkeneoThemedProps>`
   display: flex;
   align-items: center;
   min-width: 400px;
@@ -152,11 +156,11 @@ const Container = styled.div<{level: MessageBarLevel} & AkeneoThemedProps>`
   background-color: ${getColor('white')};
 
   ${Title}, ${IconContainer} {
-    color: ${({level}) => getLevelColor(level)};
+    color: ${({$level}) => getLevelColor($level)};
   }
 
   ${Content} {
-    border-color: ${({level}) => getLevelColor(level)};
+    border-color: ${({$level}) => getLevelColor($level)};
   }
 `;
 
@@ -291,7 +295,7 @@ const MessageBar = ({level = 'info', title, icon, dismissTitle, onClose, childre
       ref={ref}
       tabIndex={-1}
       role={'error' === level ? 'alert' : 'status'}
-      level={level}
+      $level={level}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >
@@ -300,10 +304,10 @@ const MessageBar = ({level = 'info', title, icon, dismissTitle, onClose, childre
         <Title>{title}</Title>
         {children}
       </Content>
-      <CloseButton onClick={onClose} showIcon={countDownFinished} title={dismissTitle}>
+      <CloseButton onClick={onClose} $showIcon={countDownFinished} title={dismissTitle}>
         <Timer aria-hidden="true">
           {remainingDisplay}
-          <Progress ratio={Math.max(0, remaining / duration)} level={level}>
+          <Progress $ratio={Math.max(0, remaining / duration)} $level={level}>
             <circle r="50%" cx="50%" cy="50%" />
           </Progress>
         </Timer>

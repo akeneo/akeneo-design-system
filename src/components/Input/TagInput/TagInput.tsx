@@ -1,9 +1,12 @@
 import React, {ChangeEvent, FC, KeyboardEvent, MouseEvent, useCallback, useRef, useState} from 'react';
 import styled from 'styled-components';
-import {AkeneoThemedProps, getColor, getFontFamily} from '../../../theme';
-import {CloseIcon, LockIcon} from '../../../icons';
-import {arrayUnique, Key, Override} from '../../../shared';
-import {InputProps} from '../common';
+import {AkeneoThemedProps, getColor, getFontFamily} from '../../../theme/theme';
+import {CloseIcon} from '../../../icons/CloseIcon';
+import {LockIcon} from '../../../icons/LockIcon';
+import {arrayUnique} from '../../../shared/array';
+import {Key} from '../../../shared/key';
+import {Override} from '../../../shared/override';
+import {InputProps} from '../common/InputProps';
 
 const RemoveTagIcon = styled(CloseIcon)<AkeneoThemedProps & {$isErrored: boolean}>`
   min-width: 12px;
@@ -266,6 +269,7 @@ const TagInput: FC<TagInputProps> = ({
           onBlurCapture={onBlurCreateTag}
           aria-invalid={invalid}
           readOnly={readOnly}
+          disabled={readOnly}
           {...inputProps}
         />
         {readOnly && <ReadOnlyIcon size={16} />}

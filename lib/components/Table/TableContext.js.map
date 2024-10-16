@@ -1,1 +1,0 @@
-{"version":3,"file":"TableContext.js","sourceRoot":"","sources":["../../../src/components/Table/TableContext.ts"],"names":[],"mappings":";;;AAAA,+BAAoC;AAWpC,IAAM,YAAY,GAAG,IAAA,qBAAa,EAAmB;IACnD,YAAY,EAAE,KAAK;IACnB,cAAc,EAAE,KAAK;IACrB,aAAa,EAAE,KAAK;IACpB,eAAe,EAAE,KAAK;IACtB,kBAAkB,EAAE,KAAK;IACzB,SAAS,EAAE,SAAS;CACrB,CAAC,CAAC;AAEK,oCAAY"}

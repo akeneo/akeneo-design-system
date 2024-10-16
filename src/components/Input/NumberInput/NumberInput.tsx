@@ -1,10 +1,13 @@
 import React, {ChangeEvent, useCallback, useRef} from 'react';
 import styled, {css} from 'styled-components';
 import {InputProps} from '../common/InputProps';
-import {ArrowDownIcon, ArrowUpIcon, LockIcon} from '../../../icons';
-import {Key, Override} from '../../../shared';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme';
-import {useShortcut} from '../../../hooks';
+import {ArrowDownIcon} from '../../../icons/ArrowDownIcon';
+import {ArrowUpIcon} from '../../../icons/ArrowUpIcon';
+import {LockIcon} from '../../../icons/LockIcon';
+import {Override} from '../../../shared/override';
+import {Key} from '../../../shared/key';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme/theme';
+import {useShortcut} from '../../../hooks/useShortcut';
 
 const NumberInputContainer = styled.div`
   position: relative;

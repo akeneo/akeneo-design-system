@@ -1,7 +1,11 @@
 import React, {Ref, ReactElement, ReactNode} from 'react';
 import styled from 'styled-components';
-import {Helper, HelperProps, InputProps, Locale, LocaleProps, Pill, Block, BlockProps} from '../../components';
-import {useId} from '../../hooks';
+import {Helper, HelperProps} from '../Helper/Helper';
+import {InputProps} from '../Input/common/InputProps';
+import {Locale, LocaleProps} from '../Locale/Locale';
+import {Pill} from '../Pill/Pill';
+import {Block, BlockProps} from '../Block/Block';
+import {useId} from '../../hooks/useId';
 
 const FieldContainer = styled.div<{fullWidth: boolean}>`
   display: flex;

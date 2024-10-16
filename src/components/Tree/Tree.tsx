@@ -1,8 +1,14 @@
 import React, {SyntheticEvent, isValidElement, ReactElement, ReactNode, PropsWithChildren} from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, CommonStyle, getColor} from '../../theme';
+import {AkeneoThemedProps, getColor} from '../../theme/theme';
+import {CommonStyle} from '../../theme/common';
 import {Checkbox, CheckboxChecked} from '../Checkbox/Checkbox';
-import {ArrowRightIcon, FolderIcon, FolderPlainIcon, FoldersIcon, FoldersPlainIcon, LoaderIcon} from '../../icons';
+import {ArrowRightIcon} from '../../icons/ArrowRightIcon';
+import {FolderIcon} from '../../icons/FolderIcon';
+import {FolderPlainIcon} from '../../icons/FolderPlainIcon';
+import {FoldersIcon} from '../../icons/FoldersIcon';
+import {FoldersPlainIcon} from '../../icons/FoldersPlainIcon';
+import {LoaderIcon} from '../../icons/LoaderIcon';
 
 const folderIconCss = css`
   vertical-align: middle;
@@ -133,7 +139,7 @@ type TreeProps<T = string> = {
   value: T;
   label: string;
   isLeaf?: boolean;
-  selected?: CheckboxChecked;
+  selected?: boolean;
   isLoading?: boolean;
   selectable?: boolean;
   readOnly?: boolean;
@@ -171,18 +177,7 @@ const Tree = <T,>({
     subTrees.push(child);
   });
 
-  if (subTrees.length > 0 && selectable) {
-    const selectedChildren = subTrees.filter(
-      (subTree: React.ReactElement<TreeProps<T>>) => subTree.props.selected === true
-    );
-    if (selectedChildren.length === subTrees.length) {
-      selected = true;
-    } else if (selectedChildren.length > 0) {
-      selected = 'mixed';
-    }
-  }
-
-  const [isOpen, setOpen] = React.useState<boolean>(_isRoot || defaultOpen ? subTrees.length > 0 : false);
+  const [isOpen, setOpen] = React.useState<boolean>(subTrees.length > 0);
 
   const handleOpen = React.useCallback(() => {
     setOpen(true);
@@ -234,7 +229,7 @@ const Tree = <T,>({
         {selectable && <NodeCheckbox checked={selected} onChange={handleSelect} readOnly={readOnly} />}
 
         <LabelWithFolder onClick={handleClick} $selected={selected} title={label} aria-selected={Boolean(selected)}>
-          <TreeIcon isLoading={isLoading} isLeaf={isLeaf} selected={selected === true || selected === 'mixed'} />
+          <TreeIcon isLoading={isLoading} isLeaf={isLeaf} selected={selected} />
           {label}
         </LabelWithFolder>
       </TreeLine>

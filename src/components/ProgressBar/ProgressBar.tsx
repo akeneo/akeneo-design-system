@@ -1,7 +1,7 @@
 import React, {forwardRef, HTMLAttributes, Ref} from 'react';
 import styled, {css, keyframes} from 'styled-components';
-import {AkeneoThemedProps, getColor, getColorForLevel, getFontSize, Level} from '../../theme';
-import {useId} from '../../hooks';
+import {AkeneoThemedProps, getColor, getColorForLevel, getFontSize, Level} from '../../theme/theme';
+import {useId} from '../../hooks/useId';
 
 const ProgressBarContainer = styled.div`
   overflow: hidden;
@@ -42,7 +42,7 @@ const ProgressBarFill = styled.div.attrs<{width: number; level: Level; indetermi
   props => ({
     style: {width: `${props.width}%`},
   })
-)<{level: Level; light: boolean; indeterminate: boolean} & AkeneoThemedProps>`
+)<{width: number; level: Level; light: boolean; indeterminate: boolean} & AkeneoThemedProps>`
   ${({level, light}: {level: Level; light: boolean} & AkeneoThemedProps) => css`
     background: ${getColorForLevel(level, light ? 60 : 100)};
   `}

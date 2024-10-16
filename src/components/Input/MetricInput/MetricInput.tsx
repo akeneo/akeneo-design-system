@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import {NumberInput} from '../NumberInput/NumberInput';
 import {SelectInput} from '../SelectInput/SelectInput';
 import styled from 'styled-components';
-import {getColor} from '../../../theme';
+import {getColor} from '../../../theme/theme';
 
 const MetricInputContainer = styled.div`
   display: flex;

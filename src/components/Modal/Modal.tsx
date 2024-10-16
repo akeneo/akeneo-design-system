@@ -1,12 +1,14 @@
 import React, {ReactElement, ReactNode, SyntheticEvent, useEffect, useRef} from 'react';
 import {createPortal} from 'react-dom';
 import styled from 'styled-components';
-import {AkeneoThemedProps, CommonStyle, getColor, getFontSize} from '../../theme';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
+import {CommonStyle} from '../../theme/common';
 import {IconButton} from '../IconButton/IconButton';
-import {CloseIcon} from '../../icons';
+import {CloseIcon} from '../../icons/CloseIcon';
 import {IllustrationProps} from '../../illustrations/IllustrationProps';
-import {useShortcut} from '../../hooks';
-import {Key, Override} from '../../shared';
+import {useShortcut} from '../../hooks/useShortcut';
+import {Key} from '../../shared/key';
+import {Override} from '../../shared/override';
 import {ModalContext, useInModal} from './ModalContext';
 
 const ModalContainer = styled.div`

@@ -1,6 +1,6 @@
 import React, {HTMLAttributes, Ref} from 'react';
 import styled from 'styled-components';
-import {AkeneoThemedProps, getColorForLevel} from '../../theme';
+import {AkeneoThemedProps, getColorForLevel} from '../../theme/theme';
 
 const PillContainer = styled.div<{level: PillLevel} & AkeneoThemedProps>`
   width: 10px;

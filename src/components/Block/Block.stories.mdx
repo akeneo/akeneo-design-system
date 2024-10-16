@@ -4,6 +4,7 @@ import {action} from '@storybook/addon-actions';
 import {Block} from './Block';
 import {IconButton} from '../IconButton/IconButton';
 import {CloseIcon, ArrowDownIcon, MoreIcon} from '../../icons';
+import {Link} from "../Link/Link";
 
 <Meta
   title="Components/Block"
@@ -64,6 +65,27 @@ Use this playground to test the block component
         <>
           <Block
             {...args} title="Block with actions" isOpen={isOpen} onCollapse={setOpen} collapseButtonLabel="Collapse"
+            actions={<>
+              <IconButton level="danger" ghost size="small" key="remove" icon={<CloseIcon />} title='Remove' onClick={action('Remove block')} />
+            </>}
+          />
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+
+## With Rich Title
+
+<Canvas>
+  <Story name="With Rich Title">
+    {args => {
+      const [isOpen, setOpen] = useState(false);
+      return (
+        <>
+          <Block
+              {...args} title={<>A Block with a <Link><b>rich</b> title</Link></>}isOpen={isOpen} onCollapse={setOpen} collapseButtonLabel="Collapse"
             actions={<>
               <IconButton level="danger" ghost size="small" key="remove" icon={<CloseIcon />} title='Remove' onClick={action('Remove block')} />
             </>}

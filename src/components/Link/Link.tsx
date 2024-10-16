@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
 import React, {ReactNode, Ref} from 'react';
-import {AkeneoThemedProps, getColor} from '../../theme';
+import {AkeneoThemedProps, getColor} from '../../theme/theme';
 
 const LinkContainer = styled.a<{disabled: boolean; decorated: boolean} & AkeneoThemedProps>`
   ${({decorated, disabled}) =>

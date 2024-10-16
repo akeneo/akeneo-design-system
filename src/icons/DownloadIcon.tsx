@@ -28,9 +28,9 @@ const animatedMixin = css`
   }
 `;
 
-const Container = styled.svg<{animateOnHover: boolean}>`
+const Container = styled.svg<{$animateOnHover: boolean}>`
   :hover {
-    ${({animateOnHover}) => animateOnHover && animatedMixin}
+    ${({$animateOnHover}) => $animateOnHover && animatedMixin}
   }
 `;
 
@@ -40,7 +40,7 @@ const DownloadIcon = ({title, size = 24, color = 'currentColor', animateOnHover 
     xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size}
-    animateOnHover={animateOnHover}
+    $animateOnHover={animateOnHover}
     {...props}
   >
     {title && <title>{title}</title>}

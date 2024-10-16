@@ -98,3 +98,10 @@ test('it renders children with icon', () => {
   expect(screen.getByText('Icon')).toBeInTheDocument();
   expect(screen.getByTestId('children-icon')).toBeInTheDocument();
 });
+
+test('it supports title as React Node', () => {
+  render(<Block title={<div data-testid="title-react-node">I am a block</div>} />);
+
+  expect(screen.getByText('I am a block')).toBeInTheDocument();
+  expect(screen.queryByTestId('title-react-node')).toBeInTheDocument();
+});

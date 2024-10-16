@@ -14,9 +14,7 @@ test('it renders its children properly', () => {
       placeholder="Placeholder"
       emptyResultLabel="Empty result"
     >
-      <SelectInput.Option value="en_US" title="English (United States)">
-        <Locale code="en_US" languageLabel="English" />
-      </SelectInput.Option>
+      <SelectInput.OptionGroup title="Europe">Europe</SelectInput.OptionGroup>
       <SelectInput.Option value="fr_FR" title="French (France)">
         <Locale code="fr_FR" languageLabel="French" />
       </SelectInput.Option>
@@ -26,6 +24,10 @@ test('it renders its children properly', () => {
       <SelectInput.Option value="es_ES" title="Spanish (Spain)">
         <Locale code="es_ES" languageLabel="Spanish" />
       </SelectInput.Option>
+      <SelectInput.OptionGroup title="America">America</SelectInput.OptionGroup>
+      <SelectInput.Option value="en_US" title="English (United States)">
+        <Locale code="en_US" languageLabel="English" />
+      </SelectInput.Option>
     </SelectInput>
   );
 
@@ -33,6 +35,8 @@ test('it renders its children properly', () => {
   fireEvent.click(input);
 
   expect(screen.queryByText('German')).toBeInTheDocument();
+
+  expect(screen.getByTitle('Europe')).toBeInTheDocument();
 
   fireEvent.click(screen.getByTestId('backdrop'));
   expect(screen.queryByText('German')).not.toBeInTheDocument();
@@ -56,28 +60,30 @@ test('it handles search', () => {
       placeholder="Placeholder"
       emptyResultLabel="Empty result"
     >
-      <SelectInput.Option value="en_US" title="English (United States)">
-        <Locale code="en_US" languageLabel="English" />
-      </SelectInput.Option>
+      <SelectInput.OptionGroup title="Europe">Europe</SelectInput.OptionGroup>
       <SelectInput.Option value="fr_FR" title="French (France)">
-        Français
+        <Locale code="fr_FR" languageLabel="French" />
       </SelectInput.Option>
-      <SelectInput.Option value="de_DE">
+      <SelectInput.Option value="de_DE" title="German (Germany)">
         <Locale code="de_DE" languageLabel="German" />
       </SelectInput.Option>
       <SelectInput.Option value="es_ES" title="Spanish (Spain)">
         <Locale code="es_ES" languageLabel="Spanish" />
+      </SelectInput.Option>
+      <SelectInput.OptionGroup title="America">America</SelectInput.OptionGroup>
+      <SelectInput.Option value="en_US" title="English (United States)">
+        <Locale code="en_US" languageLabel="English" />
       </SelectInput.Option>
     </SelectInput>
   );
 
   const input = screen.getByRole('textbox');
   fireEvent.click(input);
-  fireEvent.change(input, {target: {value: 'Français'}});
+  fireEvent.change(input, {target: {value: 'French'}});
 
   const germanOption = screen.queryByText('German');
   expect(germanOption).not.toBeInTheDocument();
-  const frenchOption = screen.getByText('Français');
+  const frenchOption = screen.getByText('French');
   expect(frenchOption).toBeInTheDocument();
   fireEvent.keyDown(input, {key: 'ArrowDown', code: 'ArrowDown'});
   expect(screen.getByTestId('fr_FR')).toHaveFocus();

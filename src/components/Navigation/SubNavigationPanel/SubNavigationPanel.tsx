@@ -1,7 +1,8 @@
 import React, {ForwardRefExoticComponent, PropsWithoutRef, RefAttributes, useLayoutEffect} from 'react';
 import styled from 'styled-components';
-import {PanelCloseIcon, PanelOpenIcon} from '../../../icons';
-import {AkeneoThemedProps, getColor} from '../../../theme';
+import {PanelCloseIcon} from '../../../icons/PanelCloseIcon';
+import {PanelOpenIcon} from '../../../icons/PanelOpenIcon';
+import {AkeneoThemedProps, getColor} from '../../../theme/theme';
 
 const Container = styled.div<{isOpen: boolean} & AkeneoThemedProps>`
   background-color: ${getColor('grey', 20)};

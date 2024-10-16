@@ -2,7 +2,7 @@ import React from 'react';
 import {NumberInput} from '../../NumberInput/NumberInput';
 import styled from 'styled-components';
 import {SelectInput} from '../../SelectInput/SelectInput';
-import {AkeneoThemedProps, getColor} from '../../../../theme';
+import {AkeneoThemedProps, getColor} from '../../../../theme/theme';
 import {TableInputContext} from '../TableInputContext';
 import {TableInputReadOnlyCell} from '../shared/TableInputReadOnlyCell';
 import {highlightCell} from '../shared/highlightCell';

@@ -1,9 +1,12 @@
 import React, {ReactNode, Ref, SyntheticEvent} from 'react';
 import styled, {css, keyframes} from 'styled-components';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../theme';
-import {CheckIcon, CheckPartialIcon} from '../../icons';
-import {useId, useShortcut} from '../../hooks';
-import {Key, Override} from '../../shared';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
+import {CheckIcon} from '../../icons/CheckIcon';
+import {CheckPartialIcon} from '../../icons/CheckPartialIcon';
+import {useId} from '../../hooks/useId';
+import {useShortcut} from '../../hooks/useShortcut';
+import {Key} from '../../shared/key';
+import {Override} from '../../shared/override';
 
 const checkTick = keyframes`
   to {

@@ -1,8 +1,8 @@
 import React, {ChangeEvent, HTMLAttributes, ReactNode, RefObject} from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor} from '../../theme';
-import {SearchIcon} from '../../icons';
-import {Override} from '../../shared';
+import {AkeneoThemedProps, getColor} from '../../theme/theme';
+import {SearchIcon} from '../../icons/SearchIcon';
+import {Override} from '../../shared/override';
 
 const Container = styled.div<{sticky?: number} & AkeneoThemedProps>`
   display: flex;

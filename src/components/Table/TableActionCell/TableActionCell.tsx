@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import React, {ReactNode, Ref, SyntheticEvent} from 'react';
-import {Button, ButtonProps, IconButton} from '../../';
-import {getColor} from '../../../theme';
-import {Override} from '../../../shared';
+import {Button, ButtonProps} from '../../Button/Button';
+import {IconButton} from '../../IconButton/IconButton';
+import {getColor} from '../../../theme/theme';
+import {Override} from '../../../shared/override';
 
 const TableActionCellContainer = styled.td`
   color: ${getColor('grey', 140)};

@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {arrayUnique} from '../shared';
+import {arrayUnique} from '../shared/array';
 
 const useProgress = (steps: string[]) => {
   if (0 === steps.length) {

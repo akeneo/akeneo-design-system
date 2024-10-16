@@ -1,7 +1,7 @@
 import React, {Children, useMemo} from 'react';
 import styled from 'styled-components';
-import {Override} from '../../shared';
-import {AkeneoThemedProps, getColor} from '../../theme';
+import {Override} from '../../shared/override';
+import {AkeneoThemedProps, getColor} from '../../theme/theme';
 import {AvatarProps} from './types';
 
 const AvatarListContainer = styled.div<Partial<AvatarsProps> & AkeneoThemedProps>`

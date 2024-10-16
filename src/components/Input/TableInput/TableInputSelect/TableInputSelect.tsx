@@ -1,11 +1,12 @@
 import React, {MouseEvent, ReactElement, ReactNode} from 'react';
 import {Dropdown} from '../../../Dropdown/Dropdown';
-import {useBooleanState} from '../../../../hooks';
-import {ArrowDownIcon, CloseIcon} from '../../../../icons';
+import {useBooleanState} from '../../../../hooks/useBooleanState';
+import {ArrowDownIcon} from '../../../../icons/ArrowDownIcon';
+import {CloseIcon} from '../../../../icons/CloseIcon';
 import {Search} from '../../../Search/Search';
 import styled from 'styled-components';
 import {IconButton} from '../../../IconButton/IconButton';
-import {AkeneoThemedProps, getColor} from '../../../../theme';
+import {AkeneoThemedProps, getColor} from '../../../../theme/theme';
 import {TableInputContext} from '../TableInputContext';
 import {TableInputReadOnlyCell} from '../shared/TableInputReadOnlyCell';
 import {highlightCell} from '../shared/highlightCell';

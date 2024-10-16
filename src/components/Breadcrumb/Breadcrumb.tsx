@@ -1,6 +1,6 @@
 import React, {Children, cloneElement, Fragment, isValidElement, ReactElement} from 'react';
 import styled from 'styled-components';
-import {getColor} from '../../theme';
+import {getColor} from '../../theme/theme';
 import {Link, LinkProps} from '../../components/Link/Link';
 
 const Step = styled(Link)`

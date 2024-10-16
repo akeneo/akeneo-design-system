@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import styled, {css} from 'styled-components';
-import {useTheme} from '../../hooks';
-import {AkeneoThemedProps, getColor} from '../../theme';
+import {useTheme} from '../../hooks/useTheme';
+import {AkeneoThemedProps, getColor} from '../../theme/theme';
 import {AvatarContainerProps, AvatarProps} from './types';
 
 const AvatarContainer = styled.span<AvatarContainerProps & AkeneoThemedProps>`

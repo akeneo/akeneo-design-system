@@ -1,7 +1,7 @@
 import React, {forwardRef, Ref} from 'react';
 import styled from 'styled-components';
-import {getEmoji} from '../../shared';
-import {getFontFamily, getFontSize} from '../../theme';
+import {getEmoji} from '../../shared/flag';
+import {getFontFamily, getFontSize} from '../../theme/theme';
 
 const LocaleContainer = styled.span`
   display: inline-flex;

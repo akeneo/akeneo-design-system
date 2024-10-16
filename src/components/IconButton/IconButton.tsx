@@ -2,7 +2,7 @@ import React, {Ref, ReactElement} from 'react';
 import styled, {css} from 'styled-components';
 import {IconProps} from '../../icons';
 import {Button, ButtonProps, ButtonSize} from '../../components/Button/Button';
-import {Override} from '../../shared';
+import {Override} from '../../shared/override';
 
 const IconButtonContainer = styled(Button)<ButtonProps & {borderless: boolean}>`
   display: inline-flex;

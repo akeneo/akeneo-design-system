@@ -1,11 +1,16 @@
-import React, {isValidElement, ReactElement, useRef, useState} from 'react';
+import React, {isValidElement, NamedExoticComponent, ReactElement, useEffect, useMemo, useRef, useState} from 'react';
 import styled from 'styled-components';
-import {arrayUnique, Key, Override} from '../../../shared';
-import {InputProps, Overlay} from '../common';
-import {IconButton} from '../../../components';
-import {useBooleanState, useShortcut, VerticalPosition} from '../../../hooks';
-import {AkeneoThemedProps, getColor} from '../../../theme';
-import {ArrowDownIcon} from '../../../icons';
+import {arrayUnique} from '../../../shared/array';
+import {Key} from '../../../shared/key';
+import {Override} from '../../../shared/override';
+import {InputProps} from '../common/InputProps';
+import {Overlay} from '../common/Overlay';
+import {IconButton} from '../../IconButton/IconButton';
+import {useBooleanState} from '../../../hooks/useBooleanState';
+import {useShortcut} from '../../../hooks/useShortcut';
+import {VerticalPosition} from '../../../hooks/usePosition';
+import {AkeneoThemedProps, getColor} from '../../../theme/theme';
+import {ArrowDownIcon} from '../../../icons/ArrowDownIcon';
 import {ChipInput, ChipValue} from './ChipInput';
 import {usePagination} from '../../../hooks/usePagination';
 
@@ -65,6 +70,20 @@ const OptionContainer = styled.div`
   }
 `;
 
+const OptionGroupContainer = styled.div`
+  background: ${getColor('white')};
+  height: 34px;
+  padding: 0 20px 0 0;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: ${getColor('grey', 100)};
+  line-height: 34px;
+  text-transform: uppercase;
+`;
+
 const EmptyResultContainer = styled.div`
   background: ${getColor('white')};
   height: 20px;
@@ -78,9 +97,10 @@ const EmptyResultContainer = styled.div`
   text-align: center;
 `;
 
-const OptionCollection = styled.div`
+const OptionCollection = styled.div<{withGroups: boolean}>`
   max-height: 320px;
   overflow-y: auto;
+  padding-left: ${({withGroups}) => (withGroups ? '20px' : '0')};
 `;
 
 type OptionProps = {
@@ -89,6 +109,7 @@ type OptionProps = {
 } & React.HTMLAttributes<HTMLSpanElement>;
 
 const Option = ({children, ...rest}: OptionProps) => <span {...rest}>{children}</span>;
+const OptionGroup = ({children, ...rest}: React.HTMLAttributes<HTMLSpanElement>) => <span {...rest}>{children}</span>;
 
 type MultiMultiSelectInputProps = Override<
   Override<React.InputHTMLAttributes<HTMLDivElement>, InputProps<string[]>>,
@@ -201,17 +222,33 @@ const MultiSelectInput = ({
   ...rest
 }: MultiMultiSelectInputProps) => {
   const [searchValue, setSearchValue] = useState<string>('');
+  const [withGroups, setWithGroups] = useState<boolean>(false);
   const [dropdownIsOpen, openOverlay, closeOverlay] = useBooleanState();
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const optionsContainerRef = useRef<HTMLDivElement>(null);
   const lastOptionRef = useRef<HTMLDivElement>(null);
 
-  const validChildren = React.Children.toArray(children).filter((child): child is ReactElement<OptionProps> =>
-    isValidElement<OptionProps>(child)
+  const validChildren = React.Children.toArray(children).filter(
+    (child): child is ReactElement<OptionProps, NamedExoticComponent> => isValidElement<OptionProps>(child)
   );
 
-  const indexedChips = validChildren.reduce<{[key: string]: ChipValue}>((indexedChips, {props: {value, children}}) => {
+  const isOptionGroup = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean => {
+    return component?.type.displayName === 'MultiSelectInput.OptionGroup';
+  };
+
+  const isOption = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean => {
+    return component?.type.displayName === 'MultiSelectInput.Option';
+  };
+
+  const indexedChips = validChildren.reduce<{[key: string]: ChipValue}>((indexedChips, child) => {
+    if (isOptionGroup(child)) {
+      return indexedChips;
+    }
+
+    const children = child.props.children;
+    const value = child.props.value;
+
     if ('string' !== typeof children) {
       throw new Error('Multi select only accepts string as Option');
     }
@@ -227,16 +264,24 @@ const MultiSelectInput = ({
 
   const filteredChildren = disableInternalSearch
     ? validChildren
-    : validChildren.filter(({props}) => {
-        const childValue = props.value;
-        const optionValue = childValue + props.children;
+    : validChildren.filter(child => {
+        const childValue = child.props.value;
+        const optionValue = childValue + child.props.children;
 
-        return !value.includes(childValue) && optionValue.toLowerCase().includes(searchValue.toLowerCase());
+        return (
+          isOptionGroup(child) ||
+          (!value.includes(childValue) && optionValue.toLowerCase().includes(searchValue.toLowerCase()))
+        );
       });
+
+  const hasChildren = useMemo(() => {
+    return filteredChildren.some(child => isOption(child));
+  }, [filteredChildren]);
 
   const handleEnter = () => {
     if (filteredChildren.length > 0 && dropdownIsOpen) {
-      const newValue = filteredChildren[0].props.value;
+      const firstOptionIndex = filteredChildren.findIndex(child => isOption(child));
+      const newValue = filteredChildren[firstOptionIndex].props.value;
 
       onChange?.(arrayUnique([...value, newValue]));
       setSearchValue('');
@@ -279,6 +324,12 @@ const MultiSelectInput = ({
   useShortcut(Key.Enter, handleEnter, inputRef);
   useShortcut(Key.Escape, handleBlur, inputRef);
 
+  useEffect(() => {
+    if (filteredChildren.some(child => isOptionGroup(child))) {
+      setWithGroups(true);
+    }
+  }, [filteredChildren]);
+
   return (
     <MultiSelectInputContainer ref={containerRef} readOnly={readOnly} value={value} {...rest}>
       <InputContainer>
@@ -314,11 +365,26 @@ const MultiSelectInput = ({
       </InputContainer>
       {dropdownIsOpen && !readOnly && (
         <Overlay parentRef={containerRef} onClose={handleBlur}>
-          <OptionCollection ref={optionsContainerRef}>
-            {0 === filteredChildren.length ? (
+          <OptionCollection ref={optionsContainerRef} withGroups={withGroups}>
+            {!hasChildren ? (
               <EmptyResultContainer>{emptyResultLabel}</EmptyResultContainer>
             ) : (
               filteredChildren.map((child, index) => {
+                if (isOptionGroup(child)) {
+                  if (!isOption(filteredChildren[index + 1])) {
+                    return null;
+                  }
+                  return (
+                    <OptionGroupContainer
+                      role="option-group"
+                      key={child.props?.title}
+                      ref={index === filteredChildren.length - 1 ? lastOptionRef : undefined}
+                    >
+                      {React.cloneElement(child)}
+                    </OptionGroupContainer>
+                  );
+                }
+
                 return (
                   <OptionContainer
                     key={child.props.value}
@@ -338,6 +404,8 @@ const MultiSelectInput = ({
 };
 
 Option.displayName = 'MultiSelectInput.Option';
+OptionGroup.displayName = 'MultiSelectInput.OptionGroup';
 MultiSelectInput.Option = Option;
+MultiSelectInput.OptionGroup = OptionGroup;
 
 export {MultiSelectInput};

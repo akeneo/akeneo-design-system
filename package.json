@@ -1,18 +1,33 @@
 {
   "name": "akeneo-design-system",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Akeneo design system",
-  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib/index.js"
+    }
+  },
   "scripts": {
-    "lib:build": "tsc -p ./tsconfig.build.json",
+    "lib:build": "vite build",
     "lib:watch": "tsc -p ./tsconfig.build.json --watch",
     "test": "npm run lint:check && npm run test:unit:run && npm run test:visual:run",
     "test:unit:run": "jest --config ./jest.unit.config.js --maxWorkers=3",
     "test:unit:watch": "jest --config ./jest.unit.config.js --watch --maxWorkers=3",
     "test:visual:run": "npm run storybook:extract && jest --config ./jest.visual.config.js",
     "test:visual:update": "npm run storybook:extract && jest --config ./jest.visual.config.js -u",
-    "lint:fix": "prettier --config .prettierrc.json --parser typescript --write \"./{src,generator}/**/*.{ts,tsx}\" && npx eslint --config .eslintrc.json --quiet \"./src/**/*.{ts,tsx}\" --fix",
-    "lint:check": "npx prettier --config .prettierrc.json --parser typescript --check \"./{src,generator}/**/*.{ts,tsx}\" && npx eslint --config .eslintrc.json --quiet \"./src/**/*.{ts,tsx}\"",
+    "eslint": "eslint --config .eslintrc.json --quiet \"./src/**/*.{ts,tsx}\"",
+    "eslint-fix": "eslint --config .eslintrc.json --quiet \"./src/**/*.{ts,tsx}\" --fix",
+    "prettier": "prettier --config .prettierrc.json --parser typescript --check \"./{src,generator}/**/*.{ts,tsx}\" --loglevel warn",
+    "prettier-fix": "prettier --config .prettierrc.json --parser typescript --write \"./{src,generator}/**/*.{ts,tsx}\"",
+    "lint:fix": "npm run prettier-fix && npm run eslint-fix",
+    "lint:check": "npm run prettier && npm run eslint",
     "storybook:start": "npm run storybook:copy-public && NODE_OPTIONS=--openssl-legacy-provider npx start-storybook -p 6006 -s ./public",
     "storybook:build": "npm run storybook:copy-public && NODE_OPTIONS=--openssl-legacy-provider npx build-storybook -s ./public && npx sb extract",
     "storybook:ci:start": "NODE_OPTIONS=--openssl-legacy-provider npm run start-storybook -p 6006 --ci",
@@ -26,8 +41,9 @@
     "@types/react-dom": "^17.0.2||^18.0.0",
     "react": "^17.0.2||^18.0.0",
     "react-dom": "^17.0.2||^18.0.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^5.3.3||^6.1.11"
   },
+  "sideEffects": false,
   "dependencies": {
     "draft-js": "^0.11.0",
     "draftjs-to-html": "^0.8.4",
@@ -56,9 +72,11 @@
     "@types/react": "^17.0.0 <=17.0.66",
     "@types/react-dom": "^17.0.25",
     "@types/react-draft-wysiwyg": "^1.12.13",
+    "@types/styled-components": "^5.1.34",
     "@types/testing-library__jest-dom": "^5.9.2",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
+    "@vitejs/plugin-react": "^4.3.2",
     "eslint": "^7.8.1",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.0",
@@ -70,8 +88,6 @@
     "jest-styled-components": "^7.0.3",
     "prettier": "^2.1.1",
     "puppeteer": "^5.2.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "react-is": "^16.13.1",
     "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.2",
@@ -79,15 +95,17 @@
     "ts-jest": "^26.2.0",
     "tsconfig-paths-webpack-plugin": "^3.3.0",
     "typescript": "^4.1.3",
+    "vite": "^5.4.9",
+    "vite-plugin-dts": "^4.2.4",
     "yargs": "^16.0.3"
   },
   "overrides": {
     "styled-react-modal": {
-      "styled-components": "^6.1.11"
+      "styled-components": "^5.3.3||^6.1.11"
     },
     "themeprovider-storybook": {
       "react": "^17.0.2||^18.0.0",
-      "styled-components": "^6.1.11"
+      "styled-components": "^5.3.3||^6.1.11"
     },
     "flux": {
       "react": "^17.0.2||^18.0.0"

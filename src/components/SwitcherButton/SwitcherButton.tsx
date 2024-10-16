@@ -1,9 +1,11 @@
 import React, {Ref, ReactNode, HTMLAttributes, forwardRef} from 'react';
 import styled, {css} from 'styled-components';
-import {ArrowDownIcon, CloseIcon} from '../../icons';
-import {AkeneoThemedProps, CommonStyle, getColor, getFontSize} from '../../theme';
-import {Override} from '../../shared';
-import {useId} from '../../hooks';
+import {ArrowDownIcon} from '../../icons/ArrowDownIcon';
+import {CloseIcon} from '../../icons/CloseIcon';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
+import {CommonStyle} from '../../theme/common';
+import {Override} from '../../shared/override';
+import {useId} from '../../hooks/useId';
 
 const SwitcherButtonContainer = styled.div`
   display: flex;

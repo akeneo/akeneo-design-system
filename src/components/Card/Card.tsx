@@ -1,8 +1,10 @@
 import React, {isValidElement, ReactElement, ReactNode, forwardRef, Ref, MouseEvent} from 'react';
 import styled, {css} from 'styled-components';
-import {Checkbox, Link, LinkProps, Image} from '../../components';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../theme';
-import {Override} from '../../shared';
+import {Checkbox} from '../Checkbox/Checkbox';
+import {Link, LinkProps} from '../Link/Link';
+import {Image} from '../Image/Image';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
+import {Override} from '../../shared/override';
 
 type StackProps = {
   isSelected: boolean;
@@ -74,15 +76,42 @@ const Overlay = styled.div<{stacked: boolean} & AkeneoThemedProps>`
   transition: opacity 0.3s ease-in;
 `;
 
-const CardContainer = styled.div<
-  {
-    disabled?: boolean;
-    actionable?: boolean;
-    isLoading?: boolean;
-    isSelected?: boolean;
-    stacked?: boolean;
-  } & AkeneoThemedProps
->`
+type CardContainerProps = {
+  disabled?: boolean;
+  actionable?: boolean;
+  isLoading?: boolean;
+  isSelected?: boolean;
+  stacked?: boolean;
+};
+
+const CardContainerAsDiv = styled.div<CardContainerProps & AkeneoThemedProps>`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  line-height: 20px;
+  font-size: ${getFontSize('default')};
+  color: ${getColor('grey', 120)};
+  cursor: ${({actionable, disabled}) => (disabled ? 'not-allowed' : actionable ? 'pointer' : 'auto')};
+  text-decoration: none;
+
+  img {
+    position: absolute;
+    top: 0;
+    width: ${({stacked}) => (stacked ? '95%' : '100%')};
+    height: ${({stacked}) => (stacked ? '95%' : '100%')};
+    box-sizing: border-box;
+    ${({isLoading, isSelected}) =>
+      !isLoading &&
+      css`
+        border-style: solid;
+        border-width: ${isSelected ? 2 : 1}px;
+        border-color: ${getColor(isSelected ? 'blue' : 'grey', 100)};
+      `}
+  }
+`;
+
+const CardContainerAsLink = styled.a<CardContainerProps & AkeneoThemedProps>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -251,11 +280,14 @@ const CardComponent = forwardRef<HTMLDivElement, CardProps>(
       }
     };
 
+    const CardContainer: React.FunctionComponent<CardContainerProps & {ref: any; children: any}> = isLink
+      ? CardContainerAsLink
+      : CardContainerAsDiv;
+
     return (
       <CardContainer
         ref={forwardedRef}
         isSelected={isSelected}
-        as={isLink ? 'a' : undefined}
         actionable={isLink || undefined !== onClick}
         // @ts-ignore
         onClick={handleClick}

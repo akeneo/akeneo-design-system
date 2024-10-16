@@ -1,10 +1,12 @@
 import React, {ChangeEvent, forwardRef, InputHTMLAttributes, MouseEvent, Ref, useCallback, useRef} from 'react';
 import styled, {css} from 'styled-components';
 import {InputProps} from '../common';
-import {Key, Override} from '../../../shared';
-import {LockIcon, DateIcon} from '../../../icons';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme';
-import {useShortcut} from '../../../hooks';
+import {Override} from '../../../shared/override';
+import {Key} from '../../../shared/key';
+import {LockIcon} from '../../../icons/LockIcon';
+import {DateIcon} from '../../../icons/DateIcon';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme/theme';
+import {useShortcut} from '../../../hooks/useShortcut';
 
 const InputContainer = styled.div`
   position: relative;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {IllustrationProps} from './IllustrationProps';
 import ClientError from '../../static/illustrations/ClientError.svg';
-import {BrandedPath} from '../theme';
+import {BrandedPath} from '../theme/common';
 
 const ClientErrorIllustration = ({title, size = 500, ...props}: IllustrationProps) => (
   <svg width={size} height={size} viewBox="0 0 500 250" {...props}>

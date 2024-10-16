@@ -9,12 +9,14 @@ import React, {
   MouseEvent,
 } from 'react';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor} from '../../../theme';
-import {Checkbox} from '../../../components';
-import {Override} from '../../../shared';
+import {AkeneoThemedProps, getColor} from '../../../theme/theme';
+import {Checkbox} from '../../../components/Checkbox/Checkbox';
+import {Override} from '../../../shared/override';
 import {TableContext} from '../TableContext';
 import {TableCell} from '../TableCell/TableCell';
-import {RowIcon, DangerIcon, LockIcon} from '../../../icons';
+import {RowIcon} from '../../../icons/RowIcon';
+import {DangerIcon} from '../../../icons/DangerIcon';
+import {LockIcon} from '../../../icons/LockIcon';
 import {PlaceholderPosition, usePlaceholderPosition} from '../../../hooks/usePlaceholderPosition';
 import {DraggedElementContext} from '../../../contexts/DraggedElementContext';
 

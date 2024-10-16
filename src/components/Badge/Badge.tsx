@@ -1,7 +1,7 @@
 import React, {ReactNode, Ref} from 'react';
-import {Override} from '../../shared';
+import {Override} from '../../shared/override';
 import styled, {css} from 'styled-components';
-import {AkeneoThemedProps, getColor, getColorForLevel, getFontSize, Level} from '../../theme';
+import {AkeneoThemedProps, getColor, getColorForLevel, getFontSize, Level} from '../../theme/theme';
 
 type BadgeContainerProps = {
   $level?: Level;

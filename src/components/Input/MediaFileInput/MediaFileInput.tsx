@@ -1,14 +1,17 @@
 import React, {cloneElement, isValidElement, Ref, useEffect, useRef, useState} from 'react';
 import styled, {css} from 'styled-components';
-import {Key, Override} from '../../../shared';
+import {Override} from '../../../shared/override';
+import {Key} from '../../../shared/key';
 import {InputProps} from '../common/InputProps';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme';
-import {ImportIllustration} from '../../../illustrations';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme/theme';
+import {ImportIllustration} from '../../../illustrations/ImportIllustration';
 import {IconButton, IconButtonProps} from '../../IconButton/IconButton';
 import {Image} from '../../Image/Image';
 import {ProgressBar} from '../../ProgressBar/ProgressBar';
-import {CloseIcon, LockIcon} from '../../../icons';
-import {useBooleanState, useShortcut} from '../../../hooks';
+import {CloseIcon} from '../../../icons/CloseIcon';
+import {LockIcon} from '../../../icons/LockIcon';
+import {useBooleanState} from '../../../hooks/useBooleanState';
+import {useShortcut} from '../../../hooks/useShortcut';
 import {FileInfo} from './FileInfo';
 import DefaultPictureIllustration from '../../../../static/illustrations/DefaultPicture.svg';
 

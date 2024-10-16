@@ -1,9 +1,11 @@
 import React, {HTMLAttributes, ReactNode, RefObject, useEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 import styled from 'styled-components';
-import {VerticalPosition, useVerticalPosition, useWindowResize} from '../../../hooks';
-import {AkeneoThemedProps, CommonStyle, getColor} from '../../../theme';
-import {Override} from '../../../shared';
+import {VerticalPosition, useVerticalPosition} from '../../../hooks/usePosition';
+import {useWindowResize} from '../../../hooks/useWindowResize';
+import {AkeneoThemedProps, getColor} from '../../../theme/theme';
+import {CommonStyle} from '../../../theme/common';
+import {Override} from '../../../shared/override';
 
 const OverlayContent = styled.div<{visible?: boolean; top: number; width: number; left: number} & AkeneoThemedProps>`
   ${CommonStyle}

@@ -1,9 +1,9 @@
 import React, {ChangeEvent, Ref, useCallback} from 'react';
 import styled, {css} from 'styled-components';
 import {InputProps} from '../common/InputProps';
-import {LockIcon} from '../../../icons';
-import {Override} from '../../../shared';
-import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme';
+import {LockIcon} from '../../../icons/LockIcon';
+import {Override} from '../../../shared/override';
+import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme/theme';
 import {RichTextEditor, EditorProps} from './RichTextEditor';
 
 const TextAreaInputContainer = styled.div`

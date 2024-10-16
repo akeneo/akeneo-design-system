@@ -1,4 +1,5 @@
-import {Key, Override} from '../../../shared';
+import {Override} from '../../../shared/override';
+import {Key} from '../../../shared/key';
 import React, {
   ReactNode,
   Children,
@@ -10,11 +11,12 @@ import React, {
   ReactElement,
 } from 'react';
 import styled from 'styled-components';
-import {useAutoFocus, useCombinedRefs} from '../../../hooks';
+import {useAutoFocus} from '../../../hooks/useAutoFocus';
+import {useCombinedRefs} from '../../../hooks/useCombinedRefs';
 import {usePagination} from '../../../hooks/usePagination';
 import {Placeholder} from '../../Placeholder/Placeholder';
 import {IllustrationProps} from '../../../illustrations/IllustrationProps';
-import {getFontSize} from '../../../theme';
+import {getFontSize} from '../../../theme/theme';
 
 const ItemCollectionContainer = styled.div`
   max-height: 320px;
