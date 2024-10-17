@@ -3,8 +3,7 @@ on:
   push:
     branches:
       - master
-    paths:
-      - package.json
+  workflow_dispatch:
 jobs:
   master:
     runs-on: ubuntu-latest
