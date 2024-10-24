@@ -253,7 +253,7 @@ const MultiSelectInput = ({
       throw new Error('Multi select only accepts string as Option');
     }
 
-    if (value in indexedChips) {
+    if (Object.prototype.hasOwnProperty.call(indexedChips, value)) {
       throw new Error(`Duplicate option value ${value}`);
     }
 
