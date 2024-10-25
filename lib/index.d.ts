@@ -1337,7 +1337,7 @@ export declare type SplitButtonProps = Omit<Override<ButtonProps, {
     label: string;
 }>, 'href'>;
 
-export declare const StarIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+export declare const StarIcon: ({ title, size, color, fill, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const StatusIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
 
