@@ -38,6 +38,8 @@ const ModalCloseButton = styled(IconButton)`
 const ModalContent = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
+  height: 100%;
+  align-items: center;
 `;
 
 const ModalChildren = styled.div`
@@ -46,6 +48,8 @@ const ModalChildren = styled.div`
   padding: 20px 40px;
   min-width: 480px;
   border-left: 1px solid ${getColor('brand', 100)};
+  max-height: 100%;
+  overflow: auto;
 `;
 
 const IconContainer = styled.div`
