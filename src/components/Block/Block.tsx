@@ -147,20 +147,32 @@ const Block = React.forwardRef<HTMLDivElement, BlockProps>(
     useEffect(() => {
       if (!isCollapsable) return;
 
-      setContentHeight(contentHeight => {
+      const updateHeight = () => {
         const scrollHeight = contentRef.current?.scrollHeight ?? 0;
+        setContentHeight(0 === scrollHeight ? contentHeight : scrollHeight);
+      };
 
-        return 0 === scrollHeight ? contentHeight : scrollHeight;
-      });
+      updateHeight();
+
+      const observer = new MutationObserver(updateHeight);
+
+      if (contentRef.current) {
+        observer.observe(contentRef.current, {
+          childList: true,
+          subtree: true,
+          characterData: true,
+        });
+      }
 
       const shouldAnimateTimeoutId = window.setTimeout(() => {
         setShouldAnimate(true);
       }, ANIMATION_DURATION);
 
       return () => {
+        observer.disconnect();
         window.clearTimeout(shouldAnimateTimeoutId);
       };
-    }, [children]);
+    }, [contentRef.current, isCollapsable]);
 
     return (
       <Container
