@@ -36,8 +36,8 @@ Latest version is available here: https://dsm.akeneo.com
 
 You should execute the following commands:
 ```shell
-$ npm install
-$ npm run storybook:start
+npm install && \
+npm run storybook:start
 ```
 
 Then open http://localhost:6006 on your browser.
@@ -83,7 +83,7 @@ To know the props of each component, visit the dedicated page of the component h
 
 ## Play around with an hello world react App example
 
-This repository contains an example folder with a minimal React App already configured to be used with the Akeneo Design System.
+The [DSM repository](https://github.com/akeneo/akeneo-design-system) contains an example folder with a minimal React App already configured to be used with the Akeneo Design System.
 
 Go into the example directory
 ```shell
@@ -133,10 +133,10 @@ There is two type of tests, unit and visual tests.
 Unit tests can be launched with the following commands:
 ```shell
 # Launch only one time
-$ npm run test:unit:run
+npm run test:unit:run
 
 # Launch in watch mode
-$ npm run test:unit:watch
+npm run test:unit:watch
 ```
 
 Unit test should validate all component behaviors => coverage of 100% is required for component in this project.
