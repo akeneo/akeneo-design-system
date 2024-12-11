@@ -1,0 +1,1 @@
+The purpose of this folder is to test a quick happy path to ensure that a DSM component is able to be rendered in a React App.

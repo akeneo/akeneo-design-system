@@ -252,6 +252,8 @@ const TabBar = ({moreButtonTitle, children, ...rest}: TabBarProps) => {
   );
 };
 
+Tab.displayName = 'TabBar.Tab';
+
 TabBar.Tab = Tab;
 
 export {TabBar};

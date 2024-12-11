@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the expected elements 1`] = `
+<body>
+  <div>
+    <span
+      class="sc-ghWlax dWQSyv"
+    >
+      Hello world
+    </span>
+  </div>
+</body>
+`;

@@ -1384,7 +1384,10 @@ export declare const SystemIcon: ({ title, size, color, ...props }: IconProps) =
 
 export declare const TabBar: {
     ({ moreButtonTitle, children, ...rest }: TabBarProps): default_2.JSX.Element;
-    Tab: ({ children, onClick, isActive, parentRef, onVisibilityChange, ...rest }: TabProps) => default_2.JSX.Element;
+    Tab: {
+        ({ children, onClick, isActive, parentRef, onVisibilityChange, ...rest }: TabProps): default_2.JSX.Element;
+        displayName: string;
+    };
 };
 
 declare type TabBarProps = {

@@ -47,20 +47,20 @@ You don't have to relaunch the command at each time you create or update a compo
 
 To add Akeneo Design System to your React application, run:
 ```shell
-$ npm add akeneo-design-system
+npm add akeneo-design-system
 ```
 
 Once the package installed, you should provide the theme related to your project at the top of your application:
 ```tsx
 import React from 'react';
-import {ThemeProvider} from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 {/* change with your theme path */}
-import {theme} from 'akeneo-design-system/theme/pim'
+import { connectorTheme } from "akeneo-design-system";
 
 const App = () => {
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={connectorTheme}>
         {/* All your application*/}
       </ThemeProvider>
     </>
@@ -80,6 +80,25 @@ const MyHomePage = () => (
 ```
 
 To know the props of each component, visit the dedicated page of the component here: https://dsm.akeneo.com. You can edit all properties and click on "Show code" in the playground section available for each components.
+
+## Play around with an hello world react App example
+
+This repository contains an example folder with a minimal React App already configured to be used with the Akeneo Design System.
+
+Go into the example directory
+```shell
+cd example
+```
+Install dependencies
+```shell
+npm install
+```
+Run the dev server
+```shell
+npm run dev
+```
+
+Feel free to adapt the `example/src/App.tsx` file and integrate other components of the DSM.
 
 ## Contribution
 
