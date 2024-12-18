@@ -33,7 +33,6 @@ type Color = {
   purple100: string;
   purple120: string;
   purple140: string;
-  purple10: string;
   purple20: string;
   purple40: string;
   purple60: string;
@@ -111,7 +110,6 @@ type ColorAlternative = {
 
 type Palette = {
   primary: string;
-  success: string;
   secondary: string;
   tertiary: string;
   warning: string;
@@ -132,7 +130,7 @@ type FontFamily = {
   monospace: string;
 };
 
-type Level = 'primary' | 'success' | 'secondary' | 'tertiary' | 'warning' | 'danger';
+type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
 
 const getColor =
   (color: string, gradient?: number): ((props: AkeneoThemedProps) => string) =>

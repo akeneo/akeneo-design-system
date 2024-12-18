@@ -10,7 +10,7 @@ const Stars = styled.g`
 `;
 
 const Arrow = styled.g`
-  fill: #9748fd;
+  fill: #9452ba;
   transform-origin: 51% 32%;
   transition: transform 0.3s ease-in-out;
 `;

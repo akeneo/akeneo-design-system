@@ -29,8 +29,8 @@ const CellContainer = styled.div<{width?: 'auto' | number} & AkeneoThemedProps>`
 `;
 
 const TitleCell = styled(CellContainer)`
-  color: ${getColor('grey', 140)};
-  font-weight: bold;
+  color: ${getColor('purple', 100)};
+  font-style: italic;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

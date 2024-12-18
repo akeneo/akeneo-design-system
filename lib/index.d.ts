@@ -352,7 +352,6 @@ export declare type Color = {
     purple100: string;
     purple120: string;
     purple140: string;
-    purple10: string;
     purple20: string;
     purple40: string;
     purple60: string;
@@ -823,7 +822,7 @@ declare type KeyFigureProps = {
 
 export declare const KeyIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
-export declare type Level = 'primary' | 'success' | 'secondary' | 'tertiary' | 'warning' | 'danger';
+export declare type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
 
 declare type Level_2 = 'info' | 'warning' | 'error' | 'success';
 
@@ -1094,7 +1093,6 @@ declare type PaginationProps = {
 
 export declare type Palette = {
     primary: string;
-    success: string;
     secondary: string;
     tertiary: string;
     warning: string;
@@ -1111,7 +1109,7 @@ export declare const Pill: default_2.ForwardRefExoticComponent<{
     level?: PillLevel | undefined;
 } & default_2.HTMLAttributes<HTMLDivElement> & default_2.RefAttributes<HTMLDivElement>>;
 
-declare type PillLevel = 'primary' | 'success' | 'warning' | 'danger';
+declare type PillLevel = 'primary' | 'warning' | 'danger';
 
 export declare const pimTheme: Theme;
 

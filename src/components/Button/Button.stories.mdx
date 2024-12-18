@@ -6,7 +6,7 @@ import {ArrowDownIcon} from '../../icons';
   title="Components/Buttons/Button"
   component={Button}
   argTypes={{
-    level: {control: {type: 'select'}, options: ['primary', 'success', 'secondary', 'tertiary', 'warning', 'danger']},
+    level: {control: {type: 'select'}, options: ['primary', 'secondary', 'tertiary', 'warning', 'danger']},
     ghost: {control: {type: 'boolean'}},
     disabled: {control: {type: 'boolean'}},
     active: {control: {type: 'boolean'}},
@@ -66,9 +66,6 @@ Use this playground to test the button component
           <Button {...args} level="primary">
             Primary
           </Button>
-          <Button {...args} level="success">
-            Success
-          </Button>
           <Button {...args} level="secondary">
             Secondary
           </Button>
@@ -96,9 +93,6 @@ Use this playground to test the button component
         <>
           <Button {...args} ghost={true} level="primary">
             Primary
-          </Button>
-          <Button {...args} ghost={true} level="success">
-            Success
           </Button>
           <Button {...args} ghost={true} level="secondary">
             Secondary
@@ -128,9 +122,6 @@ Use this playground to test the button component
           <Button {...args} active={true} level="primary">
             Primary
           </Button>
-          <Button {...args} active={true} level="success">
-            Success
-          </Button>
           <Button {...args} active={true} level="secondary">
             Secondary
           </Button>
@@ -146,9 +137,6 @@ Use this playground to test the button component
           <br />
           <Button {...args} active={true} ghost={true} level="primary">
             Primary
-          </Button>
-          <Button {...args} active={true} ghost={true} level="success">
-            Success
           </Button>
           <Button {...args} active={true} ghost={true} level="secondary">
             Secondary

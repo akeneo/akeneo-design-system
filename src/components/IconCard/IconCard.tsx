@@ -6,7 +6,7 @@ import {Override} from '../../shared/override';
 
 const Container = styled.div<{disabled: boolean; onClick?: () => void} & AkeneoThemedProps>`
   min-height: 80px;
-  border: 1px ${getColor('grey', 60)} solid;
+  border: 1px ${getColor('grey', 40)} solid;
   box-sizing: border-box;
   display: -ms-flexbox;
   display: inline-flex;
@@ -16,7 +16,7 @@ const Container = styled.div<{disabled: boolean; onClick?: () => void} & AkeneoT
 }
 
 :hover {
-  border-color: ${({disabled}) => !disabled && getColor('grey', 100)};
+  border-color: ${({disabled}) => !disabled && getColor('grey', 60)};
   background: ${({disabled}) => !disabled && getColor('grey', 20)};
 }
 
@@ -60,7 +60,7 @@ const TruncableMixin = css`
 `;
 
 const Label = styled.div`
-  color: ${getColor('grey', 140)};
+  color: ${getColor('brand', 100)};
   font-size: ${getFontSize('big')};
   margin-bottom: 2px;
 

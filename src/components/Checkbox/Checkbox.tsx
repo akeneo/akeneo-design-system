@@ -38,7 +38,7 @@ const CheckboxContainer = styled.div<{checked: boolean; readOnly: boolean} & Ake
   background-color: transparent;
   height: 20px;
   width: 20px;
-  border: 1px solid ${getColor('blue100')};
+  border: 1px solid ${getColor('grey80')};
   border-radius: 3px;
   overflow: hidden;
   background-color: ${getColor('grey20')};
@@ -66,17 +66,16 @@ const CheckboxContainer = styled.div<{checked: boolean; readOnly: boolean} & Ake
     props.checked &&
     props.readOnly &&
     css`
-      background-color: ${getColor('grey20')};
-      border-color: ${getColor('grey40')};
-      color: ${getColor('grey40')};
+      background-color: ${getColor('blue20')};
+      border-color: ${getColor('blue40')};
     `}
 
   ${props =>
     !props.checked &&
     props.readOnly &&
     css`
-      background-color: ${getColor('grey20')};
-      border-color: ${getColor('grey40')};
+      background-color: ${getColor('grey60')};
+      border-color: ${getColor('grey100')};
     `}
 `;
 

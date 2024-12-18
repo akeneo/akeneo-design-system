@@ -5,8 +5,8 @@ import {PanelOpenIcon} from '../../../icons/PanelOpenIcon';
 import {AkeneoThemedProps, getColor} from '../../../theme/theme';
 
 const Container = styled.div<{isOpen: boolean} & AkeneoThemedProps>`
-  background-color: ${getColor('blue', 20)};
-  border-right: 0px solid ${getColor('grey', 80)};
+  background-color: ${getColor('grey', 20)};
+  border-right: 1px solid ${getColor('grey', 80)};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
