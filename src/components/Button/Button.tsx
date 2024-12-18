@@ -134,8 +134,8 @@ const ContainerAsButton = styled.button<
   border-width: 1px;
   font-size: ${getFontSize('default')};
   font-weight: 400;
-  text-transform: uppercase;
-  border-radius: 16px;
+  text-transform: none;
+  border-radius: 4px;
   border-style: solid;
   padding: ${({$size}) => ($size === 'small' ? '0 10px' : '0 15px')};
   height: ${({$size}) => ($size === 'small' ? '24px' : '32px')};
@@ -168,8 +168,8 @@ const ContainerAsLink = styled.a<
   border-width: 1px;
   font-size: ${getFontSize('default')};
   font-weight: 400;
-  text-transform: uppercase;
-  border-radius: 16px;
+  text-transform: none;
+  border-radius: 4px;
   border-style: solid;
   padding: ${({$size}) => ($size === 'small' ? '0 10px' : '0 15px')};
   height: ${({$size}) => ($size === 'small' ? '24px' : '32px')};

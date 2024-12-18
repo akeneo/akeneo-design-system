@@ -5,7 +5,7 @@ import {SplitButton} from './SplitButton';
   title="Components/Buttons/SplitButton"
   component={SplitButton}
   argTypes={{
-    level: {control: {type: 'select'}, options: ['primary', 'secondary', 'tertiary', 'warning', 'danger']},
+    level: {control: {type: 'select'}, options: ['primary', 'success', 'secondary', 'tertiary', 'warning', 'danger']},
     ghost: {control: {type: 'boolean'}},
     disabled: {control: {type: 'boolean'}},
     active: {control: {type: 'boolean'}},
@@ -64,6 +64,10 @@ Use this playground to test the button component
             <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
             <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
           </SplitButton>
+          <SplitButton {...args} level="success" label="Success">
+            <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+            <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+          </SplitButton>
           <SplitButton {...args} level="secondary" label="Secondary">
             <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
             <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
@@ -97,6 +101,10 @@ Use this playground to test the button component
               <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
               <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
             </SplitButton>
+            <SplitButton {...args} ghost={true} level="success" label="Success">
+              <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+              <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
             <SplitButton {...args} ghost={true} level="secondary" label="Secondary">
               <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
               <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
@@ -127,6 +135,10 @@ Use this playground to test the button component
       return (
         <>
             <SplitButton {...args} active={true} level="primary" label="primary">
+                <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
+                <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
+            </SplitButton>
+            <SplitButton {...args} active={true} level="success" label="success">
                 <SplitButton.Item onClick={() => {}}>Item 1</SplitButton.Item>
                 <SplitButton.Item onClick={() => {}}>Item 2</SplitButton.Item>
             </SplitButton>

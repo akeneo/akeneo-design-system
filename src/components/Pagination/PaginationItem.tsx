@@ -55,7 +55,7 @@ const PaginationItemContainer = styled.button<AkeneoThemedProps & {disabled: boo
   font-size: 13px;
   font-weight: 400;
   text-transform: uppercase;
-  border-radius: 16px;
+  border-radius: 4px;
   padding: 0 10px;
   height: 22px;
   line-height: 21px;

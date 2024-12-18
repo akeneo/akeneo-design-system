@@ -153,6 +153,7 @@ const Container = styled.div<{$level: MessageBarLevel} & AkeneoThemedProps>`
   max-width: 500px;
   padding: 10px 20px 10px 0;
   box-shadow: 2px 4px 8px 0 rgba(9, 30, 66, 0.25);
+  border-radius: 8px;
   background-color: ${getColor('white')};
 
   ${Title}, ${IconContainer} {

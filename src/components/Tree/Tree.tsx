@@ -105,6 +105,7 @@ const LabelWithFolder = styled.button<{$selected?: CheckboxChecked} & AkeneoThem
   max-width: calc(100% - 35px);
   text-align: left;
   white-space: nowrap;
+  color: ${getColor('grey100')};
   ${({$selected}) =>
     $selected &&
     css`

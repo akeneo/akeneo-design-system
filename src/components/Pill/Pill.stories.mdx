@@ -6,7 +6,7 @@ import {Pill} from './Pill.tsx';
   title="Components/Pill"
   component={Pill}
   argTypes={{
-    level: {control: {type: 'select'}, options: ['primary', 'warning', 'danger']},
+    level: {control: {type: 'select'}, options: ['primary', 'success','warning', 'danger']},
   }}
   args={{level: 'warning'}}
 />
@@ -52,6 +52,7 @@ Example of use:
       return (
         <>
           <Pill {...args} level="primary" />
+          <Pill {...args} level="success" />
           <Pill {...args} level="warning" />
           <Pill {...args} level="danger" />
         </>

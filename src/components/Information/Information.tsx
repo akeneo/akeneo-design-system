@@ -10,7 +10,7 @@ const Container = styled.div`
   padding-right: 15px;
   color: ${getColor('grey120')};
   min-height: 100px;
-  background-color: ${getColor('blue10')};
+  background-color: ${getColor('brand20')};
 `;
 
 const IconContainer = styled.span`
