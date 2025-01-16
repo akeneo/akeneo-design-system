@@ -1,6 +1,6 @@
 {
   "name": "akeneo-design-system",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Akeneo design system",
   "files": [
     "lib"

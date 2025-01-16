@@ -125,3 +125,8 @@ test('It throws with an unknown status', () => {
 
   mockConsole.mockRestore();
 });
+
+test('it renders a tree with a value label', () => {
+  render(<Tree value={'master'} label={'Master'} valueLabel={'[master]'} />);
+  expect(screen.getByText('[master]')).toBeInTheDocument();
+});

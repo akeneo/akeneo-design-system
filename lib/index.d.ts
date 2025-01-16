@@ -1688,7 +1688,7 @@ declare const TopLeftButtons: StyledComponent<"div", DefaultTheme, {}, never>;
 declare const TopRightButtons: StyledComponent<"div", DefaultTheme, {}, never>;
 
 export declare const Tree: {
-    <T>({ label, value, children, isLeaf, selected, isLoading, selectable, readOnly, onChange, onOpen, onClose, onClick, defaultOpen, _isRoot, ...rest }: default_2.PropsWithChildren<TreeProps<T>>): default_2.JSX.Element;
+    <T>({ label, value, children, isLeaf, selected, isLoading, selectable, readOnly, onChange, onOpen, onClose, onClick, defaultOpen, _isRoot, valueLabel, ...rest }: default_2.PropsWithChildren<TreeProps<T>>): default_2.JSX.Element;
     displayName: string;
 };
 
@@ -1707,6 +1707,7 @@ declare type TreeProps<T = string> = {
     defaultOpen?: boolean;
     _isRoot?: boolean;
     children?: ReactNode;
+    valueLabel?: string;
 };
 
 export declare const UnpublishIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
