@@ -26,29 +26,26 @@ import {Tree} from './Tree.tsx';
     readOnly: {
       description: 'Does not allow checking/unchecking the box (Can only be used with `selectable`)'
     },
-    onOpen: {
+    onOpen:{
       description: 'Triggered when the user opens a node'
     },
-    onClose: {
+    onClose:{
       description: 'Triggered when the user closes a node'
     },
-    onChange: {
+    onChange:{
       description: 'Triggered when the user selects or unselects a node'
     },
-    onClick: {
+    onClick:{
       description: 'Triggered when the user clicks on a node. If not specified, a click opens or closes the node.'
     },
-    defaultOpen: {
+    defaultOpen:{
       description: 'Allow to open automatically children when present.'
     },
-    _isRoot: {
-      table: {
-        disable: true
-      }
+    _isRoot:{
+        table:{
+          disable: true
+        }
     },
-    valueLabel: {
-      description: 'Label of the value'
-    }
   }}
   args={{}}
 />

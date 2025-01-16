@@ -57,10 +57,6 @@ const TreeLoaderIcon = styled(LoaderIcon)`
   color: ${getColor('grey100')};
 `;
 
-const ValueLabel = styled.span`
-  color: ${getColor('grey', 100)};
-`;
-
 const TreeLine = styled.div<{$selected?: CheckboxChecked} & AkeneoThemedProps>`
   height: 40px;
   line-height: 40px;
@@ -154,7 +150,6 @@ type TreeProps<T = string> = {
   defaultOpen?: boolean;
   _isRoot?: boolean;
   children?: ReactNode;
-  valueLabel?: string;
 };
 
 const Tree = <T,>({
@@ -172,7 +167,6 @@ const Tree = <T,>({
   onClick,
   defaultOpen = false,
   _isRoot = true,
-  valueLabel,
   ...rest
 }: PropsWithChildren<TreeProps<T>>) => {
   const subTrees: ReactElement<TreeProps<T>>[] = [];
@@ -236,7 +230,7 @@ const Tree = <T,>({
 
         <LabelWithFolder onClick={handleClick} $selected={selected} title={label} aria-selected={Boolean(selected)}>
           <TreeIcon isLoading={isLoading} isLeaf={isLeaf} selected={selected} />
-          {label} {valueLabel && <ValueLabel>{valueLabel}</ValueLabel>}
+          {label}
         </LabelWithFolder>
       </TreeLine>
       {isOpen && !isLeaf && subTrees.length > 0 && (
