@@ -4,7 +4,6 @@ import {InputProps} from '../common/InputProps';
 import {LockIcon} from '../../../icons/LockIcon';
 import {Override} from '../../../shared/override';
 import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme/theme';
-import {RichTextEditor, EditorProps} from './RichTextEditor';
 
 const TextAreaInputContainer = styled.div`
   position: relative;
@@ -32,38 +31,6 @@ const CommonStyle = css<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedPr
 
   a.rdw-dropdown-selectedtext > span {
     color: ${({readOnly}) => (readOnly ? getColor('grey', 100) : getColor('grey', 140))};
-  }
-`;
-
-const RichTextEditorContainer = styled.div<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
-  ${CommonStyle}
-  padding: 0;
-  padding-bottom: 10px;
-
-  & .rdw-editor-main {
-    min-height: 200px;
-    max-height: 400px;
-    padding: 0 30px 10px 15px;
-  }
-
-  & .rdw-option-wrapper {
-    min-width: 30px;
-    height: 30px;
-  }
-
-  & .rdw-editor-toolbar {
-    border: none;
-    padding: 0;
-    margin: 0;
-    padding: 5px 30px 0 0;
-    border-radius: 0;
-    border-bottom: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
-  }
-
-  & .rdw-dropdown-wrapper:hover,
-  & .rdw-option-wrapper:hover,
-  & .rdw-dropdown-optionwrapper:hover {
-    box-shadow: none;
   }
 `;
 
@@ -123,16 +90,6 @@ type TextAreaInputProps = Override<
      * Label displayed under the field to display the remaining character counter.
      */
     characterLeftLabel?: string;
-
-    /**
-     * If true, the component will display a WYSIWYG editor.
-     */
-    isRichText?: boolean;
-
-    /**
-     * Properties passed to the WYSIWYG editor.
-     */
-    richTextEditorProps?: EditorProps;
   }
 >;
 
@@ -141,16 +98,7 @@ type TextAreaInputProps = Override<
  */
 const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
   (
-    {
-      value,
-      invalid,
-      onChange,
-      readOnly,
-      characterLeftLabel,
-      isRichText = false,
-      richTextEditorProps,
-      ...rest
-    }: TextAreaInputProps,
+    {value, invalid, onChange, readOnly, characterLeftLabel, ...rest}: TextAreaInputProps,
     forwardedRef: Ref<HTMLTextAreaElement>
   ) => {
     const handleChange = useCallback(
@@ -162,28 +110,17 @@ const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
 
     return (
       <TextAreaInputContainer>
-        {isRichText ? (
-          <RichTextEditorContainer readOnly={readOnly} invalid={invalid}>
-            <RichTextEditor
-              readOnly={readOnly}
-              value={value}
-              {...richTextEditorProps}
-              onChange={value => onChange?.(value)}
-            />
-          </RichTextEditorContainer>
-        ) : (
-          <Textarea
-            ref={forwardedRef}
-            value={value}
-            onChange={handleChange}
-            type="text"
-            readOnly={readOnly}
-            disabled={readOnly}
-            aria-invalid={invalid}
-            invalid={invalid}
-            {...rest}
-          />
-        )}
+        <Textarea
+          ref={forwardedRef}
+          value={value}
+          onChange={handleChange}
+          type="text"
+          readOnly={readOnly}
+          disabled={readOnly}
+          aria-invalid={invalid}
+          invalid={invalid}
+          {...rest}
+        />
         {readOnly && <ReadOnlyIcon size={16} />}
         {characterLeftLabel && <CharacterLeftLabel>{characterLeftLabel}</CharacterLeftLabel>}
       </TextAreaInputContainer>

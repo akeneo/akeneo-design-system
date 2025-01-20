@@ -3,7 +3,6 @@ import { ButtonHTMLAttributes } from 'react';
 import { default as default_2 } from 'react';
 import { DefaultTheme } from 'styled-components';
 import { DependencyList } from 'react';
-import { EditorProps } from 'react-draft-wysiwyg';
 import { FC } from 'react';
 import { FlattenInterpolation } from 'styled-components';
 import { FlattenSimpleInterpolation } from 'styled-components';
@@ -1597,8 +1596,6 @@ export declare type TextAreaInputProps = Override<Override<default_2.InputHTMLAt
     placeholder?: string;
     invalid?: boolean;
     characterLeftLabel?: string;
-    isRichText?: boolean;
-    richTextEditorProps?: EditorProps;
 }>;
 
 export declare const TextInput: default_2.ForwardRefExoticComponent<TextInputProps & default_2.RefAttributes<HTMLInputElement>>;

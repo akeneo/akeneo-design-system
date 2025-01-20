@@ -30,10 +30,6 @@ import {TextAreaInput} from './TextAreaInput.tsx';
 
 Textarea input allows the user to enter content and data when the expected user input is composed of more than one sentence.
 
-### Rich text editor:
-
-Rich text editors, sometimes called WYSIWYG editors ("what you see is what you get"), allow you to create documents that include text, images, graphics, tables, and play with the layout and style of the content.
-
 ## Content
 
 **Label:**
@@ -107,22 +103,6 @@ A compelling error message can help the user understand the problem and solve it
           onChange={handleChange}
           characterLeftLabel={`${250 - value.length} characters left`}
         />
-      );
-    }}
-  </Story>
-</Canvas>
-
-## Rich Text Editor
-
-<Canvas>
-  <Story name="Rich Text Editor">
-    {args => {
-      return (
-        <>
-          <TextAreaInput {...args} isRichText={true} />
-          <TextAreaInput {...args} isRichText={true} readOnly={true} />
-          <TextAreaInput {...args} isRichText={true} invalid={true} />
-        </>
       );
     }}
   </Story>
