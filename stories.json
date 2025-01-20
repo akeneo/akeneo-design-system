@@ -2090,20 +2090,6 @@
         "__isArgsStory": true
       }
     },
-    "components-inputs-textarea-input--rich-text-editor": {
-      "id": "components-inputs-textarea-input--rich-text-editor",
-      "name": "Rich Text Editor",
-      "title": "Components/Inputs/Textarea input",
-      "importPath": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
-      "kind": "Components/Inputs/Textarea input",
-      "story": "Rich Text Editor",
-      "parameters": {
-        "fileName": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
-        "framework": "react",
-        "__id": "components-inputs-textarea-input--rich-text-editor",
-        "__isArgsStory": true
-      }
-    },
     "components-inputs-text-input--standard": {
       "id": "components-inputs-text-input--standard",
       "name": "Standard",
