@@ -62,6 +62,8 @@ export declare const ArrowLeftIcon: ({ title, size, color, ...props }: IconProps
 
 export declare const ArrowRightIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
+export declare const ArrowSimpleRightIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
 export declare const ArrowSimpleUpIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const ArrowUpIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
