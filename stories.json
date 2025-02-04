@@ -3602,6 +3602,20 @@
         "__isArgsStory": true
       }
     },
+    "components-tree--highlight": {
+      "id": "components-tree--highlight",
+      "name": "Highlight",
+      "title": "Components/Tree",
+      "importPath": "./src/components/Tree/Tree.stories.mdx",
+      "kind": "Components/Tree",
+      "story": "Highlight",
+      "parameters": {
+        "fileName": "./src/components/Tree/Tree.stories.mdx",
+        "framework": "react",
+        "__id": "components-tree--highlight",
+        "__isArgsStory": true
+      }
+    },
     "patterns-bulk-actions--big-table": {
       "id": "patterns-bulk-actions--big-table",
       "name": "Big Table",
