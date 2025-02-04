@@ -9,6 +9,7 @@ import {FolderPlainIcon} from '../../icons/FolderPlainIcon';
 import {FoldersIcon} from '../../icons/FoldersIcon';
 import {FoldersPlainIcon} from '../../icons/FoldersPlainIcon';
 import {LoaderIcon} from '../../icons/LoaderIcon';
+import {Highlight} from './Highlight';
 
 const folderIconCss = css`
   vertical-align: middle;
@@ -155,6 +156,7 @@ type TreeProps<T = string> = {
   _isRoot?: boolean;
   children?: ReactNode;
   valueLabel?: string;
+  highlight?: string;
 };
 
 const Tree = <T,>({
@@ -173,6 +175,7 @@ const Tree = <T,>({
   defaultOpen = false,
   _isRoot = true,
   valueLabel,
+  highlight = '',
   ...rest
 }: PropsWithChildren<TreeProps<T>>) => {
   const subTrees: ReactElement<TreeProps<T>>[] = [];
@@ -236,7 +239,12 @@ const Tree = <T,>({
 
         <LabelWithFolder onClick={handleClick} $selected={selected} title={label} aria-selected={Boolean(selected)}>
           <TreeIcon isLoading={isLoading} isLeaf={isLeaf} selected={selected} />
-          {label} {valueLabel && <ValueLabel>{valueLabel}</ValueLabel>}
+          <Highlight highlight={highlight}>{label}</Highlight>{' '}
+          {valueLabel && (
+            <ValueLabel>
+              <Highlight highlight={highlight}>{valueLabel}</Highlight>
+            </ValueLabel>
+          )}
         </LabelWithFolder>
       </TreeLine>
       {isOpen && !isLeaf && subTrees.length > 0 && (

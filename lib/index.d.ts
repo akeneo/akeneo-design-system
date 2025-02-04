@@ -704,6 +704,11 @@ export declare const HelpIcon: ({ title, size, color, ...props }: IconProps) => 
 
 export declare const HelpPlainIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
+export declare const Highlight: default_2.FC<{
+    children: string;
+    highlight: string;
+}>;
+
 export declare const HighlightTitle: StyledComponent<"span", DefaultTheme, AkeneoThemedProps, never>;
 
 export declare type HorizontalPosition = 'left' | 'right';
@@ -1687,7 +1692,7 @@ declare const TopLeftButtons: StyledComponent<"div", DefaultTheme, {}, never>;
 declare const TopRightButtons: StyledComponent<"div", DefaultTheme, {}, never>;
 
 export declare const Tree: {
-    <T>({ label, value, children, isLeaf, selected, isLoading, selectable, readOnly, onChange, onOpen, onClose, onClick, defaultOpen, _isRoot, valueLabel, ...rest }: default_2.PropsWithChildren<TreeProps<T>>): default_2.JSX.Element;
+    <T>({ label, value, children, isLeaf, selected, isLoading, selectable, readOnly, onChange, onOpen, onClose, onClick, defaultOpen, _isRoot, valueLabel, highlight, ...rest }: default_2.PropsWithChildren<TreeProps<T>>): default_2.JSX.Element;
     displayName: string;
 };
 
@@ -1707,6 +1712,7 @@ declare type TreeProps<T = string> = {
     _isRoot?: boolean;
     children?: ReactNode;
     valueLabel?: string;
+    highlight?: string;
 };
 
 export declare const UnpublishIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;

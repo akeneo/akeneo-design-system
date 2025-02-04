@@ -48,7 +48,10 @@ import {Tree} from './Tree.tsx';
     },
     valueLabel: {
       description: 'Label of the value'
-    }
+    },
+    highlight: {
+      description: 'Highlighted searched value'
+    },
   }}
   args={{}}
 />
@@ -211,6 +214,21 @@ The Tree component uses its value to trigger onOpen, onClose and other events. B
                    <Tree {...args} label='Child2 Sub2' isLeaf={true} />
                </Tree>
           </Tree>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation on highlight
+
+<Canvas>
+  <Story name="Highlight">
+    {args => {
+      return (
+        <>
+          <Tree {...args} label='default' />
+          <Tree {...args} label='highlighted' highlight={'high'} />
         </>
       );
     }}
