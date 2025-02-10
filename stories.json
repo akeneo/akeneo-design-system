@@ -452,6 +452,20 @@
         "__isArgsStory": false
       }
     },
+    "components-buttons-button--shadow": {
+      "id": "components-buttons-button--shadow",
+      "name": "Shadow",
+      "title": "Components/Buttons/Button",
+      "importPath": "./src/components/Button/Button.stories.mdx",
+      "kind": "Components/Buttons/Button",
+      "story": "Shadow",
+      "parameters": {
+        "fileName": "./src/components/Button/Button.stories.mdx",
+        "framework": "react",
+        "__id": "components-buttons-button--shadow",
+        "__isArgsStory": true
+      }
+    },
     "components-card--standard": {
       "id": "components-card--standard",
       "name": "Standard",
