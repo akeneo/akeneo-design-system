@@ -62,6 +62,10 @@ export declare const ArrowLeftIcon: ({ title, size, color, ...props }: IconProps
 
 export declare const ArrowRightIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
+export declare const ArrowSimpleDownIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
+export declare const ArrowSimpleLeftIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
 export declare const ArrowSimpleRightIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const ArrowSimpleUpIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
@@ -218,7 +222,7 @@ declare type BreadcrumbProps = {
 
 export declare const BrokenLinkIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
-export declare const Button: default_2.ForwardRefExoticComponent<Omit<default_2.ButtonHTMLAttributes<HTMLButtonElement> & default_2.AnchorHTMLAttributes<HTMLAnchorElement>, "children" | "onClick" | "size" | "disabled" | "level" | "href" | "ghost" | "active" | "ariaLabel" | "ariaLabelledBy" | "ariaDescribedBy"> & {
+export declare const Button: default_2.ForwardRefExoticComponent<Omit<default_2.ButtonHTMLAttributes<HTMLButtonElement> & default_2.AnchorHTMLAttributes<HTMLAnchorElement>, "children" | "onClick" | "size" | "disabled" | "level" | "href" | "ghost" | "active" | "ariaLabel" | "ariaLabelledBy" | "ariaDescribedBy" | "shadow"> & {
     level?: Level | undefined;
     ghost?: boolean | undefined;
     disabled?: boolean | undefined;
@@ -229,6 +233,7 @@ export declare const Button: default_2.ForwardRefExoticComponent<Omit<default_2.
     ariaLabel?: string | undefined;
     ariaLabelledBy?: string | undefined;
     ariaDescribedBy?: string | undefined;
+    shadow?: boolean | undefined;
     children?: ReactNode;
 } & default_2.RefAttributes<HTMLButtonElement>>;
 
@@ -243,6 +248,7 @@ export declare type ButtonProps = Override<ButtonHTMLAttributes<HTMLButtonElemen
     ariaLabel?: string;
     ariaLabelledBy?: string;
     ariaDescribedBy?: string;
+    shadow?: boolean;
     children?: ReactNode;
 }>;
 

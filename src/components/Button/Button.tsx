@@ -71,6 +71,11 @@ type ButtonProps = Override<
     ariaDescribedBy?: string;
 
     /**
+     * Add shadow on the button
+     */
+    shadow?: boolean;
+
+    /**
      * Children of the button.
      */
     children?: ReactNode;
@@ -126,6 +131,7 @@ const ContainerAsButton = styled.button<
     $active: boolean;
     $size: ButtonSize;
     disabled: boolean;
+    shadow?: boolean;
   } & AkeneoThemedProps
 >`
   display: inline-flex;
@@ -145,6 +151,11 @@ const ContainerAsButton = styled.button<
   outline-style: none;
   text-decoration: none;
   white-space: nowrap;
+  ${({shadow}) =>
+    shadow &&
+    css`
+      box-shadow: 0 0 16px rgba(89, 146, 199, 0.25);
+    `}
 
   &:focus {
     box-shadow: 0 0 0 2px ${getColor('blue', 40)};
@@ -160,6 +171,7 @@ const ContainerAsLink = styled.a<
     $active: boolean;
     $size: ButtonSize;
     disabled: boolean;
+    shadow?: boolean;
   } & AkeneoThemedProps
 >`
   display: inline-flex;
@@ -179,6 +191,12 @@ const ContainerAsLink = styled.a<
   outline-style: none;
   text-decoration: none;
   white-space: nowrap;
+
+  ${({shadow}) =>
+    shadow &&
+    css`
+      box-shadow: 0 0 16px rgba(89, 146, 199, 0.25);
+    `}
 
   &:focus {
     box-shadow: 0 0 0 2px ${getColor('blue', 40)};
@@ -201,6 +219,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       size = 'default',
       href,
       ariaDescribedBy,
+      shadow,
       ariaLabel,
       ariaLabelledBy,
       children,
@@ -224,6 +243,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           $active={active}
           $size={size}
           disabled={disabled}
+          shadow={shadow}
           aria-describedby={ariaDescribedBy}
           aria-disabled={disabled}
           aria-label={ariaLabel}
@@ -253,6 +273,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         $active={active}
         $size={size}
         disabled={disabled}
+        shadow={shadow}
         aria-describedby={ariaDescribedBy}
         aria-disabled={disabled}
         aria-label={ariaLabel}

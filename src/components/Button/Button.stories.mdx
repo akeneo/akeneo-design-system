@@ -12,11 +12,13 @@ import {ArrowDownIcon} from '../../icons';
     active: {control: {type: 'boolean'}},
     size: {control: {type: 'select'}, options: ['default', 'small']},
     onClick: {action: 'Click on the button'},
+    shadow: {type: 'boolean'},
     children: {control: {type: 'text'}},
   }}
   args={{
     level: 'primary',
     children: 'Primary',
+    shadow: false,
   }}
 />
 
@@ -234,6 +236,16 @@ If you want your button to act like a <LinkTo kind="Components/Link" story="Stan
           </Button>
         </>
       );
+    }}
+  </Story>
+</Canvas>
+
+## With shadow
+
+<Canvas>
+  <Story name="Shadow">
+    {args => {
+      return <Button {...args} shadow={true} />;
     }}
   </Story>
 </Canvas>
