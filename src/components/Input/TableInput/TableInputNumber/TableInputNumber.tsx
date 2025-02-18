@@ -46,3 +46,4 @@ const TableInputNumber = ({children, value, ...rest}: TableInputNumberProps) => 
 TableInputRow.displayName = 'TableInput.NumberInput';
 
 export {TableInputNumber};
+export type {TableInputNumberProps};

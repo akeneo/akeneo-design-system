@@ -41,6 +41,20 @@ test('it renders and handle changes on up/down buttons', () => {
   expect(handleChange).toHaveBeenCalledWith('12');
 });
 
+test('it does not display increment/decrement icons when using `any` as step', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <>
+      <label htmlFor="myInput">My label</label>
+      <NumberInput id="myInput" value="12.4" step="any" onChange={handleChange} />
+    </>
+  );
+
+  expect(screen.queryByTestId('increment-number-input')).not.toBeInTheDocument();
+  expect(screen.queryByTestId('decrement-number-input')).not.toBeInTheDocument();
+});
+
 test('it handles on submit callback', () => {
   const handleChange = jest.fn();
   const handleSubmit = jest.fn();

@@ -1069,7 +1069,7 @@ export declare type NumberInputProps = Override<Override<default_2.InputHTMLAttr
     placeholder?: string;
     min?: number;
     max?: number;
-    step?: number;
+    step?: number | 'any';
     invalid?: boolean;
     onSubmit?: () => void;
     withIncrementIcons?: boolean;
@@ -1480,10 +1480,7 @@ export declare const TableInput: {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;
     }) => default_2.JSX.Element;
-    Number: ({ children, value, ...rest }: Omit<NumberInputProps, "highlighted" | "inError"> & {
-        highlighted?: boolean | undefined;
-        inError?: boolean | undefined;
-    }) => default_2.JSX.Element;
+    Number: ({ children, value, ...rest }: TableInputNumberProps) => default_2.JSX.Element;
     Boolean: default_2.FC<Omit<default_2.HTMLAttributes<HTMLDivElement>, "onChange" | "value" | "clearLabel" | "yesLabel" | "noLabel" | "highlighted" | "inError" | "openDropdownLabel"> & {
         value: boolean | null;
         onChange: (value: boolean | null) => void;
@@ -1529,6 +1526,11 @@ export declare const TableInput: {
 };
 
 declare type TableInputHeaderCellProps = default_2.TdHTMLAttributes<HTMLTableCellElement>;
+
+export declare type TableInputNumberProps = Override<NumberInputProps, {
+    highlighted?: boolean;
+    inError?: boolean;
+}>;
 
 export declare type TableInputProps = Override<default_2.HTMLAttributes<HTMLTableElement>, {
     children?: ReactNode;

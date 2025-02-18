@@ -106,9 +106,10 @@ type NumberInputProps = Override<
     max?: number;
 
     /**
-     * A stepping interval to use when using up and down arrows to adjust the value, as well as for validation
+     * A stepping interval to use when using up and down arrows to adjust the value, as well as for validation.
+     * Use `any` for decimal values.
      */
-    step?: number;
+    step?: number | 'any';
 
     /**
      * Defines if the input is valid on not.
@@ -151,13 +152,27 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     useShortcut(Key.Enter, handleEnter, forwardedRef);
 
     const handleIncrement = useCallback(() => {
-      if (forwardedRef && 'function' !== typeof forwardedRef && forwardedRef.current && !readOnly && onChange) {
+      if (
+        forwardedRef &&
+        'function' !== typeof forwardedRef &&
+        forwardedRef.current &&
+        !readOnly &&
+        onChange &&
+        'any' !== step
+      ) {
         forwardedRef.current.stepUp(step);
         onChange(forwardedRef.current.value);
       }
     }, [forwardedRef, step, readOnly, value, onChange]);
     const handleDecrement = useCallback(() => {
-      if (forwardedRef && 'function' !== typeof forwardedRef && forwardedRef.current && !readOnly && onChange) {
+      if (
+        forwardedRef &&
+        'function' !== typeof forwardedRef &&
+        forwardedRef.current &&
+        !readOnly &&
+        onChange &&
+        'any' !== step
+      ) {
         forwardedRef.current.stepDown(step);
         onChange(forwardedRef.current.value);
       }
@@ -176,10 +191,11 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           autoComplete="off"
           value={value}
           title={value}
+          step={step}
           {...rest}
         />
         {readOnly && <ReadOnlyIcon size={16} />}
-        {!readOnly && withIncrementIcons && (
+        {!readOnly && withIncrementIcons && 'any' !== step && (
           <IncrementIconContainer>
             <ArrowUpIcon size={16} data-testid="increment-number-input" onClick={handleIncrement} />
             <ArrowDownIcon size={16} data-testid="decrement-number-input" onClick={handleDecrement} />

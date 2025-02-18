@@ -8,7 +8,7 @@ import {TableInputCell} from './TableInputCell/TableInputCell';
 import {TableInputRow} from './TableInputRow/TableInputRow';
 import {TableInputText} from './TableInputText/TableInputText';
 import {TableInputDate} from './TableInputDate/TableInputDate';
-import {TableInputNumber} from './TableInputNumber/TableInputNumber';
+import {TableInputNumber, TableInputNumberProps} from './TableInputNumber/TableInputNumber';
 import {TableInputBoolean} from './TableInputBoolean/TableInputBoolean';
 import {TableInputSelect} from './TableInputSelect/TableInputSelect';
 import {TableInputContext} from './TableInputContext';
@@ -115,4 +115,4 @@ TableInput.Select = TableInputSelect;
 TableInput.Measurement = TableInputMeasurement;
 
 export {TableInput};
-export type {TableInputProps};
+export type {TableInputProps, TableInputNumberProps};
