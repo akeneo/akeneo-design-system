@@ -81,7 +81,6 @@ const SelectedOptionContainer = styled.div<{readOnly: boolean; clearable: boolea
 
 const OptionContainer = styled.div<{disabled: boolean} & AkeneoThemedProps>`
   background: ${getColor('white')};
-  height: 34px;
   padding: 0 20px;
   align-items: center;
   gap: 10px;
