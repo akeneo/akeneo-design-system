@@ -5,6 +5,7 @@ export * from './useDebounce';
 export * from './useId';
 export * from './useIsMounted';
 export * from './usePaginatedResults';
+export * from './usePagination';
 export * from './usePosition';
 export * from './useProgress';
 export * from './useSelection';

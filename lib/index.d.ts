@@ -1747,6 +1747,8 @@ export declare const useIsMounted: () => (() => boolean);
 
 export declare const usePaginatedResults: <Type>(fetcher: (page: number) => Promise<Type[]>, dependencies: DependencyList, shouldFetch?: boolean) => readonly [Type[], () => void];
 
+export declare const usePagination: (containerRef: RefObject<HTMLElement>, lastOptionRef: RefObject<HTMLElement>, onNextPage: (() => void | Promise<void>) | undefined, isVisible: boolean) => void;
+
 export declare const useProgress: (steps: string[]) => readonly [(step: string) => boolean, () => void, () => void];
 
 declare type User = {

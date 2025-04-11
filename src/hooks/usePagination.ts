@@ -3,7 +3,7 @@ import {RefObject, useEffect} from 'react';
 const usePagination = (
   containerRef: RefObject<HTMLElement>,
   lastOptionRef: RefObject<HTMLElement>,
-  onNextPage: (() => void) | undefined,
+  onNextPage: (() => void | Promise<void>) | undefined,
   isVisible: boolean
 ) => {
   useEffect(() => {
@@ -27,7 +27,7 @@ const usePagination = (
     const observer = new IntersectionObserver(entries => {
       const lastEntry = entries[entries.length - 1];
       if (lastEntry.isIntersecting) {
-        onNextPage();
+        void onNextPage();
       }
     }, options);
 
