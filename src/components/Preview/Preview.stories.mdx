@@ -2,18 +2,32 @@ import {useState} from 'react';
 import {Meta, Story, ArgsTable, Canvas} from '@storybook/addon-docs';
 import {action} from '@storybook/addon-actions';
 import {IconButton} from '../IconButton/IconButton';
+import {Link} from '../Link/Link';
 import {SpaceContainer} from '../../storybook';
-import {RefreshIcon} from '../../icons';
+import * as Icons from '../../icons';
 import {Preview} from './Preview.tsx';
 
 <Meta
   title="Components/Preview"
   component={Preview}
+  argTypes={{
+      children: {control: {type: 'text'}},
+      level: {control: {type: 'select'}, options: ['info', 'warning', 'error', 'success']},
+      icon: {
+        control: {type: 'select'}, options: [undefined, ...Object.keys(Icons)],
+        table: {type: {summary: 'ReactElement<IconProps>'}},
+      },
+    }}
   subcomponents={{
     'Preview.Highlight': Preview.Highlight,
     'Preview.Row': Preview.Row,
   }}
-  args={{title: 'Preview', children: 'Preview text'}}
+  args={{
+      title: 'Preview',
+      level: 'info',
+      children: 'Preview text',
+      icon: undefined,
+  }}
 />
 
 # Preview
@@ -27,12 +41,37 @@ Preview component is used to put emphasis on some content.
 <Canvas>
   <Story name="Standard">
     {args => {
-      return <Preview {...args} />;
+      return <Preview {...args} icon={undefined === Icons[args.icon] ? undefined : React.createElement(Icons[args.icon])} />;
     }}
   </Story>
 </Canvas>
 
 <ArgsTable story="Standard" />
+
+## Variation on level
+
+<Canvas>
+  <Story name="Level">
+    {args => {
+      return (
+        <>
+          <Preview {...args} level="info">
+            You might need to read this. <Link href="#">Link</Link>
+          </Preview>
+          <Preview {...args} level="warning">
+            There is a warning. <Link href="#">Link</Link>
+          </Preview>
+          <Preview {...args} level="error">
+            There is an error. <Link href="#">Link</Link>
+          </Preview>
+          <Preview {...args} level="success">
+            There is a success. <Link href="#">Link</Link>
+          </Preview>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
 
 ## With highlighted content
 
@@ -107,6 +146,31 @@ The `<Preview.Row>` subcomponent has an `action` prop that accepts an `IconButto
             </Preview.Row>
           </Preview>
         </SpaceContainer>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Custom Icon
+
+<Canvas>
+  <Story name="Custom Icon">
+    {args => {
+      return (
+        <>
+          <Preview {...args} level="info" icon={<Icons.BrokenLinkIcon />}>
+            Info
+          </Preview>
+          <Preview {...args} level="warning" icon={<Icons.MegaphoneIcon />}>
+            Warning
+          </Preview>
+          <Preview {...args} level="error" inline={true} icon={<Icons.UnviewIcon />}>
+            Error level and inline
+          </Preview>
+          <Preview {...args} level="success" inline={true} icon={<Icons.MailIcon />}>
+            Success level and inline
+          </Preview>
+        </>
       );
     }}
   </Story>

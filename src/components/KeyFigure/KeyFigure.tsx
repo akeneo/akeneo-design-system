@@ -36,10 +36,11 @@ type KeyFigureProps = {
 };
 
 const KeyFigureContainer = styled.div`
-  height: 80px;
+  height: 90px;
   display: inline-flex;
   box-sizing: border-box;
   background: ${getColor('white')};
+  border: 1px ${getColor('grey', 40)} solid;
 `;
 
 const IconContainer = styled.div`
@@ -72,7 +73,7 @@ const Title = styled.div`
 `;
 const Values = styled.div`
   display: flex;
-  color: ${getColor('grey', 100)};
+  color: ${getColor('grey', 120)};
   font-size: 16px;
 `;
 

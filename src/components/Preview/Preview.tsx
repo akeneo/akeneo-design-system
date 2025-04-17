@@ -14,29 +14,103 @@ import {Override} from '../../shared/override';
 import {IconButton, IconButtonProps} from '../IconButton/IconButton';
 import {ArrowDownIcon} from '../../icons/ArrowDownIcon';
 import {ArrowUpIcon} from '../../icons/ArrowUpIcon';
+import {IconProps} from '../../icons';
 
 const ANIMATION_DURATION = 100;
 
-const PreviewContainer = styled.div`
-  padding: 10px 15px;
-  background: ${getColor('blue', 10)};
+const getBackgroundColor = (level: Level) => {
+  switch (level) {
+    case 'info':
+      return getColor('blue', 10);
+    case 'warning':
+      return getColor('yellow', 10);
+    case 'error':
+      return getColor('red', 10);
+    case 'success':
+      return getColor('green', 10);
+  }
+};
+
+const getFontColor = (level: Level) => {
+  switch (level) {
+    case 'info':
+      return getColor('blue', 100);
+    case 'warning':
+      return getColor('yellow', 120);
+    case 'error':
+      return getColor('red', 120);
+    case 'success':
+      return getColor('green', 120);
+  }
+};
+
+const getIconColor = (level: Level) => {
+  switch (level) {
+    case 'info':
+      return getColor('blue', 100);
+    case 'warning':
+      return getColor('yellow', 120);
+    case 'error':
+      return getColor('red', 120);
+    case 'success':
+      return getColor('green', 120);
+  }
+};
+
+const getLinkColor = (level: Level) => {
+  switch (level) {
+    case 'info':
+      return getColor('blue', 100);
+    case 'warning':
+      return getColor('yellow', 120);
+    case 'error':
+      return getColor('red', 120);
+    case 'success':
+      return getColor('green', 120);
+  }
+};
+
+type Level = 'info' | 'warning' | 'error' | 'success';
+
+const Container = styled.div<{$level: Level} & AkeneoThemedProps>`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
   border-radius: 3px;
   border: 1px solid ${getColor('blue', 40)};
-  display: flex;
-  flex-direction: column;
+  color: ${props => getFontColor(props.$level)};
+  background-color: ${props => getBackgroundColor(props.$level)};
 `;
 
-const PreviewTitle = styled.div`
+const PreviewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 15px;
+`;
+
+const IconContainer = styled.span<{$level: Level} & AkeneoThemedProps>`
+  height: 20px;
+  margin: 12px 10px;
+  color: ${props => getIconColor(props.$level)};
+`;
+
+const PreviewTitle = styled.div<{$level: Level} & AkeneoThemedProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  text-transform: uppercase;
   font-size: ${getFontSize('small')};
-  color: ${getColor('blue', 100)};
+  color: ${props => getFontColor(props.$level)};
 `;
 
 const PreviewList = styled.div<
-  {isCollapsable: boolean; $height: number; $overflow: string; shouldAnimate: boolean} & AkeneoThemedProps
+  {
+    isCollapsable: boolean;
+    $height: number;
+    $overflow: string;
+    shouldAnimate: boolean;
+    $level: Level;
+  } & AkeneoThemedProps
 >`
   overflow-wrap: break-word;
   white-space: break-spaces;
@@ -53,6 +127,10 @@ const PreviewList = styled.div<
         transition-property: max-height, margin-top;
       `}
     `}
+
+  a {
+    color: ${({$level}) => getLinkColor($level)};
+  }
 `;
 
 const Highlight = styled.span`
@@ -130,6 +208,16 @@ type PreviewProps = Override<
     title: string;
 
     /**
+     * Level of the preview defining its color and icon.
+     */
+    level?: Level;
+
+    /**
+     * Icon to display. If not provided, the Helper will display the corresponding level Icon.
+     */
+    icon?: ReactElement<IconProps>;
+
+    /**
      * Content of the preview.
      */
     children?: ReactNode;
@@ -161,7 +249,16 @@ type PreviewProps = Override<
 /**
  * Preview component is used to put emphasis on some content.
  */
-const Preview = ({title, isOpen, collapseButtonLabel, onCollapse, children, ...rest}: PreviewProps) => {
+const Preview = ({
+  title,
+  level = 'info',
+  icon,
+  isOpen,
+  collapseButtonLabel,
+  onCollapse,
+  children,
+  ...rest
+}: PreviewProps) => {
   const [contentHeight, setContentHeight] = useState<number>(0);
   const [shouldAnimate, setShouldAnimate] = useState<boolean>(false);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -189,30 +286,34 @@ const Preview = ({title, isOpen, collapseButtonLabel, onCollapse, children, ...r
   }, [children]);
 
   return (
-    <PreviewContainer {...rest}>
-      <PreviewTitle onClick={handleCollapse}>
-        {title}
-        {isCollapsable && (
-          <IconButton
-            icon={isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
-            title={collapseButtonLabel}
-            level="tertiary"
-            ghost="borderless"
-            size="small"
-          />
-        )}
-      </PreviewTitle>
-      <PreviewList
-        ref={contentRef}
-        isCollapsable={isCollapsable}
-        $overflow={shouldAnimate || !isOpen ? 'hidden' : 'inherit'}
-        $height={true === isOpen ? contentHeight : 0}
-        shouldAnimate={shouldAnimate}
-        aria-hidden={!isOpen}
-      >
-        {children}
-      </PreviewList>
-    </PreviewContainer>
+    <Container $level={level}>
+      {icon && <IconContainer $level={level}>{React.cloneElement(icon, {size: 20})}</IconContainer>}
+      <PreviewContainer {...rest}>
+        <PreviewTitle $level={level} onClick={handleCollapse}>
+          {title}
+          {isCollapsable && (
+            <IconButton
+              icon={isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+              title={collapseButtonLabel}
+              level="tertiary"
+              ghost="borderless"
+              size="small"
+            />
+          )}
+        </PreviewTitle>
+        <PreviewList
+          ref={contentRef}
+          isCollapsable={isCollapsable}
+          $overflow={shouldAnimate || !isOpen ? 'hidden' : 'inherit'}
+          $height={true === isOpen ? contentHeight : 0}
+          shouldAnimate={shouldAnimate}
+          aria-hidden={!isOpen}
+          $level={level}
+        >
+          {children}
+        </PreviewList>
+      </PreviewContainer>
+    </Container>
   );
 };
 

@@ -838,7 +838,9 @@ export declare type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | '
 
 declare type Level_2 = 'info' | 'warning' | 'error' | 'success';
 
-declare type Level_3 = 'warning' | 'tertiary';
+declare type Level_3 = 'info' | 'warning' | 'error' | 'success';
+
+declare type Level_4 = 'warning' | 'tertiary';
 
 export declare const LightIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
@@ -1142,7 +1144,7 @@ export declare const PlayIcon: ({ title, size, color, ...props }: IconProps) => 
 export declare const PlusIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const Preview: {
-    ({ title, isOpen, collapseButtonLabel, onCollapse, children, ...rest }: PreviewProps): default_2.JSX.Element;
+    ({ title, level, icon, isOpen, collapseButtonLabel, onCollapse, children, ...rest }: PreviewProps): default_2.JSX.Element;
     Highlight: StyledComponent<"span", DefaultTheme, AkeneoThemedProps, never>;
     Row: {
         ({ action, children }: RowProps_2): default_2.JSX.Element;
@@ -1152,6 +1154,8 @@ export declare const Preview: {
 
 declare type PreviewProps = Override<HTMLAttributes<HTMLDivElement>, {
     title: string;
+    level?: Level_3;
+    icon?: ReactElement<IconProps>;
     children?: ReactNode;
 } & ({
     isOpen: boolean;
@@ -1557,7 +1561,7 @@ declare type TableRowProps = Override<HTMLAttributes<HTMLTableRowElement>, {
     children?: ReactNode;
     onSelectToggle?: (isSelected: boolean) => void;
     isSelected?: boolean | 'mixed';
-    level?: Level_3;
+    level?: Level_4;
     onClick?: (event: MouseEvent_2<HTMLTableRowElement>) => void;
     rowIndex?: number;
 }>;

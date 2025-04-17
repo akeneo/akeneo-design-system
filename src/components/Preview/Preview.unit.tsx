@@ -7,6 +7,64 @@ import {Preview} from './Preview';
 
 jest.useFakeTimers();
 
+describe('A preview with icon', () => {
+  it('it renders a info preview', () => {
+    render(
+      <Preview title="Nice preview" level="info" icon={<RefreshIcon data-testid="refresh-icon" />}>
+        <Preview.Highlight>Name</Preview.Highlight>
+        Preview content
+      </Preview>
+    );
+
+    expect(screen.getByText('Nice preview')).toBeInTheDocument();
+    expect(screen.getByText('Name')).toBeInTheDocument();
+    expect(screen.getByText('Preview content')).toBeInTheDocument();
+    expect(screen.getByTestId('refresh-icon')).toBeInTheDocument();
+  });
+
+  it('it renders a warning preview', () => {
+    render(
+      <Preview title="Nice preview" level="warning" icon={<RefreshIcon data-testid="refresh-icon" />}>
+        <Preview.Highlight>Name</Preview.Highlight>
+        Preview content
+      </Preview>
+    );
+
+    expect(screen.getByText('Nice preview')).toBeInTheDocument();
+    expect(screen.getByText('Name')).toBeInTheDocument();
+    expect(screen.getByText('Preview content')).toBeInTheDocument();
+    expect(screen.getByTestId('refresh-icon')).toBeInTheDocument();
+  });
+
+  it('it renders a error preview', () => {
+    render(
+      <Preview title="Nice preview" level="error" icon={<RefreshIcon data-testid="refresh-icon" />}>
+        <Preview.Highlight>Name</Preview.Highlight>
+        Preview content
+      </Preview>
+    );
+
+    expect(screen.getByText('Nice preview')).toBeInTheDocument();
+    expect(screen.getByText('Name')).toBeInTheDocument();
+    expect(screen.getByText('Preview content')).toBeInTheDocument();
+    expect(screen.getByTestId('refresh-icon')).toBeInTheDocument();
+  });
+
+  it('it renders a success preview', () => {
+    render(
+      <Preview title="Nice preview" level="success" icon={<RefreshIcon data-testid="refresh-icon" />}>
+        <Preview.Highlight>Name</Preview.Highlight>
+        Preview content
+      </Preview>
+    );
+
+    expect(screen.getByText('Nice preview')).toBeInTheDocument();
+    expect(screen.getByText('Name')).toBeInTheDocument();
+    expect(screen.getByText('Preview content')).toBeInTheDocument();
+    expect(screen.getByTestId('refresh-icon')).toBeInTheDocument();
+  });
+});
+
 test('it renders its title & its children properly', () => {
   render(
     <Preview title="Nice preview">
@@ -36,6 +94,20 @@ test('it renders its row subcomponent properly', () => {
   userEvent.click(screen.getByTitle('Refresh'));
 
   expect(handleRefresh).toHaveBeenCalled();
+});
+
+test('it renders with icon', () => {
+  render(
+    <Preview title="Nice preview" icon={<RefreshIcon data-testid="refresh-icon" />}>
+      <Preview.Highlight>Name</Preview.Highlight>
+      Preview content
+    </Preview>
+  );
+
+  expect(screen.getByText('Nice preview')).toBeInTheDocument();
+  expect(screen.getByText('Name')).toBeInTheDocument();
+  expect(screen.getByText('Preview content')).toBeInTheDocument();
+  expect(screen.getByTestId('refresh-icon')).toBeInTheDocument();
 });
 
 test('it can be collapsed if it is collapsable', () => {
