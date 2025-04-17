@@ -2762,6 +2762,20 @@
         "__isArgsStory": true
       }
     },
+    "components-preview--level": {
+      "id": "components-preview--level",
+      "name": "Level",
+      "title": "Components/Preview",
+      "importPath": "./src/components/Preview/Preview.stories.mdx",
+      "kind": "Components/Preview",
+      "story": "Level",
+      "parameters": {
+        "fileName": "./src/components/Preview/Preview.stories.mdx",
+        "framework": "react",
+        "__id": "components-preview--level",
+        "__isArgsStory": true
+      }
+    },
     "components-preview--highlight": {
       "id": "components-preview--highlight",
       "name": "Highlight",
@@ -2801,6 +2815,20 @@
         "fileName": "./src/components/Preview/Preview.stories.mdx",
         "framework": "react",
         "__id": "components-preview--collapsable",
+        "__isArgsStory": true
+      }
+    },
+    "components-preview--custom-icon": {
+      "id": "components-preview--custom-icon",
+      "name": "Custom Icon",
+      "title": "Components/Preview",
+      "importPath": "./src/components/Preview/Preview.stories.mdx",
+      "kind": "Components/Preview",
+      "story": "Custom Icon",
+      "parameters": {
+        "fileName": "./src/components/Preview/Preview.stories.mdx",
+        "framework": "react",
+        "__id": "components-preview--custom-icon",
         "__isArgsStory": true
       }
     },
