@@ -516,6 +516,8 @@ export declare const DownloadIcon: {
 
 export declare const DraftIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
 
+declare type DragAndDropMode = 'reorder' | 'hierarchy';
+
 export declare const DragDropIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const Dropdown: {
@@ -1413,7 +1415,7 @@ declare type TabBarProps = {
 } & HTMLAttributes<HTMLDivElement>;
 
 export declare const Table: {
-    ({ isSelectable, hasWarningRows, hasLockedRows, displayCheckbox, isDragAndDroppable, onReorder, children, ...rest }: TableProps): default_2.JSX.Element;
+    ({ isSelectable, hasWarningRows, hasLockedRows, displayCheckbox, isDragAndDroppable, dragAndDropMode, onReorder, children, ...rest }: TableProps): default_2.JSX.Element;
     Header: default_2.ForwardRefExoticComponent<TableHeaderProps & default_2.RefAttributes<HTMLTableSectionElement>>;
     HeaderCell: default_2.ForwardRefExoticComponent<{
         isSortable?: boolean | undefined;
@@ -1552,9 +1554,11 @@ export declare type TableProps = Override<default_2.HTMLAttributes<HTMLTableElem
 } & ({
     isDragAndDroppable?: false;
     onReorder?: undefined;
+    dragAndDropMode?: undefined;
 } | {
     isDragAndDroppable: boolean;
     onReorder: (updatedIndices: number[], draggedIndex?: number, droppedIndex?: number) => void;
+    dragAndDropMode?: DragAndDropMode;
 })>;
 
 declare type TableRowProps = Override<HTMLAttributes<HTMLTableRowElement>, {

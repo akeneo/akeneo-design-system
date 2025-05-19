@@ -67,6 +67,12 @@ const RowContainer = styled.tr<
       background: linear-gradient(to top, ${getColor('blue', 40)} 4px, ${getColor('white')} 0px);
     `}
 
+  ${({placeholderPosition}) =>
+    placeholderPosition === 'full_row' &&
+    css`
+      background-color: ${getColor('grey', 20)};
+    `}
+
   &:hover > td {
     opacity: 1;
     ${({isClickable}) =>
@@ -175,10 +181,11 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
     {rowIndex = 0, isSelected = false, level, onSelectToggle, onClick, draggable, children, ...rest}: TableRowProps,
     forwardedRef: Ref<HTMLTableRowElement>
   ) => {
+    const {isSelectable, displayCheckbox, isDragAndDroppable, hasWarningRows, hasLockedRows, dragAndDropMode} =
+      useContext(TableContext);
     const [placeholderPosition, placeholderDragEnter, placeholderDragLeave, placeholderDragEnd] =
-      usePlaceholderPosition(rowIndex);
+      usePlaceholderPosition(rowIndex, dragAndDropMode);
 
-    const {isSelectable, displayCheckbox, isDragAndDroppable, hasWarningRows, hasLockedRows} = useContext(TableContext);
     if (isSelectable && (undefined === isSelected || undefined === onSelectToggle)) {
       throw Error('A row in a selectable table should have the prop "isSelected" and "onSelectToggle"');
     }

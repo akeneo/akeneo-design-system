@@ -1,4 +1,5 @@
 import {createContext} from 'react';
+import {DragAndDropMode} from '../../hooks/usePlaceholderPosition';
 
 type TableContextType = {
   isSelectable: boolean;
@@ -7,6 +8,7 @@ type TableContextType = {
   displayCheckbox: boolean;
   isDragAndDroppable: boolean;
   onReorder: ((reorderedIndices: number[], draggedIndex?: number, droppedIndex?: number) => void) | undefined;
+  dragAndDropMode: DragAndDropMode;
 };
 
 const TableContext = createContext<TableContextType>({
@@ -16,6 +18,7 @@ const TableContext = createContext<TableContextType>({
   displayCheckbox: false,
   isDragAndDroppable: false,
   onReorder: undefined,
+  dragAndDropMode: 'reorder',
 });
 
 export {TableContext};

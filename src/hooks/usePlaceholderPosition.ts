@@ -1,10 +1,20 @@
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useContext, useEffect, useState} from 'react';
+import {DraggedElementContext} from '../contexts/DraggedElementContext';
 
-type PlaceholderPosition = 'top' | 'bottom' | 'none';
+type PlaceholderPosition = 'top' | 'bottom' | 'full_row' | 'none';
+export type DragAndDropMode = 'reorder' | 'hierarchy';
 
-const usePlaceholderPosition = (rowIndex: number) => {
+const usePlaceholderPosition = (rowIndex: number, dragAndDropMode: DragAndDropMode = 'reorder') => {
   const [hoveringCount, setHoveringCount] = useState<number>(0);
   const [placeholderPosition, setPlaceholderPosition] = useState<PlaceholderPosition>('none');
+  const {isDragging} = useContext(DraggedElementContext);
+
+  useEffect(() => {
+    if (!isDragging) {
+      setPlaceholderPosition('none');
+      setHoveringCount(count => Math.max(0, count - 1));
+    }
+  }, [isDragging]);
 
   useEffect(() => {
     setHoveringCount(0);
@@ -13,9 +23,13 @@ const usePlaceholderPosition = (rowIndex: number) => {
   const dragEnter = useCallback(
     (draggedElementIndex: number) => {
       setHoveringCount(count => (draggedElementIndex === rowIndex ? count : count + 1));
-      setPlaceholderPosition(draggedElementIndex >= rowIndex ? 'top' : 'bottom');
+      if ('hierarchy' === dragAndDropMode) {
+        setPlaceholderPosition('full_row');
+      } else {
+        setPlaceholderPosition(draggedElementIndex >= rowIndex ? 'top' : 'bottom');
+      }
     },
-    [rowIndex]
+    [rowIndex, dragAndDropMode]
   );
 
   const dragLeave = useCallback(() => {

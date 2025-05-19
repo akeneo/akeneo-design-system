@@ -9,6 +9,7 @@ import {TableContext} from './TableContext';
 import {TableBody} from './TableBody/TableBody';
 import {Override} from '../../shared/override';
 import {DraggedElementProvider} from '../../contexts/DraggedElementContext';
+import {DragAndDropMode} from '../../hooks/usePlaceholderPosition';
 
 const TableContainer = styled.table`
   border-collapse: collapse;
@@ -51,6 +52,8 @@ type TableProps = Override<
         isDragAndDroppable?: false;
 
         onReorder?: undefined;
+
+        dragAndDropMode?: undefined;
       }
     | {
         /**
@@ -62,6 +65,12 @@ type TableProps = Override<
          * Called when an element has been dragged and dropped on the table.
          */
         onReorder: (updatedIndices: number[], draggedIndex?: number, droppedIndex?: number) => void;
+
+        /**
+         * Define the mode of the drag and drop. It affects the way the placeholder is displayed.
+         * Available mode are 'reorder' (default) and 'hierarchy'.
+         */
+        dragAndDropMode?: DragAndDropMode;
       }
   )
 >;
@@ -75,13 +84,22 @@ const Table = ({
   hasLockedRows = false,
   displayCheckbox = false,
   isDragAndDroppable = false,
+  dragAndDropMode = 'reorder',
   onReorder = undefined,
   children,
   ...rest
 }: TableProps) => {
   const providerValue = useMemo(
-    () => ({isSelectable, hasWarningRows, hasLockedRows, displayCheckbox, isDragAndDroppable, onReorder}),
-    [isSelectable, hasWarningRows, hasLockedRows, displayCheckbox, isDragAndDroppable, onReorder]
+    () => ({
+      isSelectable,
+      hasWarningRows,
+      hasLockedRows,
+      displayCheckbox,
+      isDragAndDroppable,
+      onReorder,
+      dragAndDropMode,
+    }),
+    [isSelectable, hasWarningRows, hasLockedRows, displayCheckbox, isDragAndDroppable, onReorder, dragAndDropMode]
   );
 
   return (
