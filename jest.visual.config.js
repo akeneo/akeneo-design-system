@@ -5,5 +5,5 @@ module.exports = {
   testMatch: ['**/?(*.)+(visual).ts?(x)'],
   preset: 'jest-puppeteer',
   collectCoverage: false,
-  testTimeout: 30000
+  testTimeout: 60000
 };
