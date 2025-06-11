@@ -1029,6 +1029,7 @@ declare type MultiMultiSelectInputProps = Override<Override<default_2.InputHTMLA
     openLabel: string;
     removeLabel: string;
     invalid?: boolean;
+    separators?: string[];
     children?: ReactElement<OptionProps>[] | ReactElement<OptionProps>;
     verticalPosition?: VerticalPosition;
     lockedValues?: string[];

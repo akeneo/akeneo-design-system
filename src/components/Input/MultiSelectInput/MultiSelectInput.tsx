@@ -158,6 +158,11 @@ type MultiMultiSelectInputProps = Override<
     invalid?: boolean;
 
     /**
+     * List of separators used to create chips.
+     */
+    separators?: string[];
+
+    /**
      * The options.
      */
     children?: ReactElement<OptionProps>[] | ReactElement<OptionProps>;
@@ -204,7 +209,7 @@ const MultiSelectInput = ({
   id,
   placeholder,
   invalid,
-  value,
+  value = [],
   invalidValue = [],
   emptyResultLabel,
   children = [],
@@ -292,9 +297,21 @@ const MultiSelectInput = ({
     }
   };
 
-  const handleSearch = (value: string) => {
-    setSearchValue(value);
-    onSearchChange?.(value);
+  const handleSearch = (searchValue: string) => {
+    // Matching : line break, space, tab, comma and semi-colon
+    const newChips = searchValue.split(new RegExp('(?:\\r\\n|[\\s,;])+', 'g'));
+    const newChipsWithoutEmpty = newChips.filter((chip: string) => chip.trim() !== '');
+    const newChipsFiltered = newChipsWithoutEmpty.filter((chip: string) =>
+      validChildren.map(child => child.props.value).includes(chip)
+    );
+    onChange?.(arrayUnique([...value, ...newChipsFiltered]));
+    // Finds chips that were entered but are not valid (invalidChipsProvided = invalid or unrecognized chips)
+    // and joins the found values with commas.
+    const invalidChipsProvided = newChipsWithoutEmpty.filter(x => !newChipsFiltered.includes(x)).join(',');
+    // Update the search input with leftover (invalid) chips that were not matched.
+    setSearchValue(invalidChipsProvided);
+    // Calls onSearchChange (if provided) with the invalid input.
+    onSearchChange?.(invalidChipsProvided);
     openOverlay();
   };
 

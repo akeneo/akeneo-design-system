@@ -80,7 +80,7 @@ test('it handles search', () => {
   expect(spainOption).toBeInTheDocument();
   fireEvent.keyDown(input, {key: 'Enter', code: 'Enter'});
   expect(onChange).toHaveBeenCalledWith(['en_US', 'es_ES']);
-  expect(onChange).toHaveBeenCalledTimes(2);
+  expect(onChange).toHaveBeenCalledTimes(4);
 });
 
 test('it handles external search', () => {
@@ -157,7 +157,7 @@ test('it handles empty cases', () => {
   expect(screen.getByText('Empty result')).toBeInTheDocument();
 
   fireEvent.keyDown(input, {key: 'Enter', code: 'Enter'});
-  expect(onChange).not.toHaveBeenCalled();
+  expect(onChange).toHaveBeenCalledWith([]);
 });
 
 test('it handles codes that do not have a label', () => {
@@ -314,7 +314,7 @@ test('it does not remove the chip when the search value is not empty', () => {
   userEvent.type(input, 'something{backspace}{backspace}');
 
   expect(screen.getByDisplayValue('somethi')).toBeInTheDocument();
-  expect(onChange).not.toBeCalled();
+  expect(onChange).toHaveBeenCalledWith(['en_US', 'fr_FR']);
 });
 
 test('MultiSelectInput supports ...rest props', () => {
@@ -392,4 +392,22 @@ test('It throws when passing non string children', () => {
     );
   }).toThrowError('Multi select only accepts string as Option');
   mockConsole.mockRestore();
+});
+
+test('it supports the copy paste of multiple tags', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <MultiSelectInput
+      value={['gucci', 'samsung', 'apple', 'asus']}
+      onChange={handleChange}
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    />
+  );
+
+  userEvent.paste(screen.getByRole('textbox'), ' gucci samsung,apple\r\nasus  ');
+
+  expect(handleChange).toBeCalledWith(['gucci', 'samsung', 'apple', 'asus']);
 });
