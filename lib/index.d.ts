@@ -987,8 +987,10 @@ declare type MetricInputProps = {
         label: string | ((amount: string) => string);
     }[];
     openLabel: string;
+    emptyResultLabel?: string;
     min?: number;
     max?: number;
+    invalid?: boolean;
 };
 
 export declare const MinifyIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;

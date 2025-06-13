@@ -44,8 +44,10 @@ type MetricInputProps = {
   onUnitChange: (unit: string) => void;
   unitOptions: {value: string; label: string | ((amount: string) => string)}[];
   openLabel: string;
+  emptyResultLabel?: string;
   min?: number;
   max?: number;
+  invalid?: boolean;
 };
 
 export const MetricInput: React.FC<MetricInputProps> = ({
@@ -55,8 +57,10 @@ export const MetricInput: React.FC<MetricInputProps> = ({
   onUnitChange,
   unitOptions,
   openLabel,
+  emptyResultLabel = 'No result found',
   min,
   max,
+  invalid = false,
 }) => {
   const getLabel = useCallback(
     (unit: string, amount: string) => {
@@ -69,13 +73,23 @@ export const MetricInput: React.FC<MetricInputProps> = ({
 
   return (
     <MetricInputContainer>
-      <CustomNumberInput value={amount} onChange={onAmountChange} withIncrementIcons={false} min={min} max={max} />
+      <CustomNumberInput
+        value={amount}
+        onChange={onAmountChange}
+        withIncrementIcons={false}
+        min={min}
+        max={max}
+        invalid={invalid}
+        data-testid="value"
+      />
       <CustomSelectInput
         onChange={onUnitChange}
         value={unit}
         clearable={false}
         openLabel={openLabel}
-        emptyResultLabel="No result found"
+        emptyResultLabel={emptyResultLabel}
+        invalid={invalid}
+        data-testid="currency"
       >
         {unitOptions.map(unitOption => (
           <SelectInput.Option
