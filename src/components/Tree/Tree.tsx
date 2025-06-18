@@ -140,7 +140,7 @@ const TreeIcon: React.FC<{
   return selected ? <TreeFolderSelectedIcon size={24} /> : <TreeFolderNotSelectedIcon size={24} />;
 };
 
-type TreeProps<T = string> = {
+export type TreeProps<T = string> = {
   value: T;
   label: string;
   isLeaf?: boolean;

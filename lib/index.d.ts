@@ -1715,7 +1715,7 @@ export declare const Tree: {
     displayName: string;
 };
 
-declare type TreeProps<T = string> = {
+export declare type TreeProps<T = string> = {
     value: T;
     label: string;
     isLeaf?: boolean;
