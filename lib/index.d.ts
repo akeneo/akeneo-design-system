@@ -1710,8 +1710,9 @@ declare const TopLeftButtons: StyledComponent<"div", DefaultTheme, {}, never>;
 
 declare const TopRightButtons: StyledComponent<"div", DefaultTheme, {}, never>;
 
-export declare const Tree: {
-    <T>({ label, value, children, isLeaf, selected, isLoading, selectable, readOnly, onChange, onOpen, onClose, onClick, defaultOpen, _isRoot, valueLabel, highlight, ...rest }: default_2.PropsWithChildren<TreeProps<T>>): default_2.JSX.Element;
+export declare const Tree: (<T>(props: TreeProps<T> & {
+    ref?: default_2.ForwardedRef<HTMLLIElement> | undefined;
+}) => JSX.Element) & {
     displayName: string;
 };
 

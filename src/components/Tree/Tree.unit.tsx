@@ -126,6 +126,42 @@ test('It throws with an unknown status', () => {
   mockConsole.mockRestore();
 });
 
+test('it does not throw any error with condition on the child', () => {
+  const isOpen = false;
+  render(
+    <Tree value={'master'} label={'Master'}>
+      {isOpen && <Tree value={'test'} label={'test'} />}
+    </Tree>
+  );
+
+  expect(screen.getByText('Master')).toBeInTheDocument();
+});
+
+test('it opens the tree when children are provided with delay and defaultOpen is true', async () => {
+  const Wrapper = () => {
+    const [children, setChildren] = React.useState<string[]>([]);
+
+    React.useEffect(() => {
+      setTimeout(() => {
+        setChildren(['camcorders', 'radio']);
+      }, 200);
+    }, []);
+
+    return (
+      <Tree value={'master'} label={'Master'} defaultOpen={true}>
+        {children.map(child => (
+          <Tree key={child} value={child} label={child} />
+        ))}
+      </Tree>
+    );
+  };
+
+  render(<Wrapper />);
+
+  expect(screen.getByText('Master')).toBeInTheDocument();
+  expect(await screen.findByText('camcorders')).toBeInTheDocument();
+});
+
 test('it renders a tree with a value label', () => {
   render(<Tree value={'master'} label={'Master'} valueLabel={'[master]'} />);
   expect(screen.getByText('[master]')).toBeInTheDocument();

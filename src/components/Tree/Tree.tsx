@@ -1,4 +1,4 @@
-import React, {SyntheticEvent, isValidElement, ReactElement, ReactNode, PropsWithChildren} from 'react';
+import React, {SyntheticEvent, isValidElement, ReactElement, ReactNode, PropsWithChildren, useEffect} from 'react';
 import styled, {css} from 'styled-components';
 import {AkeneoThemedProps, getColor} from '../../theme/theme';
 import {CommonStyle} from '../../theme/common';
@@ -159,27 +159,33 @@ export type TreeProps<T = string> = {
   highlight?: string;
 };
 
-const Tree = <T,>({
-  label,
-  value,
-  children,
-  isLeaf = false,
-  selected = false,
-  isLoading = false,
-  selectable = false,
-  readOnly = false,
-  onChange,
-  onOpen,
-  onClose,
-  onClick,
-  defaultOpen = false,
-  _isRoot = true,
-  valueLabel,
-  highlight = '',
-  ...rest
-}: PropsWithChildren<TreeProps<T>>) => {
+const TreeComponent = React.forwardRef(function Tree<T>(
+  {
+    label,
+    value,
+    children,
+    isLeaf = false,
+    selected = false,
+    isLoading = false,
+    selectable = false,
+    readOnly = false,
+    onChange,
+    onOpen,
+    onClose,
+    onClick,
+    defaultOpen = false,
+    _isRoot = true,
+    valueLabel,
+    highlight = '',
+    ...rest
+  }: PropsWithChildren<TreeProps<T>>,
+  forwardRef: React.ForwardedRef<HTMLLIElement>
+) {
   const subTrees: ReactElement<TreeProps<T>>[] = [];
   React.Children.forEach(children, child => {
+    if (null === child) {
+      return;
+    }
     if (!isValidElement<TreeProps<T>>(child)) {
       throw new Error('Tree component only accepts Tree as children');
     }
@@ -187,6 +193,12 @@ const Tree = <T,>({
   });
 
   const [isOpen, setOpen] = React.useState<boolean>(subTrees.length > 0);
+
+  useEffect(() => {
+    if (subTrees.length > 0 && defaultOpen) {
+      setOpen(true);
+    }
+  }, [subTrees.length, defaultOpen]);
 
   const handleOpen = React.useCallback(() => {
     setOpen(true);
@@ -229,7 +241,7 @@ const Tree = <T,>({
 
   // https://www.w3.org/WAI/GL/wiki/Using_ARIA_trees
   const result = (
-    <TreeContainer role="treeitem" aria-expanded={isOpen} {...rest}>
+    <TreeContainer ref={forwardRef} role="treeitem" aria-expanded={isOpen} {...rest}>
       <TreeLine $selected={selected}>
         <ArrowButton disabled={isLeaf} role="button" onClick={handleArrowClick}>
           {!isLeaf && <TreeArrowIcon $isFolderOpen={isOpen} size={14} />}
@@ -262,8 +274,10 @@ const Tree = <T,>({
   );
 
   return _isRoot ? <ul role="tree">{result}</ul> : result;
-};
+}) as <T>(props: TreeProps<T> & {ref?: React.ForwardedRef<HTMLLIElement>}) => JSX.Element;
 
-Tree.displayName = 'Tree';
+const Tree = Object.assign(TreeComponent, {
+  displayName: 'Tree',
+});
 
 export {Tree};
