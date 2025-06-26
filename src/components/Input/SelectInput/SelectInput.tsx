@@ -246,6 +246,12 @@ type SelectInputProps = Override<
     )
 >;
 
+const isOptionGroup = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean =>
+  component?.type.displayName === 'SelectInput.OptionGroup';
+
+const isOption = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean =>
+  component?.type.displayName === 'SelectInput.Option';
+
 /**
  * Select input allows the user to select content and data when the expected user input is composed of one option value.
  */
@@ -272,21 +278,17 @@ const SelectInput = ({
   const [withGroups, setWithGroups] = useState<boolean>(false);
   const [dropdownIsOpen, openOverlay, closeOverlay] = useBooleanState();
   const inputRef = useRef<HTMLInputElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const firstOptionRef = useRef<HTMLDivElement>(null);
-  const lastOptionRef = useRef<HTMLDivElement>(null);
-  const selectedOptionRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const firstOptionRef = useRef<HTMLDivElement | null>(null);
+  const lastOptionRef = useRef<HTMLDivElement | null>(null);
+  const selectedOptionRef = useRef<HTMLDivElement | null>(null);
 
-  const isOptionGroup = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean => {
-    return component?.type.displayName === 'SelectInput.OptionGroup';
-  };
-
-  const isOption = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean => {
-    return component?.type.displayName === 'SelectInput.Option';
-  };
-
-  const validChildren = React.Children.toArray(children).filter(
-    (child): child is ReactElement<OptionProps, NamedExoticComponent> => isValidElement<OptionProps>(child)
+  const validChildren = useMemo(
+    () =>
+      React.Children.toArray(children).filter((child): child is ReactElement<OptionProps, NamedExoticComponent> =>
+        isValidElement<OptionProps>(child)
+      ),
+    [children]
   );
 
   readOnly = readOnly || areEveryChildrenDisabled(validChildren);
@@ -305,16 +307,20 @@ const SelectInput = ({
     return optionCodes;
   }, []);
 
-  const filteredChildren = disableInternalSearch
-    ? validChildren
-    : validChildren.filter(child => {
-        const content = typeof child.props.children === 'string' ? child.props.children : '';
-        const title = child.props.title ?? '';
-        const value = child.props.value;
-        const optionValue = value + content + title;
+  const filteredChildren = useMemo(
+    () =>
+      disableInternalSearch
+        ? validChildren
+        : validChildren.filter(child => {
+            const content = typeof child.props.children === 'string' ? child.props.children : '';
+            const title = child.props.title ?? '';
+            const value = child.props.value;
+            const optionValue = value + content + title;
 
-        return isOptionGroup(child) || optionValue.toLowerCase().includes(searchValue.toLowerCase());
-      });
+            return isOptionGroup(child) || optionValue.toLowerCase().includes(searchValue.toLowerCase());
+          }),
+    [disableInternalSearch, validChildren, searchValue]
+  );
 
   const hasChildren = useMemo(() => {
     return filteredChildren.some(child => isOption(child));
@@ -393,7 +399,7 @@ const SelectInput = ({
     if (dropdownIsOpen && searchValue === '') {
       (selectedOptionRef.current || firstOptionRef.current)?.focus();
     }
-  }, [dropdownIsOpen, selectedOptionRef.current]);
+  }, [dropdownIsOpen]);
 
   useEffect(() => {
     if (filteredChildren.some(child => isOptionGroup(child))) {
@@ -435,7 +441,7 @@ const SelectInput = ({
     [onChange, value]
   );
 
-  usePagination(containerRef, lastOptionRef, onNextPage, dropdownIsOpen);
+  usePagination(containerRef, lastOptionRef, onNextPage, dropdownIsOpen, filteredChildren);
 
   return (
     <SelectInputContainer readOnly={readOnly} value={value} {...rest}>
@@ -497,19 +503,6 @@ const SelectInput = ({
             ) : (
               filteredChildren.map((child, index) => {
                 const childValue = child.props.value;
-                let ref = undefined;
-                switch (index) {
-                  case firstOptionIndex:
-                    ref = firstOptionRef;
-                    break;
-                  case filteredChildren.length - 1:
-                    ref = lastOptionRef;
-                    break;
-                }
-                if (value === childValue) {
-                  ref = selectedOptionRef;
-                }
-
                 const isOptionDisabled = child.props?.disabled ?? false;
 
                 if (isOptionGroup(child)) {
@@ -531,7 +524,20 @@ const SelectInput = ({
                     onClick={handleOptionClick(childValue, isOptionDisabled)}
                     onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => handleOptionKeyDown(e, isOptionDisabled)}
                     tabIndex={0}
-                    ref={ref}
+                    ref={node => {
+                      switch (index) {
+                        case firstOptionIndex:
+                          firstOptionRef.current = node;
+                          break;
+                        case filteredChildren.length - 1:
+                          lastOptionRef.current = node;
+                          break;
+                      }
+
+                      if (value === childValue) {
+                        selectedOptionRef.current = node;
+                      }
+                    }}
                     disabled={isOptionDisabled}
                   >
                     {React.cloneElement(child)}
