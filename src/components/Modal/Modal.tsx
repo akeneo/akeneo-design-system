@@ -59,7 +59,7 @@ const IconContainer = styled.div`
 `;
 
 //TODO extract to Typography RAC-331
-const SectionTitle = styled.div<{size?: 'big' | 'small' | 'default'; color?: string} & AkeneoThemedProps>`
+const SectionTitle = styled.div<{size?: 'big' | 'small' | 'default' | 'bigger'; color?: string} & AkeneoThemedProps>`
   height: 20px;
   color: ${({color}) => getColor(color ?? 'grey', 120)};
   font-size: ${({size}) => getFontSize(size ?? 'default')};

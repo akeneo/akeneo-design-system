@@ -1271,7 +1271,7 @@ export declare const SectionTitle: {
 };
 
 declare const SectionTitle_2: StyledComponent<"div", DefaultTheme, {
-size?: "big" | "default" | "small" | undefined;
+size?: "big" | "bigger" | "default" | "small" | undefined;
 color?: string | undefined;
 } & AkeneoThemedProps, never>;
 
