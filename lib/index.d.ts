@@ -991,6 +991,7 @@ declare type MetricInputProps = {
     min?: number;
     max?: number;
     invalid?: boolean;
+    readOnly?: boolean;
 };
 
 export declare const MinifyIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;

@@ -48,6 +48,7 @@ type MetricInputProps = {
   min?: number;
   max?: number;
   invalid?: boolean;
+  readOnly?: boolean;
 };
 
 export const MetricInput: React.FC<MetricInputProps> = ({
@@ -61,6 +62,7 @@ export const MetricInput: React.FC<MetricInputProps> = ({
   min,
   max,
   invalid = false,
+  readOnly = false,
 }) => {
   const getLabel = useCallback(
     (unit: string, amount: string) => {
@@ -81,6 +83,7 @@ export const MetricInput: React.FC<MetricInputProps> = ({
         max={max}
         invalid={invalid}
         data-testid="value"
+        readOnly={readOnly}
       />
       <CustomSelectInput
         onChange={onUnitChange}
@@ -90,6 +93,7 @@ export const MetricInput: React.FC<MetricInputProps> = ({
         emptyResultLabel={emptyResultLabel}
         invalid={invalid}
         data-testid="currency"
+        readOnly={readOnly}
       >
         {unitOptions.map(unitOption => (
           <SelectInput.Option
