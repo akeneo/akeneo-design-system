@@ -115,7 +115,7 @@ const CheckboxContainer = styled.td<{isVisible: boolean}>`
   }
 `;
 
-const HandleCell = styled(TableCell)`
+const HandleCell = styled(TableCell)<{readonly: boolean}>`
   cursor: grab;
   width: 20px;
 
@@ -126,6 +126,12 @@ const HandleCell = styled(TableCell)`
   :active {
     cursor: grabbing;
   }
+
+  ${({readonly}) =>
+    readonly &&
+    css`
+      color: ${getColor('grey', 40)};
+    `}
 `;
 
 const getIcon = (level: Level) => {
@@ -244,7 +250,12 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
           </CheckboxContainer>
         )}
         {isDragAndDroppable && (
-          <HandleCell onMouseDown={() => onDragStart?.(rowIndex)} onMouseUp={onDragEnd} data-testid="dragAndDrop">
+          <HandleCell
+            onMouseDown={() => onDragStart?.(rowIndex)}
+            onMouseUp={onDragEnd}
+            data-testid="dragAndDrop"
+            readonly={draggable !== false}
+          >
             <RowIcon size={16} />
           </HandleCell>
         )}
