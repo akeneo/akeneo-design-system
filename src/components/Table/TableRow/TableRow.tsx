@@ -254,7 +254,7 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
             onMouseDown={() => onDragStart?.(rowIndex)}
             onMouseUp={onDragEnd}
             data-testid="dragAndDrop"
-            readonly={draggable !== false}
+            readonly={draggable === false}
           >
             <RowIcon size={16} />
           </HandleCell>
