@@ -3,6 +3,7 @@ import {IconProps} from './IconProps';
 
 const WorkflowIcon = ({title, size = 24, color = 'currentColor', ...props}: IconProps) => (
   <svg viewBox="0 0 24 24" width={size} height={size} {...props}>
+    {title && <title>{title}</title>}
     <path
       fillRule="evenodd"
       clipRule="evenodd"
