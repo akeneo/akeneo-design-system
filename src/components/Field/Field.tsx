@@ -6,6 +6,7 @@ import {Locale, LocaleProps} from '../Locale/Locale';
 import {Pill} from '../Pill/Pill';
 import {Block, BlockProps} from '../Block/Block';
 import {useId} from '../../hooks/useId';
+import {getColor, getFontSize} from '../../theme/theme';
 
 const FieldContainer = styled.div<{fullWidth: boolean}>`
   display: flex;
@@ -32,6 +33,12 @@ const Channel = styled.span`
 const HelperContainer = styled.div`
   margin-top: 5px;
   max-width: 460px;
+`;
+
+const LabelPrefix = styled.span`
+  font-size: ${getFontSize('small')};
+  color: ${getColor('grey', 100)};
+  margin-right: 10px;
 `;
 
 type FieldChild =
@@ -82,6 +89,8 @@ type FieldProps = {
    * Adds actions for this field.
    */
   actions?: ReactNode;
+
+  labelPrefix?: string;
 };
 
 /**
@@ -98,6 +107,7 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
       requiredLabel,
       children,
       actions,
+      labelPrefix,
       ...rest
     }: FieldProps,
     forwardedRef: Ref<HTMLDivElement>
@@ -126,6 +136,7 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
         <LabelContainer>
           {incomplete && <Pill level="warning" />}
           <Label htmlFor={inputId} id={labelId}>
+            {labelPrefix && <LabelPrefix>{labelPrefix}&nbsp;</LabelPrefix>}
             {label}
             {requiredLabel && (
               <>

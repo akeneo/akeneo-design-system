@@ -609,6 +609,7 @@ export declare type FieldProps = {
     fullWidth?: boolean;
     children?: FieldChild;
     actions?: ReactNode;
+    labelPrefix?: string;
 };
 
 declare type FigureProps = {

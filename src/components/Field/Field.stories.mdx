@@ -171,3 +171,17 @@ The Field component is used to display information around an Input component.
     }}
   </Story>
 </Canvas>
+
+## Variation with label prefix
+
+<Canvas>
+  <Story name="Label prefix">
+    {args => {
+      return (
+        <Field {...args} labelPrefix="Brand >" label="Collection">
+          <TextInput placeholder="Type your text here" />
+        </Field>
+      );
+    }}
+  </Story>
+</Canvas>
