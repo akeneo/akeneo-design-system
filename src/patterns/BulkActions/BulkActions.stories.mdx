@@ -2,6 +2,7 @@ import {Meta, Story, Canvas} from '@storybook/addon-docs';
 import {Badge, Button, Checkbox, Dropdown, IconButton, Image, Table, Toolbar, Card, CardGrid} from '../../components';
 import {rows} from '../../components/Table/shared-stories-data';
 import {SpaceContainer} from '../../storybook/PreviewGallery';
+import {getStaticImage} from '../../storybook/util';
 import {useBooleanState, useSelection} from '../../hooks';
 import {ArrowDownIcon} from '../../icons';
 
@@ -244,7 +245,7 @@ import {ArrowDownIcon} from '../../icons';
             {manyRows.map((row, index) => (
               <Card
                 key={index}
-                src={`https://picsum.photos/seed/akeneo${index}/140/140`}
+                src={getStaticImage(`akeneo_${index}_140_140.jpg`)}
                 onSelect={value => onSelectionChange(index, value)}
                 isSelected={isItemSelected(index)}
               >

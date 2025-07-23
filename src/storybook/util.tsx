@@ -8,4 +8,9 @@ const capitalize = (value: string) => {
   return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
 };
 
-export {camelCaseToSentenceCase};
+const getStaticImage = (filename: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return require(`../static_images/${filename}`);
+};
+
+export {camelCaseToSentenceCase, getStaticImage};
