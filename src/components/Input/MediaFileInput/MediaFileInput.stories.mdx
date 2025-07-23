@@ -5,6 +5,7 @@ import {useFakeMediaStorage, FullscreenPreview} from '../../../storybook';
 import {IconButton, Button} from '../../../components';
 import {DownloadIcon, FullscreenIcon} from '../../../icons';
 import {useBooleanState} from '../../../hooks';
+import { getStaticImage } from "../../../storybook/util";
 
 <Meta
   title="Components/Inputs/Media File input"
@@ -29,7 +30,7 @@ Media File input allows the user to enter content when the expected user input i
 <Canvas>
   <Story name="Standard">
     {args => {
-      const [thumbnailUrl, uploader] = useFakeMediaStorage('https://picsum.photos/seed/akeneo/200');
+      const [thumbnailUrl, uploader] = useFakeMediaStorage(getStaticImage('akeneo_200.jpg'));
       const [isFullscreenModalOpen, openFullscreenModal, closeFullscreenModal] = useBooleanState();
       const [value, setValue] = useState(null);
       return (
@@ -75,7 +76,7 @@ Media File input allows the user to enter content when the expected user input i
         filePath: '/file/path.jpg',
         originalFilename: 'nice-name.jpg',
       };
-      const [thumbnailUrl, uploader] = useFakeMediaStorage('https://picsum.photos/seed/akeneo/200');
+      const [thumbnailUrl, uploader] = useFakeMediaStorage(getStaticImage('akeneo_200.jpg'));
       const [isFullscreenModalOpen, openFullscreenModal, closeFullscreenModal] = useBooleanState();
       const [value, setValue] = useState(file);
       return (
@@ -129,7 +130,7 @@ Media File input allows the user to enter content when the expected user input i
         filePath: '/file/path.jpg',
         originalFilename: 'nice-name.jpg',
       };
-      const [thumbnailUrl, uploader] = useFakeMediaStorage('https://picsum.photos/seed/akeneo/200');
+      const [thumbnailUrl, uploader] = useFakeMediaStorage(getStaticImage('akeneo_200.jpg'));
       const [isFullscreenModalOpen, openFullscreenModal, closeFullscreenModal] = useBooleanState();
       const [value, setValue] = useState(file);
       return (
@@ -192,7 +193,7 @@ Media File input allows the user to enter content when the expected user input i
         filePath: '/file/path.jpg',
         originalFilename: 'nice-name.jpg',
       };
-      const [thumbnailUrl, uploader] = useFakeMediaStorage('https://picsum.photos/seed/akeneo/200');
+      const [thumbnailUrl, uploader] = useFakeMediaStorage(getStaticImage('akeneo_200.jpg'));
       const [isFullscreenModalOpen, openFullscreenModal, closeFullscreenModal] = useBooleanState();
       return (
         <>
@@ -258,7 +259,7 @@ Media File input allows the user to enter content when the expected user input i
         filePath: '/file/path.jpg',
         originalFilename: 'invalid-image.jpg',
       };
-      const [thumbnailUrl, uploader] = useFakeMediaStorage('https://picsum.photos/seed/akeneo/200');
+      const [thumbnailUrl, uploader] = useFakeMediaStorage(getStaticImage('akeneo_200.jpg'));
       const [isFullscreenModalOpen, openFullscreenModal, closeFullscreenModal] = useBooleanState();
       const [value, setValue] = useState(file);
       return (

@@ -1,7 +1,9 @@
+import {getStaticImage} from '../../storybook/util';
+
 export const rows = [
   {
     id: 1,
-    image: 'https://picsum.photos/seed/akenea/200/140',
+    image: getStaticImage('akenea_200_140.jpg'),
     name: 'Giant panda',
     family: 'Ursidae',
     order: 'Carnivora',
@@ -11,7 +13,7 @@ export const rows = [
   },
   {
     id: 2,
-    image: 'https://picsum.photos/seed/akeneb/200/140',
+    image: getStaticImage('akeneb_200_140.jpg'),
     name: 'Red panda',
     family: 'Ailuridae',
     order: 'Carnivora',
@@ -21,7 +23,7 @@ export const rows = [
   },
   {
     id: 3,
-    image: 'https://picsum.photos/seed/akenec/200/140',
+    image: getStaticImage('akenec_200_140.jpg'),
     name: 'American black bear, not a panda',
     family: 'Ursidae',
     order: 'Carnivora',

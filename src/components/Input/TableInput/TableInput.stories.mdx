@@ -6,6 +6,7 @@ import {Image} from '../../Image/Image';
 import {Badge} from '../../Badge/Badge';
 import {IconButton} from '../../IconButton/IconButton';
 import {LinkIcon} from '../../../icons';
+import { getStaticImage } from "../../../storybook/util";
 
 <Meta
   title="Components/Inputs/Table input"
@@ -81,7 +82,7 @@ Table input allows the user to input content in a table.
                 searchTitle={'Search'}
               >
                 {match('French (France)') && <Dropdown.Item onClick={() => setValue(index, 'origin', 'french')}>
-                  <Image src="https://picsum.photos/seed/akeneo/200/140" alt="The alt" />
+                  <Image src={getStaticImage('akeneo_200_140.jpg')} alt="The alt" />
                   <Dropdown.Surtitle label="France">
                     French (France)
                   </Dropdown.Surtitle>
@@ -90,7 +91,7 @@ Table input allows the user to input content in a table.
                 </Dropdown.Item>
                 }
                 {match('German (Germany)') && <Dropdown.Item onClick={() => setValue(index, 'origin', 'german')}>
-                  <Image src="https://picsum.photos/seed/akenep/200/140" alt="The alt" />
+                  <Image src={getStaticImage('akenep_200_140.jpg')} alt="The alt" />
                   <Dropdown.Surtitle label="Germany">
                     German (Germany)
                   </Dropdown.Surtitle>
@@ -99,7 +100,7 @@ Table input allows the user to input content in a table.
                 </Dropdown.Item>
                 }
                 {match('English (United States)') && <Dropdown.Item onClick={() => setValue(index, 'origin', 'english')}>
-                  <Image src="https://picsum.photos/seed/akener/200/140" alt="The alt" />
+                  <Image src={getStaticImage('akener_200_140.jpg')} alt="The alt" />
                   <Dropdown.Surtitle label="English">
                     English (United States)
                   </Dropdown.Surtitle>

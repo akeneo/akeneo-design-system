@@ -4,11 +4,12 @@ import {Meta, Story, ArgsTable, Canvas} from '@storybook/addon-docs';
 import {action} from '@storybook/addon-actions';
 import {Card, CardGrid} from './Card.tsx';
 import {Badge, Link} from '../../components';
+import {getStaticImage} from '../../storybook/util';
 
 <Meta
   title="Components/Card"
   component={Card}
-  args={{src: 'https://picsum.photos/seed/akeneo/200/140', children: 'Card text'}}
+  args={{src: getStaticImage('akeneo_200_140.jpg'), children: 'Card text'}}
 />
 
 # Card
@@ -47,7 +48,7 @@ Cards should be displayed in a grid, therefore, a `CardGrid` component is also a
         <CardGrid>
           <Card
             {...args}
-            src="https://picsum.photos/seed/akened/200"
+            src={getStaticImage('akened_200.jpg')}
             isSelected={firstSelected}
             onSelect={isSelected => setFirstSelected(isSelected)}
           >
@@ -55,7 +56,7 @@ Cards should be displayed in a grid, therefore, a `CardGrid` component is also a
           </Card>
           <Card
             {...args}
-            src="https://picsum.photos/seed/akenee/200"
+            src={getStaticImage('akenee_200.jpg')}
             isSelected={secondSelected}
             onSelect={isSelected => setSecondSelected(isSelected)}
           >
@@ -74,19 +75,19 @@ Cards should be displayed in a grid, therefore, a `CardGrid` component is also a
     {args => {
       return (
         <CardGrid>
-          <Card {...args} src="https://picsum.photos/seed/akenea/200">
+          <Card {...args} src={getStaticImage('akenea_200.jpg')}>
             <Card.BadgeContainer>
               <Badge level="danger">0%</Badge>
             </Card.BadgeContainer>
             Card not complete
           </Card>
-          <Card {...args} src="https://picsum.photos/seed/akeneb/200">
+          <Card {...args} src={getStaticImage('akeneb_200.jpg')}>
             <Card.BadgeContainer>
               <Badge level="warning">50%</Badge>
             </Card.BadgeContainer>
             Card almost complete
           </Card>
-          <Card {...args} src="https://picsum.photos/seed/akenec/200">
+          <Card {...args} src={getStaticImage('akenec_200.jpg')}>
             <Card.BadgeContainer>
               <Badge level="primary">100%</Badge>
             </Card.BadgeContainer>
@@ -106,12 +107,12 @@ Cards should be displayed in a grid, therefore, a `CardGrid` component is also a
       const [firstSelected, setFirstSelected] = useState(false);
       return (
         <CardGrid>
-          <Card {...args} src="https://picsum.photos/seed/akeneaa/200">
+          <Card {...args} src={getStaticImage('akeneaa_200.jpg')}>
             <Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
               Card with Link
             </Link>
           </Card>
-          <Card {...args} disabled={true} src="https://picsum.photos/seed/akeneba/200">
+          <Card {...args} disabled={true} src={getStaticImage('akeneba_200.jpg')}>
             <Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
               Disabled Card with Link
             </Link>
@@ -120,7 +121,7 @@ Cards should be displayed in a grid, therefore, a `CardGrid` component is also a
             {...args}
             isSelected={firstSelected}
             onSelect={isSelected => setFirstSelected(isSelected)}
-            src="https://picsum.photos/seed/akeneca/200"
+            src={getStaticImage('akeneca_200.jpg')}
           >
             <Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
               Selectable Card with Link
@@ -131,7 +132,7 @@ Cards should be displayed in a grid, therefore, a `CardGrid` component is also a
             disabled={true}
             isSelected={false}
             onSelect={() => {}}
-            src="https://picsum.photos/seed/akenecb/200"
+            src={getStaticImage('akenecb_200.jpg')}
           >
             <Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
               Disabled selectable Card with Link
@@ -158,9 +159,9 @@ Here the `fit` prop is also set to `contain`.
               key={index}
               fit="contain"
               onClick={action('Clicked')}
-              src={`https://picsum.photos/seed/akeneo${index}/${index % 2 === 0 ? 200 : 120}/${
+              src={getStaticImage(`akeneo${index}_${index % 2 === 0 ? 200 : 120}_${
                 index % 2 === 0 ? 120 : 200
-              }`}
+              }.jpg`)}
             >
               Card {(index + 1).toString()}
             </Card>
@@ -180,10 +181,10 @@ Here the `fit` prop is also set to `contain`.
       const [secondSelected, setSecondSelected] = useState(false);
       return (
         <CardGrid size="big">
-          <Card {...args} src="https://picsum.photos/seed/akened/200">
+          <Card {...args} src={getStaticImage('akened_200.jpg')}>
             This is a big Card
           </Card>
-          <Card {...args} src="https://picsum.photos/seed/akenee/200">
+          <Card {...args} src={getStaticImage('akenee_200.jpg')}>
             <Card.BadgeContainer>
               <Badge level="primary">100%</Badge>
             </Card.BadgeContainer>
@@ -191,7 +192,7 @@ Here the `fit` prop is also set to `contain`.
           </Card>
           <Card
             {...args}
-            src="https://picsum.photos/seed/akenef/200"
+            src={getStaticImage('akenef_200.jpg')}
             isSelected={firstSelected}
             onSelect={isSelected => setFirstSelected(isSelected)}
           >
@@ -199,7 +200,7 @@ Here the `fit` prop is also set to `contain`.
           </Card>
           <Card
             {...args}
-            src="https://picsum.photos/seed/akeneg/200"
+            src={getStaticImage('akeneg_200.jpg')}
             isSelected={secondSelected}
             onSelect={isSelected => setSecondSelected(isSelected)}
           >
@@ -224,13 +225,13 @@ Here the `fit` prop is also set to `contain`.
       const [thirdSelected, setThirdSelected] = useState(false);
       return (
         <CardGrid size="small">
-          <Card {...args} stacked src="https://picsum.photos/seed/akenec/200">
+          <Card {...args} stacked src={getStaticImage('akenec_200.jpg')}>
             This is a small card
           </Card>
-          <Card {...args} src="https://picsum.photos/seed/akened/200">
+          <Card {...args} src={getStaticImage('akened_200.jpg')}>
             This is a small card not stacked
           </Card>
-          <Card {...args} stacked src="https://picsum.photos/seed/akenee/200">
+          <Card {...args} stacked src={getStaticImage('akenee_200.jpg')}>
             <Card.BadgeContainer>
               <Badge level="primary">100%</Badge>
             </Card.BadgeContainer>
@@ -238,7 +239,7 @@ Here the `fit` prop is also set to `contain`.
           </Card>
           <Card
             {...args}
-            src="https://picsum.photos/seed/akenef/200"
+            src={getStaticImage('akenef_200.jpg')}
             isSelected={firstSelected}
             onSelect={isSelected => setFirstSelected(isSelected)}
             stacked
@@ -247,7 +248,7 @@ Here the `fit` prop is also set to `contain`.
           </Card>
           <Card
             {...args}
-            src="https://picsum.photos/seed/akeneg/200"
+            src={getStaticImage('akeneg_200.jpg')}
             isSelected={secondSelected}
             onSelect={isSelected => setSecondSelected(isSelected)}
             stacked
@@ -259,7 +260,7 @@ Here the `fit` prop is also set to `contain`.
           </Card>
           <Card
             {...args}
-            src="https://picsum.photos/seed/akeneh/200"
+            src={getStaticImage('akeneh_200.jpg')}
             isSelected={thirdSelected}
             onSelect={isSelected => setThirdSelected(isSelected)}
           >
@@ -284,13 +285,13 @@ Here the `fit` prop is also set to `contain`.
       const [thirdSelected, setThirdSelected] = useState(false);
       return (
         <CardGrid size="big">
-          <Card {...args} stacked src="https://picsum.photos/seed/akenec/200">
+          <Card {...args} stacked src={getStaticImage('akenec_200.jpg')}>
             This is a big Card
           </Card>
-          <Card {...args} src="https://picsum.photos/seed/akened/200">
+          <Card {...args} src={getStaticImage('akened_200.jpg')}>
             This is a big Card not stacked
           </Card>
-          <Card {...args} stacked src="https://picsum.photos/seed/akenee/200">
+          <Card {...args} stacked src={getStaticImage('akenee_200.jpg')}>
             <Card.BadgeContainer>
               <Badge level="primary">100%</Badge>
             </Card.BadgeContainer>
@@ -298,7 +299,7 @@ Here the `fit` prop is also set to `contain`.
           </Card>
           <Card
             {...args}
-            src="https://picsum.photos/seed/akenef/200"
+            src={getStaticImage('akenef_200.jpg')}
             isSelected={firstSelected}
             onSelect={isSelected => setFirstSelected(isSelected)}
             stacked
@@ -307,7 +308,7 @@ Here the `fit` prop is also set to `contain`.
           </Card>
           <Card
             {...args}
-            src="https://picsum.photos/seed/akeneg/200"
+            src={getStaticImage('akeneg_200.jpg')}
             isSelected={secondSelected}
             onSelect={isSelected => setSecondSelected(isSelected)}
             stacked
@@ -319,7 +320,7 @@ Here the `fit` prop is also set to `contain`.
           </Card>
           <Card
             {...args}
-            src="https://picsum.photos/seed/akeneh/200"
+            src={getStaticImage('akeneh_200.jpg')}
             isSelected={thirdSelected}
             onSelect={isSelected => setThirdSelected(isSelected)}
           >

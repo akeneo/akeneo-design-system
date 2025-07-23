@@ -5,6 +5,7 @@ import {render, screen, fireEvent} from '../../storybook/test-util';
 import {Checkbox} from '../Checkbox/Checkbox';
 import {Surtitle} from './Surtitle/Surtitle';
 import {GroupsIllustration} from '../../illustrations';
+import {getStaticImage} from '../../storybook/util';
 
 test('it renders its children properly', () => {
   render(
@@ -84,7 +85,7 @@ test('it renders Image item', () => {
         </Dropdown.Header>
         <Dropdown.ItemCollection>
           <Dropdown.Item>
-            <Image src="https://picsum.photos/seed/akeneo/200/140" alt="An image" />
+            <Image src={getStaticImage('akeneo_200_140.jpg')} alt="An image" />
             Item with Image
           </Dropdown.Item>
           <Dropdown.Item>Simple Item</Dropdown.Item>

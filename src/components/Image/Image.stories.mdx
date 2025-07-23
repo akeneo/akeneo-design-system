@@ -1,10 +1,11 @@
 import {Meta, Story, ArgsTable, Canvas} from '@storybook/addon-docs';
 import {Image} from './Image.tsx';
+import {getStaticImage} from '../../storybook/util';
 
 <Meta
   title="Components/Image"
   component={Image}
-  args={{src: 'https://picsum.photos/seed/akeneo/200/140', alt: 'Image alt', width: 200, height: 140}}
+  args={{src: getStaticImage('akeneo_200_140.jpg'), alt: 'Image alt', width: 200, height: 140}}
 />
 
 # Image

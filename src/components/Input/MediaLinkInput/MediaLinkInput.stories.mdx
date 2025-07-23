@@ -5,6 +5,7 @@ import {FullscreenPreview} from '../../../storybook';
 import {IconButton, Button} from '../../../components';
 import {RefreshIcon, CopyIcon, DownloadIcon, FullscreenIcon} from '../../../icons';
 import {useBooleanState} from '../../../hooks';
+import { getStaticImage } from "../../../storybook/util";
 
 <Meta
   title="Components/Inputs/Media Link input"
@@ -26,7 +27,7 @@ Media link input allows the user to enter content when the expected user input i
 <Canvas>
   <Story name="Standard">
     {args => {
-      const [value, setValue] = useState('https://picsum.photos/seed/strixos/500/500');
+      const [value, setValue] = useState(getStaticImage('strixos_500_500.jpg'));
       const [isFullscreenModalOpen, openFullscreenModal, closeFullscreenModal] = useBooleanState();
       return (
         <>
@@ -56,7 +57,7 @@ Media link input allows the user to enter content when the expected user input i
 <Canvas>
   <Story name="Read only">
     {args => {
-      const [value, setValue] = useState('https://picsum.photos/seed/strixos/500/500');
+      const [value, setValue] = useState(getStaticImage('strixos_500_500.jpg'));
       const [isFullscreenModalOpen, openFullscreenModal, closeFullscreenModal] = useBooleanState();
       return (
         <>
@@ -96,7 +97,7 @@ Media link input allows the user to enter content when the expected user input i
 <Canvas>
   <Story name="Invalid">
     {args => {
-      const [value, setValue] = useState('https://picsum.photos/seed/strixos/500/500');
+      const [value, setValue] = useState(getStaticImage('strixos_500_500.jpg'));
       const [isFullscreenModalOpen, openFullscreenModal, closeFullscreenModal] = useBooleanState();
       return (
         <>

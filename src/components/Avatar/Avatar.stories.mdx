@@ -1,6 +1,7 @@
 import {Meta, Story, ArgsTable, Canvas} from '@storybook/addon-docs';
 import {Avatar} from './Avatar.tsx';
 import {Avatars} from './Avatars.tsx';
+import {getStaticImage} from '../../storybook/util';
 
 <Meta
   title="Components/Avatar"
@@ -74,7 +75,7 @@ The background color is based from the username.
     {args => {
       return (
         <>
-          <Avatar {...args} avatarUrl={'https://picsum.photos/seed/akeneo/32/32'} />
+          <Avatar {...args} avatarUrl={getStaticImage('akeneo_32_32.jpg')} />
         </>
       );
     }}
@@ -99,7 +100,7 @@ You can use a dedicated component to display avatar list. After a defined maximu
               firstName={'Albert'}
               lastName={'Doe'}
               username={'a'}
-              avatarUrl={'https://picsum.photos/seed/akeneo/32/32'}
+              avatarUrl={getStaticImage('akeneo_32_32.jpg')}
             />
             <Avatar {...args} firstName={'Bertrand'} lastName={'Doe'} username={'b'} />
             <Avatar
@@ -107,7 +108,7 @@ You can use a dedicated component to display avatar list. After a defined maximu
               firstName={'Chris'}
               lastName={'Doe'}
               username={'c'}
-              avatarUrl={'https://picsum.photos/seed/bkeneo/32/32'}
+              avatarUrl={getStaticImage('bkeneo_32_32.jpg')}
             />
             <Avatar {...args} firstName={'Danny'} lastName={'Doe'} username={'d'} />
             <Avatar
@@ -115,7 +116,7 @@ You can use a dedicated component to display avatar list. After a defined maximu
               firstName={'Elon'}
               lastName={'Doe'}
               username={'e'}
-              avatarUrl={'https://picsum.photos/seed/ckeneo/32/32'}
+              avatarUrl={getStaticImage('ckeneo_32_32.jpg')}
             />
             <Avatar {...args} firstName={'Fred'} lastName={'Doe'} username={'f'} />
             <Avatar {...args} firstName={'Gus'} lastName={'Doe'} username={'g'} />
