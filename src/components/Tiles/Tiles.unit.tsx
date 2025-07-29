@@ -35,6 +35,21 @@ test('it fails when there are invalid children', () => {
   mockConsole.mockRestore();
 });
 
+test('it support conditional tile', () => {
+  const displayTile = false;
+  render(
+    <Tiles>
+      <Tile>Title 1</Tile>
+      {displayTile && <Tile>Title 2</Tile>}
+      {!displayTile && <Tile>Title 3</Tile>}
+    </Tiles>
+  );
+
+  expect(screen.getByText('Title 1')).toBeInTheDocument();
+  expect(screen.queryByText('Title 2')).not.toBeInTheDocument();
+  expect(screen.getByText('Title 3')).toBeInTheDocument();
+});
+
 test('Tiles supports forwardRef', () => {
   const ref = {current: null};
 

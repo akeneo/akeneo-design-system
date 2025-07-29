@@ -237,6 +237,9 @@ const Tiles = React.forwardRef<HTMLDivElement, TilesProps>(
     return (
       <TilesContainer size={size} ref={forwardedRef} {...rest}>
         {React.Children.map(children, child => {
+          if (!child) {
+            return null;
+          }
           if (isValidElement<TileProps>(child) && child.type === Tile) {
             return React.cloneElement(child, {size, inline});
           }
