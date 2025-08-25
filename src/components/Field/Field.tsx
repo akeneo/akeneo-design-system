@@ -24,6 +24,9 @@ const LabelContainer = styled.div`
 
 const Label = styled.label`
   flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const Channel = styled.span`
@@ -135,7 +138,7 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
       <FieldContainer ref={forwardedRef} fullWidth={fullWidth ?? false} {...rest}>
         <LabelContainer>
           {incomplete && <Pill level="warning" />}
-          <Label htmlFor={inputId} id={labelId}>
+          <Label htmlFor={inputId} id={labelId} title={`${label}${requiredLabel ? ' ' + requiredLabel : ''}`}>
             {labelPrefix && <LabelPrefix>{labelPrefix}&nbsp;</LabelPrefix>}
             {label}
             {requiredLabel && (
