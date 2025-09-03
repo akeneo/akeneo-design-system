@@ -299,7 +299,7 @@ const MultiSelectInput = ({
 
   const handleSearch = (searchValue: string) => {
     // Matching : line break, space, tab, comma and semi-colon
-    const newChips = searchValue.split(new RegExp('(?:\\r\\n|[\\s,;])+', 'g'));
+    const newChips = searchValue.split(new RegExp('(?:\\r\\n|[,;])+', 'g'));
     const newChipsWithoutEmpty = newChips.filter((chip: string) => chip.trim() !== '');
     const newChipsFiltered = newChipsWithoutEmpty.filter((chip: string) =>
       validChildren.map(child => child.props.value).includes(chip)
