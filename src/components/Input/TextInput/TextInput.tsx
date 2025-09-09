@@ -1,4 +1,13 @@
-import React, {ChangeEvent, forwardRef, InputHTMLAttributes, Ref, useCallback, useRef} from 'react';
+import React, {
+  ChangeEvent,
+  cloneElement,
+  forwardRef,
+  InputHTMLAttributes,
+  isValidElement,
+  Ref,
+  useCallback,
+  useRef,
+} from 'react';
 import styled, {css} from 'styled-components';
 import {InputProps} from '../common/InputProps';
 import {LockIcon} from '../../../icons/LockIcon';
@@ -6,6 +15,7 @@ import {Override} from '../../../shared/override';
 import {Key} from '../../../shared/key';
 import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme/theme';
 import {useShortcut} from '../../../hooks/useShortcut';
+import {IconButton, IconButtonProps} from '../../IconButton/IconButton';
 
 const TextInputContainer = styled.div`
   position: relative;
@@ -57,6 +67,14 @@ const CharacterLeftLabel = styled.div`
   color: ${getColor('grey', 100)};
 `;
 
+const ActionContainer = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 8px;
+  color: ${getColor('grey', 100)};
+`;
+
 type TextInputProps = Override<
   Override<InputHTMLAttributes<HTMLInputElement>, InputProps<string>>,
   (
@@ -100,7 +118,7 @@ type TextInputProps = Override<
  */
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   (
-    {invalid, onChange, readOnly, characterLeftLabel, onSubmit, ...rest}: TextInputProps,
+    {invalid, onChange, readOnly, characterLeftLabel, onSubmit, children, ...rest}: TextInputProps,
     forwardedRef: Ref<HTMLInputElement>
   ) => {
     const internalRef = useRef<HTMLInputElement | null>(null);
@@ -117,6 +135,18 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     };
     useShortcut(Key.Enter, handleEnter, forwardedRef);
 
+    const actions = React.Children.map(children, child => {
+      if (isValidElement<IconButtonProps>(child) && IconButton === child.type) {
+        return cloneElement(child, {
+          level: 'tertiary',
+          ghost: 'borderless',
+          size: 'small',
+        });
+      }
+
+      return null;
+    });
+
     return (
       <TextInputContainer>
         <Input
@@ -130,6 +160,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           title={rest.value}
           {...rest}
         />
+        {actions && <ActionContainer>{actions}</ActionContainer>}
         {readOnly && <ReadOnlyIcon size={16} />}
         {characterLeftLabel && <CharacterLeftLabel>{characterLeftLabel}</CharacterLeftLabel>}
       </TextInputContainer>

@@ -1,9 +1,10 @@
-import React, {ChangeEvent, Ref, useCallback} from 'react';
+import React, {ChangeEvent, cloneElement, isValidElement, Ref, useCallback} from 'react';
 import styled, {css} from 'styled-components';
 import {InputProps} from '../common/InputProps';
 import {LockIcon} from '../../../icons/LockIcon';
 import {Override} from '../../../shared/override';
 import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme/theme';
+import {IconButton, IconButtonProps} from '../../IconButton/IconButton';
 
 const TextAreaInputContainer = styled.div`
   position: relative;
@@ -60,6 +61,14 @@ const CharacterLeftLabel = styled.div`
   color: ${getColor('grey', 100)};
 `;
 
+const ActionContainer = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 8px;
+  color: ${getColor('grey', 100)};
+`;
+
 type TextAreaInputProps = Override<
   Override<React.InputHTMLAttributes<HTMLTextAreaElement>, InputProps<string>>,
   (
@@ -98,7 +107,7 @@ type TextAreaInputProps = Override<
  */
 const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
   (
-    {value, invalid, onChange, readOnly, characterLeftLabel, ...rest}: TextAreaInputProps,
+    {value, invalid, onChange, readOnly, characterLeftLabel, children, ...rest}: TextAreaInputProps,
     forwardedRef: Ref<HTMLTextAreaElement>
   ) => {
     const handleChange = useCallback(
@@ -107,6 +116,18 @@ const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
       },
       [readOnly, onChange]
     );
+
+    const actions = React.Children.map(children, child => {
+      if (isValidElement<IconButtonProps>(child) && IconButton === child.type) {
+        return cloneElement(child, {
+          level: 'tertiary',
+          ghost: 'borderless',
+          size: 'small',
+        });
+      }
+
+      return null;
+    });
 
     return (
       <TextAreaInputContainer>
@@ -121,6 +142,7 @@ const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
           invalid={invalid}
           {...rest}
         />
+        {actions && <ActionContainer>{actions}</ActionContainer>}
         {readOnly && <ReadOnlyIcon size={16} />}
         {characterLeftLabel && <CharacterLeftLabel>{characterLeftLabel}</CharacterLeftLabel>}
       </TextAreaInputContainer>

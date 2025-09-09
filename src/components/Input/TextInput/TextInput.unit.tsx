@@ -2,6 +2,8 @@ import React from 'react';
 import {TextInput} from './TextInput';
 import {fireEvent, render, screen} from '../../../storybook/test-util';
 import userEvent from '@testing-library/user-event';
+import {IconButton} from '../../IconButton/IconButton';
+import {CopyIcon} from '../../../icons';
 
 test('it renders and handle changes', () => {
   const handleChange = jest.fn();
@@ -81,4 +83,28 @@ test('TextInput supports forwardRef', () => {
 test('TextInput supports ...rest props', () => {
   render(<TextInput value={'nice'} onChange={jest.fn()} data-testid="my_value" />);
   expect(screen.getByTestId('my_value')).toBeInTheDocument();
+});
+
+test('it does not display invalid children', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <TextInput value="" onChange={handleChange}>
+      <span>not valid child</span>
+    </TextInput>
+  );
+
+  expect(screen.queryByText(/not valid child/i)).not.toBeInTheDocument();
+});
+
+test('it shows children icons', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <TextInput value="some" onChange={handleChange}>
+      <IconButton icon={<CopyIcon />} title="Copy" />
+    </TextInput>
+  );
+
+  expect(screen.getByTitle(/Copy/i)).toBeInTheDocument();
 });

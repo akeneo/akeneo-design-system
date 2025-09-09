@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import {Meta, Story, ArgsTable, Canvas} from '@storybook/addon-docs';
 import {TextInput} from './TextInput.tsx';
+import {CopyIcon} from '../../../icons';
+import {IconButton} from '../../../components';
 
 <Meta
   title="Components/Inputs/Text input"
@@ -91,6 +93,26 @@ The placeholder text provides tips or examples of items to enter. Placeholder te
           onChange={handleChange}
           characterLeftLabel={`${250 - value.length} characters left`}
         />
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation with actions
+
+<Canvas>
+  <Story name="Actions">
+    {args => {
+      const [value, setValue] = useState('');
+      const handleChange = newValue => setValue(newValue);
+      return (
+        <TextInput
+          placeholder="Type here to update the character left label"
+          value={value}
+          onChange={handleChange}
+        >
+            <IconButton icon={<CopyIcon />} title="Copy" onClick={console.log} />
+        </TextInput>
       );
     }}
   </Story>

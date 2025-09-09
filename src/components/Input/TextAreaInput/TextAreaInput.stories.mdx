@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import {Meta, Story, ArgsTable, Canvas} from '@storybook/addon-docs';
 import {TextAreaInput} from './TextAreaInput.tsx';
+import {CopyIcon} from '../../../icons';
+import {IconButton} from '../../../components';
 
 <Meta
   title="Components/Inputs/Textarea input"
@@ -103,6 +105,26 @@ A compelling error message can help the user understand the problem and solve it
           onChange={handleChange}
           characterLeftLabel={`${250 - value.length} characters left`}
         />
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation with actions
+
+<Canvas>
+  <Story name="With actions">
+    {args => {
+      const [value, setValue] = useState('');
+      const handleChange = newValue => setValue(newValue);
+      return (
+        <TextAreaInput
+          placeholder="Type here to update the character left label"
+          value={value}
+          onChange={handleChange}
+        >
+            <IconButton icon={<CopyIcon />} title="Copy" onClick={console.log} />
+        </TextAreaInput>
       );
     }}
   </Story>
