@@ -1624,6 +1624,7 @@ export declare type TextAreaInputProps = Override<Override<default_2.InputHTMLAt
     placeholder?: string;
     invalid?: boolean;
     characterLeftLabel?: string;
+    characterLeftLabelVariant?: Variant_2;
 }>;
 
 export declare const TextInput: default_2.ForwardRefExoticComponent<TextInputProps & default_2.RefAttributes<HTMLInputElement>>;
@@ -1639,6 +1640,7 @@ export declare type TextInputProps = Override<Override<InputHTMLAttributes<HTMLI
     invalid?: boolean;
     characterLeftLabel?: string;
     onSubmit?: () => void;
+    characterLeftLabelVariant?: Variant;
 }>;
 
 export declare type Theme = {
@@ -1797,6 +1799,10 @@ export declare const UsingIllustration: ({ title, size, ...props }: Illustration
 export declare const uuid: () => string;
 
 export declare const ValueIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
+declare type Variant = 'default' | 'warning' | 'error';
+
+declare type Variant_2 = 'default' | 'warning' | 'error';
 
 export declare type VerticalPosition = 'up' | 'down';
 

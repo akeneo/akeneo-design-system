@@ -55,10 +55,16 @@ const ReadOnlyIcon = styled(LockIcon)`
   color: ${getColor('grey', 100)};
 `;
 
-const CharacterLeftLabel = styled.div`
+const variantColors: Record<Variant, string> = {
+  default: 'grey100',
+  warning: 'yellow140',
+  error: 'red100',
+};
+
+const CharacterLeftLabel = styled.div<{variant: Variant}>`
   font-size: ${getFontSize('small')};
   align-self: flex-end;
-  color: ${getColor('grey', 100)};
+  color: ${({variant}) => getColor(variantColors[variant])};
 `;
 
 const ActionContainer = styled.div`
@@ -68,6 +74,8 @@ const ActionContainer = styled.div`
   margin: 8px;
   color: ${getColor('grey', 100)};
 `;
+
+type Variant = 'default' | 'warning' | 'error';
 
 type TextAreaInputProps = Override<
   Override<React.InputHTMLAttributes<HTMLTextAreaElement>, InputProps<string>>,
@@ -99,6 +107,11 @@ type TextAreaInputProps = Override<
      * Label displayed under the field to display the remaining character counter.
      */
     characterLeftLabel?: string;
+
+    /**
+     * Color of the characterLeftLabel
+     */
+    characterLeftLabelVariant?: Variant;
   }
 >;
 
@@ -107,7 +120,16 @@ type TextAreaInputProps = Override<
  */
 const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
   (
-    {value, invalid, onChange, readOnly, characterLeftLabel, children, ...rest}: TextAreaInputProps,
+    {
+      value,
+      invalid,
+      onChange,
+      readOnly,
+      characterLeftLabel,
+      children,
+      characterLeftLabelVariant = 'default',
+      ...rest
+    }: TextAreaInputProps,
     forwardedRef: Ref<HTMLTextAreaElement>
   ) => {
     const handleChange = useCallback(
@@ -144,7 +166,9 @@ const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
         />
         {actions && <ActionContainer>{actions}</ActionContainer>}
         {readOnly && <ReadOnlyIcon size={16} />}
-        {characterLeftLabel && <CharacterLeftLabel>{characterLeftLabel}</CharacterLeftLabel>}
+        {characterLeftLabel && (
+          <CharacterLeftLabel variant={characterLeftLabelVariant}>{characterLeftLabel}</CharacterLeftLabel>
+        )}
       </TextAreaInputContainer>
     );
   }

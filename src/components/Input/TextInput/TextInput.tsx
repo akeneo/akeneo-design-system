@@ -24,7 +24,15 @@ const TextInputContainer = styled.div`
   width: 100%;
 `;
 
-const Input = styled.input<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
+type Variant = 'default' | 'warning' | 'error';
+
+const variantColors: Record<Variant, string> = {
+  default: 'grey100',
+  warning: 'yellow140',
+  error: 'red100',
+};
+
+const Input = styled.input<{readOnly?: boolean; invalid?: boolean; hasActions?: boolean} & AkeneoThemedProps>`
   width: 100%;
   height: 40px;
   border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
@@ -34,7 +42,7 @@ const Input = styled.input<{readOnly?: boolean; invalid?: boolean} & AkeneoTheme
   color: ${({readOnly}) => (readOnly ? getColor('grey', 100) : getColor('grey', 140))};
   font-size: ${getFontSize('default')};
   line-height: 40px;
-  padding: 0 ${({readOnly}) => (readOnly ? '35px' : '15px')} 0 15px;
+  padding: 0 ${({readOnly, hasActions}) => (readOnly || hasActions ? '35px' : '15px')} 0 15px;
   outline-style: none;
   cursor: ${({readOnly}) => (readOnly ? 'not-allowed' : 'auto')};
   ${({readOnly}) =>
@@ -61,10 +69,10 @@ const ReadOnlyIcon = styled(LockIcon)`
   color: ${getColor('grey', 100)};
 `;
 
-const CharacterLeftLabel = styled.div`
+const CharacterLeftLabel = styled.div<{variant: Variant}>`
   font-size: ${getFontSize('small')};
   align-self: flex-end;
-  color: ${getColor('grey', 100)};
+  color: ${({variant}) => getColor(variantColors[variant])};
 `;
 
 const ActionContainer = styled.div`
@@ -110,6 +118,11 @@ type TextInputProps = Override<
      * Callback called when the user hit enter on the field.
      */
     onSubmit?: () => void;
+
+    /**
+     * Color of the characterLeftLabel
+     */
+    characterLeftLabelVariant?: Variant;
   }
 >;
 
@@ -118,7 +131,16 @@ type TextInputProps = Override<
  */
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   (
-    {invalid, onChange, readOnly, characterLeftLabel, onSubmit, children, ...rest}: TextInputProps,
+    {
+      invalid,
+      onChange,
+      readOnly,
+      characterLeftLabel,
+      onSubmit,
+      children,
+      characterLeftLabelVariant = 'default',
+      ...rest
+    }: TextInputProps,
     forwardedRef: Ref<HTMLInputElement>
   ) => {
     const internalRef = useRef<HTMLInputElement | null>(null);
@@ -158,11 +180,14 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           aria-invalid={invalid}
           invalid={invalid}
           title={rest.value}
+          hasActions={(actions?.length ?? 0) > 0}
           {...rest}
         />
         {actions && <ActionContainer>{actions}</ActionContainer>}
         {readOnly && <ReadOnlyIcon size={16} />}
-        {characterLeftLabel && <CharacterLeftLabel>{characterLeftLabel}</CharacterLeftLabel>}
+        {characterLeftLabel && (
+          <CharacterLeftLabel variant={characterLeftLabelVariant}>{characterLeftLabel}</CharacterLeftLabel>
+        )}
       </TextInputContainer>
     );
   }
