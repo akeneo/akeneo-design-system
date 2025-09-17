@@ -1625,6 +1625,7 @@ export declare type TextAreaInputProps = Override<Override<default_2.InputHTMLAt
     invalid?: boolean;
     characterLeftLabel?: string;
     characterLeftLabelVariant?: Variant_2;
+    isValueHidden?: boolean;
 }>;
 
 export declare const TextInput: default_2.ForwardRefExoticComponent<TextInputProps & default_2.RefAttributes<HTMLInputElement>>;
@@ -1641,6 +1642,7 @@ export declare type TextInputProps = Override<Override<InputHTMLAttributes<HTMLI
     characterLeftLabel?: string;
     onSubmit?: () => void;
     characterLeftLabelVariant?: Variant;
+    isValueHidden?: boolean;
 }>;
 
 export declare type Theme = {

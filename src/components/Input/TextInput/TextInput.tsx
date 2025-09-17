@@ -32,14 +32,17 @@ const variantColors: Record<Variant, string> = {
   error: 'red100',
 };
 
-const Input = styled.input<{readOnly?: boolean; invalid?: boolean; hasActions?: boolean} & AkeneoThemedProps>`
+const Input = styled.input<
+  {readOnly?: boolean; invalid?: boolean; hasActions?: boolean; isValueHidden?: boolean} & AkeneoThemedProps
+>`
   width: 100%;
   height: 40px;
   border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
   box-sizing: border-box;
   background: ${({readOnly}) => (readOnly ? getColor('grey', 20) : getColor('white'))};
-  color: ${({readOnly}) => (readOnly ? getColor('grey', 100) : getColor('grey', 140))};
+  color: ${({readOnly, isValueHidden}) =>
+    isValueHidden ? 'transparent' : readOnly ? getColor('grey', 100) : getColor('grey', 140)};
   font-size: ${getFontSize('default')};
   line-height: 40px;
   padding: 0 ${({readOnly, hasActions}) => (readOnly || hasActions ? '35px' : '15px')} 0 15px;
@@ -123,6 +126,11 @@ type TextInputProps = Override<
      * Color of the characterLeftLabel
      */
     characterLeftLabelVariant?: Variant;
+
+    /**
+     * Hide the input value.
+     */
+    isValueHidden?: boolean;
   }
 >;
 

@@ -13,10 +13,11 @@ const TextAreaInputContainer = styled.div`
   width: 100%;
 `;
 
-const CommonStyle = css<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
+const CommonStyle = css<{readOnly?: boolean; invalid?: boolean; isValueHidden?: boolean} & AkeneoThemedProps>`
   border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
-  color: ${({readOnly}) => (readOnly ? getColor('grey', 100) : getColor('grey', 140))};
+  color: ${({readOnly, isValueHidden}) =>
+    isValueHidden ? 'transparent' : readOnly ? getColor('grey', 100) : getColor('grey', 140)};
   font-size: ${getFontSize('default')};
   line-height: 20px;
   width: 100%;
@@ -112,6 +113,11 @@ type TextAreaInputProps = Override<
      * Color of the characterLeftLabel
      */
     characterLeftLabelVariant?: Variant;
+
+    /**
+     * Hide the input value.
+     */
+    isValueHidden?: boolean;
   }
 >;
 
