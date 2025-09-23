@@ -1283,7 +1283,7 @@ declare type SectionTitleProps = Override<HTMLAttributes<HTMLDivElement>, {
 }>;
 
 export declare const SelectInput: {
-    ({ id, placeholder, invalid, value, emptyResultLabel, children, onChange, clearable, clearLabel, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, "aria-labelledby": ariaLabelledby, ...rest }: SelectInputProps): default_2.JSX.Element;
+    ({ id, placeholder, invalid, value, emptyResultLabel, children, onChange, clearable, clearLabel, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, "aria-labelledby": ariaLabelledby, selectedValueComponent, ...rest }: SelectInputProps): default_2.JSX.Element;
     Option: StyledComponent<"span", DefaultTheme, Omit<default_2.HTMLAttributes<HTMLSpanElement>, "disabled" | "value"> & {
     value: string;
     disabled?: boolean | undefined;
@@ -1313,6 +1313,7 @@ declare type SelectInputProps = Override<Override<default_2.InputHTMLAttributes<
     invalid?: boolean;
     children?: ReactNode;
     verticalPosition?: VerticalPosition;
+    selectedValueComponent?: ReactNode;
 } & ({
     onNextPage?: () => void;
     onSearchChange?: (searchValue: string) => void;

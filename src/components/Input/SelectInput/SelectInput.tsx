@@ -226,6 +226,8 @@ type SelectInputProps = Override<
      * Force the vertical position of the overlay.
      */
     verticalPosition?: VerticalPosition;
+
+    selectedValueComponent?: ReactNode;
   } & (
       | {
           /**
@@ -272,6 +274,7 @@ const SelectInput = ({
   onSearchChange,
   disableInternalSearch = false,
   'aria-labelledby': ariaLabelledby,
+  selectedValueComponent,
   ...rest
 }: SelectInputProps) => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -446,11 +449,13 @@ const SelectInput = ({
   return (
     <SelectInputContainer readOnly={readOnly} value={value} {...rest}>
       <InputContainer>
-        {null !== value && '' === searchValue && (
-          <SelectedOptionContainer readOnly={readOnly} clearable={clearable}>
-            {currentValueElement}
-          </SelectedOptionContainer>
-        )}
+        {null !== value &&
+          '' === searchValue &&
+          (selectedValueComponent ?? (
+            <SelectedOptionContainer readOnly={readOnly} clearable={clearable}>
+              {currentValueElement}
+            </SelectedOptionContainer>
+          ))}
         <SearchInput
           id={id}
           ref={inputRef}
