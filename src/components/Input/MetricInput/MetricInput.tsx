@@ -49,6 +49,9 @@ type MetricInputProps = {
   max?: number;
   invalid?: boolean;
   readOnly?: boolean;
+  id?: string;
+  'aria-labelledby'?: string;
+  unitAriaLabel?: string;
 };
 
 export const MetricInput: React.FC<MetricInputProps> = ({
@@ -63,6 +66,9 @@ export const MetricInput: React.FC<MetricInputProps> = ({
   max,
   invalid = false,
   readOnly = false,
+  id,
+  'aria-labelledby': ariaLabelledby,
+  unitAriaLabel,
 }) => {
   const getLabel = useCallback(
     (unit: string, amount: string) => {
@@ -84,6 +90,7 @@ export const MetricInput: React.FC<MetricInputProps> = ({
         invalid={invalid}
         data-testid="value"
         readOnly={readOnly}
+        id={id}
       />
       <CustomSelectInput
         onChange={onUnitChange}
@@ -94,6 +101,8 @@ export const MetricInput: React.FC<MetricInputProps> = ({
         invalid={invalid}
         data-testid="currency"
         readOnly={readOnly}
+        aria-labelledby={ariaLabelledby}
+        aria-label={unitAriaLabel}
       >
         {unitOptions.map(unitOption => (
           <SelectInput.Option

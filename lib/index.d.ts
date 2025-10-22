@@ -606,6 +606,7 @@ export declare type FieldProps = {
     locale?: ReactElement<LocaleProps> | string | null;
     channel?: string | null;
     requiredLabel?: string;
+    incompleteLabel?: string;
     fullWidth?: boolean;
     children?: FieldChild;
     actions?: ReactNode;
@@ -993,6 +994,9 @@ declare type MetricInputProps = {
     max?: number;
     invalid?: boolean;
     readOnly?: boolean;
+    id?: string;
+    'aria-labelledby'?: string;
+    unitAriaLabel?: string;
 };
 
 export declare const MinifyIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;

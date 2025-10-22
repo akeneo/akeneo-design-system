@@ -79,6 +79,11 @@ type FieldProps = {
   requiredLabel?: string;
 
   /**
+   * The aria-label for the incomplete indicator pill.
+   */
+  incompleteLabel?: string;
+
+  /**
    * Should the field input take the full width of the parent container.
    */
   fullWidth?: boolean;
@@ -106,6 +111,7 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
       locale,
       channel,
       incomplete = false,
+      incompleteLabel,
       fullWidth = false,
       requiredLabel,
       children,
@@ -137,7 +143,7 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
     return (
       <FieldContainer ref={forwardedRef} fullWidth={fullWidth ?? false} {...rest}>
         <LabelContainer>
-          {incomplete && <Pill level="warning" />}
+          {incomplete && <Pill level="warning" aria-label={incompleteLabel} />}
           <Label htmlFor={inputId} id={labelId} title={`${label}${requiredLabel ? ' ' + requiredLabel : ''}`}>
             {labelPrefix && <LabelPrefix>{labelPrefix}&nbsp;</LabelPrefix>}
             {label}
