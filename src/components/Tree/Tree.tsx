@@ -127,24 +127,26 @@ const LabelWithFolder = styled.button<{$selected?: CheckboxChecked} & AkeneoThem
 const TreeIcon: React.FC<{
   isLoading: boolean;
   isLeaf: boolean;
-  selected: boolean;
+  selected: boolean | 'mixed';
 }> = ({isLoading, isLeaf, selected}) => {
   if (isLoading) {
     return <TreeLoaderIcon size={24} />;
   }
 
+  const isSelected = selected === true || selected === 'mixed';
+
   if (isLeaf) {
-    return selected ? <TreeLeafSelectedIcon size={24} /> : <TreeLeafNotSelectedIcon size={24} />;
+    return isSelected ? <TreeLeafSelectedIcon size={24} /> : <TreeLeafNotSelectedIcon size={24} />;
   }
 
-  return selected ? <TreeFolderSelectedIcon size={24} /> : <TreeFolderNotSelectedIcon size={24} />;
+  return isSelected ? <TreeFolderSelectedIcon size={24} /> : <TreeFolderNotSelectedIcon size={24} />;
 };
 
 export type TreeProps<T = string> = {
   value: T;
   label: string;
   isLeaf?: boolean;
-  selected?: boolean;
+  selected?: boolean | 'mixed';
   isLoading?: boolean;
   selectable?: boolean;
   readOnly?: boolean;

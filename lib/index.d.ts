@@ -1731,7 +1731,7 @@ export declare type TreeProps<T = string> = {
     value: T;
     label: string;
     isLeaf?: boolean;
-    selected?: boolean;
+    selected?: boolean | 'mixed';
     isLoading?: boolean;
     selectable?: boolean;
     readOnly?: boolean;
