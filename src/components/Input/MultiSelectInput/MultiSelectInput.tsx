@@ -181,6 +181,14 @@ type MultiMultiSelectInputProps = Override<
      * Callback called when the user hit enter on the field.
      */
     onSubmit?: () => void;
+
+    /**
+     * Disables automatic selection when text matches option values exactly.
+     * When true, users must explicitly select options from the dropdown.
+     * Useful for search scenarios where option values might be common search terms.
+     * @default false
+     */
+    disableAutoSelect?: boolean;
   } & (
       | {
           /**
@@ -222,6 +230,7 @@ const MultiSelectInput = ({
   onNextPage,
   onSearchChange,
   disableInternalSearch = false,
+  disableAutoSelect = false,
   lockedValues = [],
   'aria-labelledby': ariaLabelledby,
   ...rest
@@ -298,6 +307,15 @@ const MultiSelectInput = ({
   };
 
   const handleSearch = (searchValue: string) => {
+    // When disableAutoSelect is true, treat the input as pure search text only.
+    // This prevents automatic selection of matching options while typing.
+    if (disableAutoSelect) {
+      setSearchValue(searchValue);
+      onSearchChange?.(searchValue);
+      openOverlay();
+      return;
+    }
+
     // Matching : line break, space, tab, comma and semi-colon
     const newChips = searchValue.split(new RegExp('(?:\\r\\n|[,;])+', 'g'));
     const newChipsWithoutEmpty = newChips.filter((chip: string) => chip.trim() !== '');

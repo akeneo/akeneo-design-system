@@ -26,6 +26,12 @@ import {Locale} from '../../../components';
     children: {
       table: {type: {summary: '<MultiSelectInput.Option>[]'}},
     },
+    disableAutoSelect: {
+      control: {type: 'boolean'},
+      description:
+        'Disables automatic selection when text matches option values exactly. When true, users must explicitly select options from the dropdown. Useful for search scenarios where option values might be common search terms.',
+      table: {type: {summary: 'boolean'}, defaultValue: {summary: 'false'}},
+    },
   }}
 />
 
@@ -316,6 +322,60 @@ The placeholder text provides tips or examples of items to enter. Placeholder te
             </MultiSelectInput.Option>)}
           </MultiSelectInput>
         </SpaceContainer>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation on disableAutoSelect
+
+By default, the MultiSelectInput automatically selects options when the typed text exactly matches an option value (e.g., typing "en_US" will automatically select that option). This behavior can be disabled using the `disableAutoSelect` property.
+
+When `disableAutoSelect` is set to `true`:
+- Typed text is treated as pure search text and is not automatically matched against option values
+- Separators (comma, semicolon, line break) are treated as regular text instead of creating chips
+- Users must explicitly click on options in the dropdown to select them
+- This is useful for search scenarios where option values might be common search terms
+
+<Canvas>
+  <Story name="DisableAutoSelect">
+    {args => {
+      const [autoSelectValue, setAutoSelectValue] = useState([]);
+      const [manualSelectValue, setManualSelectValue] = useState([]);
+      return (
+        <>
+          <label>Default behavior (auto-select enabled):</label>
+          <MultiSelectInput
+            value={autoSelectValue}
+            onChange={setAutoSelectValue}
+            placeholder="Try typing 'en_US'"
+            emptyResultLabel="No match found"
+            removeLabel="Remove"
+            openLabel="Open"
+          >
+            <MultiSelectInput.Option value="en_US">English (United States)</MultiSelectInput.Option>
+            <MultiSelectInput.Option value="fr_FR">French (France)</MultiSelectInput.Option>
+            <MultiSelectInput.Option value="de_DE">German (Germany)</MultiSelectInput.Option>
+            <MultiSelectInput.Option value="es_ES">Spanish (Spain)</MultiSelectInput.Option>
+          </MultiSelectInput>
+          <SpaceContainer height={20} />
+          <label>With disableAutoSelect (manual selection required):</label>
+          <MultiSelectInput
+            value={manualSelectValue}
+            onChange={setManualSelectValue}
+            placeholder="Try typing 'en_US' - it won't auto-select"
+            emptyResultLabel="No match found"
+            disableAutoSelect={true}
+            removeLabel="Remove"
+            openLabel="Open"
+          >
+            <MultiSelectInput.Option value="en_US">English (United States)</MultiSelectInput.Option>
+            <MultiSelectInput.Option value="fr_FR">French (France)</MultiSelectInput.Option>
+            <MultiSelectInput.Option value="de_DE">German (Germany)</MultiSelectInput.Option>
+            <MultiSelectInput.Option value="es_ES">Spanish (Spain)</MultiSelectInput.Option>
+          </MultiSelectInput>
+          <SpaceContainer height={150} />
+        </>
       );
     }}
   </Story>

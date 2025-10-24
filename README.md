@@ -147,5 +147,38 @@ Unit tests are in the same directory of the component.
 All components in Storybook are automatically tested visually through snapshot comparison.
 Normally, stories should describe all possible states, adding manually visual test should be an exception.
 
-Visual tests cannot be launched on your local computer, they are only launched by the continuous integration because the rendering is dependent on the platform.
-When you create a new story or you modify the visual of a component, continuous integration will automatically create and assign to you a pull request.
+#### Running visual tests in CI
+
+Visual tests are typically run in the continuous integration environment to ensure consistent rendering across all platforms.
+When you create a new story or modify the visual of a component, you have to generate the snapshots.
+
+#### Generating snapshots
+
+To generate visual snapshots, you can use Docker to ensure consistent rendering:
+
+1. **Build Storybook static files**:
+   ```shell
+   cd front/akeneo-design-system
+   npm run storybook:build
+   ```
+
+2. **Install Puppeteer's Chromium in Docker**:
+   ```shell
+   docker compose run --rm -e PUPPETEER_SKIP_CHROMIUM_DOWNLOAD= node sh -c "cd /srv/pim/front/akeneo-design-system && node node_modules/puppeteer/install.js"
+   ```
+
+3. **Install system dependencies for Chromium** (first time only):
+   ```shell
+   docker compose run --rm --user root node sh -c "apt-get update && apt-get install -y ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils"
+   ```
+
+4. **Generate or update snapshots**:
+   ```shell
+   # Update all snapshots
+   docker compose run --rm -e CI=false -e PUPPETEER_SKIP_CHROMIUM_DOWNLOAD= node sh -c "cd /srv/pim/front/akeneo-design-system && npm run test:visual:update"
+
+   # Or update a specific snapshot
+   docker compose run --rm -e CI=false -e PUPPETEER_SKIP_CHROMIUM_DOWNLOAD= node sh -c "cd /srv/pim/front/akeneo-design-system && npx jest --config ./jest.visual.config.js -u --testNamePattern='YourStoryName'"
+   ```
+
+**Note**: Snapshots are stored in `src/__image_snapshots__/` and should be committed with your changes.

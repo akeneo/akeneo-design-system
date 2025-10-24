@@ -1042,6 +1042,7 @@ declare type MultiMultiSelectInputProps = Override<Override<default_2.InputHTMLA
     verticalPosition?: VerticalPosition;
     lockedValues?: string[];
     onSubmit?: () => void;
+    disableAutoSelect?: boolean;
 } & ({
     onNextPage?: () => void;
     onSearchChange?: (searchValue: string) => void;
@@ -1053,7 +1054,7 @@ declare type MultiMultiSelectInputProps = Override<Override<default_2.InputHTMLA
 })>;
 
 export declare const MultiSelectInput: {
-    ({ id, placeholder, invalid, value, invalidValue, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, lockedValues, "aria-labelledby": ariaLabelledby, ...rest }: MultiMultiSelectInputProps): default_2.JSX.Element;
+    ({ id, placeholder, invalid, value, invalidValue, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, disableAutoSelect, lockedValues, "aria-labelledby": ariaLabelledby, ...rest }: MultiMultiSelectInputProps): default_2.JSX.Element;
     Option: {
         ({ children, ...rest }: OptionProps): default_2.JSX.Element;
         displayName: string;

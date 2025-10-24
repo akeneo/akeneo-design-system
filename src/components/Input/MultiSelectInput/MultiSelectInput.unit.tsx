@@ -411,3 +411,116 @@ test('it supports the copy paste of multiple tags', () => {
 
   expect(handleChange).toBeCalledWith(['gucci', 'samsung', 'apple', 'asus']);
 });
+
+test('it auto-selects matching option values by default', () => {
+  const onChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'en_US'}});
+
+  expect(onChange).toHaveBeenCalledWith(['en_US']);
+});
+
+test('it does not auto-select when disableAutoSelect is true', () => {
+  const onChange = jest.fn();
+  const onSearchChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      onSearchChange={onSearchChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+      disableAutoSelect={true}
+    >
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'en_US'}});
+
+  expect(onChange).not.toHaveBeenCalled();
+  expect(onSearchChange).toHaveBeenCalledWith('en_US');
+  expect(screen.getByDisplayValue('en_US')).toBeInTheDocument();
+});
+
+test('it treats separators as regular text when disableAutoSelect is true', () => {
+  const onChange = jest.fn();
+  const onSearchChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      onSearchChange={onSearchChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+      disableAutoSelect={true}
+    >
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'en_US,fr_FR'}});
+
+  expect(onChange).not.toHaveBeenCalled();
+  expect(onSearchChange).toHaveBeenCalledWith('en_US,fr_FR');
+  expect(screen.getByDisplayValue('en_US,fr_FR')).toBeInTheDocument();
+});
+
+test('it allows manual selection from dropdown when disableAutoSelect is true', () => {
+  const onChange = jest.fn();
+  const onSearchChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      onSearchChange={onSearchChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+      disableAutoSelect={true}
+    >
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'en_US'}});
+
+  const englishOption = screen.getByText('English');
+  fireEvent.click(englishOption);
+
+  expect(onChange).toHaveBeenCalledWith(['en_US']);
+  expect(onSearchChange).toHaveBeenCalledWith('');
+});
