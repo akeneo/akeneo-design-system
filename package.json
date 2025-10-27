@@ -1,6 +1,6 @@
 {
   "name": "akeneo-design-system",
-  "version": "4.0.33",
+  "version": "4.0.34",
   "description": "Akeneo design system",
   "files": [
     "lib"
@@ -51,7 +51,7 @@
     "@storybook/addon-links": "^6.5.0",
     "@storybook/cli": "^6.5.0",
     "@storybook/react": "^6.5.0",
-    "@testing-library/jest-dom": "^5.11.3",
+    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^10.4.8",
     "@testing-library/react-hooks": "^3.4.2",
     "@testing-library/user-event": "^12.1.9",
