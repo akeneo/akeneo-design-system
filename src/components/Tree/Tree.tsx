@@ -62,6 +62,27 @@ const ValueLabel = styled.span`
   color: ${getColor('grey', 100)};
 `;
 
+const LabelContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  line-height: normal;
+  overflow: hidden;
+`;
+
+const CodeLabel = styled.span`
+  color: ${getColor('grey', 100)};
+  font-size: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const LabelText = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 const TreeLine = styled.div<{$selected?: CheckboxChecked} & AkeneoThemedProps>`
   height: 40px;
   line-height: 40px;
@@ -159,6 +180,9 @@ export type TreeProps<T = string> = {
   children?: ReactNode;
   valueLabel?: string;
   highlight?: string;
+  additional?: ReactNode;
+  hideIcons?: boolean;
+  code?: string;
 };
 
 const TreeComponent = React.forwardRef(function Tree<T>(
@@ -179,6 +203,9 @@ const TreeComponent = React.forwardRef(function Tree<T>(
     _isRoot = true,
     valueLabel,
     highlight = '',
+    additional,
+    hideIcons = false,
+    code,
     ...rest
   }: PropsWithChildren<TreeProps<T>>,
   forwardRef: React.ForwardedRef<HTMLLIElement>
@@ -252,8 +279,18 @@ const TreeComponent = React.forwardRef(function Tree<T>(
         {selectable && <NodeCheckbox checked={selected} onChange={handleSelect} readOnly={readOnly} />}
 
         <LabelWithFolder onClick={handleClick} $selected={selected} title={label} aria-selected={Boolean(selected)}>
-          <TreeIcon isLoading={isLoading} isLeaf={isLeaf} selected={selected} />
-          <Highlight highlight={highlight}>{label}</Highlight>{' '}
+          {!hideIcons && <TreeIcon isLoading={isLoading} isLeaf={isLeaf} selected={selected} />}
+          {code ? (
+            <LabelContainer>
+              <CodeLabel>{code}</CodeLabel>
+              <LabelText>
+                <Highlight highlight={highlight}>{label}</Highlight>
+              </LabelText>
+            </LabelContainer>
+          ) : (
+            <Highlight highlight={highlight}>{label}</Highlight>
+          )}{' '}
+          {additional}
           {valueLabel && (
             <ValueLabel>
               <Highlight highlight={highlight}>{valueLabel}</Highlight>

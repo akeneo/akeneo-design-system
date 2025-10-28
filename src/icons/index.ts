@@ -103,6 +103,8 @@ export * from './MouseClickIcon';
 export * from './NotificationIcon';
 export * from './PanelCloseIcon';
 export * from './PanelOpenIcon';
+export * from './PinIcon';
+export * from './PinPlainIcon';
 export * from './PlayIcon';
 export * from './PlusIcon';
 export * from './ProductDimensionsIcon';

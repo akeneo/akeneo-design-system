@@ -1139,6 +1139,10 @@ declare type PillLevel = 'primary' | 'warning' | 'danger';
 
 export declare const pimTheme: Theme;
 
+export declare const PinIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
+export declare const PinPlainIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
 export declare const Placeholder: FC<PlaceholderProps>;
 
 declare type PlaceholderProps = Override<HTMLAttributes<HTMLDivElement>, {
@@ -1745,6 +1749,9 @@ export declare type TreeProps<T = string> = {
     children?: ReactNode;
     valueLabel?: string;
     highlight?: string;
+    additional?: ReactNode;
+    hideIcons?: boolean;
+    code?: string;
 };
 
 export declare const UnpublishIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
