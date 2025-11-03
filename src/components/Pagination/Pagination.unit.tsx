@@ -101,6 +101,99 @@ test('it ensures separator click does nothing', () => {
   expect(onClickSeparator).not.toBeCalled();
 });
 
+test('it shows input when separator is clicked', () => {
+  render(<Pagination currentPage={12} totalItems={50} itemsPerPage={2} followPage={jest.fn()} />);
+
+  const separator = screen.getAllByTestId('paginationItem')[1];
+  fireEvent.click(separator);
+
+  const input = screen.getByPlaceholderText('…');
+  expect(input).toBeInTheDocument();
+});
+
+test('it navigates to typed page when Enter is pressed', () => {
+  const followPage = jest.fn();
+  render(<Pagination currentPage={12} totalItems={50} itemsPerPage={2} followPage={followPage} />);
+
+  const separator = screen.getAllByTestId('paginationItem')[1];
+  fireEvent.click(separator);
+
+  const input = screen.getByPlaceholderText('…');
+  fireEvent.change(input, {target: {value: '5'}});
+  fireEvent.keyDown(input, {key: 'Enter'});
+
+  expect(followPage).toHaveBeenCalledWith(5);
+});
+
+test('it closes input when invalid page number is entered', () => {
+  const followPage = jest.fn();
+  render(<Pagination currentPage={12} totalItems={50} itemsPerPage={2} followPage={followPage} />);
+
+  const separator = screen.getAllByTestId('paginationItem')[1];
+  fireEvent.click(separator);
+
+  const input = screen.getByPlaceholderText('…');
+  fireEvent.change(input, {target: {value: 'abc'}});
+  fireEvent.keyDown(input, {key: 'Enter'});
+
+  expect(followPage).not.toHaveBeenCalled();
+  expect(screen.queryByPlaceholderText('…')).not.toBeInTheDocument();
+});
+
+test('it navigates to page 1 when page number less than 1 is entered', () => {
+  const followPage = jest.fn();
+  render(<Pagination currentPage={12} totalItems={50} itemsPerPage={2} followPage={followPage} />);
+
+  const separator = screen.getAllByTestId('paginationItem')[1];
+  fireEvent.click(separator);
+
+  const input = screen.getByPlaceholderText('…');
+  fireEvent.change(input, {target: {value: '0'}});
+  fireEvent.keyDown(input, {key: 'Enter'});
+
+  expect(followPage).toHaveBeenCalledWith(1);
+  expect(screen.queryByPlaceholderText('…')).not.toBeInTheDocument();
+});
+
+test('it navigates to last page when page number greater than max is entered', () => {
+  const followPage = jest.fn();
+  render(<Pagination currentPage={12} totalItems={50} itemsPerPage={2} followPage={followPage} />);
+
+  const separator = screen.getAllByTestId('paginationItem')[1];
+  fireEvent.click(separator);
+
+  const input = screen.getByPlaceholderText('…');
+  fireEvent.change(input, {target: {value: '999'}});
+  fireEvent.keyDown(input, {key: 'Enter'});
+
+  expect(followPage).toHaveBeenCalledWith(25);
+  expect(screen.queryByPlaceholderText('…')).not.toBeInTheDocument();
+});
+
+test('it closes input when Escape is pressed', () => {
+  render(<Pagination currentPage={12} totalItems={50} itemsPerPage={2} followPage={jest.fn()} />);
+
+  const separator = screen.getAllByTestId('paginationItem')[1];
+  fireEvent.click(separator);
+
+  const input = screen.getByPlaceholderText('…');
+  fireEvent.keyDown(input, {key: 'Escape'});
+
+  expect(screen.queryByPlaceholderText('…')).not.toBeInTheDocument();
+});
+
+test('it closes input when input loses focus', () => {
+  render(<Pagination currentPage={12} totalItems={50} itemsPerPage={2} followPage={jest.fn()} />);
+
+  const separator = screen.getAllByTestId('paginationItem')[1];
+  fireEvent.click(separator);
+
+  const input = screen.getByPlaceholderText('…');
+  fireEvent.blur(input);
+
+  expect(screen.queryByPlaceholderText('…')).not.toBeInTheDocument();
+});
+
 function expectedPagination(expectedPagination: string[]) {
   expect(screen.getAllByTestId('paginationItem')).toHaveLength(expectedPagination.length);
   return expectedPagination.join('');

@@ -58,6 +58,7 @@ const Pagination: FC<PaginationProps> = ({currentPage, totalItems, itemsPerPage 
             key={index}
             followPage={followPage}
             page={page as string}
+            numberOfPages={numberOfPages}
           />
         );
       })}
