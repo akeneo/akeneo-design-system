@@ -64,6 +64,11 @@ type FieldProps = {
   incomplete?: boolean;
 
   /**
+   * Whether the field value is modified.
+   */
+  isModified?: boolean;
+
+  /**
    * The locale of the field.
    */
   locale?: ReactElement<LocaleProps> | string | null;
@@ -112,6 +117,7 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
       channel,
       incomplete = false,
       incompleteLabel,
+      isModified = false,
       fullWidth = false,
       requiredLabel,
       children,
@@ -144,6 +150,7 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
       <FieldContainer ref={forwardedRef} fullWidth={fullWidth ?? false} {...rest}>
         <LabelContainer>
           {incomplete && <Pill level="warning" aria-label={incompleteLabel} />}
+          {isModified && <Pill level="primary" />}
           <Label htmlFor={inputId} id={labelId} title={`${label}${requiredLabel ? ' ' + requiredLabel : ''}`}>
             {labelPrefix && <LabelPrefix>{labelPrefix}&nbsp;</LabelPrefix>}
             {label}

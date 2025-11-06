@@ -603,6 +603,7 @@ declare type FieldChild = ReactElement<InputProps<unknown>> | ReactElement<Helpe
 export declare type FieldProps = {
     label: string;
     incomplete?: boolean;
+    isModified?: boolean;
     locale?: ReactElement<LocaleProps> | string | null;
     channel?: string | null;
     requiredLabel?: string;
