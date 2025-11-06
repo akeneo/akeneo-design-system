@@ -32,3 +32,21 @@ test('It manages opening and closing', () => {
   [isOpen] = result.current;
   expect(isOpen).toEqual(false);
 });
+
+test('It toggles the value', () => {
+  const {result} = renderHook(() => useBooleanState(false));
+
+  let [value] = result.current;
+  const [, , , toggle] = result.current;
+  expect(value).toEqual(false);
+  void act(() => {
+    toggle();
+  });
+  [value] = result.current;
+  expect(value).toEqual(true);
+  void act(() => {
+    toggle();
+  });
+  [value] = result.current;
+  expect(value).toEqual(false);
+});

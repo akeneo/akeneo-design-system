@@ -1762,7 +1762,7 @@ export declare const UploadIcon: ({ title, size, color, ...props }: IconProps) =
 
 export declare const useAutoFocus: (ref: RefObject<HTMLElement>) => (() => void);
 
-export declare const useBooleanState: (defaultValue?: boolean) => readonly [boolean, () => void, () => void];
+export declare const useBooleanState: (initialValue?: boolean) => readonly [boolean, () => void, () => void, () => void];
 
 export declare const useCombinedRefs: <T>(...refs: Ref<T>[]) => RefObject<T>;
 
