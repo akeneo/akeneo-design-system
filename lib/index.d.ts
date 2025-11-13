@@ -908,6 +908,7 @@ export declare const LocaleIllustration: ({ title, size, ...props }: Illustratio
 export declare type LocaleProps = {
     code: string;
     languageLabel?: string;
+    flagElement?: default_2.ReactElement;
 };
 
 export declare const LockIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
