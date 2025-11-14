@@ -1,13 +1,8 @@
 import 'styled-components';
-import {Color, ColorAlternative, FontSize, Palette} from './theme';
+import type {Theme} from './theme';
 
 declare module 'styled-components' {
-  export interface DefaultTheme {
+  export interface DefaultTheme extends Theme {
     name: string;
-    palette: Palette;
-    fontSize: FontSize;
-    color: Color;
-    colorAlternative: ColorAlternative;
-    fontFamily: FontFamily;
   }
 }

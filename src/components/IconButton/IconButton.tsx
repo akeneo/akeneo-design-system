@@ -4,15 +4,15 @@ import {IconProps} from '../../icons';
 import {Button, ButtonProps, ButtonSize} from '../../components/Button/Button';
 import {Override} from '../../shared/override';
 
-const IconButtonContainer = styled(Button)<ButtonProps & {borderless: boolean}>`
+const IconButtonContainer = styled(Button)<ButtonProps & {$borderless: boolean}>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   padding: 0;
   width: ${({size}) => (size === 'small' ? 24 : 32)}px;
-  border-style: ${({borderless, ghost}) => (!borderless && ghost ? 'solid' : 'none')};
-  ${({borderless}) =>
+  border-style: ${({$borderless: borderless, ghost}) => (!borderless && ghost ? 'solid' : 'none')};
+  ${({$borderless: borderless}) =>
     borderless &&
     css`
       background: transparent;
@@ -57,7 +57,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       <IconButtonContainer
         ref={forwardedRef}
         ghost={true === ghost || 'borderless' === ghost}
-        borderless={'borderless' === ghost}
+        $borderless={'borderless' === ghost}
         size={size}
         {...rest}
       >

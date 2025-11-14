@@ -1,3 +1,5 @@
+import type {DefaultTheme} from 'styled-components';
+
 type FontSize = {
   big: string;
   bigger: string;
@@ -132,28 +134,32 @@ type FontFamily = {
 
 type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
 
+type ThemedProps = {
+  theme: DefaultTheme;
+};
+
 const getColor =
-  (color: string, gradient?: number): ((props: AkeneoThemedProps) => string) =>
+  (color: string, gradient?: number): ((props: ThemedProps) => string) =>
   ({theme}: AkeneoThemedProps): string =>
     theme.color[`${color}${gradient ?? ''}` as keyof Color];
 
 const getColorForLevel =
-  (level: Level, gradient: number): ((props: AkeneoThemedProps) => string) =>
+  (level: Level, gradient: number): ((props: ThemedProps) => string) =>
   ({theme}: AkeneoThemedProps): string =>
     theme.color[`${theme.palette[level]}${gradient}` as keyof Color];
 
 const getColorAlternative =
-  (color: string, gradient?: number): ((props: AkeneoThemedProps) => string) =>
+  (color: string, gradient?: number): ((props: ThemedProps) => string) =>
   ({theme}: AkeneoThemedProps): string =>
     theme.colorAlternative[`${color}${gradient ?? ''}` as keyof ColorAlternative];
 
 const getFontSize =
-  (fontSize: keyof FontSize): ((props: AkeneoThemedProps) => string) =>
+  (fontSize: keyof FontSize): ((props: ThemedProps) => string) =>
   ({theme}: AkeneoThemedProps): string =>
     theme.fontSize[fontSize];
 
 const getFontFamily =
-  (fontFamilyType: keyof FontFamily): ((props: AkeneoThemedProps) => string) =>
+  (fontFamilyType: keyof FontFamily): ((props: ThemedProps) => string) =>
   ({theme}: AkeneoThemedProps): string =>
     theme.fontFamily[fontFamilyType];
 

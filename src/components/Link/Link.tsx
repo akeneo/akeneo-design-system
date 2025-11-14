@@ -2,9 +2,9 @@ import styled, {css} from 'styled-components';
 import React, {ReactNode, Ref} from 'react';
 import {AkeneoThemedProps, getColor} from '../../theme/theme';
 
-const LinkContainer = styled.a<{disabled: boolean; decorated: boolean} & AkeneoThemedProps>`
-  ${({decorated, disabled}) =>
-    decorated
+const LinkContainer = styled.a<{disabled: boolean; $decorated: boolean} & AkeneoThemedProps>`
+  ${({$decorated, disabled}) =>
+    $decorated
       ? css`
           font-weight: 400;
           text-decoration: underline;
@@ -74,7 +74,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
         disabled={disabled}
         ref={forwardedRef}
         target={target}
-        decorated={decorated}
+        $decorated={decorated}
         rel={target === '_blank' ? 'noopener noreferrer' : ''}
         href={disabled ? undefined : href}
         onClick={disabled ? undefined : onClick}

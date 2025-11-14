@@ -20,7 +20,7 @@ import { RefObject } from 'react';
 import { StyledComponent } from 'styled-components';
 import { SVGProps } from 'react';
 import { SyntheticEvent } from 'react';
-import { ThemedStyledProps } from 'styled-components';
+import { ThemeProps } from 'styled-components';
 
 declare type ActionCellProps = default_2.HTMLAttributes<HTMLDivElement>;
 
@@ -201,7 +201,7 @@ declare const BottomButtons: StyledComponent<"div", DefaultTheme, {}, never>;
 
 export declare const BoxIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
-export declare const BrandedPath: StyledComponent<"path", DefaultTheme, AkeneoThemedProps, never>;
+export declare const BrandedPath: StyledComponent<"path", DefaultTheme, {}, never>;
 
 export declare const Breadcrumb: {
     ({ children, ...rest }: BreadcrumbProps): default_2.JSX.Element;
@@ -211,7 +211,7 @@ export declare const Breadcrumb: {
     children: default_2.ReactNode;
     target?: string | undefined;
     href?: string | undefined;
-    } & default_2.AnchorHTMLAttributes<HTMLAnchorElement> & default_2.RefAttributes<HTMLAnchorElement>>, DefaultTheme, AkeneoThemedProps, never>;
+    } & default_2.AnchorHTMLAttributes<HTMLAnchorElement> & default_2.RefAttributes<HTMLAnchorElement>>, DefaultTheme, {}, never>;
 };
 
 declare type BreadcrumbChild = ReactElement<LinkProps> | null | boolean | undefined | BreadcrumbChild[];
@@ -260,7 +260,7 @@ export declare const CaddyCheckoutIcon: ({ title, size, color, ...props }: IconP
 
 export declare const CaddyIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
-export declare const Card: default_2.ForwardRefExoticComponent<Omit<default_2.HTMLAttributes<HTMLDivElement>, "children" | "onSelect" | "disabled" | "src" | "loading" | "fit" | "isSelected" | "stacked"> & {
+export declare const Card: default_2.ForwardRefExoticComponent<Omit<default_2.HTMLAttributes<HTMLDivElement>, "children" | "onSelect" | "disabled" | "loading" | "src" | "fit" | "isSelected" | "stacked"> & {
     src: string | null;
     fit?: "cover" | "contain" | undefined;
     loading?: "eager" | "lazy" | undefined;
@@ -453,7 +453,7 @@ declare type ColorInputProps = Override<Override<InputHTMLAttributes<HTMLInputEl
 
 export declare const ColumnIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
-export declare const CommonStyle: FlattenInterpolation<ThemedStyledProps<AkeneoThemedProps, DefaultTheme>>;
+export declare const CommonStyle: FlattenInterpolation<ThemeProps<DefaultTheme>>;
 
 export declare const CompareIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
@@ -523,7 +523,7 @@ export declare const DragDropIcon: ({ title, size, color, ...props }: IconProps)
 export declare const Dropdown: {
     ({ children, ...rest }: DropdownProps): default_2.JSX.Element;
     Overlay: {
-        ({ verticalPosition, horizontalPosition, dropdownOpenerVisible, fullWidth, parentRef, onClose, children, ...rest }: Omit<default_2.HTMLAttributes<HTMLDivElement>, "children" | "onClose" | "verticalPosition" | "horizontalPosition" | "dropdownOpenerVisible" | "fullWidth" | "parentRef"> & {
+        ({ verticalPosition, horizontalPosition, dropdownOpenerVisible, fullWidth, parentRef, onClose, children, ...rest }: Omit<default_2.HTMLAttributes<HTMLDivElement>, "children" | "verticalPosition" | "horizontalPosition" | "dropdownOpenerVisible" | "fullWidth" | "onClose" | "parentRef"> & {
             verticalPosition?: VerticalPosition | undefined;
             horizontalPosition?: HorizontalPosition | undefined;
             dropdownOpenerVisible?: boolean | undefined;
@@ -542,7 +542,7 @@ export declare const Dropdown: {
         isActive?: boolean | undefined;
         children: default_2.ReactNode;
     } & default_2.RefAttributes<HTMLDivElement>>;
-    Section: StyledComponent<"div", DefaultTheme, AkeneoThemedProps, never>;
+    Section: StyledComponent<"div", DefaultTheme, {}, never>;
     Title: default_2.ForwardRefExoticComponent<Omit<default_2.HTMLAttributes<HTMLDivElement>, "children"> & {
         children: default_2.ReactNode;
     } & default_2.RefAttributes<HTMLDivElement>>;
@@ -681,17 +681,17 @@ export declare const FrowningFaceIcon: ({ title, size, color, ...props }: IconPr
 
 export declare const FullscreenIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
-export declare const getColor: (color: string, gradient?: number) => (props: AkeneoThemedProps) => string;
+export declare const getColor: (color: string, gradient?: number) => (props: ThemedProps) => string;
 
-export declare const getColorAlternative: (color: string, gradient?: number) => (props: AkeneoThemedProps) => string;
+export declare const getColorAlternative: (color: string, gradient?: number) => (props: ThemedProps) => string;
 
-export declare const getColorForLevel: (level: Level, gradient: number) => (props: AkeneoThemedProps) => string;
+export declare const getColorForLevel: (level: Level, gradient: number) => (props: ThemedProps) => string;
 
 export declare const getEmoji: (countryCode: string) => string | undefined;
 
-export declare const getFontFamily: (fontFamilyType: keyof FontFamily) => (props: AkeneoThemedProps) => string;
+export declare const getFontFamily: (fontFamilyType: keyof FontFamily) => (props: ThemedProps) => string;
 
-export declare const getFontSize: (fontSize: keyof FontSize) => (props: AkeneoThemedProps) => string;
+export declare const getFontSize: (fontSize: keyof FontSize) => (props: ThemedProps) => string;
 
 export declare const GiftIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
@@ -1163,7 +1163,7 @@ export declare const PlusIcon: ({ title, size, color, ...props }: IconProps) => 
 
 export declare const Preview: {
     ({ title, level, icon, isOpen, collapseButtonLabel, onCollapse, children, ...rest }: PreviewProps): default_2.JSX.Element;
-    Highlight: StyledComponent<"span", DefaultTheme, AkeneoThemedProps, never>;
+    Highlight: StyledComponent<"span", DefaultTheme, {}, never>;
     Row: {
         ({ action, children }: RowProps_2): default_2.JSX.Element;
         displayName: string;
@@ -1257,8 +1257,8 @@ export declare const RulesIllustration: ({ title, size, ...props }: Illustration
 
 export declare const Search: {
     ({ children, placeholder, title, searchValue, inputRef, onSearchChange, ...rest }: SearchProps): default_2.JSX.Element;
-    ResultCount: StyledComponent<"span", DefaultTheme, AkeneoThemedProps, never>;
-    Separator: StyledComponent<"div", DefaultTheme, AkeneoThemedProps, never>;
+    ResultCount: StyledComponent<"span", DefaultTheme, {}, never>;
+    Separator: StyledComponent<"div", DefaultTheme, {}, never>;
 };
 
 export declare const SearchIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
@@ -1279,8 +1279,8 @@ export declare const SectionTitle: {
     ({ children, ...rest }: SectionTitleProps): default_2.JSX.Element;
     Title: ({ level, ...rest }: TitleProps) => default_2.JSX.Element;
     Spacer: StyledComponent<"div", DefaultTheme, {}, never>;
-    Separator: StyledComponent<"div", DefaultTheme, AkeneoThemedProps, never>;
-    Information: StyledComponent<"div", DefaultTheme, AkeneoThemedProps, never>;
+    Separator: StyledComponent<"div", DefaultTheme, {}, never>;
+    Information: StyledComponent<"div", DefaultTheme, {}, never>;
 };
 
 declare const SectionTitle_2: StyledComponent<"div", DefaultTheme, {
@@ -1666,6 +1666,10 @@ export declare type Theme = {
     fontFamily: FontFamily;
 };
 
+declare type ThemedProps = {
+    theme: DefaultTheme;
+};
+
 export declare const themes: Theme[];
 
 export declare const Tile: FC<TileProps>;
@@ -1694,7 +1698,7 @@ declare type TilesProps = {
 
 export declare const TimezoneIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
 
-declare const Title: StyledComponent<"div", DefaultTheme, AkeneoThemedProps, never>;
+declare const Title: StyledComponent<"div", DefaultTheme, {}, never>;
 
 declare type TitleProps = Override<HTMLAttributes<HTMLHeadingElement>, {
     level?: 'primary' | 'secondary';
@@ -1702,7 +1706,7 @@ declare type TitleProps = Override<HTMLAttributes<HTMLHeadingElement>, {
 
 export declare const Toolbar: {
     ({ isVisible, children, ...rest }: ToolbarProps): default_2.JSX.Element;
-    LabelContainer: StyledComponent<"div", DefaultTheme, AkeneoThemedProps, never>;
+    LabelContainer: StyledComponent<"div", DefaultTheme, {}, never>;
     SelectionContainer: StyledComponent<"div", DefaultTheme, {}, never>;
     ActionsContainer: StyledComponent<"div", DefaultTheme, {}, never>;
 };
@@ -1714,7 +1718,7 @@ declare type ToolbarProps = Override<default_2.HTMLAttributes<HTMLDivElement>, {
 
 export declare const Tooltip: {
     ({ direction, iconSize, width, children, ...rest }: TooltipProps): default_2.JSX.Element;
-    Title: StyledComponent<"div", DefaultTheme, AkeneoThemedProps, never>;
+    Title: StyledComponent<"div", DefaultTheme, {}, never>;
 };
 
 export declare type TooltipProps = Override<HTMLAttributes<HTMLDivElement>, {
