@@ -9,7 +9,7 @@ import {FolderPlainIcon} from '../../icons/FolderPlainIcon';
 import {FoldersIcon} from '../../icons/FoldersIcon';
 import {FoldersPlainIcon} from '../../icons/FoldersPlainIcon';
 import {LoaderIcon} from '../../icons/LoaderIcon';
-import {Highlight} from './Highlight';
+import {Highlight} from '../../shared/Highlight';
 
 const folderIconCss = css`
   vertical-align: middle;

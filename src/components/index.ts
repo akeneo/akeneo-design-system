@@ -39,5 +39,4 @@ export * from './Tags/Tags';
 export * from './Tiles/Tiles';
 export * from './Toolbar/Toolbar';
 export * from './Tree/Tree';
-export * from './Tree/Highlight';
 export * from './Tooltip/Tooltip';

@@ -601,7 +601,7 @@ export declare const Field: default_2.ForwardRefExoticComponent<FieldProps & def
 declare type FieldChild = ReactElement<InputProps<unknown>> | ReactElement<HelperProps> | FieldChild[] | false | null | undefined;
 
 export declare type FieldProps = {
-    label: string;
+    label: ReactNode;
     incomplete?: boolean;
     isModified?: boolean;
     locale?: ReactElement<LocaleProps> | string | null;

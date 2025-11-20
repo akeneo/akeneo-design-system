@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {getColor} from '../../theme/theme';
+import {getColor} from '../theme/theme';
 
 const Highlighted = styled.span`
   background-color: ${getColor('brand', 20)};

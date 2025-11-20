@@ -1,6 +1,6 @@
 import React from 'react';
 import {Highlight} from './Highlight';
-import {render, screen} from '../../storybook/test-util';
+import {render, screen} from '../storybook/test-util';
 
 test('it highlights nothing if search does not match content', () => {
   render(<Highlight highlight={'steven'}>gregoire</Highlight>);

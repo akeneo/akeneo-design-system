@@ -56,7 +56,7 @@ type FieldProps = {
   /**
    * The label of the field.
    */
-  label: string;
+  label: ReactNode;
 
   /**
    * Whether the field is complete or not.
@@ -151,7 +151,11 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
         <LabelContainer>
           {incomplete && <Pill level="warning" aria-label={incompleteLabel} />}
           {isModified && <Pill level="primary" />}
-          <Label htmlFor={inputId} id={labelId} title={`${label}${requiredLabel ? ' ' + requiredLabel : ''}`}>
+          <Label
+            htmlFor={inputId}
+            id={labelId}
+            title={typeof label === 'string' ? `${label}${requiredLabel ? ' ' + requiredLabel : ''}` : undefined}
+          >
             {labelPrefix && <LabelPrefix>{labelPrefix}&nbsp;</LabelPrefix>}
             {label}
             {requiredLabel && (
