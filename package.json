@@ -1,6 +1,6 @@
 {
   "name": "akeneo-design-system",
-  "version": "4.0.42",
+  "version": "4.0.43",
   "description": "Akeneo design system",
   "files": [
     "lib"
@@ -23,11 +23,11 @@
     "test:visual:run": "npm run storybook:extract && jest --config ./jest.visual.config.js",
     "test:visual:update": "npm run storybook:extract && jest --config ./jest.visual.config.js -u",
     "eslint": "eslint --config .eslintrc.json --quiet \"./src/**/*.{ts,tsx}\"",
-    "eslint-fix": "eslint --config .eslintrc.json --quiet \"./src/**/*.{ts,tsx}\" --fix",
+    "eslint:check": "eslint --config .eslintrc.json --quiet \"./src/**/*.{ts,tsx}\"",
+    "eslint:fix": "eslint --config .eslintrc.json --quiet \"./src/**/*.{ts,tsx}\" --fix",
     "prettier": "prettier --config .prettierrc.json --parser typescript --check \"./{src,generator}/**/*.{ts,tsx}\" --loglevel warn",
-    "prettier-fix": "prettier --config .prettierrc.json --parser typescript --write \"./{src,generator}/**/*.{ts,tsx}\"",
-    "lint:fix": "npm run prettier-fix && npm run eslint-fix",
-    "lint:check": "npm run prettier && npm run eslint",
+    "prettier:check": "prettier --config .prettierrc.json --parser typescript --check \"./{src,generator}/**/*.{ts,tsx}\" --loglevel warn",
+    "prettier:fix": "prettier --config .prettierrc.json --parser typescript --write \"./{src,generator}/**/*.{ts,tsx}\" --loglevel warn",
     "storybook:start": "npm run storybook:copy-public && NODE_OPTIONS=--openssl-legacy-provider npx start-storybook -p 6006 -s ./public",
     "storybook:build": "npm run storybook:copy-public && NODE_OPTIONS=--openssl-legacy-provider npx build-storybook -s ./public && npx sb extract",
     "storybook:ci:start": "NODE_OPTIONS=--openssl-legacy-provider npm run start-storybook -p 6006 --ci",
