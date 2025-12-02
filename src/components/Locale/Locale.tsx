@@ -25,6 +25,7 @@ type LocaleProps = {
    * Override the language label (English instead of en). Fallback to language code if empty.
    */
   languageLabel?: string;
+  displayLanguage?: boolean;
 
   flagElement?: React.ReactElement;
 };
@@ -33,7 +34,10 @@ type LocaleProps = {
  * Component to display a locale (country and language).
  */
 const Locale = forwardRef<HTMLSpanElement, LocaleProps>(
-  ({code, languageLabel, flagElement, ...rest}: LocaleProps, forwardedRef: Ref<HTMLSpanElement>) => {
+  (
+    {code, languageLabel, displayLanguage = true, flagElement, ...rest}: LocaleProps,
+    forwardedRef: Ref<HTMLSpanElement>
+  ) => {
     const {0: languageCode, length, [length - 1]: countryCode} = code.split('_');
 
     return (
@@ -41,7 +45,7 @@ const Locale = forwardRef<HTMLSpanElement, LocaleProps>(
         <Emoji role="img" aria-label={countryCode}>
           {flagElement || getEmoji(countryCode)}
         </Emoji>
-        {languageLabel || languageCode}
+        {displayLanguage && (languageLabel || languageCode)}
       </LocaleContainer>
     );
   }

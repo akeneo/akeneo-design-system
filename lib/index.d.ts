@@ -908,6 +908,7 @@ export declare const LocaleIllustration: ({ title, size, ...props }: Illustratio
 export declare type LocaleProps = {
     code: string;
     languageLabel?: string;
+    displayLanguage?: boolean;
     flagElement?: default_2.ReactElement;
 };
 
