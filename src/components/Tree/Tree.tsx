@@ -107,6 +107,7 @@ const NodeCheckbox = styled(Checkbox)`
 const ArrowButton = styled.button`
   height: 30px;
   width: 30px;
+  min-width: 30px;
   vertical-align: middle;
   margin-right: 2px;
   padding: 0;

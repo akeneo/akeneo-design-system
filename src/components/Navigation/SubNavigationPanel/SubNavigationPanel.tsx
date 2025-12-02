@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {PanelCloseIcon} from '../../../icons/PanelCloseIcon';
 import {PanelOpenIcon} from '../../../icons/PanelOpenIcon';
 import {AkeneoThemedProps, getColor} from '../../../theme/theme';
+import {Override} from '../../../shared';
 
 const Container = styled.div<{isOpen: boolean} & AkeneoThemedProps>`
   background-color: ${getColor('grey', 20)};
@@ -49,42 +50,45 @@ const Collapsed = styled.div`
   padding: 10px 5px;
 `;
 
-type SubNavigationPanelProps = {
-  /**
-   * The content of the panel.
-   */
-  children?: React.ReactNode;
+type SubNavigationPanelProps = Override<
+  React.HTMLAttributes<HTMLDivElement>,
+  {
+    /**
+     * The content of the panel.
+     */
+    children?: React.ReactNode;
 
-  /**
-   * Whether or not the panel is open.
-   */
-  isOpen?: boolean;
+    /**
+     * Whether or not the panel is open.
+     */
+    isOpen?: boolean;
 
-  /**
-   * Callback to open the sub navigation panel
-   */
-  open: () => void;
+    /**
+     * Callback to open the sub navigation panel
+     */
+    open: () => void;
 
-  /**
-   * Callback to close the sub navigation panel
-   */
-  close: () => void;
+    /**
+     * Callback to close the sub navigation panel
+     */
+    close: () => void;
 
-  /**
-   * Closing title to display for the ToggleButton
-   */
-  closeTitle?: string;
+    /**
+     * Closing title to display for the ToggleButton
+     */
+    closeTitle?: string;
 
-  /**
-   * Opening title to display for the ToggleButton
-   */
-  openTitle?: string;
+    /**
+     * Opening title to display for the ToggleButton
+     */
+    openTitle?: string;
 
-  /**
-   * Whether or not the panel should have padding.
-   */
-  noPadding?: boolean;
-};
+    /**
+     * Whether or not the panel should have padding.
+     */
+    noPadding?: boolean;
+  }
+>;
 
 type SubNavigationPanelCompoundType = ForwardRefExoticComponent<
   PropsWithoutRef<SubNavigationPanelProps> & RefAttributes<HTMLDivElement>

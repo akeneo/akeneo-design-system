@@ -84,6 +84,7 @@ const LabelContainer = styled.label<{readOnly: boolean} & AkeneoThemedProps>`
   font-weight: 400;
   font-size: ${getFontSize('big')};
   padding-left: 10px;
+  max-width: 100%;
 
   ${props =>
     props.readOnly &&

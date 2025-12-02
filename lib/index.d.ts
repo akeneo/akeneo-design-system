@@ -1392,7 +1392,7 @@ declare type SubNavigationPanelCompoundType = ForwardRefExoticComponent<PropsWit
     Section?: any;
 };
 
-declare type SubNavigationPanelProps = {
+declare type SubNavigationPanelProps = Override<default_2.HTMLAttributes<HTMLDivElement>, {
     children?: default_2.ReactNode;
     isOpen?: boolean;
     open: () => void;
@@ -1400,7 +1400,7 @@ declare type SubNavigationPanelProps = {
     closeTitle?: string;
     openTitle?: string;
     noPadding?: boolean;
-};
+}>;
 
 export declare const SupplierIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
