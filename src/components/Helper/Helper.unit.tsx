@@ -34,6 +34,14 @@ describe('A helper', () => {
 
     expect(getByText(helperMessage)).toBeInTheDocument();
   });
+
+  it('it renders a learning helper', () => {
+    const helperMessage = 'A Learning message';
+
+    const {getByText} = render(<Helper level="learn">{helperMessage}</Helper>);
+
+    expect(getByText(helperMessage)).toBeInTheDocument();
+  });
 });
 
 describe('Helper supports forwardRef', () => {

@@ -1,0 +1,87 @@
+import {Meta, Story, ArgsTable, Canvas} from '@storybook/addon-docs';
+import {ProgressWheel} from './ProgressWheel';
+
+<Meta
+  title="Components/Progress wheel"
+  component={ProgressWheel}
+  argTypes={{
+    percent: {control: {type: 'range', min: 0, max: 100, step: 1}},
+    size: {control: {type: 'range', min: 16, max: 128, step: 8}},
+  }}
+  args={{
+    level: 'primary',
+    percent: 50,
+    size: 16,
+  }}
+/>
+
+# Progress wheel
+
+## Usage
+A circular progress indicator that communicates the completion of an operation. Use it when a compact visual representation of progress is needed, such as inside a cell or alongside a label.
+
+## Playground
+
+<Canvas>
+  <Story name="Standard">
+    {args => {
+      return <ProgressWheel {...args} />;
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Standard" />
+
+## Variation on progress
+
+<Canvas>
+  <Story name="Progress">
+    {args => {
+      return (
+        <>
+          <ProgressWheel {...args} percent={0} title="0%" />
+          <ProgressWheel {...args} percent={25} title="25%" />
+          <ProgressWheel {...args} percent={50} title="50%" />
+          <ProgressWheel {...args} percent={75} title="75%" />
+          <ProgressWheel {...args} percent={100} title="100%" />
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation on level
+
+<Canvas>
+  <Story name="Level">
+    {args => {
+      return (
+        <>
+          <ProgressWheel {...args} level="primary" />
+          <ProgressWheel {...args} level="secondary" />
+          <ProgressWheel {...args} level="tertiary" />
+          <ProgressWheel {...args} level="warning" />
+          <ProgressWheel {...args} level="danger" />
+          <ProgressWheel {...args} level="brand" />
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation on size
+
+<Canvas>
+  <Story name="Size">
+    {args => {
+      return (
+        <>
+          <ProgressWheel {...args} size={16} />
+          <ProgressWheel {...args} size={24} />
+          <ProgressWheel {...args} size={48} />
+          <ProgressWheel {...args} size={64} />
+        </>
+      );
+    }}
+  </Story>
+</Canvas>

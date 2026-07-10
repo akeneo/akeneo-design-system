@@ -3,6 +3,8 @@ import styled, {css, keyframes} from 'styled-components';
 import {AkeneoThemedProps, getColor, getColorForLevel, getFontSize, Level} from '../../theme/theme';
 import {useId} from '../../hooks/useId';
 
+type ProgressBarLevel = Level | 'brand';
+
 const ProgressBarContainer = styled.div`
   overflow: hidden;
 `;
@@ -31,20 +33,31 @@ const ProgressLabel = styled.div`
   white-space: nowrap;
 `;
 
-const ProgressBarBackground = styled.div<{size: ProgressBarSize} & AkeneoThemedProps>`
+const ProgressBarBackground = styled.div<{$size: ProgressBarSize} & AkeneoThemedProps>`
   background: ${getColor('grey', 60)};
-  height: ${props => getHeightFromSize(props.size)};
+  height: ${props => getHeightFromSize(props.$size)};
   overflow: hidden;
   position: relative;
 `;
 
-const ProgressBarFill = styled.div.attrs<{width: number; level: Level; indeterminate: boolean; light: boolean}>(
-  props => ({
-    style: {width: `${props.width}%`},
-  })
-)<{width: number; level: Level; light: boolean; indeterminate: boolean} & AkeneoThemedProps>`
-  ${({level, light}: {level: Level; light: boolean} & AkeneoThemedProps) => css`
-    background: ${getColorForLevel(level, light ? 60 : 100)};
+const getProgressBarFillColor = (level: ProgressBarLevel, light: boolean) => {
+  if (level === 'brand') {
+    return getColor('purple', light ? 60 : 100);
+  }
+
+  return getColorForLevel(level, light ? 60 : 100);
+};
+
+const ProgressBarFill = styled.div.attrs<{
+  width: number;
+  level: ProgressBarLevel;
+  indeterminate: boolean;
+  light: boolean;
+}>(props => ({
+  style: {width: `${props.width}%`},
+}))<{width: number; level: ProgressBarLevel; light: boolean; indeterminate: boolean} & AkeneoThemedProps>`
+  ${({level, light}: {level: ProgressBarLevel; light: boolean} & AkeneoThemedProps) => css`
+    background: ${getProgressBarFillColor(level, light)};
   `}
 
   height: 100%;
@@ -99,9 +112,9 @@ type ProgressBarPercent = number | 'indeterminate';
 
 type ProgressBarProps = {
   /**
-   * Define the level of the progress bar.
+   * Define the level of the progress bar which changes its color.
    */
-  level: Level;
+  level: ProgressBarLevel;
 
   /**
    * The progression of the progress bar in percentage (from 0 to 100) when type is determinate,
@@ -163,7 +176,7 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
             {progressLabel && <ProgressLabel title={progressLabel}>{progressLabel}</ProgressLabel>}
           </Header>
         )}
-        <ProgressBarBackground id={progressBarId} {...progressBarProps} role="progressbar" size={size}>
+        <ProgressBarBackground id={progressBarId} {...progressBarProps} role="progressbar" $size={size}>
           <ProgressBarFill
             level={level}
             light={light}
@@ -177,4 +190,4 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
 );
 
 export {ProgressBar};
-export type {ProgressBarPercent};
+export type {ProgressBarLevel, ProgressBarPercent};

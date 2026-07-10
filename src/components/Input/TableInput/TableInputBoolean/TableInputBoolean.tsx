@@ -17,7 +17,7 @@ const BooleanButtonDropdown = styled(Dropdown)`
   color: ${getColor('grey', 140)};
 `;
 
-const BooleanButton = styled.button<{highlighted: boolean; inError: boolean} & AkeneoThemedProps>`
+const BooleanButton = styled.button<{$highlighted: boolean; $inError: boolean} & AkeneoThemedProps>`
   color: ${getColor('grey', 140)};
   width: 100%;
   background: none;
@@ -93,12 +93,12 @@ const TableInputBoolean: React.FC<TableInputBooleanProps> = ({
     <BooleanButtonDropdown {...rest}>
       <BooleanButton
         tabIndex={-1}
-        highlighted={highlighted}
+        $highlighted={highlighted}
         onClick={(e: MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           open();
         }}
-        inError={inError}
+        $inError={inError}
       >
         {value !== null && (value ? YesBadge : NoBadge)}
         &nbsp;

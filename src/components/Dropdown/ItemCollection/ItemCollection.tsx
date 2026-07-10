@@ -59,7 +59,7 @@ type ItemCollectionProps = Override<
 const ItemCollection = React.forwardRef<HTMLDivElement, ItemCollectionProps>(
   ({children, onNextPage, noResultTitle, noResultIllustration, ...rest}: ItemCollectionProps, forwardedRef) => {
     const firstItemRef = useRef<HTMLDivElement>(null);
-    const lastItemRef = useRef<HTMLDivElement>(null);
+    const sentinelRef = useRef<HTMLDivElement>(null);
     const containerRef = useCombinedRefs(forwardedRef);
 
     const handleKeyDown = useCallback((event: KeyboardEvent<HTMLDivElement>) => {
@@ -80,7 +80,7 @@ const ItemCollection = React.forwardRef<HTMLDivElement, ItemCollectionProps>(
     const decoratedChildren = Children.map(children, (child, index) => {
       if (isValidElement(child)) {
         return cloneElement(child as any, {
-          ref: 0 === index ? firstItemRef : index === childrenCount - 1 ? lastItemRef : undefined,
+          ref: 0 === index ? firstItemRef : undefined,
           onKeyDown: handleKeyDown,
         });
       }
@@ -88,7 +88,7 @@ const ItemCollection = React.forwardRef<HTMLDivElement, ItemCollectionProps>(
       return child;
     });
 
-    usePagination(containerRef, lastItemRef, onNextPage, true);
+    usePagination(containerRef, sentinelRef, onNextPage, true);
     useAutoFocus(firstItemRef);
 
     return (
@@ -97,6 +97,7 @@ const ItemCollection = React.forwardRef<HTMLDivElement, ItemCollectionProps>(
           ? decoratedChildren
           : noResultIllustration &&
             noResultTitle && <NoResultPlaceholderContainer illustration={noResultIllustration} title={noResultTitle} />}
+        <div ref={sentinelRef} aria-hidden="true" />
       </ItemCollectionContainer>
     );
   }

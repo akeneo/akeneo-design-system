@@ -65,12 +65,12 @@ CardGrid.defaultProps = {
   size: 'normal',
 };
 
-const Overlay = styled.div<{stacked: boolean} & AkeneoThemedProps>`
+const Overlay = styled.div<{$stacked: boolean} & AkeneoThemedProps>`
   position: absolute;
   z-index: 2;
   top: 0;
-  width: ${({stacked}) => (stacked ? '95%' : '100%')};
-  height: ${({stacked}) => (stacked ? '95%' : '100%')};
+  width: ${({$stacked}) => ($stacked ? '95%' : '100%')};
+  height: ${({$stacked}) => ($stacked ? '95%' : '100%')};
   background-color: ${getColor('grey', 140)};
   opacity: 0%;
   transition: opacity 0.3s ease-in;
@@ -82,6 +82,7 @@ type CardContainerProps = {
   isLoading?: boolean;
   isSelected?: boolean;
   stacked?: boolean;
+  dimmed?: boolean;
 };
 
 const CardContainerAsDiv = styled.div<CardContainerProps & AkeneoThemedProps>`
@@ -100,14 +101,7 @@ const CardContainerAsDiv = styled.div<CardContainerProps & AkeneoThemedProps>`
     top: 0;
     width: ${({stacked}) => (stacked ? '95%' : '100%')};
     height: ${({stacked}) => (stacked ? '95%' : '100%')};
-    box-sizing: border-box;
-    ${({isLoading, isSelected}) =>
-      !isLoading &&
-      css`
-        border-style: solid;
-        border-width: ${isSelected ? 2 : 1}px;
-        border-color: ${getColor(isSelected ? 'blue' : 'grey', 100)};
-      `}
+    opacity: ${({dimmed}) => (dimmed ? 0.35 : 1)};
   }
 `;
 
@@ -127,14 +121,7 @@ const CardContainerAsLink = styled.a<CardContainerProps & AkeneoThemedProps>`
     top: 0;
     width: ${({stacked}) => (stacked ? '95%' : '100%')};
     height: ${({stacked}) => (stacked ? '95%' : '100%')};
-    box-sizing: border-box;
-    ${({isLoading, isSelected}) =>
-      !isLoading &&
-      css`
-        border-style: solid;
-        border-width: ${isSelected ? 2 : 1}px;
-        border-color: ${getColor(isSelected ? 'blue' : 'grey', 100)};
-      `}
+    opacity: ${({dimmed}) => (dimmed ? 0.35 : 1)};
   }
 `;
 
@@ -150,6 +137,24 @@ const ImageContainer = styled.div`
   :hover ${Overlay} {
     opacity: 50%;
   }
+`;
+
+type ImageBorderProps = {
+  isSelected: boolean;
+  stacked: boolean;
+};
+
+const ImageBorder = styled.div<ImageBorderProps & AkeneoThemedProps>`
+  position: absolute;
+  top: 0;
+  width: ${({stacked}) => (stacked ? '95%' : '100%')};
+  height: ${({stacked}) => (stacked ? '95%' : '100%')};
+  box-sizing: border-box;
+  pointer-events: none;
+  z-index: 1;
+  border-style: solid;
+  border-width: ${({isSelected}) => (isSelected ? 2 : 1)}px;
+  border-color: ${({isSelected}) => getColor(isSelected ? 'blue' : 'grey', 100)};
 `;
 
 const CardLabel = styled.div`
@@ -174,6 +179,8 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   z-index: 5;
   top: 10px;
   right: ${({stacked}) => (stacked ? '20px' : '10px')};
+  display: flex;
+  gap: 5px;
 `;
 BadgeContainer.displayName = 'BadgeContainer';
 BadgeContainer.defaultProps = {
@@ -209,6 +216,12 @@ type CardProps = Override<
     disabled?: boolean;
 
     /**
+     * Whether the card image should appear dimmed (reduced opacity). Use this to visually indicate that the
+     * represented item is inactive or unavailable, without affecting card interactivity.
+     */
+    dimmed?: boolean;
+
+    /**
      * Handler called when the Card is selected. When provided, the Card will display a Checkbox and become selectable.
      */
     onSelect?: (isSelected: boolean) => void;
@@ -238,6 +251,7 @@ const CardComponent = forwardRef<HTMLDivElement, CardProps>(
       isSelected = false,
       onSelect,
       disabled = false,
+      dimmed = false,
       children,
       onClick,
       stacked = false,
@@ -248,6 +262,7 @@ const CardComponent = forwardRef<HTMLDivElement, CardProps>(
     const nonLabelChildren: ReactElement[] = [];
     const texts: string[] = [];
     let linkProps: Partial<LinkProps> = {};
+    const isLoadingImage = null === src;
 
     React.Children.forEach(children, child => {
       if (typeof child === 'string') {
@@ -292,15 +307,17 @@ const CardComponent = forwardRef<HTMLDivElement, CardProps>(
         // @ts-ignore
         onClick={handleClick}
         disabled={disabled}
+        dimmed={dimmed}
         stacked={stacked}
-        isLoading={null === src}
+        isLoading={isLoadingImage}
         {...linkProps}
         {...rest}
       >
         <ImageContainer>
           {stacked && <Stack isSelected={isSelected} data-testid="stack" />}
-          <Overlay stacked={stacked} />
+          <Overlay $stacked={stacked} />
           <Image fit={fit} src={src} alt={cardText} loading={loading} />
+          {!isLoadingImage && <ImageBorder isSelected={isSelected} stacked={stacked} />}
         </ImageContainer>
         <CardLabel>
           {undefined !== onSelect && (

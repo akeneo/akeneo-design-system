@@ -1,4 +1,14 @@
-import React, {ChangeEvent, forwardRef, InputHTMLAttributes, MouseEvent, Ref, useCallback, useRef} from 'react';
+import React, {
+  ChangeEvent,
+  ClipboardEvent,
+  cloneElement,
+  forwardRef,
+  InputHTMLAttributes,
+  isValidElement,
+  Ref,
+  useCallback,
+  useRef,
+} from 'react';
 import styled, {css} from 'styled-components';
 import {InputProps} from '../common';
 import {Override} from '../../../shared/override';
@@ -7,6 +17,8 @@ import {LockIcon} from '../../../icons/LockIcon';
 import {DateIcon} from '../../../icons/DateIcon';
 import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme/theme';
 import {useShortcut} from '../../../hooks/useShortcut';
+import {IconButton, IconButtonProps} from '../../IconButton/IconButton';
+import {parsePastedDate} from './parsePastedDate';
 
 const InputContainer = styled.div`
   position: relative;
@@ -15,11 +27,11 @@ const InputContainer = styled.div`
   width: 100%;
 `;
 
-const Input = styled.input<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
+const Input = styled.input<{readOnly?: boolean; $invalid?: boolean} & AkeneoThemedProps>`
   z-index: 0;
   width: 100%;
   height: 40px;
-  border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
+  border: 1px solid ${({$invalid}) => ($invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
   box-sizing: border-box;
   background: ${({readOnly}) => (readOnly ? getColor('grey', 20) : getColor('white'))};
@@ -54,13 +66,12 @@ const Input = styled.input<{readOnly?: boolean; invalid?: boolean} & AkeneoTheme
   &::-webkit-calendar-picker-indicator {
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    right: 12px;
     bottom: 0;
-    width: auto;
-    height: auto;
-    color: transparent;
-    background: transparent;
+    width: 16px;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
   }
 `;
 
@@ -78,6 +89,17 @@ const IconContainer = styled.div<{readOnly?: boolean} & AkeneoThemedProps>`
 `;
 
 const ReadOnlyIcon = styled(LockIcon)`
+  color: ${getColor('grey', 100)};
+`;
+
+const ActionContainer = styled.div`
+  position: absolute;
+  right: 32px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 2;
   color: ${getColor('grey', 100)};
 `;
 
@@ -109,23 +131,57 @@ type DateInputProps = Override<
     onSubmit?: () => void;
   }
 >;
+
 const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
-  ({invalid, onChange, value, readOnly, onSubmit, ...rest}: DateInputProps, forwardedRef: Ref<HTMLInputElement>) => {
+  (
+    {invalid, onChange, value, readOnly, onSubmit, children, ...rest}: DateInputProps,
+    forwardedRef: Ref<HTMLInputElement>
+  ) => {
     const internalRef = useRef<HTMLInputElement | null>(null);
     forwardedRef = forwardedRef ?? internalRef;
 
-    const handleClick = useCallback(
-      (event: MouseEvent<HTMLInputElement>) => {
-        const input = event?.target as (HTMLInputElement & {showPicker?: () => void}) | null;
-        !readOnly && input?.showPicker?.();
-      },
-      [readOnly]
-    );
+    const actions = React.Children.map(children, child => {
+      if (isValidElement<IconButtonProps>(child) && IconButton === child.type) {
+        return cloneElement(child, {
+          level: 'tertiary',
+          ghost: 'borderless',
+          size: 'small',
+        });
+      }
+
+      return null;
+    });
 
     const handleChange = useCallback(
       (event: ChangeEvent<HTMLInputElement>) => {
         if (!readOnly && onChange) {
           onChange(event.currentTarget.value);
+        }
+      },
+      [readOnly, onChange]
+    );
+
+    const handleCopy = useCallback((event: ClipboardEvent<HTMLInputElement>) => {
+      const isoValue = event.currentTarget.value;
+      if ('' !== isoValue) {
+        event.clipboardData.setData('text/plain', isoValue);
+        event.preventDefault();
+      }
+    }, []);
+
+    const handlePaste = useCallback(
+      (event: ClipboardEvent<HTMLInputElement>) => {
+        if (readOnly || !onChange) {
+          return;
+        }
+
+        const isoValue = parsePastedDate(
+          event.clipboardData.getData('text'),
+          'datetime-local' === event.currentTarget.type
+        );
+        if (null !== isoValue) {
+          event.preventDefault();
+          onChange(isoValue);
         }
       },
       [readOnly, onChange]
@@ -141,17 +197,19 @@ const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
         <Input
           ref={forwardedRef}
           onChange={handleChange}
+          onCopy={handleCopy}
+          onPaste={handlePaste}
           type="date"
           readOnly={readOnly}
           disabled={readOnly}
           aria-invalid={invalid}
-          invalid={invalid}
+          $invalid={invalid}
           title={value}
           value={value}
           pattern="\d{4}-\d{2}-\d{2}"
-          onClick={handleClick}
           {...rest}
         />
+        {actions && actions.length > 0 && <ActionContainer>{actions}</ActionContainer>}
         <IconContainer readOnly={readOnly}>
           {readOnly && <ReadOnlyIcon size={16} />}
           {!readOnly && <DateIcon size={16} />}

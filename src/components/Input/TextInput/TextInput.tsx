@@ -33,23 +33,23 @@ const variantColors: Record<Variant, string> = {
 };
 
 const Input = styled.input<
-  {readOnly?: boolean; invalid?: boolean; hasActions?: boolean; isValueHidden?: boolean} & AkeneoThemedProps
+  {$readOnly?: boolean; $invalid?: boolean; $hasActions?: boolean; $isValueHidden?: boolean} & AkeneoThemedProps
 >`
   width: 100%;
   height: 40px;
-  border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
+  border: 1px solid ${({$invalid}) => ($invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
   box-sizing: border-box;
-  background: ${({readOnly}) => (readOnly ? getColor('grey', 20) : getColor('white'))};
-  color: ${({readOnly, isValueHidden}) =>
-    isValueHidden ? 'transparent' : readOnly ? getColor('grey', 100) : getColor('grey', 140)};
+  background: ${({$readOnly}) => ($readOnly ? getColor('grey', 20) : getColor('white'))};
+  color: ${({$readOnly, $isValueHidden}) =>
+    $isValueHidden ? 'transparent' : $readOnly ? getColor('grey', 100) : getColor('grey', 140)};
   font-size: ${getFontSize('default')};
   line-height: 40px;
-  padding: 0 ${({readOnly, hasActions}) => (readOnly || hasActions ? '35px' : '15px')} 0 15px;
+  padding: 0 ${({$readOnly, $hasActions}) => ($readOnly || $hasActions ? '35px' : '15px')} 0 15px;
   outline-style: none;
-  cursor: ${({readOnly}) => (readOnly ? 'not-allowed' : 'auto')};
-  ${({readOnly}) =>
-    readOnly &&
+  cursor: ${({$readOnly}) => ($readOnly ? 'not-allowed' : 'auto')};
+  ${({$readOnly}) =>
+    $readOnly &&
     css`
       overflow: hidden;
       text-overflow: ellipsis;
@@ -72,10 +72,10 @@ const ReadOnlyIcon = styled(LockIcon)`
   color: ${getColor('grey', 100)};
 `;
 
-const CharacterLeftLabel = styled.div<{variant: Variant}>`
+const CharacterLeftLabel = styled.div<{$variant: Variant}>`
   font-size: ${getFontSize('small')};
   align-self: flex-end;
-  color: ${({variant}) => getColor(variantColors[variant])};
+  color: ${({$variant}) => getColor(variantColors[$variant])};
 `;
 
 const ActionContainer = styled.div`
@@ -186,15 +186,17 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           readOnly={readOnly}
           disabled={readOnly}
           aria-invalid={invalid}
-          invalid={invalid}
+          $invalid={invalid}
           title={rest.value}
-          hasActions={(actions?.length ?? 0) > 0}
+          $readOnly={readOnly}
+          $isValueHidden={rest.isValueHidden}
+          $hasActions={(actions?.length ?? 0) > 0}
           {...rest}
         />
         {actions && <ActionContainer>{actions}</ActionContainer>}
         {readOnly && <ReadOnlyIcon size={16} />}
         {characterLeftLabel && (
-          <CharacterLeftLabel variant={characterLeftLabelVariant}>{characterLeftLabel}</CharacterLeftLabel>
+          <CharacterLeftLabel $variant={characterLeftLabelVariant}>{characterLeftLabel}</CharacterLeftLabel>
         )}
       </TextInputContainer>
     );

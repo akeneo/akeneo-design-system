@@ -9,6 +9,7 @@ type TableContextType = {
   isDragAndDroppable: boolean;
   onReorder: ((reorderedIndices: number[], draggedIndex?: number, droppedIndex?: number) => void) | undefined;
   dragAndDropMode: DragAndDropMode;
+  wrapText: boolean;
 };
 
 const TableContext = createContext<TableContextType>({
@@ -19,6 +20,7 @@ const TableContext = createContext<TableContextType>({
   isDragAndDroppable: false,
   onReorder: undefined,
   dragAndDropMode: 'reorder',
+  wrapText: false,
 });
 
 export {TableContext};

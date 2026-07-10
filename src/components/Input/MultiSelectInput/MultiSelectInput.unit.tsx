@@ -524,3 +524,43 @@ test('it allows manual selection from dropdown when disableAutoSelect is true', 
   expect(onChange).toHaveBeenCalledWith(['en_US']);
   expect(onSearchChange).toHaveBeenCalledWith('');
 });
+
+test('it calls onOpenChange callback when dropdown state changes', () => {
+  const onChange = jest.fn();
+  const onOpenChange = jest.fn();
+
+  render(
+    <MultiSelectInput
+      value={['en_US']}
+      onChange={onChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+      onOpenChange={onOpenChange}
+    >
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  expect(onOpenChange).not.toHaveBeenCalled();
+
+  const input = screen.getByRole('textbox');
+
+  fireEvent.focus(input);
+  expect(onOpenChange).toHaveBeenCalledTimes(1);
+  expect(onOpenChange).toHaveBeenLastCalledWith(true);
+
+  fireEvent.click(screen.getByTestId('backdrop'));
+  expect(onOpenChange).toHaveBeenCalledTimes(2);
+  expect(onOpenChange).toHaveBeenLastCalledWith(false);
+
+  fireEvent.focus(input);
+  expect(onOpenChange).toHaveBeenCalledTimes(3);
+  expect(onOpenChange).toHaveBeenLastCalledWith(true);
+
+  fireEvent.click(screen.getByText('French'));
+  expect(onOpenChange).toHaveBeenCalledTimes(4);
+  expect(onOpenChange).toHaveBeenLastCalledWith(false);
+});

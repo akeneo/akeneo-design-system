@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render, screen} from '../../storybook/test-util';
+import {fireEvent, render, screen, waitFor} from '../../storybook/test-util';
 import {Tooltip} from './Tooltip';
 
 test('it renders its children properly', () => {
@@ -8,13 +8,15 @@ test('it renders its children properly', () => {
   expect(screen.getByText('Tooltip content')).toBeInTheDocument();
 });
 
-test('it triggers tooltip mouse events', () => {
+test('it triggers tooltip mouse events', async () => {
   render(<Tooltip data-testid="my_value">Tooltip content</Tooltip>);
   fireEvent.mouseOver(screen.getByTestId('my_value'));
-  expect(screen.getByText('Tooltip content')).toBeInTheDocument();
+  expect(screen.getByText('Tooltip content')).toBeVisible();
 
   fireEvent.mouseLeave(screen.getByTestId('my_value'));
-  expect(screen.queryByText('Tooltip content')).not.toBeInTheDocument();
+  await waitFor(() => {
+    expect(screen.queryByText('Tooltip content')).not.toBeInTheDocument();
+  });
 });
 
 test('it renders the tooltip with a bottom direction', () => {

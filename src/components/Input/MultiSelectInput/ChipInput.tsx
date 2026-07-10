@@ -9,8 +9,8 @@ import {useShortcut} from '../../../hooks/useShortcut';
 import {useTheme} from '../../../hooks/useTheme';
 import {Key} from '../../../shared/key';
 
-const Container = styled.ul<AkeneoThemedProps & {readOnly?: boolean; invalid?: boolean}>`
-  border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
+const Container = styled.ul<AkeneoThemedProps & {$readOnly?: boolean; $invalid?: boolean}>`
+  border: 1px solid ${({$invalid}) => ($invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
   padding: 4px 30px 4px 4px;
   display: flex;
@@ -18,7 +18,7 @@ const Container = styled.ul<AkeneoThemedProps & {readOnly?: boolean; invalid?: b
   min-height: 40px;
   gap: 5px;
   box-sizing: border-box;
-  background: ${({readOnly}) => (readOnly ? getColor('grey', 20) : getColor('white'))};
+  background: ${({$readOnly}) => ($readOnly ? getColor('grey', 20) : getColor('white'))};
   position: relative;
   margin: 0;
   max-height: 440px;
@@ -29,20 +29,27 @@ const Container = styled.ul<AkeneoThemedProps & {readOnly?: boolean; invalid?: b
 `;
 
 const Chip = styled.li<
-  AkeneoThemedProps & {isSelected?: boolean; readOnly?: boolean; isErrored?: boolean; isLocked?: boolean}
+  AkeneoThemedProps & {$isSelected?: boolean; $readOnly?: boolean; $isErrored?: boolean; $isLocked?: boolean}
 >`
   list-style-type: none;
-  padding: 3px 15px;
-  padding-left: ${({readOnly}) => (readOnly ? '15px' : '4px')};
-  border: 1px ${({isErrored}) => (isErrored ? getColor('red', 80) : getColor('grey', 80))} solid;
-  background-color: ${({isSelected, isErrored}) =>
-    isErrored ? getColor('red', 20) : isSelected ? getColor('grey', 40) : getColor('grey', 20)};
+  padding: 3px;
+  border: 1px ${({$isErrored}) => ($isErrored ? getColor('red', 80) : getColor('grey', 80))} solid;
+  background-color: ${({$isSelected, $isErrored}) =>
+    $isErrored ? getColor('red', 20) : $isSelected ? getColor('grey', 40) : getColor('grey', 20)};
   display: flex;
   align-items: center;
   height: 30px;
+  max-width: 100%;
   box-sizing: border-box;
-  color: ${({readOnly, isErrored, isLocked}) =>
-    isErrored ? getColor('red', 100) : readOnly || isLocked ? getColor('grey', 100) : getColor('grey', 140)};
+  color: ${({$readOnly, $isErrored, $isLocked}) =>
+    $isErrored ? getColor('red', 100) : $readOnly || $isLocked ? getColor('grey', 100) : getColor('grey', 140)};
+`;
+
+const ChipLabel = styled.span`
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Input = styled.input`
@@ -86,11 +93,11 @@ const LockedValueIcon = styled(LockIcon)`
   padding-right: 5px;
 `;
 
-const RemoveButton = styled(IconButton)<AkeneoThemedProps & {isErrored: boolean}>`
+const RemoveButton = styled(IconButton)<AkeneoThemedProps & {$isErrored: boolean}>`
   background-color: transparent;
   margin-left: -3px;
   margin-right: 1px;
-  color: ${({isErrored}) => (isErrored ? getColor('red', 100) : getColor('grey', 100))};
+  color: ${({$isErrored}) => ($isErrored ? getColor('red', 100) : getColor('grey', 100))};
 `;
 
 type ChipValue = {
@@ -155,14 +162,15 @@ const ChipInput = React.forwardRef<HTMLInputElement, ChipInputProps>(
     useShortcut(Key.Backspace, handleBackspace, forwardedRef);
 
     return (
-      <Container invalid={invalid} readOnly={readOnly}>
+      <Container $invalid={invalid} $readOnly={readOnly}>
         {value.map((chip, index) => (
           <Chip
             key={chip.code}
-            readOnly={readOnly}
-            isLocked={lockedValues?.includes(chip.code)}
-            isErrored={invalidValue.includes(chip.code)}
-            isSelected={index === value.length - 1 && isLastSelected}
+            title={chip.label}
+            $readOnly={readOnly}
+            $isLocked={lockedValues?.includes(chip.code)}
+            $isErrored={invalidValue.includes(chip.code)}
+            $isSelected={index === value.length - 1 && isLastSelected}
           >
             {!readOnly && !lockedValues?.includes(chip.code) && (
               <RemoveButton
@@ -172,11 +180,11 @@ const ChipInput = React.forwardRef<HTMLInputElement, ChipInputProps>(
                 level="tertiary"
                 icon={<CloseIcon color={invalidValue.includes(chip.code) ? theme.color.red100 : theme.color.grey100} />}
                 onClick={() => onRemove(chip.code)}
-                isErrored={invalidValue.includes(chip.code)}
+                $isErrored={invalidValue.includes(chip.code)}
               />
             )}
             {lockedValues?.includes(chip.code) && <LockedValueIcon size={16} />}
-            {chip.label}
+            <ChipLabel>{chip.label}</ChipLabel>
           </Chip>
         ))}
         <InputContainer>

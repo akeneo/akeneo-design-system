@@ -22,7 +22,7 @@ const TableInputContainer = styled.div`
   overflow: auto;
 `;
 
-const TableInputTable = styled.table<{isDragAndDroppable: boolean} & AkeneoThemedProps>`
+const TableInputTable = styled.table<{$isDragAndDroppable: boolean} & AkeneoThemedProps>`
   border-spacing: 0;
   width: 100%;
 
@@ -33,8 +33,8 @@ const TableInputTable = styled.table<{isDragAndDroppable: boolean} & AkeneoTheme
     box-shadow: rgba(0, 0, 0, 0.2) 0px 7.5px 15px 0px;
   }
 
-  ${({isDragAndDroppable}) =>
-    !isDragAndDroppable
+  ${({$isDragAndDroppable}) =>
+    !$isDragAndDroppable
       ? css`
           & tr > td:first-child {
             transition: box-shadow 0.15s;
@@ -92,7 +92,7 @@ const TableInput = ({children, readOnly = false, isDragAndDroppable = false, onR
     <TableInputContext.Provider value={{readOnly, isDragAndDroppable, onReorder}}>
       <TableInputContainer onScroll={handleScroll} {...rest}>
         <DraggedElementProvider>
-          <TableInputTable className={shadowed ? 'shadowed' : ''} isDragAndDroppable={isDragAndDroppable}>
+          <TableInputTable className={shadowed ? 'shadowed' : ''} $isDragAndDroppable={isDragAndDroppable}>
             {children}
           </TableInputTable>
         </DraggedElementProvider>

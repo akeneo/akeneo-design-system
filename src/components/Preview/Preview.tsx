@@ -105,23 +105,23 @@ const PreviewTitle = styled.div<{$level: Level} & AkeneoThemedProps>`
 
 const PreviewList = styled.div<
   {
-    isCollapsable: boolean;
+    $isCollapsable: boolean;
     $height: number;
     $overflow: string;
-    shouldAnimate: boolean;
+    $shouldAnimate: boolean;
     $level: Level;
   } & AkeneoThemedProps
 >`
   overflow-wrap: break-word;
   white-space: break-spaces;
   color: ${getColor('grey', 140)};
-  margin-top: ${({$height, isCollapsable}) => (0 === $height && isCollapsable ? 0 : 5)}px;
-  ${({isCollapsable, $height, $overflow, shouldAnimate}) =>
-    isCollapsable &&
+  margin-top: ${({$height, $isCollapsable}) => (0 === $height && $isCollapsable ? 0 : 5)}px;
+  ${({$isCollapsable, $height, $overflow, $shouldAnimate}) =>
+    $isCollapsable &&
     css`
       max-height: ${$height}px;
       overflow: ${$overflow};
-      ${shouldAnimate &&
+      ${$shouldAnimate &&
       css`
         transition: all ${ANIMATION_DURATION}ms ease-in-out;
         transition-property: max-height, margin-top;
@@ -303,10 +303,10 @@ const Preview = ({
         </PreviewTitle>
         <PreviewList
           ref={contentRef}
-          isCollapsable={isCollapsable}
+          $isCollapsable={isCollapsable}
           $overflow={shouldAnimate || !isOpen ? 'hidden' : 'inherit'}
           $height={true === isOpen ? contentHeight : 0}
-          shouldAnimate={shouldAnimate}
+          $shouldAnimate={shouldAnimate}
           aria-hidden={!isOpen}
           $level={level}
         >

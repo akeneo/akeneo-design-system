@@ -4,7 +4,8 @@ import {CheckRoundIcon} from '../../icons/CheckRoundIcon';
 import {DangerIcon} from '../../icons/DangerIcon';
 import {IconProps} from '../../icons/IconProps';
 import {InfoRoundIcon} from '../../icons/InfoRoundIcon';
-import {AkeneoThemedProps, getColor} from '../../theme/theme';
+import {LightIcon} from '../../icons/LightIcon';
+import {AkeneoThemedProps, FontSize, getColor, getFontSize} from '../../theme/theme';
 
 const getBackgroundColor = (level: Level) => {
   switch (level) {
@@ -16,6 +17,8 @@ const getBackgroundColor = (level: Level) => {
       return getColor('red', 10);
     case 'success':
       return getColor('green', 10);
+    case 'learn':
+      return getColor('purple', 10);
   }
 };
 
@@ -29,6 +32,8 @@ const getFontColor = (level: Level, inline: boolean) => {
       return getColor('red', inline ? 100 : 120);
     case 'success':
       return getColor(inline ? 'grey' : 'green', 120);
+    case 'learn':
+      return getColor(inline ? 'grey' : 'purple', 120);
   }
 };
 
@@ -42,6 +47,8 @@ const getIconColor = (level: Level, inline: boolean) => {
       return getColor('red', inline ? 100 : 120);
     case 'success':
       return getColor('green', inline ? 100 : 120);
+    case 'learn':
+      return getColor('purple', inline ? 100 : 120);
   }
 };
 
@@ -55,6 +62,8 @@ const getIcon = (level: Level): JSX.Element => {
       return <DangerIcon />;
     case 'success':
       return <CheckRoundIcon />;
+    case 'learn':
+      return <LightIcon />;
   }
 };
 
@@ -68,6 +77,8 @@ const getSeparatorColor = (level: Level) => {
       return getColor('red', 120);
     case 'success':
       return getColor('green', 120);
+    case 'learn':
+      return getColor('purple', 120);
   }
 };
 
@@ -81,12 +92,17 @@ const getLinkColor = (level: Level, inline: boolean) => {
       return getColor('red', inline ? 100 : 120);
     case 'success':
       return getColor('green', inline ? 100 : 120);
+    case 'learn':
+      return getColor('purple', inline ? 100 : 120);
   }
 };
 
-const Container = styled.div<{$level: Level; $inline: boolean; sticky?: number} & AkeneoThemedProps>`
+const Container = styled.div<
+  {$level: Level; $inline: boolean; $sticky?: number; $size: keyof FontSize} & AkeneoThemedProps
+>`
   display: flex;
   font-weight: 400;
+  font-size: ${({$size}) => getFontSize($size)};
   padding-right: 20px;
   color: ${props => getFontColor(props.$level, props.$inline)};
 
@@ -97,16 +113,16 @@ const Container = styled.div<{$level: Level; $inline: boolean; sticky?: number} 
       background-color: ${getBackgroundColor(props.$level)};
     `}
 
-  ${({sticky}) =>
-    undefined !== sticky &&
+  ${({$sticky}) =>
+    undefined !== $sticky &&
     css`
       position: sticky;
-      top: ${sticky}px;
+      top: ${$sticky}px;
       z-index: 1;
     `}
 `;
 
-type Level = 'info' | 'warning' | 'error' | 'success';
+type Level = 'info' | 'warning' | 'error' | 'success' | 'learn';
 
 const IconContainer = styled.span<{$level: Level; $inline: boolean} & AkeneoThemedProps>`
   height: ${({$inline}) => ($inline ? '16px' : '20px')};
@@ -154,6 +170,11 @@ type HelperProps = {
   icon?: ReactElement<IconProps>;
 
   /**
+   * Font size of the helper content.
+   */
+  size?: keyof FontSize;
+
+  /**
    * The content of the component.
    */
   children: ReactNode;
@@ -161,9 +182,12 @@ type HelperProps = {
 
 /** Helper informs the user about the features of the section. */
 const Helper = React.forwardRef<HTMLDivElement, HelperProps>(
-  ({level = 'info', inline = false, icon, children, ...rest}: HelperProps, forwardedRef: Ref<HTMLDivElement>) => {
+  (
+    {level = 'info', inline = false, size = 'default', icon, children, sticky, ...rest}: HelperProps,
+    forwardedRef: Ref<HTMLDivElement>
+  ) => {
     return (
-      <Container ref={forwardedRef} $level={level} $inline={inline} {...rest}>
+      <Container ref={forwardedRef} $level={level} $inline={inline} $sticky={sticky} $size={size} {...rest}>
         <IconContainer $inline={inline} $level={level}>
           {React.cloneElement(undefined === icon ? getIcon(level) : icon, {size: inline ? 16 : 20})}
         </IconContainer>

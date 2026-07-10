@@ -5,6 +5,7 @@ import React, {
   useState,
   useRef,
   isValidElement,
+  cloneElement,
   ReactElement,
   KeyboardEvent,
   useCallback,
@@ -48,9 +49,9 @@ const InputContainer = styled.div`
   background: ${getColor('white')};
 `;
 
-const SearchInput = styled(TextInput)<{isPlaceholderVisible: boolean}>`
+const SearchInput = styled(TextInput)<{$isPlaceholderVisible: boolean}>`
   &::placeholder {
-    opacity: ${({isPlaceholderVisible}) => (isPlaceholderVisible ? 1 : 0)};
+    opacity: ${({$isPlaceholderVisible}) => ($isPlaceholderVisible ? 1 : 0)};
   }
 `;
 
@@ -65,7 +66,7 @@ const ActionContainer = styled.div`
   z-index: 2;
 `;
 
-const SelectedOptionContainer = styled.div<{readOnly: boolean; clearable: boolean} & AkeneoThemedProps>`
+const SelectedOptionContainer = styled.div<{readOnly: boolean; $clearable: boolean} & AkeneoThemedProps>`
   position: relative;
   margin-bottom: -34px;
   top: 3px;
@@ -73,10 +74,19 @@ const SelectedOptionContainer = styled.div<{readOnly: boolean; clearable: boolea
   height: 34px;
   display: flex;
   align-items: center;
-  padding: 0 ${({clearable}) => (clearable ? 68 : 38)}px 0 16px;
+  padding: 0 ${({$clearable}) => ($clearable ? 68 : 38)}px 0 16px;
   background: ${({readOnly}) => (readOnly ? getColor('grey', 20) : getColor('white'))};
   box-sizing: border-box;
   color: ${({readOnly}) => (readOnly ? getColor('grey', 100) : getColor('grey', 140))};
+`;
+
+const SelectedOptionText = styled.span`
+  display: block;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const OptionContainer = styled.div<{disabled: boolean} & AkeneoThemedProps>`
@@ -124,12 +134,17 @@ const EmptyResultContainer = styled.div`
   text-align: center;
 `;
 
-const OptionCollection = styled.div<{withGroups: boolean}>`
+const OptionCollection = styled.div<{$withGroups: boolean}>`
   max-height: 320px;
   overflow-y: auto;
-  padding-left: ${({withGroups}) => (withGroups ? '20px' : '0')};
+  padding-left: ${({$withGroups}) => ($withGroups ? '20px' : '0')};
 `;
 
+/**
+ * Provide a `title` on each Option (or plain string children) so the selected value can expose a
+ * tooltip with the full label. When children are a non-string node and no `title` is given, the
+ * selected value has no tooltip (it is still truncated with an ellipsis).
+ */
 type OptionProps = Override<
   React.HTMLAttributes<HTMLSpanElement>,
   {
@@ -228,6 +243,16 @@ type SelectInputProps = Override<
     verticalPosition?: VerticalPosition;
 
     selectedValueComponent?: ReactNode;
+
+    /**
+     * Overrides the title (native tooltip) of the search input.
+     */
+    title?: string;
+
+    /**
+     * Keeps the dropdown open after an option is selected, allowing several picks in a row.
+     */
+    keepDropdownOnSelect?: boolean;
   } & (
       | {
           /**
@@ -245,7 +270,12 @@ type SelectInputProps = Override<
           onSearchChange: (searchValue: string) => void;
           disableInternalSearch: true;
         }
-    )
+    ) & {
+      /**
+       * Handler called when the dropdown open state changes.
+       */
+      onOpenChange?: (isOpen: boolean) => void;
+    }
 >;
 
 const isOptionGroup = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean =>
@@ -275,16 +305,29 @@ const SelectInput = ({
   disableInternalSearch = false,
   'aria-labelledby': ariaLabelledby,
   selectedValueComponent,
+  onOpenChange,
+  title,
+  keepDropdownOnSelect = false,
   ...rest
 }: SelectInputProps) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [withGroups, setWithGroups] = useState<boolean>(false);
-  const [dropdownIsOpen, openOverlay, closeOverlay] = useBooleanState();
+  const [dropdownIsOpen, openOverlayState, closeOverlayState] = useBooleanState();
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const firstOptionRef = useRef<HTMLDivElement | null>(null);
   const lastOptionRef = useRef<HTMLDivElement | null>(null);
   const selectedOptionRef = useRef<HTMLDivElement | null>(null);
+
+  const openOverlay = useCallback(() => {
+    openOverlayState();
+    onOpenChange?.(true);
+  }, [openOverlayState, onOpenChange]);
+
+  const closeOverlay = useCallback(() => {
+    closeOverlayState();
+    onOpenChange?.(false);
+  }, [closeOverlayState, onOpenChange]);
 
   const validChildren = useMemo(
     () =>
@@ -340,6 +383,18 @@ const SelectInput = ({
       return value === childrenValue;
     }) ?? value;
 
+  const currentValueTitle =
+    typeof currentValueElement === 'string'
+      ? currentValueElement
+      : isValidElement<OptionProps>(currentValueElement)
+      ? currentValueElement.props.title ??
+        (typeof currentValueElement.props.children === 'string' ? currentValueElement.props.children : undefined)
+      : undefined;
+
+  const selectedValueContent = isValidElement<OptionProps>(currentValueElement)
+    ? cloneElement(currentValueElement, {title: undefined})
+    : currentValueElement;
+
   const handleSearch = (value: string) => {
     onSearchChange?.(value);
     setSearchValue(value);
@@ -351,7 +406,7 @@ const SelectInput = ({
       return;
     }
     onChange?.(value);
-    handleEscape();
+    commitSelection();
   };
 
   const handleClear = (e: SyntheticEvent) => {
@@ -366,6 +421,16 @@ const SelectInput = ({
     setSearchValue('');
     closeOverlay();
     inputRef.current?.focus();
+  };
+
+  const commitSelection = () => {
+    if (keepDropdownOnSelect) {
+      setSearchValue('');
+      onSearchChange?.('');
+      inputRef.current?.focus();
+    } else {
+      handleEscape();
+    }
   };
 
   useShortcut(Key.Escape, handleEscape, inputRef);
@@ -431,7 +496,7 @@ const SelectInput = ({
           if (event.key === Key.Enter && !isOptionDisabled) {
             const value = (event.currentTarget.firstChild as HTMLElement)?.getAttribute('value') as string;
             onChange?.(value);
-            handleEscape();
+            commitSelection();
           }
           if (event.key === Key.Escape) {
             handleEscape();
@@ -452,18 +517,19 @@ const SelectInput = ({
         {null !== value &&
           '' === searchValue &&
           (selectedValueComponent ?? (
-            <SelectedOptionContainer readOnly={readOnly} clearable={clearable}>
-              {currentValueElement}
+            <SelectedOptionContainer readOnly={readOnly} $clearable={clearable}>
+              <SelectedOptionText>{selectedValueContent}</SelectedOptionText>
             </SelectedOptionContainer>
           ))}
         <SearchInput
           id={id}
           ref={inputRef}
           value={searchValue}
+          title={title ?? ('' === searchValue ? currentValueTitle ?? searchValue : searchValue)}
           readOnly={readOnly}
           invalid={invalid}
           placeholder={placeholder}
-          isPlaceholderVisible={null === value}
+          $isPlaceholderVisible={null === value}
           onChange={handleSearch}
           onClick={event => {
             openOverlay();
@@ -502,7 +568,7 @@ const SelectInput = ({
       </InputContainer>
       {dropdownIsOpen && !readOnly && (
         <Overlay parentRef={inputRef} verticalPosition={verticalPosition} onClose={handleEscape}>
-          <OptionCollection ref={containerRef} withGroups={withGroups}>
+          <OptionCollection ref={containerRef} $withGroups={withGroups}>
             {!hasChildren ? (
               <EmptyResultContainer>{emptyResultLabel}</EmptyResultContainer>
             ) : (

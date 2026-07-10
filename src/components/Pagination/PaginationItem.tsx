@@ -81,7 +81,7 @@ const PaginationItem: FC<PaginationItemProps> = ({currentPage, page, followPage,
       onClick={handleClick}
       data-testid="paginationItem"
       title={page !== PAGINATION_SEPARATOR ? `No. ${page}` : ''}
-      currentPage={currentPage}
+      $currentPage={currentPage}
       disabled={false}
       type="button"
     >
@@ -107,8 +107,8 @@ const disabledMixin = css`
   }
 `;
 
-const PaginationItemContainer = styled.button<AkeneoThemedProps & {disabled: boolean; currentPage: boolean}>`
-  ${({currentPage}) => (currentPage ? currentPaginationItemMixin : otherPaginationItemMixin)}
+const PaginationItemContainer = styled.button<AkeneoThemedProps & {disabled: boolean; $currentPage: boolean}>`
+  ${({$currentPage}) => ($currentPage ? currentPaginationItemMixin : otherPaginationItemMixin)}
   display: inline-block;
   border-width: 1px;
   font-size: 13px;

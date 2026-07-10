@@ -1,8 +1,9 @@
-import React, {ReactNode, Ref} from 'react';
+import React, {ReactNode, Ref, useContext} from 'react';
 import styled, {css} from 'styled-components';
+import {ArrowSimpleDownIcon} from '../../../icons/ArrowSimpleDownIcon';
+import {ArrowSimpleUpIcon} from '../../../icons/ArrowSimpleUpIcon';
 import {AkeneoThemedProps, getColor} from '../../../theme/theme';
-import {ArrowDownIcon} from '../../../icons/ArrowDownIcon';
-import {ArrowUpIcon} from '../../../icons/ArrowUpIcon';
+import {TableContext} from '../TableContext';
 
 type TableSortDirection = 'descending' | 'ascending' | 'none';
 
@@ -28,22 +29,22 @@ type TableHeaderCellProps = {
   children?: ReactNode;
 };
 
-const HeaderCellContainer = styled.th<{isSortable: boolean; isSorted: boolean} & AkeneoThemedProps>`
+const HeaderCellContainer = styled.th<{$isSortable: boolean; $isSorted: boolean} & AkeneoThemedProps>`
   background: linear-gradient(to top, ${getColor('grey', 120)} 1px, ${getColor('white')} 0px);
   height: 44px;
   text-align: left;
-  color: ${({isSorted}) => getColor(isSorted ? 'brand' : 'grey', 100)};
+  color: ${({$isSorted}) => getColor($isSorted ? 'brand' : 'grey', 100)};
   font-weight: normal;
   box-sizing: content-box;
 
-  ${({isSortable}) =>
-    isSortable &&
+  ${({$isSortable}) =>
+    $isSortable &&
     css`
       cursor: pointer;
     `};
 `;
 
-const HeaderCellContentContainer = styled.span`
+const HeaderCellContentContainer = styled.span<{$wrapText: boolean}>`
   color: ${getColor('grey', 140)};
   padding: 0 10px;
   white-space: nowrap;
@@ -52,6 +53,16 @@ const HeaderCellContentContainer = styled.span`
   + svg {
     vertical-align: middle;
   }
+
+  ${props =>
+    props.$wrapText &&
+    css`
+      max-width: 40ch;
+      white-space: normal;
+      overflow: visible;
+      overflow-wrap: break-word;
+      text-overflow: clip;
+    `}
 `;
 
 const TableHeaderCell = React.forwardRef<HTMLTableHeaderCellElement, TableHeaderCellProps>(
@@ -59,6 +70,8 @@ const TableHeaderCell = React.forwardRef<HTMLTableHeaderCellElement, TableHeader
     {isSortable = false, onDirectionChange, sortDirection, children, ...rest}: TableHeaderCellProps,
     forwardedRef: Ref<HTMLTableHeaderCellElement>
   ) => {
+    const {wrapText} = useContext(TableContext);
+
     if (isSortable && (onDirectionChange === undefined || sortDirection === undefined)) {
       throw Error('Sortable header should provide onDirectionChange and direction props');
     }
@@ -81,18 +94,20 @@ const TableHeaderCell = React.forwardRef<HTMLTableHeaderCellElement, TableHeader
 
     return (
       <HeaderCellContainer
-        isSorted={sortDirection !== 'none'}
-        isSortable={isSortable}
+        $isSorted={sortDirection !== 'none'}
+        $isSortable={isSortable}
         aria-sort={sortDirection}
         onClick={handleClick}
         {...rest}
       >
-        <HeaderCellContentContainer ref={forwardedRef}>{children}</HeaderCellContentContainer>
+        <HeaderCellContentContainer ref={forwardedRef} $wrapText={wrapText}>
+          {children}
+        </HeaderCellContentContainer>
         {isSortable &&
           (sortDirection === 'descending' || sortDirection === 'none' ? (
-            <ArrowDownIcon size={14} />
+            <ArrowSimpleDownIcon size={14} />
           ) : (
-            <ArrowUpIcon size={14} />
+            <ArrowSimpleUpIcon size={14} />
           ))}
       </HeaderCellContainer>
     );

@@ -131,7 +131,7 @@ const ContainerAsButton = styled.button<
     $active: boolean;
     $size: ButtonSize;
     disabled: boolean;
-    shadow?: boolean;
+    $shadow?: boolean;
   } & AkeneoThemedProps
 >`
   display: inline-flex;
@@ -151,8 +151,8 @@ const ContainerAsButton = styled.button<
   outline-style: none;
   text-decoration: none;
   white-space: nowrap;
-  ${({shadow}) =>
-    shadow &&
+  ${({$shadow}) =>
+    $shadow &&
     css`
       box-shadow: 0 0 16px rgba(89, 146, 199, 0.25);
     `}
@@ -171,7 +171,7 @@ const ContainerAsLink = styled.a<
     $active: boolean;
     $size: ButtonSize;
     disabled: boolean;
-    shadow?: boolean;
+    $shadow?: boolean;
   } & AkeneoThemedProps
 >`
   display: inline-flex;
@@ -192,8 +192,8 @@ const ContainerAsLink = styled.a<
   text-decoration: none;
   white-space: nowrap;
 
-  ${({shadow}) =>
-    shadow &&
+  ${({$shadow}) =>
+    $shadow &&
     css`
       box-shadow: 0 0 16px rgba(89, 146, 199, 0.25);
     `}
@@ -243,7 +243,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           $active={active}
           $size={size}
           disabled={disabled}
-          shadow={shadow}
+          $shadow={shadow}
           aria-describedby={ariaDescribedBy}
           aria-disabled={disabled}
           aria-label={ariaLabel}
@@ -273,7 +273,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         $active={active}
         $size={size}
         disabled={disabled}
-        shadow={shadow}
+        $shadow={shadow}
         aria-describedby={ariaDescribedBy}
         aria-disabled={disabled}
         aria-label={ariaLabel}

@@ -1,4 +1,4 @@
-import React, {ReactElement, ReactNode, SyntheticEvent, useEffect, useRef} from 'react';
+import React, {PropsWithChildren, ReactElement, ReactNode, SyntheticEvent, useEffect, useRef} from 'react';
 import {createPortal} from 'react-dom';
 import styled from 'styled-components';
 import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
@@ -33,6 +33,7 @@ const ModalCloseButton = styled(IconButton)`
   position: fixed;
   top: 40px;
   left: 40px;
+  z-index: 200;
 `;
 
 const ModalContent = styled.div`
@@ -58,15 +59,26 @@ const IconContainer = styled.div`
   padding-right: 40px;
 `;
 
-//TODO extract to Typography RAC-331
-const SectionTitle = styled.div<{size?: 'big' | 'small' | 'default' | 'bigger'; color?: string} & AkeneoThemedProps>`
+const StyledSectionTitle = styled.div<
+  {$size?: 'big' | 'small' | 'default' | 'bigger'; $color?: string} & AkeneoThemedProps
+>`
   height: 20px;
-  color: ${({color}) => getColor(color ?? 'grey', 120)};
-  font-size: ${({size}) => getFontSize(size ?? 'default')};
+  color: ${({$color}) => getColor($color ?? 'grey', 120)};
+  font-size: ${({$size}) => getFontSize($size ?? 'default')};
   text-transform: uppercase;
 `;
 
-//TODO extract to Typography RAC-331
+const SectionTitle = ({
+  size,
+  color,
+  children,
+  ...rest
+}: PropsWithChildren<{size?: 'big' | 'small' | 'default' | 'bigger'; color?: string}>) => (
+  <StyledSectionTitle $size={size} $color={color} {...rest}>
+    {children}
+  </StyledSectionTitle>
+);
+
 const Title = styled.div`
   display: flex;
   align-items: center;

@@ -75,15 +75,15 @@ const Section = styled.div`
   flex-direction: column;
 `;
 
-const SpaceBetweenContainer = styled.div<{direction: string}>`
+const SpaceBetweenContainer = styled.div<{$direction: string}>`
   display: flex;
-  flex-direction: ${({direction}) => direction};
+  flex-direction: ${({$direction}) => $direction};
   justify-content: space-between;
   align-items: center;
 `;
 
 SpaceBetweenContainer.defaultProps = {
-  direction: 'row',
+  $direction: 'row',
 };
 
 const MessageBarContainer = styled.div`
@@ -98,12 +98,12 @@ const Scrollable = styled.div<{height: number}>`
   height: ${({height}) => height}px;
 `;
 
-const SpaceContainer = styled.div<{width?: number; height?: number; gap?: number}>`
+const SpaceContainer = styled.div<{width?: number; height?: number; $gap?: number}>`
   width: ${({width}) => (width ? `${width}px` : 'auto')};
   height: ${({height}) => (height ? `${height}px` : 'auto')};
   display: flex;
   flex-direction: column;
-  gap: ${({gap}) => (gap ? `${gap}px` : '0')};
+  gap: ${({$gap}) => ($gap ? `${$gap}px` : '0')};
 `;
 
 const fakeFetcher = async (page = 0, searchValue = '') => {

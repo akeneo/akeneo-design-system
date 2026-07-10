@@ -10,28 +10,52 @@ import {Override} from '../../../shared/override';
 
 const BooleanInputContainer = styled.div``;
 
+const ButtonsGroup = styled.span<{$fit: 'fix' | 'contain'}>`
+  vertical-align: middle;
+  ${({$fit}) =>
+    $fit === 'contain' &&
+    css`
+      display: inline-table;
+      max-width: 600px;
+    `}
+`;
+
 const BooleanButton = styled.button<
   {
     $value: boolean | null;
-    readOnly?: boolean;
-    invalid?: boolean;
-    size: 'normal' | 'small';
+    $readOnly?: boolean;
+    $invalid?: boolean;
+    $size: 'normal' | 'small';
+    $fit: 'fix' | 'contain';
   } & AkeneoThemedProps
 >`
   ${CommonStyle}
-  height: ${({size}) => ('small' === size ? 30 : 40)}px;
-  width: ${({size}) => ('small' === size ? 48 : 60)}px;
-  display: inline-block;
-  line-height: ${({size}) => ('small' === size ? 26 : 36)}px;
+  height: ${({$size}) => ('small' === $size ? 30 : 40)}px;
+  ${({$fit, $size}) =>
+    $fit === 'contain'
+      ? css`
+          display: table-cell;
+          width: 50%;
+          padding: 0 12px;
+        `
+      : css`
+          display: inline-block;
+          width: ${$size === 'small' ? 48 : 60}px;
+        `}
+  line-height: ${({$size}) => ('small' === $size ? 26 : 36)}px;
   text-align: center;
   vertical-align: middle;
-  overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  overflow: hidden;
+  ${({$fit}) =>
+    $fit === 'fix' &&
+    css`
+      text-overflow: ellipsis;
+    `}
   background: ${getColor('white')};
 
-  ${({readOnly, invalid}) =>
-    readOnly
+  ${({$readOnly, $invalid}) =>
+    $readOnly
       ? css`
           border: 1px solid ${getColor('grey', 60)};
           color: ${getColor('grey', 80)};
@@ -41,7 +65,7 @@ const BooleanButton = styled.button<
           }
         `
       : css`
-          border: 1px solid ${invalid ? getColor('red', 100) : getColor('grey', 80)};
+          border: 1px solid ${$invalid ? getColor('red', 100) : getColor('grey', 80)};
           cursor: pointer;
           &:hover {
             background: ${getColor('grey', 20)};
@@ -54,18 +78,18 @@ const NoButton = styled(BooleanButton)`
   border-radius: 2px 0 0 2px;
   border-right-width: 1px;
 
-  ${({$value, readOnly, invalid}) =>
+  ${({$value, $readOnly, $invalid}) =>
     $value === false &&
     css`
-      background: ${getColor('grey', readOnly ? 80 : 100)};
-      border-color: ${invalid ? getColor('red', 100) : getColor('grey', readOnly ? 80 : 100)};
+      background: ${getColor('grey', $readOnly ? 80 : 100)};
+      border-color: ${$invalid ? getColor('red', 100) : getColor('grey', $readOnly ? 80 : 100)};
       color: ${getColor('white')};
       &:hover {
-        background: ${getColor('grey', readOnly ? 80 : 120)};
+        background: ${getColor('grey', $readOnly ? 80 : 120)};
         color: ${getColor('white')};
       }
       &:active {
-        background: ${getColor('grey', readOnly ? 80 : 140)};
+        background: ${getColor('grey', $readOnly ? 80 : 140)};
       }
     `}
 `;
@@ -74,20 +98,20 @@ const YesButton = styled(BooleanButton)`
   border-radius: 0 2px 2px 0;
   border-left-width: 0;
 
-  ${({$value, readOnly, invalid}) =>
+  ${({$value, $readOnly, $invalid}) =>
     $value === true &&
     css`
-      background: ${getColor('blue', readOnly ? 60 : 100)};
-      border-color: ${invalid ? getColor('red', 100) : getColor('grey', readOnly ? 60 : 100)};
+      background: ${getColor('blue', $readOnly ? 60 : 100)};
+      border-color: ${$invalid ? getColor('red', 100) : getColor('grey', $readOnly ? 60 : 100)};
       color: ${getColor('white')};
 
       &:hover {
-        background: ${getColor('blue', readOnly ? 60 : 120)};
+        background: ${getColor('blue', $readOnly ? 60 : 120)};
         color: ${getColor('white')};
       }
 
       &:active {
-        background: ${getColor('blue', readOnly ? 60 : 140)};
+        background: ${getColor('blue', $readOnly ? 60 : 140)};
       }
     `}
 `;
@@ -105,6 +129,7 @@ const ClearButton = styled.button`
 const BooleanInputEraseIcon = styled(EraseIcon)`
   vertical-align: bottom;
   margin-right: 6px;
+  cursor: pointer;
 `;
 
 const IconContainer = styled.span`
@@ -143,12 +168,14 @@ type BooleanInputProps = Override<
         value: boolean | null;
         onChange?: (value: boolean | null) => void;
         clearLabel: string;
+        clearButtonDisplay?: 'icon' | 'full';
       }
     | {
         clearable?: false;
         value: boolean;
         onChange?: (value: boolean) => void;
         clearLabel?: string;
+        clearButtonDisplay?: never;
       }
   ) & {
     readOnly?: boolean;
@@ -157,6 +184,7 @@ type BooleanInputProps = Override<
     invalid?: boolean;
     children?: ReactNode;
     size?: 'normal' | 'small';
+    fit?: 'fix' | 'contain';
   }
 >;
 
@@ -173,9 +201,11 @@ const BooleanInput = React.forwardRef<HTMLDivElement, BooleanInputProps>(
       yesLabel,
       noLabel,
       clearLabel,
+      clearButtonDisplay = 'full',
       invalid,
       children,
       size = 'normal',
+      fit = 'fix',
       ...rest
     }: BooleanInputProps,
     forwardedRef: Ref<HTMLDivElement>
@@ -198,46 +228,51 @@ const BooleanInput = React.forwardRef<HTMLDivElement, BooleanInputProps>(
         ref={forwardedRef}
         {...rest}
       >
-        <NoButton
-          $value={value}
-          readOnly={readOnly}
-          aria-readonly={readOnly}
-          disabled={readOnly}
-          onClick={() => {
-            handleChange(false);
-          }}
-          title={noLabel}
-          aria-invalid={invalid}
-          invalid={invalid}
-          size={size}
-        >
-          {noLabel}
-        </NoButton>
+        <ButtonsGroup $fit={fit}>
+          <NoButton
+            $value={value}
+            $readOnly={readOnly}
+            aria-readonly={readOnly}
+            disabled={readOnly}
+            onClick={() => {
+              handleChange(false);
+            }}
+            title={noLabel}
+            aria-invalid={invalid}
+            $invalid={invalid}
+            $size={size}
+            $fit={fit}
+          >
+            {noLabel}
+          </NoButton>
 
-        <YesButton
-          $value={value}
-          readOnly={readOnly}
-          aria-readonly={readOnly}
-          disabled={readOnly}
-          onClick={() => {
-            handleChange(true);
-          }}
-          title={yesLabel}
-          aria-invalid={invalid}
-          invalid={invalid}
-          size={size}
-        >
-          {yesLabel}
-        </YesButton>
+          <YesButton
+            $value={value}
+            $readOnly={readOnly}
+            aria-readonly={readOnly}
+            disabled={readOnly}
+            onClick={() => {
+              handleChange(true);
+            }}
+            title={yesLabel}
+            aria-invalid={invalid}
+            $invalid={invalid}
+            $size={size}
+            $fit={fit}
+          >
+            {yesLabel}
+          </YesButton>
+        </ButtonsGroup>
 
         {value !== null && !readOnly && clearable && (
           <ClearButton
             onClick={() => {
               handleChange(null);
             }}
+            title={clearButtonDisplay === 'icon' ? clearLabel : undefined}
           >
             <BooleanInputEraseIcon size={16} />
-            {clearLabel}
+            {clearButtonDisplay === 'full' && clearLabel}
           </ClearButton>
         )}
 

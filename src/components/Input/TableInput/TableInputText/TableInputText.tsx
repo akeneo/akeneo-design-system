@@ -8,7 +8,7 @@ import {TableInputReadOnlyCell} from '../shared/TableInputReadOnlyCell';
 import {Override} from '../../../../shared/override';
 import {highlightCell} from '../shared/highlightCell';
 
-const EditableTableInputText = styled(TextInput)<{highlighted?: boolean; inError?: boolean} & AkeneoThemedProps>`
+const EditableTableInputText = styled(TextInput)<{$highlighted?: boolean; $inError?: boolean} & AkeneoThemedProps>`
   height: 39px;
   padding-left: 10px;
   padding-right: 10px;

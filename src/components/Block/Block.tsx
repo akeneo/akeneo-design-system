@@ -83,17 +83,17 @@ const BlockTitle = styled.div`
 `;
 
 const BlockContent = styled.div<
-  {isCollapsable: boolean; $height: number; $overflow: string; shouldAnimate: boolean} & AkeneoThemedProps
+  {$isCollapsable: boolean; $height: number; $overflow: string; $shouldAnimate: boolean} & AkeneoThemedProps
 >`
   overflow-wrap: break-word;
   white-space: break-spaces;
-  margin-top: ${({$height, isCollapsable}) => (0 === $height && isCollapsable ? 0 : 10)}px;
-  ${({isCollapsable, $height, $overflow, shouldAnimate}) =>
-    isCollapsable &&
+  margin-top: ${({$height, $isCollapsable}) => (0 === $height && $isCollapsable ? 0 : 10)}px;
+  ${({$isCollapsable, $height, $overflow, $shouldAnimate}) =>
+    $isCollapsable &&
     css`
       max-height: ${$height}px;
       overflow: ${$overflow};
-      ${shouldAnimate &&
+      ${$shouldAnimate &&
       css`
         transition: all ${ANIMATION_DURATION}ms ease-in-out;
         transition-property: max-height, margin-top;
@@ -201,10 +201,10 @@ const Block = React.forwardRef<HTMLDivElement, BlockProps>(
         {!isCollapsable ? null : (
           <BlockContent
             ref={contentRef}
-            isCollapsable={isCollapsable}
+            $isCollapsable={isCollapsable}
             $overflow={shouldAnimate || !isOpen ? 'hidden' : 'inherit'}
             $height={true === isOpen ? contentHeight : 0}
-            shouldAnimate={shouldAnimate}
+            $shouldAnimate={shouldAnimate}
             aria-hidden={!isOpen}
           >
             {children}

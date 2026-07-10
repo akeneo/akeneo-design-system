@@ -1,4 +1,5 @@
 import React from 'react';
+import 'jest-styled-components';
 import {SelectInput} from './SelectInput';
 import {Locale} from '../../../components';
 import {render, screen, fireEvent} from '../../../storybook/test-util';
@@ -32,6 +33,9 @@ test('it renders its children properly', () => {
   );
 
   const input = screen.getByRole('textbox');
+
+  expect(input).toHaveAttribute('title', 'English (United States)');
+
   fireEvent.click(input);
 
   expect(screen.queryByText('German')).toBeInTheDocument();
@@ -507,4 +511,108 @@ test('it displays empty result label when no child and value are provided', () =
   const input = screen.getByRole('textbox');
   fireEvent.click(input);
   expect(screen.getByText('Empty result')).toBeInTheDocument();
+});
+
+test('it calls onOpenChange callback when dropdown state changes', () => {
+  const onChange = jest.fn();
+  const onOpenChange = jest.fn();
+
+  render(
+    <SelectInput
+      openLabel="Open"
+      value="en_US"
+      onChange={onChange}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+      onOpenChange={onOpenChange}
+    >
+      <SelectInput.Option value="en_US" title="English">
+        English
+      </SelectInput.Option>
+      <SelectInput.Option value="fr_FR" title="French">
+        French
+      </SelectInput.Option>
+    </SelectInput>
+  );
+
+  expect(onOpenChange).not.toHaveBeenCalled();
+
+  const input = screen.getByRole('textbox');
+
+  fireEvent.click(input);
+  expect(onOpenChange).toHaveBeenCalledTimes(1);
+  expect(onOpenChange).toHaveBeenLastCalledWith(true);
+
+  fireEvent.click(screen.getByTestId('backdrop'));
+  expect(onOpenChange).toHaveBeenCalledTimes(2);
+  expect(onOpenChange).toHaveBeenLastCalledWith(false);
+
+  fireEvent.click(input);
+  expect(onOpenChange).toHaveBeenCalledTimes(3);
+  expect(onOpenChange).toHaveBeenLastCalledWith(true);
+
+  fireEvent.click(screen.getByText('French'));
+  expect(onOpenChange).toHaveBeenCalledTimes(4);
+  expect(onOpenChange).toHaveBeenLastCalledWith(false);
+});
+
+test('it keeps the dropdown open after selecting an option when keepDropdownOnSelect is set', () => {
+  const onChange = jest.fn();
+  const onOpenChange = jest.fn();
+
+  render(
+    <SelectInput
+      openLabel="Open"
+      value={null}
+      clearable={false}
+      onChange={onChange}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+      onOpenChange={onOpenChange}
+      keepDropdownOnSelect={true}
+    >
+      <SelectInput.Option value="en_US" title="English">
+        English
+      </SelectInput.Option>
+      <SelectInput.Option value="fr_FR" title="French">
+        French
+      </SelectInput.Option>
+    </SelectInput>
+  );
+
+  fireEvent.click(screen.getByRole('textbox'));
+  expect(onOpenChange).toHaveBeenLastCalledWith(true);
+
+  fireEvent.click(screen.getByText('French'));
+
+  expect(onChange).toHaveBeenCalledWith('fr_FR');
+  expect(onOpenChange).toHaveBeenLastCalledWith(true);
+  expect(screen.getByText('English')).toBeInTheDocument();
+});
+
+test('it truncates a long selected value with an ellipsis and exposes the full label through a title', () => {
+  const onChange = jest.fn();
+  const longLabel =
+    'A very long option label that does not fit on a single line and would otherwise wrap and overlap surrounding elements';
+
+  render(
+    <SelectInput
+      openLabel="Open"
+      value={longLabel}
+      onChange={onChange}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+    >
+      <SelectInput.Option value="other" title="Other">
+        Other
+      </SelectInput.Option>
+    </SelectInput>
+  );
+
+  const selectedValueText = screen.getByText(longLabel);
+  expect(selectedValueText).toHaveStyleRule('text-overflow', 'ellipsis');
+  expect(selectedValueText).toHaveStyleRule('white-space', 'nowrap');
+  expect(selectedValueText).toHaveStyleRule('overflow', 'hidden');
+
+  expect(screen.getByRole('textbox')).toHaveAttribute('title', longLabel);
 });

@@ -2,6 +2,8 @@ import React, {RefObject} from 'react';
 import {DateInput} from './DateInput';
 import {fireEvent, render, screen} from '../../../storybook/test-util';
 import userEvent from '@testing-library/user-event';
+import {IconButton} from '../../IconButton/IconButton';
+import {CopyIcon} from '../../../icons';
 
 test('it renders and handle changes', () => {
   const handleChange = jest.fn();
@@ -16,6 +18,102 @@ test('it renders and handle changes', () => {
   fireEvent.change(screen.getByLabelText('My label'), {target: {value: '2023-03-02'}});
 
   expect(handleChange).toHaveBeenCalledWith('2023-03-02');
+});
+
+test('it does not force-open the picker on click so the field stays typeable', () => {
+  const showPicker = jest.fn();
+
+  render(
+    <>
+      <label htmlFor="myInput">My label</label>
+      <DateInput id="myInput" value="2023-03-01" onChange={jest.fn()} />
+    </>
+  );
+
+  const input = screen.getByLabelText('My label') as HTMLInputElement & {showPicker: () => void};
+  input.showPicker = showPicker;
+  fireEvent.click(input);
+
+  expect(showPicker).not.toHaveBeenCalled();
+});
+
+test('it renders action buttons passed as children', () => {
+  render(
+    <DateInput value="2023-03-01" onChange={jest.fn()}>
+      <IconButton icon={<CopyIcon />} title="Copy" />
+    </DateInput>
+  );
+
+  expect(screen.getByTitle(/Copy/i)).toBeInTheDocument();
+});
+
+test('it ignores children that are not icon buttons', () => {
+  render(
+    <DateInput value="2023-03-01" onChange={jest.fn()}>
+      <span>Not a button</span>
+    </DateInput>
+  );
+
+  expect(screen.queryByText('Not a button')).not.toBeInTheDocument();
+});
+
+test('it copies the ISO value to the clipboard', () => {
+  render(
+    <>
+      <label htmlFor="myInput">My label</label>
+      <DateInput id="myInput" value="2023-03-01" onChange={jest.fn()} />
+    </>
+  );
+
+  const setData = jest.fn();
+  fireEvent.copy(screen.getByLabelText('My label'), {clipboardData: {setData}});
+
+  expect(setData).toHaveBeenCalledWith('text/plain', '2023-03-01');
+});
+
+test('it parses a pasted date and emits the ISO value', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <>
+      <label htmlFor="myInput">My label</label>
+      <DateInput id="myInput" value="" onChange={handleChange} />
+    </>
+  );
+
+  fireEvent.paste(screen.getByLabelText('My label'), {clipboardData: {getData: () => '2050-01-01'}});
+
+  expect(handleChange).toHaveBeenCalledWith('2050-01-01');
+});
+
+test('it does not emit a change when the pasted value is not a date', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <>
+      <label htmlFor="myInput">My label</label>
+      <DateInput id="myInput" value="" onChange={handleChange} />
+    </>
+  );
+
+  fireEvent.paste(screen.getByLabelText('My label'), {clipboardData: {getData: () => 'not a date'}});
+
+  expect(handleChange).not.toHaveBeenCalled();
+});
+
+test('it does not paste when readOnly', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <>
+      <label htmlFor="myInput">My label</label>
+      <DateInput id="myInput" readOnly={true} value="" onChange={handleChange} />
+    </>
+  );
+
+  fireEvent.paste(screen.getByLabelText('My label'), {clipboardData: {getData: () => '2050-01-01'}});
+
+  expect(handleChange).not.toHaveBeenCalled();
 });
 
 test('it handles on submit callback', () => {

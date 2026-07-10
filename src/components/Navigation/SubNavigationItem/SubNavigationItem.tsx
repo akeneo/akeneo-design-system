@@ -4,11 +4,11 @@ import {Override} from '../../../shared/override';
 import {AkeneoThemedProps, getColor, getFontSize} from '../../../theme/theme';
 import {Tag} from '../../Tags/Tags';
 
-const Container = styled.a<{active?: boolean; disabled?: boolean} & AkeneoThemedProps>`
+const Container = styled.a<{$active?: boolean; disabled?: boolean} & AkeneoThemedProps>`
   box-sizing: border-box;
   cursor: ${({disabled}) => (disabled ? 'not-allowed' : 'pointer')};
-  color: ${({active, disabled}) =>
-    disabled ? getColor('grey', 100) : active ? getColor('brand', 100) : getColor('grey', 140)};
+  color: ${({$active, disabled}) =>
+    disabled ? getColor('grey', 100) : $active ? getColor('brand', 100) : getColor('grey', 140)};
   display: flex;
   height: 38px;
   margin: 0;
@@ -25,10 +25,10 @@ const Container = styled.a<{active?: boolean; disabled?: boolean} & AkeneoThemed
   }
 `;
 
-const Label = styled.div<{hasTag: boolean} & AkeneoThemedProps>`
+const Label = styled.div<{$hasTag: boolean} & AkeneoThemedProps>`
   flex-shrink: 0;
-  margin-right: ${({hasTag}) => (hasTag ? '10px' : '0px')};
-  max-width: ${({hasTag}) => (hasTag ? '84%' : '100%')};
+  margin-right: ${({$hasTag}) => ($hasTag ? '10px' : '0px')};
+  max-width: ${({$hasTag}) => ($hasTag ? '84%' : '100%')};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -90,14 +90,14 @@ const SubNavigationItem = React.forwardRef<HTMLAnchorElement, Props>(
       <Container
         ref={forwardedRef}
         href={disabled ? undefined : href}
-        active={active}
+        $active={active}
         disabled={disabled}
         aria-disabled={disabled}
         role="link"
         onClick={handleClick}
         {...rest}
       >
-        <Label hasTag={!!tag}>{label}</Label>
+        <Label $hasTag={!!tag}>{label}</Label>
         {tag}
       </Container>
     );

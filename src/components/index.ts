@@ -30,6 +30,7 @@ export * from './Placeholder/Placeholder';
 export * from './Preview/Preview';
 export * from './ProgressBar/ProgressBar';
 export * from './ProgressIndicator/ProgressIndicator';
+export * from './ProgressWheel/ProgressWheel';
 export * from './Search/Search';
 export * from './SectionTitle/SectionTitle';
 export * from './SwitcherButton/SwitcherButton';

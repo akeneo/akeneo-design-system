@@ -121,6 +121,7 @@ test('it renders small buttons', async () => {
       yesLabel={'Oui'}
       clearLabel={'Effacer la valeur'}
       size={'small'}
+      fit={'fix'}
     />
   );
 
@@ -129,4 +130,63 @@ test('it renders small buttons', async () => {
 
   expect(styles.width).toBe('48px');
   expect(styles.height).toBe('30px');
+});
+
+test('it renders fit=contain buttons with long labels', () => {
+  render(<BooleanInput readOnly={false} value={true} noLabel={'Disabled'} yesLabel={'Enabled'} fit={'contain'} />);
+
+  expect(screen.getByText('Enabled')).toBeInTheDocument();
+  expect(screen.getByText('Disabled')).toBeInTheDocument();
+});
+
+test('it renders icon-only clear button without text label', () => {
+  render(
+    <BooleanInput
+      yesLabel={'Yes'}
+      noLabel={'No'}
+      clearLabel={'Clear value'}
+      readOnly={false}
+      value={true}
+      clearable={true}
+      clearButtonDisplay={'icon'}
+    />
+  );
+
+  expect(screen.queryByText('Clear value')).not.toBeInTheDocument();
+});
+
+test('it renders icon-only clear button with title attribute', () => {
+  render(
+    <BooleanInput
+      yesLabel={'Yes'}
+      noLabel={'No'}
+      clearLabel={'Clear value'}
+      readOnly={false}
+      value={true}
+      clearable={true}
+      clearButtonDisplay={'icon'}
+    />
+  );
+
+  expect(screen.getByTitle('Clear value')).toBeInTheDocument();
+});
+
+test('it calls onChange with null when icon-only clear button is clicked', () => {
+  const onChange = jest.fn();
+  render(
+    <BooleanInput
+      yesLabel={'Yes'}
+      noLabel={'No'}
+      clearLabel={'Clear value'}
+      readOnly={false}
+      value={true}
+      onChange={onChange}
+      clearable={true}
+      clearButtonDisplay={'icon'}
+    />
+  );
+
+  fireEvent.click(screen.getByTitle('Clear value'));
+
+  expect(onChange).toBeCalledWith(null);
 });

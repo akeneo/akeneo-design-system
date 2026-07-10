@@ -22,7 +22,9 @@ import { SVGProps } from 'react';
 import { SyntheticEvent } from 'react';
 import { ThemeProps } from 'styled-components';
 
-declare type ActionCellProps = default_2.HTMLAttributes<HTMLDivElement>;
+declare type ActionCellProps = Override<default_2.HTMLAttributes<HTMLDivElement>, {
+    width?: 'auto' | number;
+}>;
 
 export declare const ActivityIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
@@ -106,7 +108,7 @@ export declare const AttributeTextareaIcon: ({ title, size, color, ...props }: I
 
 export declare const AttributeTextIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
-export declare const Avatar: ({ username, firstName, lastName, avatarUrl, size, disabled, selected, ...rest }: AvatarProps) => default_2.JSX.Element;
+export declare const Avatar: ({ username, firstName, lastName, avatarUrl, size, disabled, selected, title: titleOverride, ...rest }: AvatarProps) => default_2.JSX.Element;
 
 export declare type AvatarProps = Override<default_2.HTMLAttributes<HTMLSpanElement>, User & {
     size?: 'default' | 'big';
@@ -183,11 +185,13 @@ declare type BooleanInputProps = Override<InputProps<boolean>, ({
     value: boolean | null;
     onChange?: (value: boolean | null) => void;
     clearLabel: string;
+    clearButtonDisplay?: 'icon' | 'full';
 } | {
     clearable?: false;
     value: boolean;
     onChange?: (value: boolean) => void;
     clearLabel?: string;
+    clearButtonDisplay?: never;
 }) & {
     readOnly?: boolean;
     yesLabel: string;
@@ -195,6 +199,7 @@ declare type BooleanInputProps = Override<InputProps<boolean>, ({
     invalid?: boolean;
     children?: ReactNode;
     size?: 'normal' | 'small';
+    fit?: 'fix' | 'contain';
 }>;
 
 declare const BottomButtons: StyledComponent<"div", DefaultTheme, {}, never>;
@@ -260,12 +265,13 @@ export declare const CaddyCheckoutIcon: ({ title, size, color, ...props }: IconP
 
 export declare const CaddyIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
-export declare const Card: default_2.ForwardRefExoticComponent<Omit<default_2.HTMLAttributes<HTMLDivElement>, "children" | "onSelect" | "disabled" | "loading" | "src" | "fit" | "isSelected" | "stacked"> & {
+export declare const Card: default_2.ForwardRefExoticComponent<Omit<default_2.HTMLAttributes<HTMLDivElement>, "children" | "onSelect" | "disabled" | "loading" | "src" | "fit" | "isSelected" | "stacked" | "dimmed"> & {
     src: string | null;
     fit?: "cover" | "contain" | undefined;
     loading?: "eager" | "lazy" | undefined;
     isSelected?: boolean | undefined;
     disabled?: boolean | undefined;
+    dimmed?: boolean | undefined;
     onSelect?: ((isSelected: boolean) => void) | undefined;
     stacked?: boolean | undefined;
     children: ReactNode;
@@ -329,6 +335,8 @@ declare type CollapseProps = {
     collapseButtonLabel: string;
     isOpen: boolean;
     onCollapse: (isOpen: boolean) => void;
+    openIcon?: ReactElement<IconProps>;
+    closeIcon?: ReactElement<IconProps>;
     children?: ReactNode;
 };
 
@@ -356,6 +364,7 @@ export declare type Color = {
     grey40: string;
     grey60: string;
     grey80: string;
+    purple10: string;
     purple100: string;
     purple120: string;
     purple140: string;
@@ -392,6 +401,9 @@ export declare type Color = {
 export declare const color: Color;
 
 export declare type ColorAlternative = {
+    grey10: string;
+    grey100: string;
+    grey120: string;
     blue10: string;
     blue100: string;
     blue120: string;
@@ -452,6 +464,8 @@ declare type ColorInputProps = Override<Override<InputHTMLAttributes<HTMLInputEl
 }>;
 
 export declare const ColumnIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
+export declare const CommonIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
 
 export declare const CommonStyle: FlattenInterpolation<ThemeProps<DefaultTheme>>;
 
@@ -612,6 +626,7 @@ export declare type FieldProps = {
     children?: FieldChild;
     actions?: ReactNode;
     labelPrefix?: string;
+    labelTitle?: string;
 };
 
 declare type FigureProps = {
@@ -643,6 +658,8 @@ export declare type FlashMessage = {
     icon?: ReactElement<IconProps>;
     children?: ReactNode;
 };
+
+export declare const FlaskConicalIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const FolderIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
@@ -708,6 +725,7 @@ export declare type HelperProps = {
     level?: Level_2;
     sticky?: number;
     icon?: ReactElement<IconProps>;
+    size?: keyof FontSize;
     children: ReactNode;
 };
 
@@ -754,6 +772,18 @@ export declare type IconProps = Override<SVGProps<SVGSVGElement>, {
     animateOnHover?: boolean;
     ref?: RefObject<SVGSVGElement>;
 }>;
+
+declare type IconProps_2 = Override_2<
+SVGProps<SVGSVGElement>,
+    {
+    title?: string;
+    size?: number;
+    color?: string;
+    className?: string;
+    animateOnHover?: boolean;
+    ref?: RefObject<SVGSVGElement>;
+}
+>;
 
 export declare const IdIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
@@ -841,7 +871,7 @@ export declare const KeyIcon: ({ title, size, color, ...props }: IconProps) => d
 
 export declare type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
 
-declare type Level_2 = 'info' | 'warning' | 'error' | 'success';
+declare type Level_2 = 'info' | 'warning' | 'error' | 'success' | 'learn';
 
 declare type Level_3 = 'info' | 'warning' | 'error' | 'success';
 
@@ -1054,12 +1084,14 @@ declare type MultiMultiSelectInputProps = Override<Override<default_2.InputHTMLA
     onNextPage: () => void;
     onSearchChange: (searchValue: string) => void;
     disableInternalSearch: true;
-})>;
+}) & {
+    onOpenChange?: (isOpen: boolean) => void;
+}>;
 
 export declare const MultiSelectInput: {
-    ({ id, placeholder, invalid, value, invalidValue, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, disableAutoSelect, lockedValues, "aria-labelledby": ariaLabelledby, ...rest }: MultiMultiSelectInputProps): default_2.JSX.Element;
+    ({ id, placeholder, invalid, value, invalidValue, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, disableAutoSelect, lockedValues, "aria-labelledby": ariaLabelledby, onOpenChange, ...rest }: MultiMultiSelectInputProps): default_2.JSX.Element;
     Option: {
-        ({ children, ...rest }: OptionProps): default_2.JSX.Element;
+        ({ children, enableLocaleRender, ...rest }: OptionProps): default_2.JSX.Element;
         displayName: string;
     };
     OptionGroup: {
@@ -1076,7 +1108,7 @@ export declare const NotificationIcon: ({ title, size, color, ...props }: IconPr
 
 export declare const NumberInput: default_2.ForwardRefExoticComponent<NumberInputProps & default_2.RefAttributes<HTMLInputElement>>;
 
-export declare type NumberInputProps = Override<Override<default_2.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>, ({
+export declare type NumberInputProps = Override<Override<Omit<default_2.InputHTMLAttributes<HTMLInputElement>, 'onWheel'>, InputProps<string>>, ({
     readOnly: true;
 } | {
     readOnly?: boolean;
@@ -1097,6 +1129,7 @@ export declare const onboarderTheme: Theme;
 declare type OptionProps = {
     value: string;
     children: string;
+    enableLocaleRender?: boolean;
 } & default_2.HTMLAttributes<HTMLSpanElement>;
 
 export declare const Overlay: ({ verticalPosition, parentRef, onClose, children, ...rest }: OverlayProps) => default_2.ReactPortal;
@@ -1109,6 +1142,8 @@ declare type OverlayProps = Override<HTMLAttributes<HTMLDivElement>, {
 }>;
 
 export declare type Override<What, With> = Omit<What, keyof With> & With;
+
+declare type Override_2<What, With> = Omit<What, keyof With> & With;
 
 export declare const Pagination: FC<PaginationProps>;
 
@@ -1203,13 +1238,15 @@ export declare const ProductPublishedIllustration: ({ title, size, ...props }: I
 export declare const ProductsIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
 
 export declare const ProgressBar: default_2.ForwardRefExoticComponent<{
-    level: Level;
+    level: ProgressBarLevel;
     percent: ProgressBarPercent;
     light?: boolean | undefined;
     title?: string | undefined;
     progressLabel?: string | undefined;
     size?: ProgressBarSize | undefined;
 } & default_2.HTMLAttributes<HTMLDivElement> & default_2.RefAttributes<HTMLDivElement>>;
+
+export declare type ProgressBarLevel = Level | 'brand';
 
 export declare type ProgressBarPercent = number | 'indeterminate';
 
@@ -1229,6 +1266,15 @@ export declare const ProgressIndicator: {
 declare type ProgressIndicatorProps = Override<HTMLAttributes<HTMLUListElement>, {
     children?: ReactNode;
 }>;
+
+export declare const ProgressWheel: default_2.ForwardRefExoticComponent<{
+    level: ProgressWheelLevel;
+    percent: number;
+    size?: number | undefined;
+    title?: string | undefined;
+} & default_2.SVGAttributes<SVGSVGElement> & default_2.RefAttributes<SVGSVGElement>>;
+
+export declare type ProgressWheelLevel = Level | 'brand';
 
 export declare const ProjectIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
 
@@ -1257,7 +1303,7 @@ declare type RowProps_2 = Override<HTMLAttributes<HTMLDivElement>, {
 export declare const RulesIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
 
 export declare const Search: {
-    ({ children, placeholder, title, searchValue, inputRef, onSearchChange, ...rest }: SearchProps): default_2.JSX.Element;
+    ({ children, placeholder, title, searchValue, inputRef, onSearchChange, sticky, ...rest }: SearchProps): default_2.JSX.Element;
     ResultCount: StyledComponent<"span", DefaultTheme, {}, never>;
     Separator: StyledComponent<"div", DefaultTheme, {}, never>;
 };
@@ -1284,10 +1330,10 @@ export declare const SectionTitle: {
     Information: StyledComponent<"div", DefaultTheme, {}, never>;
 };
 
-declare const SectionTitle_2: StyledComponent<"div", DefaultTheme, {
-size?: "big" | "bigger" | "default" | "small" | undefined;
-color?: string | undefined;
-} & AkeneoThemedProps, never>;
+declare const SectionTitle_2: ({ size, color, children, ...rest }: default_2.PropsWithChildren<{
+    size?: "big" | "bigger" | "default" | "small" | undefined;
+    color?: string | undefined;
+}>) => default_2.JSX.Element;
 
 declare type SectionTitleProps = Override<HTMLAttributes<HTMLDivElement>, {
     sticky?: number;
@@ -1295,7 +1341,7 @@ declare type SectionTitleProps = Override<HTMLAttributes<HTMLDivElement>, {
 }>;
 
 export declare const SelectInput: {
-    ({ id, placeholder, invalid, value, emptyResultLabel, children, onChange, clearable, clearLabel, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, "aria-labelledby": ariaLabelledby, selectedValueComponent, ...rest }: SelectInputProps): default_2.JSX.Element;
+    ({ id, placeholder, invalid, value, emptyResultLabel, children, onChange, clearable, clearLabel, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, "aria-labelledby": ariaLabelledby, selectedValueComponent, onOpenChange, title, keepDropdownOnSelect, ...rest }: SelectInputProps): default_2.JSX.Element;
     Option: StyledComponent<"span", DefaultTheme, Omit<default_2.HTMLAttributes<HTMLSpanElement>, "disabled" | "value"> & {
     value: string;
     disabled?: boolean | undefined;
@@ -1326,6 +1372,8 @@ declare type SelectInputProps = Override<Override<default_2.InputHTMLAttributes<
     children?: ReactNode;
     verticalPosition?: VerticalPosition;
     selectedValueComponent?: ReactNode;
+    title?: string;
+    keepDropdownOnSelect?: boolean;
 } & ({
     onNextPage?: () => void;
     onSearchChange?: (searchValue: string) => void;
@@ -1334,7 +1382,9 @@ declare type SelectInputProps = Override<Override<default_2.InputHTMLAttributes<
     onNextPage: () => void;
     onSearchChange: (searchValue: string) => void;
     disableInternalSearch: true;
-})>;
+}) & {
+    onOpenChange?: (isOpen: boolean) => void;
+}>;
 
 declare type Selection_2<Type = string> = {
     mode: 'in' | 'not_in';
@@ -1351,6 +1401,8 @@ export declare const SettingsIcon: ({ title, size, color, ...props }: IconProps)
 export declare const SettingsIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
 
 export declare const sharedCatalogsTheme: Theme;
+
+export declare const ShareIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const ShopIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
@@ -1419,7 +1471,7 @@ export declare const SwitcherButton: default_2.ForwardRefExoticComponent<Omit<de
 export declare const SystemIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const TabBar: {
-    ({ moreButtonTitle, children, ...rest }: TabBarProps): default_2.JSX.Element;
+    ({ moreButtonTitle, children, sticky, ...rest }: TabBarProps): default_2.JSX.Element;
     Tab: {
         ({ children, onClick, isActive, parentRef, onVisibilityChange, ...rest }: TabProps): default_2.JSX.Element;
         displayName: string;
@@ -1433,7 +1485,7 @@ declare type TabBarProps = {
 } & HTMLAttributes<HTMLDivElement>;
 
 export declare const Table: {
-    ({ isSelectable, hasWarningRows, hasLockedRows, displayCheckbox, isDragAndDroppable, dragAndDropMode, onReorder, children, ...rest }: TableProps): default_2.JSX.Element;
+    ({ isSelectable, hasWarningRows, hasLockedRows, displayCheckbox, isDragAndDroppable, dragAndDropMode, wrapText, onReorder, children, ...rest }: TableProps): default_2.JSX.Element;
     Header: default_2.ForwardRefExoticComponent<TableHeaderProps & default_2.RefAttributes<HTMLTableSectionElement>>;
     HeaderCell: default_2.ForwardRefExoticComponent<{
         isSortable?: boolean | undefined;
@@ -1568,6 +1620,7 @@ export declare type TableProps = Override<default_2.HTMLAttributes<HTMLTableElem
     hasWarningRows?: boolean;
     hasLockedRows?: boolean;
     displayCheckbox?: boolean;
+    wrapText?: boolean;
     children?: ReactNode;
 } & ({
     isDragAndDroppable?: false;
@@ -1623,7 +1676,9 @@ declare type TagsProps = {
     children?: ReactNode;
 };
 
-export declare type TagTint = 'green' | 'blue' | 'dark_blue' | 'purple' | 'dark_purple' | 'yellow' | 'red' | 'dark_cyan' | 'forest_green' | 'olive_green' | 'hot_pink' | 'coral_red' | 'orange' | 'chocolate';
+export declare type TagTint = (typeof tagTints)[number];
+
+export declare const tagTints: readonly ["grey", "green", "blue", "dark_blue", "purple", "dark_purple", "yellow", "red", "dark_cyan", "forest_green", "olive_green", "hot_pink", "coral_red", "orange", "chocolate"];
 
 export declare const TextAreaInput: default_2.ForwardRefExoticComponent<TextAreaInputProps & default_2.RefAttributes<HTMLTextAreaElement>>;
 
@@ -1639,6 +1694,7 @@ export declare type TextAreaInputProps = Override<Override<default_2.InputHTMLAt
     characterLeftLabel?: string;
     characterLeftLabelVariant?: Variant_2;
     isValueHidden?: boolean;
+    resizable?: boolean;
 }>;
 
 export declare const TextInput: default_2.ForwardRefExoticComponent<TextInputProps & default_2.RefAttributes<HTMLInputElement>>;
@@ -1672,6 +1728,10 @@ declare type ThemedProps = {
 };
 
 export declare const themes: Theme[];
+
+export declare const ThumbsDownIcon: ({ size, color, ...props }: IconProps_2) => default_2.JSX.Element;
+
+export declare const ThumbsUpIcon: ({ size, color, ...props }: IconProps_2) => default_2.JSX.Element;
 
 export declare const Tile: FC<TileProps>;
 
@@ -1718,15 +1778,18 @@ declare type ToolbarProps = Override<default_2.HTMLAttributes<HTMLDivElement>, {
 }>;
 
 export declare const Tooltip: {
-    ({ direction, iconSize, width, children, ...rest }: TooltipProps): default_2.JSX.Element;
+    ({ direction, iconSize, width, children, trigger, offset, contentZIndex, ...rest }: TooltipProps): default_2.JSX.Element;
     Title: StyledComponent<"div", DefaultTheme, {}, never>;
 };
 
 export declare type TooltipProps = Override<HTMLAttributes<HTMLDivElement>, {
     direction?: Direction;
     iconSize?: number;
+    trigger?: ReactNode;
     children: ReactNode;
     width?: number;
+    offset?: number;
+    contentZIndex?: number;
 }>;
 
 declare const TopLeftButtons: StyledComponent<"div", DefaultTheme, {}, never>;
@@ -1738,6 +1801,8 @@ export declare const Tree: (<T>(props: TreeProps<T> & {
 }) => JSX.Element) & {
     displayName: string;
 };
+
+export declare const TreeIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare type TreeProps<T = string> = {
     value: T;
@@ -1757,6 +1822,7 @@ export declare type TreeProps<T = string> = {
     valueLabel?: string;
     highlight?: string;
     additional?: ReactNode;
+    preLabel?: ReactNode;
     hideIcons?: boolean;
     code?: string;
 };
@@ -1764,6 +1830,8 @@ export declare type TreeProps<T = string> = {
 export declare const UnpublishIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const UnviewIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
+export declare const UpdateIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const UploadIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
@@ -1817,7 +1885,7 @@ export declare const useTabBar: (defaultTab: string) => readonly [(tab: string) 
 
 export declare const useTheme: () => DefaultTheme;
 
-export declare const useVerticalPosition: (ref: RefObject<HTMLElement>, forcedPosition?: VerticalPosition) => VerticalPosition | undefined;
+export declare const useVerticalPosition: (ref: RefObject<HTMLElement>, anchorRef?: RefObject<HTMLElement>, forcedPosition?: VerticalPosition) => VerticalPosition | undefined;
 
 export declare const useWindowResize: () => WindowSize;
 

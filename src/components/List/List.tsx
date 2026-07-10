@@ -59,13 +59,13 @@ const RowActionContainer = styled.div`
   gap: 10px;
 `;
 
-const RowContainer = styled.div<{isMultiline: boolean; isSelected: boolean} & AkeneoThemedProps>`
+const RowContainer = styled.div<{$isMultiline: boolean; $isSelected: boolean} & AkeneoThemedProps>`
   display: flex;
   flex-direction: column;
   outline-style: none;
   padding: 0 10px;
   border-bottom: 1px solid ${getColor('grey', 60)};
-  background-color: ${({isSelected}) => (isSelected ? getColor('blue', 20) : 'transparent')};
+  background-color: ${({$isSelected}) => ($isSelected ? getColor('blue', 20) : 'transparent')};
 
   &:hover {
     background-color: ${getColor('grey', 20)};
@@ -80,11 +80,11 @@ const RowContainer = styled.div<{isMultiline: boolean; isSelected: boolean} & Ak
   }
 
   ${CellContainer} {
-    align-items: ${({isMultiline}) => (isMultiline ? 'start' : 'center')};
+    align-items: ${({$isMultiline}) => ($isMultiline ? 'start' : 'center')};
   }
 
   ${TitleCell}, ${RemoveCellContainer} {
-    height: ${({isMultiline}) => (isMultiline ? '74px' : 'auto')};
+    height: ${({$isMultiline}) => ($isMultiline ? '74px' : 'auto')};
     align-items: center;
   }
 `;
@@ -138,7 +138,7 @@ const Row = ({children, isMultiline = false, isSelected = false, ...rest}: RowPr
   });
 
   return (
-    <RowContainer isMultiline={isMultiline} tabIndex={0} isSelected={isSelected} {...rest}>
+    <RowContainer $isMultiline={isMultiline} tabIndex={0} $isSelected={isSelected} {...rest}>
       <RowContentContainer>
         <RowDataContainer>{cells}</RowDataContainer>
         {actionCellChild.length > 0 && <RowActionContainer>{actionCellChild}</RowActionContainer>}
@@ -168,7 +168,16 @@ const Cell = ({title, width, children, ...rest}: CellProps) => {
   );
 };
 
-type ActionCellProps = React.HTMLAttributes<HTMLDivElement>;
+type ActionCellProps = Override<
+  React.HTMLAttributes<HTMLDivElement>,
+  {
+    /**
+     * The width of the cell.
+     */
+    width?: 'auto' | number;
+  }
+>;
+
 const ActionCell = ({children, ...rest}: ActionCellProps) => {
   const decoratedChildren = React.Children.map(children, child => {
     if (React.isValidElement<ButtonProps>(child) && (child.type === Button || child.type === IconButton)) {

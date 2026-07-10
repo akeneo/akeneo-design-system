@@ -5,7 +5,7 @@ import {PanelOpenIcon} from '../../../icons/PanelOpenIcon';
 import {AkeneoThemedProps, getColor} from '../../../theme/theme';
 import {Override} from '../../../shared';
 
-const Container = styled.div<{isOpen: boolean} & AkeneoThemedProps>`
+const Container = styled.div<{$isOpen: boolean} & AkeneoThemedProps>`
   background-color: ${getColor('grey', 20)};
   border-right: 1px solid ${getColor('grey', 80)};
   box-sizing: border-box;
@@ -13,18 +13,18 @@ const Container = styled.div<{isOpen: boolean} & AkeneoThemedProps>`
   flex-direction: column;
   height: 100%;
   transition: width 0.3s linear;
-  width: ${({isOpen}) => (isOpen ? '280px' : '40px')};
+  width: ${({$isOpen}) => ($isOpen ? '280px' : '40px')};
 `;
 
-const Content = styled.div<{isOpen: boolean; noPadding: boolean}>`
+const Content = styled.div<{$isOpen: boolean; $noPadding: boolean}>`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   overflow-x: hidden;
   overflow-y: auto;
-  opacity: ${({isOpen}) => (isOpen ? '1' : '0')};
-  transition: ${({isOpen}) => (isOpen ? 'opacity 300ms linear 300ms' : 'none')};
-  padding: ${({noPadding}) => (noPadding ? '0' : '30px')};
+  opacity: ${({$isOpen}) => ($isOpen ? '1' : '0')};
+  transition: ${({$isOpen}) => ($isOpen ? 'opacity 300ms linear 300ms' : 'none')};
+  padding: ${({$noPadding}) => ($noPadding ? '0' : '30px')};
 `;
 
 const ToggleButton = styled.button<AkeneoThemedProps>`
@@ -131,9 +131,9 @@ const SubNavigationPanel: SubNavigationPanelCompoundType = React.forwardRef<HTML
     }, [isOpen]);
 
     return (
-      <Container ref={forwardedRef} isOpen={isOpen} {...rest}>
+      <Container ref={forwardedRef} $isOpen={isOpen} {...rest}>
         {!isOpen && collapsedElements}
-        <Content isOpen={isOpenTransition} noPadding={noPadding}>
+        <Content $isOpen={isOpenTransition} $noPadding={noPadding}>
           {isOpen && contentElements}
         </Content>
         <ToggleButton

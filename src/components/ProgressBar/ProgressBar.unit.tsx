@@ -66,6 +66,12 @@ test('ProgressBar supports forwardRef', () => {
   expect(ref.current).not.toBe(null);
 });
 
+test('it renders a progress bar with brand level', () => {
+  render(<ProgressBar percent={50} level="brand" />);
+
+  expect(screen.getByRole('progressbar')).toBeInTheDocument();
+});
+
 test('Button supports ...rest props', () => {
   const {container} = render(<ProgressBar level="primary" percent={50} data-my-attribute="my_value" />);
   expect(container.querySelector('[data-my-attribute="my_value"]')).toBeInTheDocument();

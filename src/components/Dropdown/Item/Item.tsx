@@ -24,10 +24,10 @@ const sizeMap = {
 
 type SIZE = keyof typeof sizeMap;
 
-const ItemContainer = styled.div<{size: SIZE; disabled: boolean; isActive: boolean} & AkeneoThemedProps>`
+const ItemContainer = styled.div<{$size: SIZE; disabled: boolean; $isActive: boolean} & AkeneoThemedProps>`
   background: ${getColor('white')};
-  height: ${({size}: {size: SIZE}) => sizeMap[size]}px;
-  line-height: ${({size}: {size: SIZE}) => sizeMap[size]}px;
+  height: ${({$size}: {$size: SIZE}) => sizeMap[$size]}px;
+  line-height: ${({$size}: {$size: SIZE}) => sizeMap[$size]}px;
   margin: 0 20px;
   display: flex;
   align-items: center;
@@ -35,8 +35,8 @@ const ItemContainer = styled.div<{size: SIZE; disabled: boolean; isActive: boole
   outline-style: none;
   cursor: pointer;
   white-space: nowrap;
-  ${({size}) =>
-    size === 'bigger' &&
+  ${({$size}) =>
+    $size === 'bigger' &&
     css`
       &:not(:last-child) {
         border-bottom: 1px solid ${getColor('grey', 80)};
@@ -71,8 +71,8 @@ const ItemContainer = styled.div<{size: SIZE; disabled: boolean; isActive: boole
           }
         `}
 
-  ${({isActive}) =>
-    isActive &&
+  ${({$isActive}) =>
+    $isActive &&
     css`
       color: ${getColor('brand', 100)};
       font-style: italic;
@@ -193,13 +193,13 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
 
     return (
       <ItemContainer
-        size={size}
+        $size={size}
         tabIndex={null === actionableRef.current && !disabled ? 0 : -1}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         disabled={disabled}
         aria-disabled={disabled}
-        isActive={isActive}
+        $isActive={isActive}
         title={title}
         {...rest}
         ref={forwardedRef}

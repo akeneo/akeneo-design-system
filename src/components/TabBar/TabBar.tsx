@@ -20,17 +20,17 @@ import {useBooleanState} from '../../hooks/useBooleanState';
 import {Key} from '../../shared/key';
 import {Override} from '../../shared/override';
 
-const Container = styled.div<{sticky?: number} & AkeneoThemedProps>`
+const Container = styled.div<{$sticky?: number} & AkeneoThemedProps>`
   display: flex;
   align-items: center;
   border-bottom: 1px solid ${getColor('grey', 80)};
   background: ${getColor('white')};
 
-  ${({sticky}) =>
-    undefined !== sticky &&
+  ${({$sticky}) =>
+    undefined !== $sticky &&
     css`
       position: sticky;
-      top: ${sticky}px;
+      top: ${$sticky}px;
       background-color: ${getColor('white')};
       z-index: 9;
     `}
@@ -46,13 +46,13 @@ const TabBarContainer = styled.div`
   margin-bottom: -1px;
 `;
 
-const TabContainer = styled.div<TabProps & AkeneoThemedProps>`
+const TabContainer = styled.div<{$isActive: boolean} & AkeneoThemedProps>`
   display: flex;
   align-items: center;
   gap: 10px;
   padding-right: 40px;
-  color: ${({isActive}) => (isActive ? getColor('brand', 100) : getColor('grey', 100))};
-  border-bottom: 3px solid ${({isActive}) => (isActive ? getColor('brand', 100) : 'transparent')};
+  color: ${({$isActive}) => ($isActive ? getColor('brand', 100) : getColor('grey', 100))};
+  border-bottom: 3px solid ${({$isActive}) => ($isActive ? getColor('brand', 100) : 'transparent')};
   font-size: ${getFontSize('big')};
   cursor: pointer;
   white-space: nowrap;
@@ -65,8 +65,8 @@ const TabContainer = styled.div<TabProps & AkeneoThemedProps>`
   }
 `;
 
-const HiddenTabsDropdown = styled(Dropdown)<{isActive: boolean} & AkeneoThemedProps>`
-  border-bottom: 3px solid ${({isActive}) => (isActive ? getColor('brand', 100) : 'transparent')};
+const HiddenTabsDropdown = styled(Dropdown)<{$isActive: boolean} & AkeneoThemedProps>`
+  border-bottom: 3px solid ${({$isActive}) => ($isActive ? getColor('brand', 100) : 'transparent')};
   margin-bottom: -1px;
   height: 44px;
   box-sizing: border-box;
@@ -155,7 +155,7 @@ const Tab = ({children, onClick, isActive, parentRef, onVisibilityChange, ...res
       tabIndex={0}
       role="tab"
       aria-selected={isActive}
-      isActive={isActive}
+      $isActive={isActive}
       {...rest}
     >
       {children}
@@ -183,7 +183,7 @@ type TabBarProps = {
 /**
  * TabBar is used to move from one content to another within the same context.
  */
-const TabBar = ({moreButtonTitle, children, ...rest}: TabBarProps) => {
+const TabBar = ({moreButtonTitle, children, sticky, ...rest}: TabBarProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [hiddenElements, setHiddenElements] = useState<string[]>([]);
   const [isOpen, open, close] = useBooleanState();
@@ -221,12 +221,12 @@ const TabBar = ({moreButtonTitle, children, ...rest}: TabBarProps) => {
   const activeTabIsHidden = hiddenTabs.find(child => child.props.isActive) !== undefined;
 
   return (
-    <Container {...rest}>
+    <Container {...rest} $sticky={sticky}>
       <TabBarContainer ref={ref} role="tablist">
         {decoratedChildren}
       </TabBarContainer>
       {0 < hiddenTabs.length && (
-        <HiddenTabsDropdown isActive={activeTabIsHidden}>
+        <HiddenTabsDropdown $isActive={activeTabIsHidden}>
           <IconButton level="tertiary" ghost="borderless" icon={<MoreIcon />} title={moreButtonTitle} onClick={open} />
           {isOpen && (
             <Dropdown.Overlay verticalPosition="down" onClose={close}>

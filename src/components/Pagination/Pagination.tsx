@@ -50,7 +50,7 @@ const Pagination: FC<PaginationProps> = ({currentPage, totalItems, itemsPerPage 
   const pages = computePages(currentPage, numberOfPages);
 
   return (
-    <PaginationContainer sticky={sticky}>
+    <PaginationContainer $sticky={sticky}>
       {pages.map((page: number | string, index: number) => {
         return (
           <PaginationItem
@@ -66,7 +66,7 @@ const Pagination: FC<PaginationProps> = ({currentPage, totalItems, itemsPerPage 
   );
 };
 
-const PaginationContainer = styled.div<{sticky?: number} & AkeneoThemedProps>`
+const PaginationContainer = styled.div<{$sticky?: number} & AkeneoThemedProps>`
   height: 44px;
   margin: 10px 0 10px 0;
   align-items: center;
@@ -75,11 +75,11 @@ const PaginationContainer = styled.div<{sticky?: number} & AkeneoThemedProps>`
   gap: 10px;
   background-color: ${getColor('white')};
 
-  ${({sticky}) =>
-    undefined !== sticky &&
+  ${({$sticky}) =>
+    undefined !== $sticky &&
     css`
       position: sticky;
-      top: ${sticky}px;
+      top: ${$sticky}px;
       z-index: 9;
     `}
 `;

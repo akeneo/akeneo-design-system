@@ -4,7 +4,7 @@ import {AkeneoThemedProps, getColor} from '../../theme/theme';
 import {SearchIcon} from '../../icons/SearchIcon';
 import {Override} from '../../shared/override';
 
-const Container = styled.div<{sticky?: number} & AkeneoThemedProps>`
+const Container = styled.div<{$sticky?: number} & AkeneoThemedProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,11 +18,11 @@ const Container = styled.div<{sticky?: number} & AkeneoThemedProps>`
     border-bottom: 1px solid ${getColor('brand', 100)};
   }
 
-  ${({sticky}) =>
-    undefined !== sticky &&
+  ${({$sticky}) =>
+    undefined !== $sticky &&
     css`
       position: sticky;
-      top: ${sticky}px;
+      top: ${$sticky}px;
       z-index: 9;
     `}
 `;
@@ -101,9 +101,18 @@ type SearchProps = Override<
   }
 >;
 
-const Search = ({children, placeholder, title, searchValue, inputRef, onSearchChange, ...rest}: SearchProps) => {
+const Search = ({
+  children,
+  placeholder,
+  title,
+  searchValue,
+  inputRef,
+  onSearchChange,
+  sticky,
+  ...rest
+}: SearchProps) => {
   return (
-    <Container {...rest}>
+    <Container {...rest} $sticky={sticky}>
       <SearchContainer>
         <SearchIcon size={20} />
         <SearchInput

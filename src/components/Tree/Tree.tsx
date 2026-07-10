@@ -15,6 +15,7 @@ const folderIconCss = css`
   vertical-align: middle;
   transition: color 0.2s ease;
   margin-right: 5px;
+  flex-shrink: 0;
 `;
 
 const TreeContainer = styled.li`
@@ -60,6 +61,15 @@ const TreeLoaderIcon = styled(LoaderIcon)`
 
 const ValueLabel = styled.span`
   color: ${getColor('grey', 100)};
+  margin-left: 5px;
+`;
+
+const LabelContent = styled.span`
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
 `;
 
 const LabelContainer = styled.div`
@@ -120,6 +130,8 @@ const ArrowButton = styled.button`
 
 const LabelWithFolder = styled.button<{$selected?: CheckboxChecked} & AkeneoThemedProps>`
   ${CommonStyle}
+  display: inline-flex;
+  align-items: center;
   height: 30px;
   vertical-align: middle;
   background: none;
@@ -182,6 +194,7 @@ export type TreeProps<T = string> = {
   valueLabel?: string;
   highlight?: string;
   additional?: ReactNode;
+  preLabel?: ReactNode;
   hideIcons?: boolean;
   code?: string;
 };
@@ -205,6 +218,7 @@ const TreeComponent = React.forwardRef(function Tree<T>(
     valueLabel,
     highlight = '',
     additional,
+    preLabel,
     hideIcons = false,
     code,
     ...rest
@@ -269,6 +283,8 @@ const TreeComponent = React.forwardRef(function Tree<T>(
     [onChange, value]
   );
 
+  const fullTitle = valueLabel ? `${label} ${valueLabel}` : label;
+
   // https://www.w3.org/WAI/GL/wiki/Using_ARIA_trees
   const result = (
     <TreeContainer ref={forwardRef} role="treeitem" aria-expanded={isOpen} {...rest}>
@@ -277,25 +293,38 @@ const TreeComponent = React.forwardRef(function Tree<T>(
           {!isLeaf && <TreeArrowIcon $isFolderOpen={isOpen} size={14} />}
         </ArrowButton>
 
-        {selectable && <NodeCheckbox checked={selected} onChange={handleSelect} readOnly={readOnly} />}
+        {selectable && (
+          <NodeCheckbox checked={selected} onChange={handleSelect} readOnly={readOnly} aria-label={fullTitle} />
+        )}
 
-        <LabelWithFolder onClick={handleClick} $selected={selected} title={label} aria-selected={Boolean(selected)}>
+        <LabelWithFolder onClick={handleClick} $selected={selected} title={fullTitle} aria-selected={Boolean(selected)}>
           {!hideIcons && <TreeIcon isLoading={isLoading} isLeaf={isLeaf} selected={selected} />}
+          {preLabel}
           {code ? (
-            <LabelContainer>
-              <CodeLabel>{code}</CodeLabel>
-              <LabelText>
-                <Highlight highlight={highlight}>{label}</Highlight>
-              </LabelText>
-            </LabelContainer>
+            <>
+              <LabelContainer>
+                <CodeLabel>{code}</CodeLabel>
+                <LabelText>
+                  <Highlight highlight={highlight}>{label}</Highlight>
+                </LabelText>
+              </LabelContainer>
+              {additional}
+              {valueLabel && (
+                <ValueLabel>
+                  <Highlight highlight={highlight}>{valueLabel}</Highlight>
+                </ValueLabel>
+              )}
+            </>
           ) : (
-            <Highlight highlight={highlight}>{label}</Highlight>
-          )}{' '}
-          {additional}
-          {valueLabel && (
-            <ValueLabel>
-              <Highlight highlight={highlight}>{valueLabel}</Highlight>
-            </ValueLabel>
+            <LabelContent aria-selected={Boolean(selected)}>
+              <Highlight highlight={highlight}>{label}</Highlight>
+              {additional}
+              {valueLabel && (
+                <ValueLabel>
+                  <Highlight highlight={highlight}>{valueLabel}</Highlight>
+                </ValueLabel>
+              )}
+            </LabelContent>
           )}
         </LabelWithFolder>
       </TreeLine>

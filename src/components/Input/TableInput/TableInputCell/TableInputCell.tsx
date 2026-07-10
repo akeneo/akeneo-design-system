@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import React, {Ref} from 'react';
-import {AkeneoThemedProps} from '../../../../theme';
 
-const TableInputTd = styled.td<{highlighted?: boolean; inError?: boolean} & AkeneoThemedProps>`
+const TableInputTd = styled.td`
   padding: 0;
   min-width: 150px;
   max-width: 250px;

@@ -23,6 +23,7 @@ const CustomNumberInput = styled(NumberInput)`
 `;
 
 const CustomSelectInput = styled(SelectInput)`
+  min-width: 140px;
   input {
     border-left: none;
     border-top-left-radius: 0;

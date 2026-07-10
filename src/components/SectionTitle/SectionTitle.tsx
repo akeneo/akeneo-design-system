@@ -5,7 +5,7 @@ import {Button, ButtonProps} from '../Button/Button';
 import {IconButton, IconButtonProps} from '../IconButton/IconButton';
 import {Override} from '../../shared/override';
 
-const SectionTitleContainer = styled.div<{sticky?: number} & AkeneoThemedProps>`
+const SectionTitleContainer = styled.div<{$sticky?: number} & AkeneoThemedProps>`
   display: flex;
   width: 100%;
   gap: 10px;
@@ -14,11 +14,11 @@ const SectionTitleContainer = styled.div<{sticky?: number} & AkeneoThemedProps>`
   line-height: 44px;
   border-bottom: 1px solid ${getColor('grey', 140)};
 
-  ${({sticky}) =>
-    undefined !== sticky &&
+  ${({$sticky}) =>
+    undefined !== $sticky &&
     css`
       position: sticky;
-      top: ${sticky}px;
+      top: ${$sticky}px;
       background-color: ${getColor('white')};
       z-index: 9;
     `}

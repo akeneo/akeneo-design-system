@@ -3,13 +3,13 @@ import styled, {css} from 'styled-components';
 import {AkeneoThemedProps, getColor} from '../../../theme/theme';
 import {TableContext} from '../TableContext';
 
-const TableHead = styled.thead<{sticky?: number} & AkeneoThemedProps>`
-  ${({sticky}) =>
-    undefined !== sticky &&
+const TableHead = styled.thead<{$sticky?: number} & AkeneoThemedProps>`
+  ${({$sticky}) =>
+    undefined !== $sticky &&
     css`
       th {
         position: sticky;
-        top: ${sticky}px;
+        top: ${$sticky}px;
         z-index: 1;
         background-color: ${getColor('white')};
       }
@@ -49,7 +49,7 @@ const TableHeader = React.forwardRef<HTMLTableSectionElement, TableHeaderProps>(
     const {isSelectable, isDragAndDroppable, hasWarningRows, hasLockedRows} = React.useContext(TableContext);
 
     return (
-      <TableHead sticky={sticky} ref={forwardedRef}>
+      <TableHead $sticky={sticky} ref={forwardedRef}>
         <tr {...rest}>
           {/* Add new column for checkbox to be displayed properly in the tbody */}
           {isSelectable && <SelectColumn />}

@@ -1,4 +1,13 @@
-import React, {isValidElement, NamedExoticComponent, ReactElement, useEffect, useMemo, useRef, useState} from 'react';
+import React, {
+  isValidElement,
+  NamedExoticComponent,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import styled from 'styled-components';
 import {arrayUnique} from '../../../shared/array';
 import {Key} from '../../../shared/key';
@@ -13,13 +22,14 @@ import {AkeneoThemedProps, getColor} from '../../../theme/theme';
 import {ArrowDownIcon} from '../../../icons/ArrowDownIcon';
 import {ChipInput, ChipValue} from './ChipInput';
 import {usePagination} from '../../../hooks/usePagination';
+import {Locale} from '../../Locale/Locale';
 
-const MultiSelectInputContainer = styled.div<{value: string[] | null; readOnly: boolean} & AkeneoThemedProps>`
+const MultiSelectInputContainer = styled.div<{$value: string[] | null; $readOnly: boolean} & AkeneoThemedProps>`
   width: 100%;
 
   & input[type='text'] {
-    cursor: ${({readOnly}) => (readOnly ? 'not-allowed' : 'pointer')};
-    background: ${({value, readOnly}) => (null === value && readOnly ? getColor('grey', 20) : 'transparent')};
+    cursor: ${({$readOnly}) => ($readOnly ? 'not-allowed' : 'pointer')};
+    background: ${({$value, $readOnly}) => (null === $value && $readOnly ? getColor('grey', 20) : 'transparent')};
 
     &:focus {
       z-index: 2;
@@ -97,18 +107,21 @@ const EmptyResultContainer = styled.div`
   text-align: center;
 `;
 
-const OptionCollection = styled.div<{withGroups: boolean}>`
+const OptionCollection = styled.div<{$withGroups: boolean}>`
   max-height: 320px;
   overflow-y: auto;
-  padding-left: ${({withGroups}) => (withGroups ? '20px' : '0')};
+  padding-left: ${({$withGroups}) => ($withGroups ? '20px' : '0')};
 `;
 
 type OptionProps = {
   value: string;
   children: string;
+  enableLocaleRender?: boolean;
 } & React.HTMLAttributes<HTMLSpanElement>;
 
-const Option = ({children, ...rest}: OptionProps) => <span {...rest}>{children}</span>;
+const Option = ({children, enableLocaleRender, ...rest}: OptionProps) => (
+  <span {...rest}>{enableLocaleRender ? <Locale code={rest.value} languageLabel={children} /> : children}</span>
+);
 const OptionGroup = ({children, ...rest}: React.HTMLAttributes<HTMLSpanElement>) => <span {...rest}>{children}</span>;
 
 type MultiMultiSelectInputProps = Override<
@@ -206,7 +219,12 @@ type MultiMultiSelectInputProps = Override<
           onSearchChange: (searchValue: string) => void;
           disableInternalSearch: true;
         }
-    )
+    ) & {
+      /**
+       * Handler called when the dropdown open state changes.
+       */
+      onOpenChange?: (isOpen: boolean) => void;
+    }
 >;
 
 /**
@@ -233,15 +251,30 @@ const MultiSelectInput = ({
   disableAutoSelect = false,
   lockedValues = [],
   'aria-labelledby': ariaLabelledby,
+  onOpenChange,
   ...rest
 }: MultiMultiSelectInputProps) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [withGroups, setWithGroups] = useState<boolean>(false);
-  const [dropdownIsOpen, openOverlay, closeOverlay] = useBooleanState();
+  const [dropdownIsOpen, openOverlayState, closeOverlayState] = useBooleanState();
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const optionsContainerRef = useRef<HTMLDivElement>(null);
   const lastOptionRef = useRef<HTMLDivElement>(null);
+
+  const openOverlay = useCallback(() => {
+    openOverlayState();
+    if (!dropdownIsOpen) {
+      onOpenChange?.(true);
+    }
+  }, [dropdownIsOpen, openOverlayState, onOpenChange]);
+
+  const closeOverlay = useCallback(() => {
+    closeOverlayState();
+    if (dropdownIsOpen) {
+      onOpenChange?.(false);
+    }
+  }, [dropdownIsOpen, closeOverlayState, onOpenChange]);
 
   const validChildren = React.Children.toArray(children).filter(
     (child): child is ReactElement<OptionProps, NamedExoticComponent> => isValidElement<OptionProps>(child)
@@ -366,7 +399,7 @@ const MultiSelectInput = ({
   }, [filteredChildren]);
 
   return (
-    <MultiSelectInputContainer ref={containerRef} readOnly={readOnly} value={value} {...rest}>
+    <MultiSelectInputContainer ref={containerRef} $readOnly={readOnly} $value={value} {...rest}>
       <InputContainer>
         <ChipInput
           ref={inputRef}
@@ -400,7 +433,7 @@ const MultiSelectInput = ({
       </InputContainer>
       {dropdownIsOpen && !readOnly && (
         <Overlay parentRef={containerRef} onClose={handleBlur}>
-          <OptionCollection ref={optionsContainerRef} withGroups={withGroups}>
+          <OptionCollection ref={optionsContainerRef} $withGroups={withGroups}>
             {!hasChildren ? (
               <EmptyResultContainer>{emptyResultLabel}</EmptyResultContainer>
             ) : (

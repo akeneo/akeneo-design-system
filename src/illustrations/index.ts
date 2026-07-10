@@ -12,6 +12,7 @@ export * from './ChannelsIllustration';
 export * from './CityIllustration';
 export * from './ClientErrorIllustration';
 export * from './CodingIllustration';
+export * from './CommonIllustration';
 export * from './CurrenciesIllustration';
 export * from './DefaultPictureIllustration';
 export * from './DeleteFamilyVariantIllustration';

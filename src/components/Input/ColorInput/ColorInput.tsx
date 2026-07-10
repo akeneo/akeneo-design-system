@@ -7,22 +7,22 @@ import {Override} from '../../../shared/override';
 import {AkeneoThemedProps, getColor} from '../../../theme/theme';
 import {isValidColor, convertColorToLongHexColor} from './Color';
 
-const ColorInputContainer = styled.div<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
+const ColorInputContainer = styled.div<{$readOnly?: boolean; $invalid?: boolean} & AkeneoThemedProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 12px;
-  border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
+  border: 1px solid ${({$invalid}) => ($invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
   height: 74px;
   gap: 10px;
   outline-style: none;
   box-sizing: border-box;
-  background: ${({readOnly}) => (readOnly ? getColor('grey', 20) : getColor('white'))};
-  cursor: ${({readOnly}) => (readOnly ? 'not-allowed' : 'auto')};
+  background: ${({$readOnly}) => ($readOnly ? getColor('grey', 20) : getColor('white'))};
+  cursor: ${({$readOnly}) => ($readOnly ? 'not-allowed' : 'auto')};
   overflow: hidden;
-  ${({readOnly}) =>
-    !readOnly &&
+  ${({$readOnly}) =>
+    !$readOnly &&
     css`
       &:focus-within {
         box-shadow: 0 0 0 2px ${getColor('blue', 40)};
@@ -118,7 +118,7 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
     }
 
     return (
-      <ColorInputContainer invalid={invalid || !isValidColor(value)} readOnly={readOnly}>
+      <ColorInputContainer $invalid={invalid || !isValidColor(value)} $readOnly={readOnly}>
         {isValidColor(value) ? (
           <ColorPicker
             type="color"

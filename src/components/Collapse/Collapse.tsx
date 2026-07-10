@@ -1,13 +1,14 @@
-import React, {Ref, ReactNode, useRef, useState, useEffect} from 'react';
+import React, {Ref, ReactElement, ReactNode, useRef, useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {getColor, getFontSize} from '../../theme/theme';
 import {IconButton} from '../IconButton/IconButton';
 import {CheckPartialIcon} from '../../icons/CheckPartialIcon';
 import {PlusIcon} from '../../icons/PlusIcon';
+import {IconProps} from '../../icons/IconProps';
 
 const ANIMATION_DURATION = 100;
 
-const CollapseContainer = styled.div<{isOpen: boolean}>`
+const CollapseContainer = styled.div<{$isOpen: boolean}>`
   width: 100%;
   border: solid ${getColor('grey', 40)};
   border-width: 0 0 1px 0;
@@ -15,14 +16,14 @@ const CollapseContainer = styled.div<{isOpen: boolean}>`
   &:first-child {
     border-width: 1px 0;
   }
-  padding-bottom: ${({isOpen}) => (isOpen ? '10px' : 0)};
+  padding-bottom: ${({$isOpen}) => ($isOpen ? '10px' : 0)};
 `;
 
-const Content = styled.div<{$height: number; $overflow: string; shouldAnimate: boolean}>`
+const Content = styled.div<{$height: number; $overflow: string; $shouldAnimate: boolean}>`
   max-height: ${({$height}) => $height}px;
   overflow: ${({$overflow}) => $overflow};
-  ${({shouldAnimate}) =>
-    shouldAnimate &&
+  ${({$shouldAnimate}) =>
+    $shouldAnimate &&
     `
     transition: max-height ${ANIMATION_DURATION}ms ease-in-out;
   `}
@@ -68,6 +69,16 @@ type CollapseProps = {
   onCollapse: (isOpen: boolean) => void;
 
   /**
+   * Custom icon shown when the Collapse is open. Defaults to CheckPartialIcon.
+   */
+  openIcon?: ReactElement<IconProps>;
+
+  /**
+   * Custom icon shown when the Collapse is closed. Defaults to PlusIcon.
+   */
+  closeIcon?: ReactElement<IconProps>;
+
+  /**
    * Content of the Collapse.
    */
   children?: ReactNode;
@@ -78,7 +89,7 @@ type CollapseProps = {
  */
 const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
   (
-    {label, collapseButtonLabel, isOpen, onCollapse, children, ...rest}: CollapseProps,
+    {label, collapseButtonLabel, isOpen, onCollapse, openIcon, closeIcon, children, ...rest}: CollapseProps,
     forwardedRef: Ref<HTMLDivElement>
   ) => {
     const [contentHeight, setContentHeight] = useState<number>(0);
@@ -104,7 +115,7 @@ const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
     }, [children]);
 
     return (
-      <CollapseContainer ref={forwardedRef} isOpen={isOpen} {...rest}>
+      <CollapseContainer ref={forwardedRef} $isOpen={isOpen} {...rest}>
         <LabelContainer onClick={handleCollapse}>
           <Label>{label}</Label>
           <IconButton
@@ -112,14 +123,14 @@ const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
             level="tertiary"
             ghost="borderless"
             title={collapseButtonLabel}
-            icon={isOpen ? <CheckPartialIcon /> : <PlusIcon />}
+            icon={isOpen ? openIcon ?? <CheckPartialIcon /> : closeIcon ?? <PlusIcon />}
           />
         </LabelContainer>
         <Content
           ref={contentRef}
           $overflow={shouldAnimate || !isOpen ? 'hidden' : 'inherit'}
           $height={isOpen ? contentHeight : 0}
-          shouldAnimate={shouldAnimate}
+          $shouldAnimate={shouldAnimate}
         >
           {children}
         </Content>

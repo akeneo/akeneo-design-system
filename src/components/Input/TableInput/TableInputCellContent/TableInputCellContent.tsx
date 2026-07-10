@@ -5,14 +5,14 @@ import {Override} from '../../../../shared/override';
 import {highlightCell} from '../shared/highlightCell';
 
 const TableInputCellContainer = styled.div<
-  {rowTitle: boolean; highlighted: boolean; inError: boolean} & AkeneoThemedProps
+  {$rowTitle: boolean; $highlighted: boolean; $inError: boolean} & AkeneoThemedProps
 >`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
-  ${({rowTitle}) =>
-    rowTitle &&
+  ${({$rowTitle}) =>
+    $rowTitle &&
     css`
       color: ${getColor('brand', 100)};
       font-weight: bold;
@@ -42,7 +42,7 @@ const TableInputCellContent = ({
   ...rest
 }: TableInputCellContentProps) => {
   return (
-    <TableInputCellContainer {...rest} highlighted={highlighted} inError={inError} rowTitle={rowTitle}>
+    <TableInputCellContainer {...rest} $highlighted={highlighted} $inError={inError} $rowTitle={rowTitle}>
       {children}
     </TableInputCellContainer>
   );

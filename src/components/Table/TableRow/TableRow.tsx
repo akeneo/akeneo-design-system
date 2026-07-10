@@ -24,59 +24,59 @@ type Level = 'warning' | 'tertiary';
 
 const RowContainer = styled.tr<
   {
-    isSelected: boolean;
-    level?: Level;
-    isClickable: boolean;
-    isDragAndDroppable: boolean;
-    placeholderPosition: PlaceholderPosition;
+    $isSelected: boolean;
+    $level?: Level;
+    $isClickable: boolean;
+    $isDragAndDroppable: boolean;
+    $placeholderPosition: PlaceholderPosition;
   } & AkeneoThemedProps
 >`
-  ${({isSelected}) =>
-    isSelected &&
+  ${({$isSelected}) =>
+    $isSelected &&
     css`
       > td {
         background-color: ${getColor('blue', 20)};
       }
     `};
 
-  ${({isClickable}) =>
-    isClickable &&
+  ${({$isClickable}) =>
+    $isClickable &&
     css`
       &:hover {
         cursor: pointer;
       }
     `}
 
-  ${({isDragAndDroppable}) =>
-    isDragAndDroppable &&
+  ${({$isDragAndDroppable}) =>
+    $isDragAndDroppable &&
     css`
       & > *:first-child {
         width: 44px;
       }
     `}
 
-  ${({placeholderPosition}) =>
-    placeholderPosition === 'top' &&
+  ${({$placeholderPosition}) =>
+    $placeholderPosition === 'top' &&
     css`
       background: linear-gradient(to bottom, ${getColor('blue', 40)} 4px, ${getColor('white')} 0px);
     `}
 
-  ${({placeholderPosition}) =>
-    placeholderPosition === 'bottom' &&
+  ${({$placeholderPosition}) =>
+    $placeholderPosition === 'bottom' &&
     css`
       background: linear-gradient(to top, ${getColor('blue', 40)} 4px, ${getColor('white')} 0px);
     `}
 
-  ${({placeholderPosition}) =>
-    placeholderPosition === 'full_row' &&
+  ${({$placeholderPosition}) =>
+    $placeholderPosition === 'full_row' &&
     css`
       background-color: ${getColor('grey', 20)};
     `}
 
   &:hover > td {
     opacity: 1;
-    ${({isClickable}) =>
-      isClickable &&
+    ${({$isClickable}) =>
+      $isClickable &&
       css`
         background-color: ${getColor('grey', 20)};
       `}
@@ -86,8 +86,8 @@ const RowContainer = styled.tr<
     opacity: 1;
   }
 
-  ${({level}) =>
-    level === 'warning'
+  ${({$level}) =>
+    $level === 'warning'
       ? css`
           > td {
             :first-child {
@@ -96,7 +96,7 @@ const RowContainer = styled.tr<
             background-color: ${getColor('yellow', 10)};
           }
         `
-      : level === 'tertiary' &&
+      : $level === 'tertiary' &&
         css`
           > td {
             background-color: ${getColor('grey', 20)};
@@ -105,17 +105,16 @@ const RowContainer = styled.tr<
         `};
 `;
 
-const CheckboxContainer = styled.td<{isVisible: boolean}>`
-  background: none !important;
-  opacity: ${({isVisible}) => (isVisible ? 1 : 0)};
+const CheckboxContainer = styled.td<{$isVisible: boolean}>`
   cursor: auto;
 
   > div {
     justify-content: center;
+    opacity: ${({$isVisible}) => ($isVisible ? 1 : 0)};
   }
 `;
 
-const HandleCell = styled(TableCell)<{readonly: boolean}>`
+const HandleCell = styled(TableCell)<{$readOnly: boolean}>`
   cursor: grab;
   width: 20px;
 
@@ -127,8 +126,8 @@ const HandleCell = styled(TableCell)<{readonly: boolean}>`
     cursor: grabbing;
   }
 
-  ${({readonly}) =>
-    readonly &&
+  ${({$readOnly}) =>
+    $readOnly &&
     css`
       color: ${getColor('grey', 40)};
     `}
@@ -221,12 +220,12 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
     return (
       <RowContainer
         ref={forwardedRef}
-        isClickable={undefined !== onClick}
-        isSelected={!!isSelected}
-        level={level}
-        isDragAndDroppable={isDragAndDroppable}
+        $isClickable={undefined !== onClick}
+        $isSelected={!!isSelected}
+        $level={level}
+        $isDragAndDroppable={isDragAndDroppable}
         onClick={onClick}
-        placeholderPosition={isDragAndDroppable ? placeholderPosition : 'none'}
+        $placeholderPosition={isDragAndDroppable ? placeholderPosition : 'none'}
         draggable={isDragAndDroppable && draggable}
         data-draggable-index={rowIndex}
         onDragEnter={handleDragEnter}
@@ -238,7 +237,7 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
         {isSelectable && (
           <CheckboxContainer
             aria-hidden={!displayCheckbox && !isSelected}
-            isVisible={displayCheckbox || !!isSelected}
+            $isVisible={displayCheckbox || !!isSelected}
             onClick={handleCheckboxChange}
           >
             <Checkbox
@@ -254,7 +253,7 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
             onMouseDown={() => onDragStart?.(rowIndex)}
             onMouseUp={onDragEnd}
             data-testid="dragAndDrop"
-            readonly={draggable === false}
+            $readOnly={draggable === false}
           >
             <RowIcon size={16} />
           </HandleCell>

@@ -11,11 +11,12 @@ import {AkeneoThemedProps, getColor} from '../../../theme/theme';
 import {CommonStyle} from '../../../theme/common';
 
 const BORDER_SHADOW_OFFSET = 2;
+const MIN_TOP_POSITION = 0;
 
-const getWidthProperties = ({fixedWidth}: {fixedWidth: number | null} & AkeneoThemedProps) => {
-  if (null !== fixedWidth) {
+const getWidthProperties = ({$fixedWidth}: {$fixedWidth: number | null} & AkeneoThemedProps) => {
+  if (null !== $fixedWidth) {
     return css`
-      width: ${fixedWidth}px;
+      width: ${$fixedWidth}px;
     `;
   }
 
@@ -27,10 +28,10 @@ const getWidthProperties = ({fixedWidth}: {fixedWidth: number | null} & AkeneoTh
 
 const Container = styled.div<
   {
-    visible: boolean;
-    top: number;
-    left: number;
-    fixedWidth: number | null;
+    $visible: boolean;
+    $top: number;
+    $left: number;
+    $fixedWidth: number | null;
   } & AkeneoThemedProps
 >`
   ${CommonStyle};
@@ -38,11 +39,11 @@ const Container = styled.div<
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
   padding: 10px 0;
   position: fixed;
-  opacity: ${({visible}) => (visible ? 1 : 0)};
+  opacity: ${({$visible}) => ($visible ? 1 : 0)};
   transition: opacity 0.15s ease-in-out;
   z-index: 1901;
-  top: ${({top}) => top}px;
-  left: ${({left}) => left}px;
+  top: ${({$top}) => $top}px;
+  left: ${({$left}) => $left}px;
   ${getWidthProperties};
 `;
 
@@ -111,7 +112,7 @@ const getOverlayPosition = (
 
   let top =
     'up' === verticalPosition
-      ? parentRect.bottom - elementRect.height + BORDER_SHADOW_OFFSET
+      ? Math.max(parentRect.bottom - elementRect.height, MIN_TOP_POSITION) + BORDER_SHADOW_OFFSET
       : parentRect.top - BORDER_SHADOW_OFFSET;
 
   if (dropdownOpenerVisible) {
@@ -145,7 +146,7 @@ const Overlay = ({
   const portalRef = useRef<HTMLDivElement>(portalNode);
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  const overlayVerticalPosition = useVerticalPosition(overlayRef, verticalPosition);
+  const overlayVerticalPosition = useVerticalPosition(overlayRef, parentRef, verticalPosition);
   const overlayHorizontalPosition = useHorizontalPosition(overlayRef, horizontalPosition);
   const [visible, setVisible] = useState<boolean>(false);
   useShortcut(Key.Escape, onClose);
@@ -181,10 +182,10 @@ const Overlay = ({
       <Backdrop data-testid="backdrop" onClick={onClose} />
       <Container
         ref={overlayRef}
-        visible={visible}
-        top={top}
-        left={left}
-        fixedWidth={fullWidth ? parentWidth : null}
+        $visible={visible}
+        $top={top}
+        $left={left}
+        $fixedWidth={fullWidth ? parentWidth : null}
         {...rest}
       >
         {children}

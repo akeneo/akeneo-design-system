@@ -11,9 +11,9 @@ import {Override} from '../../shared/override';
 import {DraggedElementProvider} from '../../contexts/DraggedElementContext';
 import {DragAndDropMode} from '../../hooks/usePlaceholderPosition';
 
-const TableContainer = styled.table`
+const TableContainer = styled.table<{$wrapText: boolean}>`
   border-collapse: collapse;
-  width: 100%;
+  ${({$wrapText}) => ($wrapText ? 'width: max-content; max-width: 100%; min-width: min-content;' : 'width: 100%;')}
 `;
 
 type TableProps = Override<
@@ -39,6 +39,11 @@ type TableProps = Override<
      * This props should be true when one element is checked.
      */
     displayCheckbox?: boolean;
+
+    /**
+     * Let cell content wrap onto multiple lines instead of clipping to a single line.
+     */
+    wrapText?: boolean;
 
     /**
      * The content of the table.
@@ -85,6 +90,7 @@ const Table = ({
   displayCheckbox = false,
   isDragAndDroppable = false,
   dragAndDropMode = 'reorder',
+  wrapText = false,
   onReorder = undefined,
   children,
   ...rest
@@ -98,14 +104,26 @@ const Table = ({
       isDragAndDroppable,
       onReorder,
       dragAndDropMode,
+      wrapText,
     }),
-    [isSelectable, hasWarningRows, hasLockedRows, displayCheckbox, isDragAndDroppable, onReorder, dragAndDropMode]
+    [
+      isSelectable,
+      hasWarningRows,
+      hasLockedRows,
+      displayCheckbox,
+      isDragAndDroppable,
+      onReorder,
+      dragAndDropMode,
+      wrapText,
+    ]
   );
 
   return (
     <TableContext.Provider value={providerValue}>
       <DraggedElementProvider>
-        <TableContainer {...rest}>{children}</TableContainer>
+        <TableContainer $wrapText={wrapText} {...rest}>
+          {children}
+        </TableContainer>
       </DraggedElementProvider>
     </TableContext.Provider>
   );

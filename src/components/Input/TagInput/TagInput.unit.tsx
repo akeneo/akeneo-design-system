@@ -1,7 +1,16 @@
 import React, {useState} from 'react';
 import {TagInput} from './TagInput';
 import {render, screen} from '../../../storybook/test-util';
+import {fireEvent} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+const mockPaste = (element: Element, text: string) => {
+  fireEvent.paste(element, {
+    clipboardData: {
+      getData: () => text,
+    },
+  });
+};
 
 test('it renders a tag input with default tags', () => {
   render(<TagInput value={['gucci', 'samsung', 'apple']} onChange={jest.fn()} />);
@@ -44,9 +53,19 @@ test('it supports the copy paste of multiple tags', () => {
 
   render(<TagInput value={[]} onChange={handleChange} />);
 
-  userEvent.paste(screen.getByRole('textbox'), ' gucci samsung    apple asus  ');
+  mockPaste(screen.getByRole('textbox'), ' gucci samsung    apple asus  ');
 
   expect(handleChange).toBeCalledWith(['gucci', 'samsung', 'apple', 'asus']);
+});
+
+test('it supports pasting from spreadsheet with newlines and preserves spaces', () => {
+  const handleChange = jest.fn();
+
+  render(<TagInput value={[]} separators={['\\n']} onChange={handleChange} />);
+
+  mockPaste(screen.getByRole('textbox'), 'gucci\nlouis vuitton\napple');
+
+  expect(handleChange).toBeCalledWith(['gucci', 'louis vuitton', 'apple']);
 });
 
 test('it accepts multiple separators', () => {
@@ -61,7 +80,7 @@ apple \
 dior,renault;porsche';
   /*eslint-enable */
 
-  userEvent.paste(screen.getByRole('textbox'), input);
+  mockPaste(screen.getByRole('textbox'), input);
 
   expect(handleChange).toBeCalledWith(['gucci', 'samsung', 'apple', 'dior', 'renault', 'porsche']);
 });
@@ -71,7 +90,7 @@ test('it can use overridden separators', () => {
 
   render(<TagInput value={[]} separators={['w', 'y']} onChange={handleChange} />);
 
-  userEvent.paste(screen.getByRole('textbox'), 'nicewsepa ratorwindeedythisyoneytoo');
+  mockPaste(screen.getByRole('textbox'), 'nicewsepa ratorwindeedythisyoneytoo');
 
   expect(handleChange).toBeCalledWith(['nice', 'sepa rator', 'indeed', 'this', 'one', 'too']);
 });
@@ -84,7 +103,7 @@ test('it handles deletion of a tag using the mouse', () => {
 
   const result = render(<TagInputContainer />);
 
-  userEvent.paste(screen.getByRole('textbox'), 'gucci samsung apple');
+  mockPaste(screen.getByRole('textbox'), 'gucci samsung apple');
   expect(result.container.textContent).toBe(expectedTags(['gucci', 'samsung', 'apple']));
   userEvent.click(screen.getByTestId('remove-1'));
   expect(result.container.textContent).toBe(expectedTags(['gucci', 'apple']));

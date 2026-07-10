@@ -5,36 +5,36 @@ import {Override} from '../../shared/override';
 
 type StepState = 'done' | 'inprogress' | 'todo';
 
-const StepCircle = styled.div<{state: StepState} & AkeneoThemedProps>`
+const StepCircle = styled.div<{$state: StepState} & AkeneoThemedProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 32px;
   width: 32px;
   font-size: ${getFontSize('big')};
-  color: ${({state}) => {
-    if (state === 'done') return getColor('white');
-    if (state === 'inprogress') return getColor('green', 100);
+  color: ${({$state}) => {
+    if ($state === 'done') return getColor('white');
+    if ($state === 'inprogress') return getColor('green', 100);
     return getColor('grey', 120);
   }};
-  background-color: ${({state}) => {
-    return state === 'done' ? getColor('green', 100) : getColor('white');
+  background-color: ${({$state}) => {
+    return $state === 'done' ? getColor('green', 100) : getColor('white');
   }};
   border-radius: 50%;
   border: 1px solid
-    ${({state}) => {
-      if (state === 'done') return 'transparent';
-      if (state === 'inprogress') return getColor('green', 100);
+    ${({$state}) => {
+      if ($state === 'done') return 'transparent';
+      if ($state === 'inprogress') return getColor('green', 100);
       return getColor('grey', 80);
     }};
 `;
 
-const StepLabel = styled.div<{state: StepState} & AkeneoThemedProps>`
+const StepLabel = styled.div<{$state: StepState} & AkeneoThemedProps>`
   font-size: ${getFontSize('small')};
   font-weight: normal;
-  color: ${({state}) => {
-    if (state === 'inprogress') return getColor('green', 100);
-    if (state === 'done') return getColor('grey', 140);
+  color: ${({$state}) => {
+    if ($state === 'inprogress') return getColor('green', 100);
+    if ($state === 'done') return getColor('grey', 140);
     return getColor('grey', 120);
   }};
   text-transform: uppercase;
@@ -42,7 +42,7 @@ const StepLabel = styled.div<{state: StepState} & AkeneoThemedProps>`
   line-height: initial;
 `;
 
-const StepContainer = styled.li<StepProps & AkeneoThemedProps>`
+const StepContainer = styled.li<{$state: StepState; disabled?: boolean} & AkeneoThemedProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,8 +55,8 @@ const StepContainer = styled.li<StepProps & AkeneoThemedProps>`
     content: ' ';
     width: calc(100% - 34px);
     border-bottom-width: 1px;
-    border-bottom-style: ${({state}) => ('todo' === state ? 'dashed' : 'solid')};
-    border-bottom-color: ${({state}) => ('todo' !== state ? getColor('green', 100) : getColor('grey', 80))};
+    border-bottom-style: ${({$state}) => ('todo' === $state ? 'dashed' : 'solid')};
+    border-bottom-color: ${({$state}) => ('todo' !== $state ? getColor('green', 100) : getColor('grey', 80))};
     position: relative;
     left: -50%;
     top: 17px;
@@ -112,17 +112,17 @@ const Step = forwardRef<HTMLLIElement, StepProps>(
     return (
       <StepContainer
         aria-current={'inprogress' === state ? 'step' : undefined}
-        state={state}
+        $state={state}
         ref={forwardedRef}
         aria-disabled={disabled}
         onClick={disabled ? undefined : onClick}
         disabled={disabled}
         {...rest}
       >
-        <StepCircle aria-hidden state={state}>
+        <StepCircle aria-hidden $state={state}>
           {<span>{(index || 0) + 1}</span>}
         </StepCircle>
-        <StepLabel state={state}>{children}</StepLabel>
+        <StepLabel $state={state}>{children}</StepLabel>
       </StepContainer>
     );
   }

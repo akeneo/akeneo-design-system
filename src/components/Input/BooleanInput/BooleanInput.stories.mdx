@@ -34,12 +34,26 @@ import {useArgs, updateArgs} from '@storybook/client-api';
     clearLabel: {
       description: 'The label for the Clear value button',
     },
+    clearButtonDisplay: {
+      description: 'Display mode for the clear button: "full" shows icon + text, "icon" shows only icon with tooltip',
+      control: {type: 'select'}, options: ['full', 'icon'],
+      table: {
+        defaultValue: {summary: 'full'},
+      },
+    },
     size: {
       description: 'The size of the buttons',
       table: {
         defaultValue: {summary: 'normal'},
       },
       control: {type: 'select'}, options: ['normal', 'small'],
+    },
+    fit: {
+      description: 'Controls button width sizing. "fix" uses fixed widths (60px/40px); "contain" auto-sizes both buttons equally to the wider label, capped at 600px total.',
+      table: {
+        defaultValue: {summary: 'fix'},
+      },
+      control: {type: 'select'}, options: ['fix', 'contain'],
     },
   }}
   args={{
@@ -143,6 +157,39 @@ The input can in some cases have a 3rd state, EMPTY. In this case, a clear butto
           <BooleanInput {...args} value={false} size={'small'}>
             There is an error. <Link href="#">Link</Link>
           </BooleanInput>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation on clearButtonDisplay
+
+<Canvas>
+  <Story name="ClearButtonDisplay">
+    {args => {
+      return (
+        <>
+          <BooleanInput {...args} value={true} clearable={true} clearButtonDisplay={'full'} />
+          <BooleanInput {...args} value={true} clearable={true} clearButtonDisplay={'icon'} />
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Variation on fit
+
+<Canvas>
+  <Story name="Fit">
+    {args => {
+      return (
+        <>
+          <BooleanInput {...args} value={true} fit={'fix'} yesLabel={'Yes'} noLabel={'No'} />
+          <BooleanInput {...args} value={true} fit={'contain'} yesLabel={'Enabled'} noLabel={'Disabled'} />
+          <BooleanInput {...args} value={false} fit={'contain'} yesLabel={'Enabled'} noLabel={'Disabled'} />
+          <BooleanInput {...args} value={null} fit={'contain'} yesLabel={'A very long enabled label'} noLabel={'A very long disabled label'} />
+          <BooleanInput {...args} size={'small'} value={null} fit={'contain'} yesLabel={'A very long enabled label'} noLabel={'A very long disabled label'} />
         </>
       );
     }}

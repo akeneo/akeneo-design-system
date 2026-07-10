@@ -8,10 +8,10 @@ import {Tooltip} from '../Tooltip/Tooltip';
 
 type Size = 'small' | 'big';
 
-const TilesContainer = styled.div<{size: Size} & AkeneoThemedProps>`
+const TilesContainer = styled.div<{$size: Size} & AkeneoThemedProps>`
   display: grid;
-  ${({size}) =>
-    size === 'small'
+  ${({$size}) =>
+    $size === 'small'
       ? css`
           gap: 20px;
           grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -23,13 +23,13 @@ const TilesContainer = styled.div<{size: Size} & AkeneoThemedProps>`
 `;
 
 const TileContainer = styled.div<
-  {selected: boolean; size: Size; inline: boolean; onClick?: () => void; disabled: boolean} & AkeneoThemedProps
+  {$selected: boolean; $size: Size; $inline: boolean; onClick?: () => void; disabled: boolean} & AkeneoThemedProps
 >`
   position: relative;
   margin: 1px;
-  ${({size, inline}) => {
-    if (!inline) {
-      return size === 'small'
+  ${({$size, $inline}) => {
+    if (!$inline) {
+      return $size === 'small'
         ? css`
             height: 130px;
             text-align: center;
@@ -50,8 +50,8 @@ const TileContainer = styled.div<
     css`
       cursor: pointer;
     `}
-  ${({selected}) =>
-    selected
+  ${({$selected}) =>
+    $selected
       ? css`
           border: 2px solid ${getColor('blue', 100)};
           color: ${getColor('blue', 100)};
@@ -86,10 +86,10 @@ const TileContainer = styled.div<
   }
 `;
 
-const IconContainer = styled.div<{size: Size; disabled: boolean} & AkeneoThemedProps>`
+const IconContainer = styled.div<{$size: Size; disabled: boolean} & AkeneoThemedProps>`
   box-sizing: content-box;
-  ${({size}) =>
-    size === 'small'
+  ${({$size}) =>
+    $size === 'small'
       ? css`
           padding: 25px 0 0 0;
           height: 54px;
@@ -202,19 +202,20 @@ const Tile: FC<TileProps> = ({
 
   return (
     <TileContainer
-      selected={selected}
-      size={size}
-      inline={inline}
+      $selected={selected}
+      $size={size}
+      $inline={inline}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}
       aria-disabled={disabled}
       disabled={disabled}
       {...rest}
+      role="button"
     >
       {tooltipChildren && <>{tooltipChildren}</>}
       {!inline && icon && (
-        <IconContainer size={size} disabled={disabled}>
+        <IconContainer $size={size} disabled={disabled}>
           {React.cloneElement(icon, {size: size === 'small' ? 54 : 100})}
         </IconContainer>
       )}
@@ -235,7 +236,7 @@ const Tile: FC<TileProps> = ({
 const Tiles = React.forwardRef<HTMLDivElement, TilesProps>(
   ({size = 'small', inline = false, children, ...rest}: TilesProps, forwardedRef: Ref<HTMLDivElement>) => {
     return (
-      <TilesContainer size={size} ref={forwardedRef} {...rest}>
+      <TilesContainer $size={size} ref={forwardedRef} {...rest}>
         {React.Children.map(children, child => {
           if (!child) {
             return null;

@@ -16,18 +16,18 @@ import {FileInfo} from './FileInfo';
 import DefaultPictureIllustration from '../../../../static/illustrations/DefaultPicture.svg';
 
 const MediaFileInputContainer = styled.div<
-  {isCompact?: boolean; readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps
+  {$isCompact?: boolean; readOnly?: boolean; $invalid?: boolean} & AkeneoThemedProps
 >`
   position: relative;
   display: flex;
-  flex-direction: ${({isCompact}) => (isCompact ? 'row' : 'column')};
+  flex-direction: ${({$isCompact}) => ($isCompact ? 'row' : 'column')};
   align-items: center;
   padding: 12px;
-  padding-top: ${({isCompact}) => (isCompact ? 12 : 20)}px;
-  border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
+  padding-top: ${({$isCompact}) => ($isCompact ? 12 : 20)}px;
+  border: 1px solid ${({$invalid}) => ($invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
-  height: ${({isCompact}) => (isCompact ? 74 : 180)}px;
-  gap: ${({isCompact}) => (isCompact ? 10 : 0)}px;
+  height: ${({$isCompact}) => ($isCompact ? 74 : 180)}px;
+  gap: ${({$isCompact}) => ($isCompact ? 10 : 0)}px;
   outline-style: none;
   box-sizing: border-box;
   background: ${({readOnly}) => (readOnly ? getColor('grey', 20) : getColor('white'))};
@@ -74,9 +74,9 @@ const ReadOnlyIcon = styled(LockIcon)`
   margin-left: 4px;
 `;
 
-const ActionContainer = styled.div<{isCompact: boolean} & AkeneoThemedProps>`
-  ${({isCompact}) =>
-    !isCompact &&
+const ActionContainer = styled.div<{$isCompact: boolean} & AkeneoThemedProps>`
+  ${({$isCompact}) =>
+    !$isCompact &&
     css`
       position: absolute;
       top: 8px;
@@ -246,9 +246,9 @@ const MediaFileInput = React.forwardRef<HTMLInputElement, MediaFileInputProps>(
       <MediaFileInputContainer
         ref={containerRef}
         tabIndex={readOnly ? -1 : 0}
-        invalid={invalid || hasUploadFailed}
+        $invalid={invalid || hasUploadFailed}
         readOnly={readOnly}
-        isCompact={isCompact}
+        $isCompact={isCompact}
         className={className}
       >
         {!value && !isUploading && (
@@ -299,7 +299,7 @@ const MediaFileInput = React.forwardRef<HTMLInputElement, MediaFileInputProps>(
             <MediaFilePlaceholder>{hasUploadFailed ? uploadErrorLabel : placeholder}</MediaFilePlaceholder>
           </>
         )}
-        <ActionContainer isCompact={isCompact}>
+        <ActionContainer $isCompact={isCompact}>
           {value && (
             <>
               {!readOnly && clearable && (

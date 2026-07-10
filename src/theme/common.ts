@@ -67,6 +67,7 @@ const color: Color = {
   grey100: '#a1a9b7',
   grey120: '#67768a',
   grey140: '#11324d',
+  purple10: '#f5eef9',
   purple20: '#eadcf1',
   purple40: '#d4bae3',
   purple60: '#be97d5',
@@ -101,6 +102,9 @@ const color: Color = {
 };
 
 const colorAlternative: ColorAlternative = {
+  grey10: '#F6F7FB',
+  grey100: '#A1A9B7',
+  grey120: '#67768A',
   blue10: '#F0F7FC',
   blue100: '#4CA8E0',
   blue120: '#3278B7',

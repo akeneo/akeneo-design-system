@@ -70,6 +70,7 @@ const Avatar = ({
   size = 'default',
   disabled = false,
   selected = false,
+  title: titleOverride,
   ...rest
 }: AvatarProps) => {
   const theme = useTheme();
@@ -77,8 +78,8 @@ const Avatar = ({
   const fallback = (
     firstName.trim().charAt(0) + lastName.trim().charAt(0) || username.substring(0, 2)
   ).toLocaleUpperCase();
-  const title = `${firstName || ''} ${lastName || ''}`.trim() || username;
-  const title_container = title + ' container';
+  const title = titleOverride ?? (`${firstName || ''} ${lastName || ''}`.trim() || username);
+  const title_container = (titleOverride ?? title) + ' container';
 
   const backgroundColor = useMemo(() => {
     const colorId = username.split('').reduce<number>((s, l) => s + l.charCodeAt(0), 0);

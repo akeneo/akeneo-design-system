@@ -11,13 +11,13 @@ import {LockIcon} from '../../../icons/LockIcon';
 import {useShortcut} from '../../../hooks/useShortcut';
 import DefaultPicture from '../../../../static/illustrations/DefaultPicture.svg';
 
-const MediaLinkInputContainer = styled.div<{invalid?: boolean; readOnly?: boolean} & AkeneoThemedProps>`
+const MediaLinkInputContainer = styled.div<{$invalid?: boolean; readOnly?: boolean} & AkeneoThemedProps>`
   position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 12px;
-  border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
+  border: 1px solid ${({$invalid}) => ($invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
   height: 74px;
   gap: 10px;
@@ -156,7 +156,7 @@ const MediaLinkInput = React.forwardRef<HTMLInputElement, MediaLinkInputProps>(
 
     return (
       <>
-        <MediaLinkInputContainer ref={containerRef} tabIndex={readOnly ? -1 : 0} invalid={invalid} readOnly={readOnly}>
+        <MediaLinkInputContainer ref={containerRef} tabIndex={readOnly ? -1 : 0} $invalid={invalid} readOnly={readOnly}>
           {'' !== value ? (
             <MediaLinkImage
               src={displayedThumbnailUrl}

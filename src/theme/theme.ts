@@ -32,6 +32,7 @@ type Color = {
   grey40: string;
   grey60: string;
   grey80: string;
+  purple10: string;
   purple100: string;
   purple120: string;
   purple140: string;
@@ -66,6 +67,9 @@ type Color = {
 };
 
 type ColorAlternative = {
+  grey10: string;
+  grey100: string;
+  grey120: string;
   blue10: string;
   blue100: string;
   blue120: string;

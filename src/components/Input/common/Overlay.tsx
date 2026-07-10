@@ -7,18 +7,25 @@ import {AkeneoThemedProps, getColor} from '../../../theme/theme';
 import {CommonStyle} from '../../../theme/common';
 import {Override} from '../../../shared/override';
 
-const OverlayContent = styled.div<{visible?: boolean; top: number; width: number; left: number} & AkeneoThemedProps>`
+const OverlayContent = styled.div<
+  {
+    $visible?: boolean;
+    $top: number;
+    $width: number;
+    $left: number;
+  } & AkeneoThemedProps
+>`
   ${CommonStyle}
   background: ${getColor('white')};
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
   padding: 10px 0 10px 0;
   position: fixed;
-  opacity: ${({visible}) => (visible ? 1 : 0)};
+  opacity: ${({$visible}) => ($visible ? 1 : 0)};
   transition: opacity 0.15s ease-in-out;
   z-index: 2001;
-  top: ${({top}) => top}px;
-  left: ${({left}) => left}px;
-  width: ${({width}) => width}px;
+  top: ${({$top}) => $top}px;
+  left: ${({$left}) => $left}px;
+  width: ${({$width}) => $width}px;
 `;
 
 const Backdrop = styled.div`
@@ -82,7 +89,7 @@ const Overlay = ({verticalPosition, parentRef, onClose, children, ...rest}: Over
   const overlayRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState<boolean>(false);
   const [overlayPosition, setOverlayPosition] = useState<number[]>([0, 0, 0]);
-  const overlayVerticalPosition = useVerticalPosition(overlayRef, verticalPosition);
+  const overlayVerticalPosition = useVerticalPosition(overlayRef, parentRef, verticalPosition);
   useWindowResize();
 
   useEffect(() => {
@@ -103,7 +110,7 @@ const Overlay = ({verticalPosition, parentRef, onClose, children, ...rest}: Over
   return createPortal(
     <>
       <Backdrop data-testid="backdrop" onClick={onClose} />
-      <OverlayContent ref={overlayRef} visible={visible} top={top} left={left} width={width} {...rest}>
+      <OverlayContent ref={overlayRef} $visible={visible} $top={top} $left={left} $width={width} {...rest}>
         {children}
       </OverlayContent>
     </>,

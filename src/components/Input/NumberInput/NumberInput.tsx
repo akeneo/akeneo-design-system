@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useCallback, useRef} from 'react';
+import React, {ChangeEvent, useCallback, useRef, useState, WheelEvent} from 'react';
 import styled, {css} from 'styled-components';
 import {InputProps} from '../common/InputProps';
 import {ArrowDownIcon} from '../../../icons/ArrowDownIcon';
@@ -16,10 +16,10 @@ const NumberInputContainer = styled.div`
   width: 100%;
 `;
 
-const Input = styled.input<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
+const Input = styled.input<{readOnly?: boolean; $invalid?: boolean} & AkeneoThemedProps>`
   width: 100%;
   height: 40px;
-  border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
+  border: 1px solid ${({$invalid}) => ($invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
   background: ${({readOnly}) => (readOnly ? getColor('grey', 20) : getColor('white'))};
   color: ${({readOnly}) => (readOnly ? getColor('grey', 100) : getColor('grey', 140))};
@@ -73,7 +73,7 @@ const IncrementIconContainer = styled.div`
 `;
 
 type NumberInputProps = Override<
-  Override<React.InputHTMLAttributes<HTMLInputElement>, InputProps<string>>,
+  Override<Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onWheel'>, InputProps<string>>,
   (
     | {
         readOnly: true;
@@ -138,9 +138,15 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
   ) => {
     const internalRef = useRef<HTMLInputElement | null>(null);
     forwardedRef = forwardedRef ?? internalRef;
+    const [hasBadInput, setHasBadInput] = useState(false);
+
+    const handleWheel = (event: WheelEvent<HTMLInputElement>) => {
+      event.currentTarget.blur();
+    };
 
     const handleChange = useCallback(
       (event: ChangeEvent<HTMLInputElement>) => {
+        setHasBadInput(event.currentTarget.validity.badInput);
         if (!readOnly && onChange) onChange(event.currentTarget.value);
       },
       [readOnly, onChange]
@@ -178,6 +184,11 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
       }
     }, [forwardedRef, step, readOnly, value, onChange]);
 
+    // `hasBadInput` is only cleared inside `handleChange`, so if the parent resets `value`
+    // externally (e.g. discarding changes) without the user retyping, it could otherwise stay
+    // stuck. Bad input always leaves `value` at '', so gating on that avoids a stale red border.
+    const isInvalid = invalid || (hasBadInput && value === '');
+
     return (
       <NumberInputContainer>
         <Input
@@ -186,13 +197,14 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           type="number"
           readOnly={readOnly}
           disabled={readOnly}
-          aria-invalid={invalid}
-          invalid={invalid}
+          aria-invalid={isInvalid}
+          $invalid={isInvalid}
           autoComplete="off"
           value={value}
           title={value}
           step={step}
           {...rest}
+          onWheel={handleWheel}
         />
         {readOnly && <ReadOnlyIcon size={16} />}
         {!readOnly && withIncrementIcons && 'any' !== step && (

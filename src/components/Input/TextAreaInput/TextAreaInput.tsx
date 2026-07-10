@@ -13,8 +13,8 @@ const TextAreaInputContainer = styled.div`
   width: 100%;
 `;
 
-const CommonStyle = css<{readOnly?: boolean; invalid?: boolean; isValueHidden?: boolean} & AkeneoThemedProps>`
-  border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
+const CommonStyle = css<{readOnly?: boolean; $invalid?: boolean; isValueHidden?: boolean} & AkeneoThemedProps>`
+  border: 1px solid ${({$invalid}) => ($invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
   color: ${({readOnly, isValueHidden}) =>
     isValueHidden ? 'transparent' : readOnly ? getColor('grey', 100) : getColor('grey', 140)};
@@ -36,9 +36,9 @@ const CommonStyle = css<{readOnly?: boolean; invalid?: boolean; isValueHidden?: 
   }
 `;
 
-const Textarea = styled.textarea<{readOnly?: boolean; invalid?: boolean} & AkeneoThemedProps>`
+const Textarea = styled.textarea<{readOnly?: boolean; $invalid?: boolean; $resizable?: boolean} & AkeneoThemedProps>`
   ${CommonStyle}
-  resize: none;
+  resize: ${({$resizable}) => ($resizable ? 'both' : 'none')};
   height: 200px;
   padding: 10px 30px 10px 15px;
 
@@ -62,10 +62,10 @@ const variantColors: Record<Variant, string> = {
   error: 'red100',
 };
 
-const CharacterLeftLabel = styled.div<{variant: Variant}>`
+const CharacterLeftLabel = styled.div<{$variant: Variant}>`
   font-size: ${getFontSize('small')};
   align-self: flex-end;
-  color: ${({variant}) => getColor(variantColors[variant])};
+  color: ${({$variant}) => getColor(variantColors[$variant])};
 `;
 
 const ActionContainer = styled.div`
@@ -118,6 +118,11 @@ type TextAreaInputProps = Override<
      * Hide the input value.
      */
     isValueHidden?: boolean;
+
+    /**
+     * Allow the user to resize the textarea.
+     */
+    resizable?: boolean;
   }
 >;
 
@@ -134,6 +139,7 @@ const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
       characterLeftLabel,
       children,
       characterLeftLabelVariant = 'default',
+      resizable = false,
       ...rest
     }: TextAreaInputProps,
     forwardedRef: Ref<HTMLTextAreaElement>
@@ -167,13 +173,14 @@ const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
           readOnly={readOnly}
           disabled={readOnly}
           aria-invalid={invalid}
-          invalid={invalid}
+          $invalid={invalid}
+          $resizable={resizable}
           {...rest}
         />
         {actions && <ActionContainer>{actions}</ActionContainer>}
         {readOnly && <ReadOnlyIcon size={16} />}
         {characterLeftLabel && (
-          <CharacterLeftLabel variant={characterLeftLabelVariant}>{characterLeftLabel}</CharacterLeftLabel>
+          <CharacterLeftLabel $variant={characterLeftLabelVariant}>{characterLeftLabel}</CharacterLeftLabel>
         )}
       </TextAreaInputContainer>
     );

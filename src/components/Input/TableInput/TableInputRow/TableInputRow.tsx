@@ -17,10 +17,10 @@ const getZebraBackgroundColor: (highlighted: boolean, rowIndex: number) => (prop
 
 const TableInputTr = styled.tr<
   {
-    placeholderPosition: PlaceholderPosition;
-    rowIndex: number;
-    isDragAndDroppable: boolean;
-    highlighted: boolean;
+    $placeholderPosition: PlaceholderPosition;
+    $rowIndex: number;
+    $isDragAndDroppable: boolean;
+    $highlighted: boolean;
   } & AkeneoThemedProps
 >`
   height: 40px;
@@ -37,8 +37,8 @@ const TableInputTr = styled.tr<
     z-index: 2;
   }
 
-  ${({isDragAndDroppable}) =>
-    isDragAndDroppable &&
+  ${({$isDragAndDroppable}) =>
+    $isDragAndDroppable &&
     css`
       & > td:nth-child(2) {
         position: sticky;
@@ -52,40 +52,40 @@ const TableInputTr = styled.tr<
     border-right-width: 1px;
   }
 
-  ${({placeholderPosition, rowIndex, highlighted}) =>
-    placeholderPosition === 'bottom' &&
+  ${({$placeholderPosition, $rowIndex, $highlighted}) =>
+    $placeholderPosition === 'bottom' &&
     css`
       & > td {
         background: linear-gradient(
           to top,
           ${getColor('blue', 40)} 4px,
-          ${getZebraBackgroundColor(highlighted, rowIndex)} 0px
+          ${getZebraBackgroundColor($highlighted, $rowIndex)} 0px
         );
       }
     `}
 
-  ${({placeholderPosition, rowIndex, highlighted}) =>
-    placeholderPosition === 'top' &&
+  ${({$placeholderPosition, $rowIndex, $highlighted}) =>
+    $placeholderPosition === 'top' &&
     css`
       & > td {
         background: linear-gradient(
           to bottom,
           ${getColor('blue', 40)} 4px,
-          ${getZebraBackgroundColor(highlighted, rowIndex)} 0px
+          ${getZebraBackgroundColor($highlighted, $rowIndex)} 0px
         );
       }
     `}
-  
-  ${({placeholderPosition, rowIndex, highlighted}) =>
-    placeholderPosition === 'none' &&
+
+  ${({$placeholderPosition, $rowIndex, $highlighted}) =>
+    $placeholderPosition === 'none' &&
     css`
       & > td {
-        background: ${getZebraBackgroundColor(highlighted, rowIndex)};
+        background: ${getZebraBackgroundColor($highlighted, $rowIndex)};
       }
     `}
-    
-  ${({highlighted}) =>
-    highlighted &&
+
+  ${({$highlighted}) =>
+    $highlighted &&
     css`
       & > td {
         &:before {
@@ -175,17 +175,17 @@ const TableInputRow = forwardRef<HTMLTableRowElement, TableInputRowProps>(
 
     return (
       <TableInputTr
-        highlighted={highlighted}
+        $highlighted={highlighted}
         draggable={isDragAndDroppable && draggable}
-        isDragAndDroppable={isDragAndDroppable}
+        $isDragAndDroppable={isDragAndDroppable}
         data-draggable-index={rowIndex}
         onDragEnter={handleDragEnter}
         onDragLeave={placeholderDragLeave}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         ref={forwardedRef}
-        placeholderPosition={placeholderPosition}
-        rowIndex={rowIndex}
+        $placeholderPosition={placeholderPosition}
+        $rowIndex={rowIndex}
         {...rest}
       >
         {isDragAndDroppable && (

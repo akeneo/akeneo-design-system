@@ -1,6 +1,6 @@
 import React, {HTMLAttributes, ReactNode, useRef, useEffect, RefObject, useState} from 'react';
 import {createPortal} from 'react-dom';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {Override} from '../../shared/override';
 import {HelpPlainIcon} from '../../icons/HelpPlainIcon';
 import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
@@ -10,11 +10,15 @@ import {useBooleanState} from '../../hooks/useBooleanState';
 type Direction = 'top' | 'right' | 'bottom' | 'left';
 
 const TooltipIconMargin = 5;
-const TooltipContainer = styled.div<{size: number}>`
+const TooltipContainer = styled.div<{$size?: number}>`
   position: relative;
-  height: ${({size}) => size + TooltipIconMargin * 2}px;
-  width: ${({size}) => size + TooltipIconMargin * 2}px;
   display: inline-block;
+  ${({$size}) =>
+    $size !== undefined &&
+    css`
+      height: ${$size + TooltipIconMargin * 2}px;
+      width: ${$size + TooltipIconMargin * 2}px;
+    `}
 `;
 
 const TooltipIcon = styled(HelpPlainIcon)`
@@ -22,10 +26,19 @@ const TooltipIcon = styled(HelpPlainIcon)`
   color: ${getColor('blue', 100)};
 `;
 
-const TooltipContent = styled.div<{direction: Direction; width: number; top: number; left: number} & AkeneoThemedProps>`
+const TooltipContent = styled.div<
+  {
+    $direction: Direction;
+    width: number;
+    $top: number;
+    $left: number;
+    $offset?: number;
+    $contentZIndex?: number;
+  } & AkeneoThemedProps
+>`
   ${CommonStyle}
   position: fixed;
-  z-index: 1901;
+  z-index: ${({$contentZIndex}) => $contentZIndex ?? 1901};
   border-radius: 4px;
   padding: 10px;
   width: ${({width}) => width}px;
@@ -36,9 +49,27 @@ const TooltipContent = styled.div<{direction: Direction; width: number; top: num
   line-height: 1;
   text-transform: none;
   box-shadow: 0 0 16px rgba(89, 146, 199, 0.25);
-  top: ${({top}) => top}px;
-  left: ${({left}) => left}px;
-  opacity: ${({top, left}) => (-1 === top && -1 === left ? 0 : 1)};
+  top: ${({$top, $direction, $offset = 0}) => {
+    switch ($direction) {
+      case 'top':
+        return `${$top - $offset}px`;
+      case 'bottom':
+        return `${$top + $offset}px`;
+      default:
+        return `${$top}px`;
+    }
+  }};
+  left: ${({$left, $direction, $offset = 0}) => {
+    switch ($direction) {
+      case 'left':
+        return `${$left - $offset}px`;
+      case 'right':
+        return `${$left + $offset}px`;
+      default:
+        return `${$left}px`;
+    }
+  }};
+  opacity: ${({$top, $left}) => (-1 === $top && -1 === $left ? 0 : 1)};
 `;
 
 const TooltipTitle = styled.div`
@@ -100,6 +131,11 @@ export type TooltipProps = Override<
     iconSize?: number;
 
     /**
+     * If provided, define the node to display as trigger.
+     */
+    trigger?: ReactNode;
+
+    /**
      * Content of the tooltip.
      */
     children: ReactNode;
@@ -108,11 +144,31 @@ export type TooltipProps = Override<
      * Define the width of the tooltip.
      */
     width?: number;
+
+    /**
+     * Define the offset of the tooltip content relative to the anchor.
+     */
+    offset?: number;
+
+    /**
+     * Define a custom z-index for the tooltip content.
+     */
+    contentZIndex?: number;
   }
 >;
 
-const Tooltip = ({direction = 'top', iconSize = 24, width = 200, children, ...rest}: TooltipProps) => {
+const Tooltip = ({
+  direction = 'top',
+  iconSize = 24,
+  width = 200,
+  children,
+  trigger,
+  offset,
+  contentZIndex,
+  ...rest
+}: TooltipProps) => {
   const [isVisible, showTooltip, hideTooltip] = useBooleanState(false);
+  const hideTooltipAfterTimeoutRef = useRef<number>();
   const portalNode = document.createElement('div');
   portalNode.setAttribute('id', 'tooltip-root');
   const portalRef = useRef<HTMLDivElement>(portalNode);
@@ -120,11 +176,23 @@ const Tooltip = ({direction = 'top', iconSize = 24, width = 200, children, ...re
   const contentRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<number[]>([0, 0]);
 
+  const showTooltipHandler = () => {
+    clearTimeout(hideTooltipAfterTimeoutRef.current);
+    showTooltip();
+  };
+
+  const hideTooltipAfterTimeout = () => {
+    hideTooltipAfterTimeoutRef.current = window.setTimeout(() => {
+      hideTooltip();
+    }, 100);
+  };
+
   useEffect(() => {
     document.body.appendChild(portalRef.current);
 
     return () => {
       document.body.removeChild(portalRef.current);
+      clearTimeout(hideTooltipAfterTimeoutRef.current);
     };
   }, []);
 
@@ -139,14 +207,24 @@ const Tooltip = ({direction = 'top', iconSize = 24, width = 200, children, ...re
       ref={parentRef}
       role="tooltip"
       {...rest}
-      size={iconSize}
-      onMouseEnter={showTooltip}
-      onMouseLeave={hideTooltip}
+      $size={trigger ? undefined : iconSize}
+      onMouseEnter={showTooltipHandler}
+      onMouseLeave={hideTooltipAfterTimeout}
     >
-      <TooltipIcon size={iconSize} />
+      {trigger || <TooltipIcon size={iconSize} />}
       {isVisible &&
         createPortal(
-          <TooltipContent ref={contentRef} direction={direction} width={width} top={top} left={left}>
+          <TooltipContent
+            ref={contentRef}
+            $direction={direction}
+            width={width}
+            $top={top}
+            $left={left}
+            $offset={offset}
+            $contentZIndex={contentZIndex}
+            onMouseEnter={showTooltipHandler}
+            onMouseLeave={hideTooltipAfterTimeout}
+          >
             {children}
           </TooltipContent>,
           portalRef.current

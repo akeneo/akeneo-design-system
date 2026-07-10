@@ -62,6 +62,16 @@ test('TextAreaInput supports forwardRef', () => {
   expect(ref.current).not.toBe(null);
 });
 
+test('it is not resizable by default', () => {
+  render(<TextAreaInput value="nice" onChange={jest.fn()} data-testid="my_value" />);
+  expect(screen.getByTestId('my_value')).toHaveStyle('resize: none');
+});
+
+test('it is resizable when the resizable prop is set', () => {
+  render(<TextAreaInput value="nice" onChange={jest.fn()} resizable={true} data-testid="my_value" />);
+  expect(screen.getByTestId('my_value')).toHaveStyle('resize: both');
+});
+
 test('TextAreaInput supports ...rest props', () => {
   render(<TextAreaInput value="nice" onChange={jest.fn()} data-testid="my_value" />);
   expect(screen.getByTestId('my_value')).toBeInTheDocument();

@@ -185,3 +185,19 @@ The Field component is used to display information around an Input component.
     }}
   </Story>
 </Canvas>
+
+## Variation with label title
+
+<Canvas>
+  <Story name="Label title">
+    {args => {
+      return (
+        <Field {...args} label={<Highlight highlight="Label">Highlight label</Highlight>} labelTitle="My label">
+          <TextInput
+            placeholder="This field has a label with title despite label is not as string"
+          />
+        </Field>
+      );
+    }}
+  </Story>
+</Canvas>

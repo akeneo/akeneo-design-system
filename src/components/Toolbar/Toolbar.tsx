@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import {AkeneoThemedProps, getColor, getFontSize} from '../../theme/theme';
 import {Override} from '../../shared/override';
 
-const ToolbarContainer = styled.div<{isVisible: boolean} & AkeneoThemedProps>`
+const ToolbarContainer = styled.div<{$isVisible: boolean} & AkeneoThemedProps>`
   display: flex;
   gap: 15px;
   padding: 0 15px;
   background-color: ${getColor('white')};
   align-items: center;
-  border-top: 1px solid ${({isVisible}) => (!isVisible ? 'transparent' : getColor('grey', 80))};
-  flex-basis: ${({isVisible}) => (!isVisible ? 0 : '70px')};
-  min-height: ${({isVisible}) => (!isVisible ? 0 : '70px')};
+  border-top: 1px solid ${({$isVisible}) => (!$isVisible ? 'transparent' : getColor('grey', 80))};
+  flex-basis: ${({$isVisible}) => (!$isVisible ? 0 : '70px')};
+  min-height: ${({$isVisible}) => (!$isVisible ? 0 : '70px')};
   transition: flex-basis 0.3s ease-in-out, min-height 0.3s ease-in-out, border 0.3s ease-in-out;
-  overflow: ${({isVisible}) => (!isVisible ? 'hidden' : 'visible')};
+  overflow: ${({$isVisible}) => (!$isVisible ? 'hidden' : 'visible')};
 `;
 
 const SelectionContainer = styled.div`
@@ -26,6 +26,14 @@ const ActionsContainer = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  & > * {
+    flex-shrink: 0;
+  }
 `;
 
 const LabelContainer = styled.div`
@@ -56,7 +64,7 @@ type ToolbarProps = Override<
  */
 const Toolbar = ({isVisible = true, children, ...rest}: ToolbarProps) => {
   return (
-    <ToolbarContainer isVisible={isVisible} {...rest}>
+    <ToolbarContainer $isVisible={isVisible} {...rest}>
       {children}
     </ToolbarContainer>
   );

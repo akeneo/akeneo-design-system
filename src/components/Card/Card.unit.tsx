@@ -156,3 +156,32 @@ test('Card supports ...rest props', () => {
 
   expect(screen.getByTestId('my_value')).toBeInTheDocument();
 });
+
+test('it still calls onSelect handler when dimmed', () => {
+  const onSelect = jest.fn();
+
+  render(
+    <Card src="some.jpg" isSelected={false} onSelect={onSelect} dimmed={true}>
+      Card text
+    </Card>
+  );
+
+  userEvent.click(screen.getByText('Card text'));
+
+  expect(onSelect).toBeCalledWith(true);
+  expect(onSelect).toBeCalledTimes(1);
+});
+
+test('it still calls onClick handler when dimmed', () => {
+  const onClick = jest.fn();
+
+  render(
+    <Card src="some.jpg" onClick={onClick} dimmed={true}>
+      Card text
+    </Card>
+  );
+
+  userEvent.click(screen.getByText('Card text'));
+
+  expect(onClick).toBeCalledTimes(1);
+});

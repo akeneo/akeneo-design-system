@@ -16,7 +16,7 @@ const SelectButtonDropdown = styled(Dropdown)`
   color: ${getColor('grey', 140)};
 `;
 
-const SelectButton = styled.button<{highlighted?: boolean; inError?: boolean} & AkeneoThemedProps>`
+const SelectButton = styled.button<{$highlighted?: boolean; $inError?: boolean} & AkeneoThemedProps>`
   color: ${getColor('grey', 140)};
   width: 100%;
   background: none;
@@ -133,9 +133,9 @@ const TableInputSelect: React.FC<TableInputSelectProps> = ({
           handleOpen();
         }}
         tabIndex={-1}
-        highlighted={highlighted}
+        $highlighted={highlighted}
         title={value?.toString()}
-        inError={inError}
+        $inError={inError}
       >
         {value}&nbsp;
       </SelectButton>

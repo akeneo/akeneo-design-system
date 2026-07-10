@@ -8,17 +8,18 @@ import {Block, BlockProps} from '../Block/Block';
 import {useId} from '../../hooks/useId';
 import {getColor, getFontSize} from '../../theme/theme';
 
-const FieldContainer = styled.div<{fullWidth: boolean}>`
+const FieldContainer = styled.div<{$fullWidth: boolean}>`
   display: flex;
   flex-direction: column;
-  max-width: ${({fullWidth}) => (fullWidth ? '100%' : '460px')};
+  max-width: ${({$fullWidth}) => ($fullWidth ? '100%' : '460px')};
 `;
 
 const LabelContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   line-height: 16px;
   margin-bottom: 8px;
+  min-height: 16px; /* To keep the height consistent when the label is empty */
   gap: 5px;
 `;
 
@@ -38,10 +39,13 @@ const HelperContainer = styled.div`
   max-width: 460px;
 `;
 
-const LabelPrefix = styled.span`
+const LabelPrefix = styled.div`
   font-size: ${getFontSize('small')};
   color: ${getColor('grey', 100)};
-  margin-right: 10px;
+  margin-bottom: -5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 type FieldChild =
@@ -104,6 +108,12 @@ type FieldProps = {
   actions?: ReactNode;
 
   labelPrefix?: string;
+
+  /**
+   * To define the label title when `label` is not a string.
+   * Will be concatenated with `requiredLabel` if it is not null.
+   */
+  labelTitle?: string;
 };
 
 /**
@@ -123,12 +133,16 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
       children,
       actions,
       labelPrefix,
+      labelTitle,
       ...rest
     }: FieldProps,
     forwardedRef: Ref<HTMLDivElement>
   ) => {
     const inputId = useId('input_');
     const labelId = useId('label_');
+
+    const titleBaseText = labelTitle ?? (typeof label === 'string' ? label : undefined);
+    const title = titleBaseText ? `${titleBaseText}${requiredLabel ? ' ' + requiredLabel : ''}` : undefined;
 
     const decoratedChildren = React.Children.map(children, child => {
       if (React.isValidElement<HelperProps>(child) && child.type === Helper) {
@@ -147,16 +161,12 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
     });
 
     return (
-      <FieldContainer ref={forwardedRef} fullWidth={fullWidth ?? false} {...rest}>
+      <FieldContainer ref={forwardedRef} $fullWidth={fullWidth ?? false} {...rest}>
+        {labelPrefix && <LabelPrefix title={labelPrefix}>{labelPrefix}</LabelPrefix>}
         <LabelContainer>
           {incomplete && <Pill level="warning" aria-label={incompleteLabel} />}
           {isModified && <Pill level="primary" />}
-          <Label
-            htmlFor={inputId}
-            id={labelId}
-            title={typeof label === 'string' ? `${label}${requiredLabel ? ' ' + requiredLabel : ''}` : undefined}
-          >
-            {labelPrefix && <LabelPrefix>{labelPrefix}&nbsp;</LabelPrefix>}
+          <Label htmlFor={inputId} id={labelId} title={title}>
             {label}
             {requiredLabel && (
               <>

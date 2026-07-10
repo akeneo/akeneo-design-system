@@ -17,8 +17,8 @@ const RemoveTagIcon = styled(CloseIcon)<AkeneoThemedProps & {$isErrored: boolean
   color: ${({$isErrored}) => ($isErrored ? getColor('red', 100) : getColor('grey', 120))};
 `;
 
-const TagContainer = styled.ul<AkeneoThemedProps & {invalid?: boolean; readOnly?: boolean}>`
-  border: 1px solid ${({invalid}) => (invalid ? getColor('red', 100) : getColor('grey', 80))};
+const TagContainer = styled.ul<AkeneoThemedProps & {$invalid?: boolean; readOnly?: boolean}>`
+  border: 1px solid ${({$invalid}) => ($invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
   padding: 4px;
   display: flex;
@@ -36,19 +36,19 @@ const TagContainer = styled.ul<AkeneoThemedProps & {invalid?: boolean; readOnly?
   }
 `;
 
-const Tag = styled.li<AkeneoThemedProps & {isSelected: boolean; readOnly?: boolean; isErrored: boolean}>`
+const Tag = styled.li<AkeneoThemedProps & {$isSelected: boolean; readOnly?: boolean; $isErrored: boolean}>`
   list-style-type: none;
   padding: ${({readOnly}) => (readOnly ? '3px 17px 3px 17px' : '3px 17px 3px 4px')};
-  border: 1px ${({isErrored}) => (isErrored ? getColor('red', 80) : getColor('grey', 80))} solid;
-  background-color: ${({isSelected, isErrored}) =>
-    isErrored ? getColor('red', 20) : isSelected ? getColor('grey', 40) : getColor('grey', 20)};
+  border: 1px ${({$isErrored}) => ($isErrored ? getColor('red', 80) : getColor('grey', 80))} solid;
+  background-color: ${({$isSelected, $isErrored}) =>
+    $isErrored ? getColor('red', 20) : $isSelected ? getColor('grey', 40) : getColor('grey', 20)};
   display: flex;
   align-items: center;
   height: 30px;
   box-sizing: border-box;
   max-width: 100%;
-  color: ${({readOnly, isErrored}) =>
-    isErrored ? getColor('red', 100) : readOnly ? getColor('grey', 100) : getColor('grey', 140)};
+  color: ${({readOnly, $isErrored}) =>
+    $isErrored ? getColor('red', 100) : readOnly ? getColor('grey', 100) : getColor('grey', 140)};
 `;
 
 const TagText = styled.span`
@@ -58,12 +58,12 @@ const TagText = styled.span`
   white-space: nowrap;
 `;
 
-const InputContainer = styled.li<AkeneoThemedProps & {hasTags: boolean}>`
+const InputContainer = styled.li<AkeneoThemedProps & {$hasTags: boolean}>`
   list-style-type: none;
   color: ${getColor('grey', 120)};
   border: 0;
   flex: 1;
-  padding: ${({hasTags}) => (hasTags ? '0' : '0 11px')};
+  padding: ${({$hasTags}) => ($hasTags ? '0' : '0 11px')};
   align-items: center;
   display: flex;
 
@@ -172,6 +172,29 @@ const TagInput: FC<TagInputProps> = ({
     }
   };
 
+  /**
+   * Intercepts paste events to preserve newlines from clipboard data (e.g. copying cells from Excel/Calc).
+   *
+   * When pasting into <input type="text">, the browser converts newlines to spaces before onChange fires,
+   * which would split multi-word values like "strawberry cake" into separate tags when using \s separator.
+   * By accessing clipboardData directly, we get the original newlines and can split only on actual line breaks.
+   *
+   */
+  const onPasteCreateTags = (event: React.ClipboardEvent<HTMLInputElement>) => {
+    const pastedText = event.clipboardData.getData('text');
+    if (pastedText !== '') {
+      const separatorPattern = separators.join('');
+      const regex = new RegExp(`[${separatorPattern}]+`, 'g');
+      const newTags = pastedText.split(regex);
+      const newTagsWithoutEmpty = newTags.filter((tag: string) => tag.trim() !== '');
+
+      if (newTagsWithoutEmpty.length > 0) {
+        event.preventDefault();
+        createTags([...value, ...newTagsWithoutEmpty]);
+      }
+    }
+  };
+
   const createTags = (newTags: string[]) => {
     newTags = arrayUnique(newTags);
     onChange(newTags);
@@ -234,7 +257,7 @@ const TagInput: FC<TagInputProps> = ({
     <TagContainer
       data-testid="tagInputContainer"
       ref={containerRef}
-      invalid={invalid}
+      $invalid={invalid}
       onClick={focusOnInputField}
       readOnly={readOnly}
     >
@@ -243,9 +266,9 @@ const TagInput: FC<TagInputProps> = ({
           <Tag
             key={`${tag}-${index}`}
             data-testid="tag"
-            isSelected={index === value.length - 1 && isLastTagSelected}
+            $isSelected={index === value.length - 1 && isLastTagSelected}
             readOnly={readOnly}
-            isErrored={invalidValue.includes(tag)}
+            $isErrored={invalidValue.includes(tag)}
           >
             {!readOnly && (
               <RemoveTagIcon
@@ -258,7 +281,7 @@ const TagInput: FC<TagInputProps> = ({
           </Tag>
         );
       })}
-      <InputContainer ref={inputContainerRef} onClick={focusOnInputField} hasTags={value.length > 0}>
+      <InputContainer ref={inputContainerRef} onClick={focusOnInputField} $hasTags={value.length > 0}>
         <input
           type="text"
           data-testid="tag-input"
@@ -267,6 +290,7 @@ const TagInput: FC<TagInputProps> = ({
           onKeyDown={handleKeyDown}
           onChange={onChangeCreateTags}
           onBlurCapture={onBlurCreateTag}
+          onPaste={onPasteCreateTags}
           aria-invalid={invalid}
           readOnly={readOnly}
           disabled={readOnly}

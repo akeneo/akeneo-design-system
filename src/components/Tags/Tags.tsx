@@ -8,21 +8,25 @@ import {AkeneoThemedProps, getColorAlternative, getFontSize} from '../../theme/t
  * https://www.notion.so/akeneo/Alternative-colors-0f5283c1b02f4fd4a418f1e20f2efa99
  * Those colors will most likely only be used with the tags components
  */
-type TagTint =
-  | 'green'
-  | 'blue'
-  | 'dark_blue'
-  | 'purple'
-  | 'dark_purple'
-  | 'yellow'
-  | 'red'
-  | 'dark_cyan'
-  | 'forest_green'
-  | 'olive_green'
-  | 'hot_pink'
-  | 'coral_red'
-  | 'orange'
-  | 'chocolate';
+const tagTints = [
+  'grey',
+  'green',
+  'blue',
+  'dark_blue',
+  'purple',
+  'dark_purple',
+  'yellow',
+  'red',
+  'dark_cyan',
+  'forest_green',
+  'olive_green',
+  'hot_pink',
+  'coral_red',
+  'orange',
+  'chocolate',
+] as const;
+
+type TagTint = (typeof tagTints)[number];
 
 // Because tints are in snake_case, and colors code are in camelCase
 const convertTintToColorCode = (str: string) => {
@@ -101,5 +105,5 @@ const Tags = React.forwardRef<HTMLUListElement, TagsProps>(
   }
 );
 
-export {Tags, Tag};
+export {Tags, Tag, tagTints};
 export type {TagTint};

@@ -89,9 +89,36 @@ Cards should be displayed in a grid, therefore, a `CardGrid` component is also a
           </Card>
           <Card {...args} src={getStaticImage('akenec_200.jpg')}>
             <Card.BadgeContainer>
+              <Badge level="tertiary">tag</Badge>
               <Badge level="primary">100%</Badge>
             </Card.BadgeContainer>
             Card complete
+          </Card>
+        </CardGrid>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Dimmed
+
+Use `dimmed` to visually indicate that the item represented by the card is inactive or unavailable,
+without affecting card interactivity. Only the image loses opacity — clicking, selecting, and links continue to work normally.
+
+This differs from `disabled`, which blocks all interaction entirely.
+
+<Canvas>
+  <Story name="Dimmed">
+    {args => {
+      const [firstSelected, setFirstSelected] = useState(false);
+      const [secondSelected, setSecondSelected] = useState(false);
+      return (
+        <CardGrid>
+          <Card {...args} src={getStaticImage('akenea_200.jpg')} onSelect={() => setFirstSelected(!firstSelected)} isSelected={firstSelected}>
+            Active card (normal)
+          </Card>
+          <Card {...args} dimmed src={getStaticImage('akeneb_200.jpg')} onSelect={() => setSecondSelected(!secondSelected)} isSelected={secondSelected}>
+            Dimmed card (inactive item)
           </Card>
         </CardGrid>
       );

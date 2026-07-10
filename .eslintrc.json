@@ -3,7 +3,7 @@
   "parserOptions": {
     "project": ["tsconfig.json"]
   },
-  "plugins": ["@typescript-eslint", "react", "react-hooks"],
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "akeneo-design-system"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -16,7 +16,6 @@
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/comma-spacing": "error",
-    "arrow-parens": ["warn", "as-needed"],
     "indent": "off",
     "max-len": ["error", {"code": 120, "ignoreStrings": true}],
     "newline-before-return": "off",
@@ -25,7 +24,8 @@
     "react-hooks/rules-of-hooks": "error",
     "react/display-name": "off",
     "react/prop-types": "off",
-    "comma-spacing": "off"
+    "comma-spacing": "off",
+    "akeneo-design-system/no-invalid-styled-props": "error"
   },
   "ignorePatterns": ["src/illustrations/**", "src/icons/**", "**/*.unit.tsx", "**/*.unit.ts"],
   "settings": {

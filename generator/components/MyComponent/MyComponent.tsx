@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Override} from '../../shared';
 
 //TODO be sure to select the appropriate container element here
-const MyComponentContainer = styled.div<{level: string}>``;
+const MyComponentContainer = styled.div<{$level: string}>``;
 
 type MyComponentProps = Override<
   HTMLAttributes<HTMLDivElement>,
@@ -26,7 +26,7 @@ type MyComponentProps = Override<
 const MyComponent = forwardRef<HTMLDivElement, MyComponentProps>(
   ({level = 'primary', children, ...rest}: MyComponentProps, forwardedRef: Ref<HTMLDivElement>) => {
     return (
-      <MyComponentContainer level={level} ref={forwardedRef} {...rest}>
+      <MyComponentContainer $level={level} ref={forwardedRef} {...rest}>
         {children}
       </MyComponentContainer>
     );
