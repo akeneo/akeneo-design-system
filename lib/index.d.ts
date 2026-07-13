@@ -1023,6 +1023,8 @@ declare type MetricInputProps = {
     }[];
     openLabel: string;
     emptyResultLabel?: string;
+    amountPlaceholder?: string;
+    unitPlaceholder?: string;
     min?: number;
     max?: number;
     invalid?: boolean;

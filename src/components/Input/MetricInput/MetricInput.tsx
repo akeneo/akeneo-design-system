@@ -4,13 +4,6 @@ import {SelectInput} from '../SelectInput/SelectInput';
 import styled from 'styled-components';
 import {getColor} from '../../../theme/theme';
 
-const MetricInputContainer = styled.div`
-  display: flex;
-  > *:nth-child(2) {
-    width: auto;
-  }
-`;
-
 const CustomNumberInput = styled(NumberInput)`
   border-right: none;
   border-top-right-radius: 0;
@@ -22,8 +15,21 @@ const CustomNumberInput = styled(NumberInput)`
   }
 `;
 
-const CustomSelectInput = styled(SelectInput)`
+const CustomSelectInput = styled(SelectInput)<{$invalid: boolean}>`
+  position: relative;
   min-width: 140px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 0;
+    width: 1px;
+    background-color: ${({$invalid}) => ($invalid ? getColor('red', 100) : getColor('grey', 80))};
+    pointer-events: none;
+  }
+
   input {
     border-left: none;
     border-top-left-radius: 0;
@@ -38,6 +44,16 @@ const CustomSelectInput = styled(SelectInput)`
   }
 `;
 
+const MetricInputContainer = styled.div`
+  display: flex;
+  > *:nth-child(2) {
+    width: auto;
+  }
+  &:focus-within ${CustomSelectInput}::after {
+    display: none;
+  }
+`;
+
 type MetricInputProps = {
   amount: string;
   onAmountChange: (amount: string) => void;
@@ -46,6 +62,8 @@ type MetricInputProps = {
   unitOptions: {value: string; label: string | ((amount: string) => string)}[];
   openLabel: string;
   emptyResultLabel?: string;
+  amountPlaceholder?: string;
+  unitPlaceholder?: string;
   min?: number;
   max?: number;
   invalid?: boolean;
@@ -63,6 +81,8 @@ export const MetricInput: React.FC<MetricInputProps> = ({
   unitOptions,
   openLabel,
   emptyResultLabel = 'No result found',
+  amountPlaceholder,
+  unitPlaceholder,
   min,
   max,
   invalid = false,
@@ -86,6 +106,7 @@ export const MetricInput: React.FC<MetricInputProps> = ({
         value={amount}
         onChange={onAmountChange}
         withIncrementIcons={false}
+        placeholder={amountPlaceholder}
         min={min}
         max={max}
         invalid={invalid}
@@ -95,11 +116,13 @@ export const MetricInput: React.FC<MetricInputProps> = ({
       />
       <CustomSelectInput
         onChange={onUnitChange}
-        value={unit}
+        value={unit || null}
         clearable={false}
         openLabel={openLabel}
         emptyResultLabel={emptyResultLabel}
+        placeholder={unitPlaceholder}
         invalid={invalid}
+        $invalid={invalid}
         data-testid="currency"
         readOnly={readOnly}
         aria-labelledby={ariaLabelledby}
