@@ -107,6 +107,11 @@ type FieldProps = {
    */
   actions?: ReactNode;
 
+  /**
+   * Content rendered at the very start of the label row, before the pills.
+   */
+  labelDecoration?: ReactNode;
+
   labelPrefix?: string;
 
   /**
@@ -132,6 +137,7 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
       requiredLabel,
       children,
       actions,
+      labelDecoration,
       labelPrefix,
       labelTitle,
       ...rest
@@ -164,6 +170,7 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
       <FieldContainer ref={forwardedRef} $fullWidth={fullWidth ?? false} {...rest}>
         {labelPrefix && <LabelPrefix title={labelPrefix}>{labelPrefix}</LabelPrefix>}
         <LabelContainer>
+          {labelDecoration}
           {incomplete && <Pill level="warning" aria-label={incompleteLabel} />}
           {isModified && <Pill level="primary" />}
           <Label htmlFor={inputId} id={labelId} title={title}>

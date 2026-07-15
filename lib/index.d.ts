@@ -625,6 +625,7 @@ export declare type FieldProps = {
     fullWidth?: boolean;
     children?: FieldChild;
     actions?: ReactNode;
+    labelDecoration?: ReactNode;
     labelPrefix?: string;
     labelTitle?: string;
 };
