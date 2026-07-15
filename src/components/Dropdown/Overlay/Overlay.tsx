@@ -91,7 +91,7 @@ const Backdrop = styled.div`
   z-index: 1900;
 `;
 
-const getOverlayPosition = (
+export const getOverlayPosition = (
   verticalPosition?: VerticalPosition,
   horizontalPosition?: HorizontalPosition,
   dropdownOpenerVisible?: boolean,
@@ -110,20 +110,13 @@ const getOverlayPosition = (
   const parentRect = parentRef.current.getBoundingClientRect();
   const elementRect = elementRef.current.getBoundingClientRect();
 
-  let top =
-    'up' === verticalPosition
-      ? Math.max(parentRect.bottom - elementRect.height, MIN_TOP_POSITION) + BORDER_SHADOW_OFFSET
-      : parentRect.top - BORDER_SHADOW_OFFSET;
-
-  if (dropdownOpenerVisible) {
-    top = 'up' === verticalPosition ? parentRect.top - elementRect.height : parentRect.bottom + 1;
-  }
-
-  // Adjust the vertical position to top if the dropdown list height exceeds the screen
-  const spaceBelow = window.innerHeight - parentRect.bottom;
-  const exceedsScreen = spaceBelow < elementRect.height && parentRect.top > elementRect.height;
-  top = exceedsScreen ? parentRect.bottom - elementRect.height + BORDER_SHADOW_OFFSET : top;
-  top = exceedsScreen && dropdownOpenerVisible ? parentRect.top - elementRect.height : top;
+  const openerTop =
+    'up' === verticalPosition ? parentRect.top - elementRect.height : parentRect.top - BORDER_SHADOW_OFFSET;
+  const belowVisibleOpener = parentRect.bottom + 1;
+  const top = Math.max(
+    dropdownOpenerVisible && 'up' !== verticalPosition ? belowVisibleOpener : openerTop,
+    MIN_TOP_POSITION
+  );
 
   const left = 'left' === horizontalPosition ? parentRect.right - elementRect.width : parentRect.left;
 
