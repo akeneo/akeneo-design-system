@@ -508,6 +508,20 @@
         "__isArgsStory": true
       }
     },
+    "components-card--dimmed": {
+      "id": "components-card--dimmed",
+      "name": "Dimmed",
+      "title": "Components/Card",
+      "importPath": "./src/components/Card/Card.stories.mdx",
+      "kind": "Components/Card",
+      "story": "Dimmed",
+      "parameters": {
+        "fileName": "./src/components/Card/Card.stories.mdx",
+        "framework": "react",
+        "__id": "components-card--dimmed",
+        "__isArgsStory": true
+      }
+    },
     "components-card--with-links": {
       "id": "components-card--with-links",
       "name": "With Links",
@@ -928,6 +942,34 @@
         "__isArgsStory": true
       }
     },
+    "components-field--label-prefix": {
+      "id": "components-field--label-prefix",
+      "name": "Label prefix",
+      "title": "Components/Field",
+      "importPath": "./src/components/Field/Field.stories.mdx",
+      "kind": "Components/Field",
+      "story": "Label prefix",
+      "parameters": {
+        "fileName": "./src/components/Field/Field.stories.mdx",
+        "framework": "react",
+        "__id": "components-field--label-prefix",
+        "__isArgsStory": true
+      }
+    },
+    "components-field--label-title": {
+      "id": "components-field--label-title",
+      "name": "Label title",
+      "title": "Components/Field",
+      "importPath": "./src/components/Field/Field.stories.mdx",
+      "kind": "Components/Field",
+      "story": "Label title",
+      "parameters": {
+        "fileName": "./src/components/Field/Field.stories.mdx",
+        "framework": "react",
+        "__id": "components-field--label-title",
+        "__isArgsStory": true
+      }
+    },
     "components-helper--standard": {
       "id": "components-helper--standard",
       "name": "Standard",
@@ -1334,6 +1376,34 @@
         "__isArgsStory": true
       }
     },
+    "components-inputs-boolean-input--clear-button-display": {
+      "id": "components-inputs-boolean-input--clear-button-display",
+      "name": "ClearButtonDisplay",
+      "title": "Components/Inputs/Boolean input",
+      "importPath": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
+      "kind": "Components/Inputs/Boolean input",
+      "story": "ClearButtonDisplay",
+      "parameters": {
+        "fileName": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
+        "framework": "react",
+        "__id": "components-inputs-boolean-input--clear-button-display",
+        "__isArgsStory": true
+      }
+    },
+    "components-inputs-boolean-input--fit": {
+      "id": "components-inputs-boolean-input--fit",
+      "name": "Fit",
+      "title": "Components/Inputs/Boolean input",
+      "importPath": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
+      "kind": "Components/Inputs/Boolean input",
+      "story": "Fit",
+      "parameters": {
+        "fileName": "./src/components/Input/BooleanInput/BooleanInput.stories.mdx",
+        "framework": "react",
+        "__id": "components-inputs-boolean-input--fit",
+        "__isArgsStory": true
+      }
+    },
     "components-inputs-color-input--standard": {
       "id": "components-inputs-color-input--standard",
       "name": "Standard",
@@ -1695,6 +1765,34 @@
         "fileName": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
         "framework": "react",
         "__id": "components-inputs-multi-select-input--pagination",
+        "__isArgsStory": true
+      }
+    },
+    "components-inputs-multi-select-input--with-locales": {
+      "id": "components-inputs-multi-select-input--with-locales",
+      "name": "With Locales",
+      "title": "Components/Inputs/Multi Select input",
+      "importPath": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+      "kind": "Components/Inputs/Multi Select input",
+      "story": "With Locales",
+      "parameters": {
+        "fileName": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+        "framework": "react",
+        "__id": "components-inputs-multi-select-input--with-locales",
+        "__isArgsStory": true
+      }
+    },
+    "components-inputs-multi-select-input--disable-auto-select": {
+      "id": "components-inputs-multi-select-input--disable-auto-select",
+      "name": "DisableAutoSelect",
+      "title": "Components/Inputs/Multi Select input",
+      "importPath": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+      "kind": "Components/Inputs/Multi Select input",
+      "story": "DisableAutoSelect",
+      "parameters": {
+        "fileName": "./src/components/Input/MultiSelectInput/MultiSelectInput.stories.mdx",
+        "framework": "react",
+        "__id": "components-inputs-multi-select-input--disable-auto-select",
         "__isArgsStory": true
       }
     },
@@ -2104,6 +2202,20 @@
         "__isArgsStory": true
       }
     },
+    "components-inputs-textarea-input--with-actions": {
+      "id": "components-inputs-textarea-input--with-actions",
+      "name": "With actions",
+      "title": "Components/Inputs/Textarea input",
+      "importPath": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
+      "kind": "Components/Inputs/Textarea input",
+      "story": "With actions",
+      "parameters": {
+        "fileName": "./src/components/Input/TextAreaInput/TextAreaInput.stories.mdx",
+        "framework": "react",
+        "__id": "components-inputs-textarea-input--with-actions",
+        "__isArgsStory": true
+      }
+    },
     "components-inputs-text-input--standard": {
       "id": "components-inputs-text-input--standard",
       "name": "Standard",
@@ -2157,6 +2269,20 @@
         "fileName": "./src/components/Input/TextInput/TextInput.stories.mdx",
         "framework": "react",
         "__id": "components-inputs-text-input--character-left-label",
+        "__isArgsStory": true
+      }
+    },
+    "components-inputs-text-input--actions": {
+      "id": "components-inputs-text-input--actions",
+      "name": "Actions",
+      "title": "Components/Inputs/Text input",
+      "importPath": "./src/components/Input/TextInput/TextInput.stories.mdx",
+      "kind": "Components/Inputs/Text input",
+      "story": "Actions",
+      "parameters": {
+        "fileName": "./src/components/Input/TextInput/TextInput.stories.mdx",
+        "framework": "react",
+        "__id": "components-inputs-text-input--actions",
         "__isArgsStory": true
       }
     },
@@ -2970,6 +3096,62 @@
         "framework": "react",
         "__id": "components-progress-indicator--disabled",
         "__isArgsStory": false
+      }
+    },
+    "components-progress-wheel--standard": {
+      "id": "components-progress-wheel--standard",
+      "name": "Standard",
+      "title": "Components/Progress wheel",
+      "importPath": "./src/components/ProgressWheel/ProgressWheel.stories.mdx",
+      "kind": "Components/Progress wheel",
+      "story": "Standard",
+      "parameters": {
+        "fileName": "./src/components/ProgressWheel/ProgressWheel.stories.mdx",
+        "framework": "react",
+        "__id": "components-progress-wheel--standard",
+        "__isArgsStory": true
+      }
+    },
+    "components-progress-wheel--progress": {
+      "id": "components-progress-wheel--progress",
+      "name": "Progress",
+      "title": "Components/Progress wheel",
+      "importPath": "./src/components/ProgressWheel/ProgressWheel.stories.mdx",
+      "kind": "Components/Progress wheel",
+      "story": "Progress",
+      "parameters": {
+        "fileName": "./src/components/ProgressWheel/ProgressWheel.stories.mdx",
+        "framework": "react",
+        "__id": "components-progress-wheel--progress",
+        "__isArgsStory": true
+      }
+    },
+    "components-progress-wheel--level": {
+      "id": "components-progress-wheel--level",
+      "name": "Level",
+      "title": "Components/Progress wheel",
+      "importPath": "./src/components/ProgressWheel/ProgressWheel.stories.mdx",
+      "kind": "Components/Progress wheel",
+      "story": "Level",
+      "parameters": {
+        "fileName": "./src/components/ProgressWheel/ProgressWheel.stories.mdx",
+        "framework": "react",
+        "__id": "components-progress-wheel--level",
+        "__isArgsStory": true
+      }
+    },
+    "components-progress-wheel--size": {
+      "id": "components-progress-wheel--size",
+      "name": "Size",
+      "title": "Components/Progress wheel",
+      "importPath": "./src/components/ProgressWheel/ProgressWheel.stories.mdx",
+      "kind": "Components/Progress wheel",
+      "story": "Size",
+      "parameters": {
+        "fileName": "./src/components/ProgressWheel/ProgressWheel.stories.mdx",
+        "framework": "react",
+        "__id": "components-progress-wheel--size",
+        "__isArgsStory": true
       }
     },
     "components-search--standard": {
