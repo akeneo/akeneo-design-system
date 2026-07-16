@@ -54,10 +54,37 @@ test('It returns down when there is not enough space below and above the element
   expect(result.current).toEqual('down');
 });
 
-test('It returns the forced position when provided', () => {
+test('It returns the preferred position when no anchor is provided', () => {
   const ref = getFakeRef(0, 100, 100, 0);
 
   const {result} = renderHook(() => useVerticalPosition(ref, undefined, 'down'));
+
+  expect(result.current).toEqual('down');
+});
+
+test('It keeps the preferred position without measuring when the ref is not attached', () => {
+  const ref = {current: null} as RefObject<HTMLElement>;
+  const anchorRef = getAnchorRef(150, 180);
+
+  const {result} = renderHook(() => useVerticalPosition(ref, anchorRef, 'up'));
+
+  expect(result.current).toEqual('up');
+});
+
+test('It keeps the preferred up position when the overlay fits above the anchor', () => {
+  const overlayRef = getFakeRef(0, 100, 0, 0);
+  const anchorRef = getAnchorRef(150, 180);
+
+  const {result} = renderHook(() => useVerticalPosition(overlayRef, anchorRef, 'up'));
+
+  expect(result.current).toEqual('up');
+});
+
+test('It flips away from the preferred up position when it does not fit but the opposite side does', () => {
+  const overlayRef = getFakeRef(0, 100, 0, 0);
+  const anchorRef = getAnchorRef(20, 50);
+
+  const {result} = renderHook(() => useVerticalPosition(overlayRef, anchorRef, 'up'));
 
   expect(result.current).toEqual('down');
 });

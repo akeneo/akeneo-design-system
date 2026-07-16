@@ -5,20 +5,21 @@ type HorizontalPosition = 'left' | 'right';
 
 /**
  * This hook provides the vertical position that an overlay should have.
- * When an anchor is provided, it decides from the space above/below the anchor (which does not move
- * with the chosen direction) and the overlay height, so the decision stays stable even when the
- * overlay grows after opening (e.g. asynchronously loaded options).
+ * The preferred position is only a hint: when an anchor is provided, the overlay opens in that
+ * direction as long as it fits there, and flips to the opposite side when it does not fit and the
+ * opposite side has more room. The decision is re-evaluated on resize, so it stays correct even
+ * when the overlay grows after opening (e.g. asynchronously loaded options).
  */
 const useVerticalPosition = (
   ref: RefObject<HTMLElement>,
   anchorRef?: RefObject<HTMLElement>,
-  forcedPosition?: VerticalPosition
+  preferredPosition?: VerticalPosition
 ) => {
-  const [verticalPosition, setVerticalPosition] = useState<VerticalPosition | undefined>(forcedPosition);
+  const [verticalPosition, setVerticalPosition] = useState<VerticalPosition | undefined>(preferredPosition);
 
   useEffect(() => {
     const element = ref.current;
-    if (null === element || undefined !== forcedPosition) {
+    if (null === element) {
       return;
     }
 
@@ -30,9 +31,19 @@ const useVerticalPosition = (
         const {top: spaceAbove, bottom: anchorBottom} = anchor.getBoundingClientRect();
         const windowHeight = window.innerHeight || document.documentElement.clientHeight;
         const spaceBelow = windowHeight - anchorBottom;
-        const overlayDoesNotFitBelow = overlayHeight > spaceBelow;
 
-        setVerticalPosition(overlayDoesNotFitBelow && spaceAbove > spaceBelow ? 'up' : 'down');
+        const preferred = preferredPosition ?? 'down';
+        const opposite: VerticalPosition = 'up' === preferred ? 'down' : 'up';
+        const spaceInPreferred = 'up' === preferred ? spaceAbove : spaceBelow;
+        const spaceInOpposite = 'up' === preferred ? spaceBelow : spaceAbove;
+        const overlayDoesNotFitInPreferred = overlayHeight > spaceInPreferred;
+
+        setVerticalPosition(overlayDoesNotFitInPreferred && spaceInOpposite > spaceInPreferred ? opposite : preferred);
+        return;
+      }
+
+      if (undefined !== preferredPosition) {
+        setVerticalPosition(preferredPosition);
         return;
       }
 
@@ -73,7 +84,7 @@ const useVerticalPosition = (
         window.cancelAnimationFrame(scheduledFrame);
       }
     };
-  }, [forcedPosition, ref.current, anchorRef?.current]);
+  }, [preferredPosition, ref.current, anchorRef?.current]);
 
   return verticalPosition;
 };

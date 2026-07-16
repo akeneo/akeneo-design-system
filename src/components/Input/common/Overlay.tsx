@@ -41,7 +41,8 @@ type OverlayProps = Override<
   HTMLAttributes<HTMLDivElement>,
   {
     /**
-     * Vertical position of the overlay (forced).
+     * Preferred vertical position of the overlay. The overlay opens in this direction when it fits,
+     * and flips to the opposite side otherwise.
      */
     verticalPosition?: VerticalPosition;
 

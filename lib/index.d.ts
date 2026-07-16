@@ -1888,7 +1888,7 @@ export declare const useTabBar: (defaultTab: string) => readonly [(tab: string) 
 
 export declare const useTheme: () => DefaultTheme;
 
-export declare const useVerticalPosition: (ref: RefObject<HTMLElement>, anchorRef?: RefObject<HTMLElement>, forcedPosition?: VerticalPosition) => VerticalPosition | undefined;
+export declare const useVerticalPosition: (ref: RefObject<HTMLElement>, anchorRef?: RefObject<HTMLElement>, preferredPosition?: VerticalPosition) => VerticalPosition | undefined;
 
 export declare const useWindowResize: () => WindowSize;
 
