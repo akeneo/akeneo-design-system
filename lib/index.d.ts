@@ -299,6 +299,8 @@ declare type CellProps = Override<default_2.HTMLAttributes<HTMLDivElement>, {
 
 export declare const ChannelsIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
 
+export declare const ChatGptIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
 export declare const Checkbox: default_2.ForwardRefExoticComponent<Omit<default_2.HTMLAttributes<HTMLDivElement>, "children" | "onChange" | "checked" | "readOnly"> & {
     checked: CheckboxChecked;
     readOnly?: boolean | undefined;
@@ -317,6 +319,8 @@ export declare const CheckPartialIcon: ({ title, size, color, className, ...prop
 export declare const CheckRoundIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const CityIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
+
+export declare const ClaudeIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const ClientErrorIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
 
@@ -698,6 +702,8 @@ export declare const FoodIcon: ({ title, size, color, ...props }: IconProps) => 
 export declare const FrowningFaceIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const FullscreenIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
+export declare const GeminiIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const getColor: (color: string, gradient?: number) => (props: ThemedProps) => string;
 
