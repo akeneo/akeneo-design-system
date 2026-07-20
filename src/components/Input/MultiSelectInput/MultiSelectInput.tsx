@@ -186,6 +186,12 @@ type MultiMultiSelectInputProps = Override<
     verticalPosition?: VerticalPosition;
 
     /**
+     * Minimum width of the dropdown overlay in pixels. Useful when the parent
+     * container is narrower than the desired dropdown width.
+     */
+    dropdownMinWidth?: number;
+
+    /**
      * Values that cannot be unselected
      */
     lockedValues?: string[];
@@ -245,6 +251,7 @@ const MultiSelectInput = ({
   openLabel,
   readOnly = false,
   verticalPosition,
+  dropdownMinWidth,
   onNextPage,
   onSearchChange,
   disableInternalSearch = false,
@@ -432,7 +439,7 @@ const MultiSelectInput = ({
         )}
       </InputContainer>
       {dropdownIsOpen && !readOnly && (
-        <Overlay parentRef={containerRef} onClose={handleBlur}>
+        <Overlay parentRef={containerRef} minWidth={dropdownMinWidth} onClose={handleBlur}>
           <OptionCollection ref={optionsContainerRef} $withGroups={withGroups}>
             {!hasChildren ? (
               <EmptyResultContainer>{emptyResultLabel}</EmptyResultContainer>

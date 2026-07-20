@@ -1082,6 +1082,7 @@ declare type MultiMultiSelectInputProps = Override<Override<default_2.InputHTMLA
     separators?: string[];
     children?: ReactElement<OptionProps>[] | ReactElement<OptionProps>;
     verticalPosition?: VerticalPosition;
+    dropdownMinWidth?: number;
     lockedValues?: string[];
     onSubmit?: () => void;
     disableAutoSelect?: boolean;
@@ -1098,7 +1099,7 @@ declare type MultiMultiSelectInputProps = Override<Override<default_2.InputHTMLA
 }>;
 
 export declare const MultiSelectInput: {
-    ({ id, placeholder, invalid, value, invalidValue, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, disableAutoSelect, lockedValues, "aria-labelledby": ariaLabelledby, onOpenChange, ...rest }: MultiMultiSelectInputProps): default_2.JSX.Element;
+    ({ id, placeholder, invalid, value, invalidValue, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, dropdownMinWidth, onNextPage, onSearchChange, disableInternalSearch, disableAutoSelect, lockedValues, "aria-labelledby": ariaLabelledby, onOpenChange, ...rest }: MultiMultiSelectInputProps): default_2.JSX.Element;
     Option: {
         ({ children, enableLocaleRender, ...rest }: OptionProps): default_2.JSX.Element;
         displayName: string;
@@ -1141,12 +1142,13 @@ declare type OptionProps = {
     enableLocaleRender?: boolean;
 } & default_2.HTMLAttributes<HTMLSpanElement>;
 
-export declare const Overlay: ({ verticalPosition, parentRef, onClose, children, ...rest }: OverlayProps) => default_2.ReactPortal;
+export declare const Overlay: ({ verticalPosition, parentRef, minWidth, onClose, children, ...rest }: OverlayProps) => default_2.ReactPortal;
 
 declare type OverlayProps = Override<HTMLAttributes<HTMLDivElement>, {
     verticalPosition?: VerticalPosition;
     onClose: () => void;
     children: ReactNode;
+    minWidth?: number;
     parentRef?: RefObject<HTMLDivElement>;
 }>;
 

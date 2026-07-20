@@ -13,6 +13,7 @@ const OverlayContent = styled.div<
     $top: number;
     $width: number;
     $left: number;
+    $minWidth?: number;
   } & AkeneoThemedProps
 >`
   ${CommonStyle}
@@ -26,6 +27,7 @@ const OverlayContent = styled.div<
   top: ${({$top}) => $top}px;
   left: ${({$left}) => $left}px;
   width: ${({$width}) => $width}px;
+  min-width: ${({$minWidth}) => ($minWidth ? `${$minWidth}px` : 'unset')};
 `;
 
 const Backdrop = styled.div`
@@ -52,6 +54,12 @@ type OverlayProps = Override<
     onClose: () => void;
 
     children: ReactNode;
+
+    /**
+     * Minimum width of the overlay in pixels. Useful when the parent container
+     * is narrower than the desired dropdown width.
+     */
+    minWidth?: number;
 
     /** @private */
     parentRef?: RefObject<HTMLDivElement>;
@@ -83,7 +91,7 @@ const getOverlayPosition = (
   return [top, left, width];
 };
 
-const Overlay = ({verticalPosition, parentRef, onClose, children, ...rest}: OverlayProps) => {
+const Overlay = ({verticalPosition, parentRef, minWidth, onClose, children, ...rest}: OverlayProps) => {
   const portalNode = document.createElement('div');
   portalNode.setAttribute('id', 'input-overlay-root');
   const portalRef = useRef<HTMLDivElement>(portalNode);
@@ -111,7 +119,15 @@ const Overlay = ({verticalPosition, parentRef, onClose, children, ...rest}: Over
   return createPortal(
     <>
       <Backdrop data-testid="backdrop" onClick={onClose} />
-      <OverlayContent ref={overlayRef} $visible={visible} $top={top} $left={left} $width={width} {...rest}>
+      <OverlayContent
+        ref={overlayRef}
+        $visible={visible}
+        $top={top}
+        $left={left}
+        $width={width}
+        $minWidth={minWidth}
+        {...rest}
+      >
         {children}
       </OverlayContent>
     </>,
