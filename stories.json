@@ -1866,6 +1866,20 @@
         "__isArgsStory": true
       }
     },
+    "components-inputs-select-input--surtitle": {
+      "id": "components-inputs-select-input--surtitle",
+      "name": "Surtitle",
+      "title": "Components/Inputs/Select input",
+      "importPath": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+      "kind": "Components/Inputs/Select input",
+      "story": "Surtitle",
+      "parameters": {
+        "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+        "framework": "react",
+        "__id": "components-inputs-select-input--surtitle",
+        "__isArgsStory": true
+      }
+    },
     "components-inputs-select-input--read-only": {
       "id": "components-inputs-select-input--read-only",
       "name": "ReadOnly",
