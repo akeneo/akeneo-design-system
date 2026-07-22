@@ -1352,12 +1352,13 @@ declare type SectionTitleProps = Override<HTMLAttributes<HTMLDivElement>, {
 }>;
 
 export declare const SelectInput: {
-    ({ id, placeholder, invalid, value, emptyResultLabel, children, onChange, clearable, clearLabel, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, "aria-labelledby": ariaLabelledby, selectedValueComponent, onOpenChange, title, keepDropdownOnSelect, ...rest }: SelectInputProps): default_2.JSX.Element;
+    ({ id, placeholder, invalid, value, emptyResultLabel, children, onChange, clearable, clearLabel, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, "aria-labelledby": ariaLabelledby, selectedValueComponent, onOpenChange, title, keepDropdownOnSelect, size, ...rest }: SelectInputProps): default_2.JSX.Element;
     Option: StyledComponent<"span", DefaultTheme, Omit<default_2.HTMLAttributes<HTMLSpanElement>, "disabled" | "value"> & {
     value: string;
     disabled?: boolean | undefined;
     }, never>;
     OptionGroup: StyledComponent<"span", DefaultTheme, {}, never>;
+    Surtitle: ({ label, children, ...rest }: SurtitleProps) => default_2.JSX.Element;
 };
 
 declare type SelectInputProps = Override<Override<default_2.InputHTMLAttributes<HTMLDivElement>, InputProps<string>>, ({
@@ -1385,6 +1386,7 @@ declare type SelectInputProps = Override<Override<default_2.InputHTMLAttributes<
     selectedValueComponent?: ReactNode;
     title?: string;
     keepDropdownOnSelect?: boolean;
+    size?: SelectInputSize;
 } & ({
     onNextPage?: () => void;
     onSearchChange?: (searchValue: string) => void;
@@ -1396,6 +1398,8 @@ declare type SelectInputProps = Override<Override<default_2.InputHTMLAttributes<
 }) & {
     onOpenChange?: (isOpen: boolean) => void;
 }>;
+
+declare type SelectInputSize = keyof typeof sizeMap;
 
 declare type Selection_2<Type = string> = {
     mode: 'in' | 'not_in';
@@ -1418,6 +1422,11 @@ export declare const ShareIcon: ({ title, size, color, ...props }: IconProps) =>
 export declare const ShopIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 declare type Size = 'small' | 'big';
+
+declare const sizeMap: {
+    default: number;
+    big: number;
+};
 
 export declare const SkeletonPlaceholder: StyledComponent<"div", DefaultTheme, {}, never>;
 
@@ -1467,6 +1476,11 @@ declare type SubNavigationPanelProps = Override<default_2.HTMLAttributes<HTMLDiv
 }>;
 
 export declare const SupplierIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
+declare type SurtitleProps = {
+    label: string;
+    children?: ReactNode;
+};
 
 export declare const SurveyIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
 

@@ -99,6 +99,35 @@ The placeholder text provides tips or examples of items to enter. Placeholder te
 
 <ArgsTable story="OptionGroup" />
 
+## Variation on surtitle
+
+Use `size="big"` together with `SelectInput.Surtitle` to display each option's code above its label, so options that share the same label can be told apart.
+
+<Canvas>
+  <Story name="Surtitle">
+    {args => {
+      const [value, setValue] = useState(null);
+      return (
+        <SpaceContainer height={220}>
+          <SelectInput {...args} size="big" value={value} onChange={setValue} emptyResultLabel="No result found">
+            <SelectInput.Option value="colour_roze" title="roze">
+              <SelectInput.Surtitle label="colour_roze">roze</SelectInput.Surtitle>
+            </SelectInput.Option>
+            <SelectInput.Option value="colour_hammertone" title="Hammertone Rose Quartz">
+              <SelectInput.Surtitle label="colour_hammertone">Hammertone Rose Quartz</SelectInput.Surtitle>
+            </SelectInput.Option>
+            <SelectInput.Option value="colour_blue" title="blue">
+              <SelectInput.Surtitle label="colour_blue">blue</SelectInput.Surtitle>
+            </SelectInput.Option>
+          </SelectInput>
+        </SpaceContainer>
+      );
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Surtitle" />
+
 ## Variation on readOnly
 
 <Canvas>

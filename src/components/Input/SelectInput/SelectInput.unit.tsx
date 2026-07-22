@@ -616,3 +616,31 @@ test('it truncates a long selected value with an ellipsis and exposes the full l
 
   expect(screen.getByRole('textbox')).toHaveAttribute('title', longLabel);
 });
+
+test('it displays a surtitle above each option label when size is big', () => {
+  const onChange = jest.fn();
+  render(
+    <SelectInput
+      openLabel="Open"
+      value={null}
+      onChange={onChange}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+      size="big"
+    >
+      <SelectInput.Option value="colour_roze" title="roze">
+        <SelectInput.Surtitle label="colour_roze">roze</SelectInput.Surtitle>
+      </SelectInput.Option>
+      <SelectInput.Option value="colour_blue" title="blue">
+        <SelectInput.Surtitle label="colour_blue">blue</SelectInput.Surtitle>
+      </SelectInput.Option>
+    </SelectInput>
+  );
+
+  fireEvent.click(screen.getByRole('textbox'));
+
+  expect(screen.getByText('colour_roze')).toBeInTheDocument();
+  expect(screen.getByText('roze')).toBeInTheDocument();
+  expect(screen.getByText('colour_blue')).toBeInTheDocument();
+  expect(screen.getByText('blue')).toBeInTheDocument();
+});

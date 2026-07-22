@@ -31,6 +31,13 @@ import {usePagination} from '../../../hooks/usePagination';
 const areEveryChildrenDisabled = (children: ReactElement<OptionProps>[]) =>
   children.length > 0 && children.every(option => option.props?.disabled ?? false);
 
+const sizeMap = {
+  default: 34,
+  big: 44,
+};
+
+type SelectInputSize = keyof typeof sizeMap;
+
 const SelectInputContainer = styled.div<{value: string | null; readOnly: boolean} & AkeneoThemedProps>`
   width: 100%;
 
@@ -89,8 +96,9 @@ const SelectedOptionText = styled.span`
   white-space: nowrap;
 `;
 
-const OptionContainer = styled.div<{disabled: boolean} & AkeneoThemedProps>`
+const OptionContainer = styled.div<{disabled: boolean; $size: SelectInputSize} & AkeneoThemedProps>`
   background: ${getColor('white')};
+  min-height: ${({$size}) => sizeMap[$size]}px;
   padding: 0 20px;
   align-items: center;
   gap: 10px;
@@ -169,6 +177,38 @@ const Option = styled.span<OptionProps>`
 const OptionGroup = styled.span`
   ${optionStyle};
 `;
+
+const SurtitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  line-height: normal;
+  overflow: hidden;
+`;
+
+const SurtitleTitle = styled.span`
+  color: ${getColor('grey', 100)};
+  font-size: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const SurtitleLabel = styled.span`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+`;
+
+type SurtitleProps = {label: string; children?: ReactNode};
+
+const Surtitle = ({label, children, ...rest}: SurtitleProps) => (
+  <SurtitleContainer {...rest}>
+    <SurtitleTitle title={label}>{label}</SurtitleTitle>
+    <SurtitleLabel>{children}</SurtitleLabel>
+  </SurtitleContainer>
+);
 
 const OptionGroupContainer = styled.div`
   background: ${getColor('white')};
@@ -253,6 +293,11 @@ type SelectInputProps = Override<
      * Keeps the dropdown open after an option is selected, allowing several picks in a row.
      */
     keepDropdownOnSelect?: boolean;
+
+    /**
+     * Height of the options and the selected value. Use "big" to fit two-line content such as a SelectInput.Surtitle.
+     */
+    size?: SelectInputSize;
   } & (
       | {
           /**
@@ -308,6 +353,7 @@ const SelectInput = ({
   onOpenChange,
   title,
   keepDropdownOnSelect = false,
+  size = 'default',
   ...rest
 }: SelectInputProps) => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -592,6 +638,7 @@ const SelectInput = ({
                     role="option"
                     data-testid={childValue}
                     key={childValue}
+                    $size={size}
                     onClick={handleOptionClick(childValue, isOptionDisabled)}
                     onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => handleOptionKeyDown(e, isOptionDisabled)}
                     tabIndex={0}
@@ -628,5 +675,6 @@ Option.displayName = 'SelectInput.Option';
 OptionGroup.displayName = 'SelectInput.OptionGroup';
 SelectInput.Option = Option;
 SelectInput.OptionGroup = OptionGroup;
+SelectInput.Surtitle = Surtitle;
 
 export {SelectInput};
