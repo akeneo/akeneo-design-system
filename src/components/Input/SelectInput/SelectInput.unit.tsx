@@ -2,6 +2,8 @@ import React from 'react';
 import 'jest-styled-components';
 import {SelectInput} from './SelectInput';
 import {Locale} from '../../../components';
+import {getColor} from '../../../theme/theme';
+import {pimTheme} from '../../../themes';
 import {render, screen, fireEvent} from '../../../storybook/test-util';
 import userEvent from '@testing-library/user-event';
 
@@ -643,4 +645,126 @@ test('it displays a surtitle above each option label when size is big', () => {
   expect(screen.getByText('roze')).toBeInTheDocument();
   expect(screen.getByText('colour_blue')).toBeInTheDocument();
   expect(screen.getByText('blue')).toBeInTheDocument();
+});
+
+test('it selects the first filtered option when pressing Enter in the search input', () => {
+  const onChange = jest.fn();
+  render(
+    <SelectInput
+      openLabel="Open"
+      value={null}
+      onChange={onChange}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+    >
+      <SelectInput.Option value="fr_FR">French</SelectInput.Option>
+      <SelectInput.Option value="de_DE">German</SelectInput.Option>
+      <SelectInput.Option value="es_ES">Spanish</SelectInput.Option>
+    </SelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.focus(input);
+  fireEvent.change(input, {target: {value: 'Ger'}});
+
+  fireEvent.keyDown(input, {key: 'Enter', code: 'Enter'});
+  expect(onChange).toHaveBeenCalledWith('de_DE');
+});
+
+test('it highlights the first filtered option while typing', () => {
+  const onChange = jest.fn();
+  render(
+    <SelectInput
+      openLabel="Open"
+      value={null}
+      onChange={onChange}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+    >
+      <SelectInput.Option value="fr_FR">French</SelectInput.Option>
+      <SelectInput.Option value="de_DE">German</SelectInput.Option>
+    </SelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.focus(input);
+  fireEvent.change(input, {target: {value: 'e'}});
+
+  const highlightBackground = getColor('grey', 20)({theme: pimTheme});
+  expect(screen.getByTestId('fr_FR')).toHaveStyleRule('background', highlightBackground);
+  expect(screen.getByTestId('de_DE')).not.toHaveStyleRule('background', highlightBackground);
+});
+
+test('it does not select a disabled first option when pressing Enter', () => {
+  const onChange = jest.fn();
+  render(
+    <SelectInput
+      openLabel="Open"
+      value={null}
+      onChange={onChange}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+    >
+      <SelectInput.Option value="fr_FR" disabled>
+        French
+      </SelectInput.Option>
+      <SelectInput.Option value="de_DE">German</SelectInput.Option>
+    </SelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.focus(input);
+  fireEvent.change(input, {target: {value: 'Fr'}});
+
+  fireEvent.keyDown(input, {key: 'Enter', code: 'Enter'});
+  expect(onChange).not.toHaveBeenCalled();
+});
+
+test('it does not select on Enter once the search has been cleared', () => {
+  const onChange = jest.fn();
+  render(
+    <SelectInput
+      openLabel="Open"
+      value={null}
+      onChange={onChange}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+    >
+      <SelectInput.Option value="fr_FR">French</SelectInput.Option>
+      <SelectInput.Option value="de_DE">German</SelectInput.Option>
+    </SelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.focus(input);
+  fireEvent.change(input, {target: {value: 'Ger'}});
+  fireEvent.change(input, {target: {value: ''}});
+
+  fireEvent.keyDown(input, {key: 'Enter', code: 'Enter'});
+  expect(onChange).not.toHaveBeenCalled();
+});
+
+test('it selects the first enabled option on Enter, skipping a disabled first option', () => {
+  const onChange = jest.fn();
+  render(
+    <SelectInput
+      openLabel="Open"
+      value={null}
+      onChange={onChange}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+    >
+      <SelectInput.Option value="fr_FR" disabled>
+        French
+      </SelectInput.Option>
+      <SelectInput.Option value="de_DE">German</SelectInput.Option>
+    </SelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.focus(input);
+  fireEvent.change(input, {target: {value: 'e'}});
+
+  fireEvent.keyDown(input, {key: 'Enter', code: 'Enter'});
+  expect(onChange).toHaveBeenCalledWith('de_DE');
 });

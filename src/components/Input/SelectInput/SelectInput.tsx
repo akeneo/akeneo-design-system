@@ -96,8 +96,10 @@ const SelectedOptionText = styled.span`
   white-space: nowrap;
 `;
 
-const OptionContainer = styled.div<{disabled: boolean; $size: SelectInputSize} & AkeneoThemedProps>`
-  background: ${getColor('white')};
+const OptionContainer = styled.div<
+  {disabled: boolean; $size: SelectInputSize; $highlighted: boolean} & AkeneoThemedProps
+>`
+  background: ${({$highlighted}) => ($highlighted ? getColor('grey', 20) : getColor('white'))};
   min-height: ${({$size}) => sizeMap[$size]}px;
   padding: 0 20px;
   align-items: center;
@@ -106,7 +108,8 @@ const OptionContainer = styled.div<{disabled: boolean; $size: SelectInputSize} &
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: ${({disabled}) => (disabled ? getColor('grey', 100) : getColor('grey', 120))};
+  color: ${({disabled, $highlighted}) =>
+    disabled ? getColor('grey', 100) : $highlighted ? getColor('brand', 140) : getColor('grey', 120)};
   line-height: 34px;
   display: flex;
   justify-content: space-between;
@@ -117,6 +120,7 @@ const OptionContainer = styled.div<{disabled: boolean; $size: SelectInputSize} &
       &:focus {
         background: ${getColor('grey', 20)};
         color: ${getColor('brand', 140)};
+        outline: none;
       }
       &:hover {
         background: ${getColor('grey', 20)};
@@ -357,6 +361,7 @@ const SelectInput = ({
   ...rest
 }: SelectInputProps) => {
   const [searchValue, setSearchValue] = useState<string>('');
+  const [isSearchInputFocused, setIsSearchInputFocused] = useState<boolean>(false);
   const [withGroups, setWithGroups] = useState<boolean>(false);
   const [dropdownIsOpen, openOverlayState, closeOverlayState] = useBooleanState();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -422,6 +427,10 @@ const SelectInput = ({
     return filteredChildren.findIndex(child => isOption(child));
   }, [filteredChildren]);
 
+  const firstEnabledOptionIndex = useMemo(() => {
+    return filteredChildren.findIndex(child => isOption(child) && !(child.props?.disabled ?? false));
+  }, [filteredChildren]);
+
   const currentValueElement =
     validChildren.find(child => {
       const childrenValue = child.props.value;
@@ -481,33 +490,33 @@ const SelectInput = ({
 
   useShortcut(Key.Escape, handleEscape, inputRef);
 
-  const handleInputKeyDown = useCallback(
-    (event: KeyboardEvent<HTMLInputElement>) => {
-      if (null !== event.currentTarget) {
-        if (event.key === Key.Tab) {
-          setSearchValue('');
-          closeOverlay();
-        }
-        if (event.key === Key.ArrowDown) {
-          event.preventDefault();
-          if (!dropdownIsOpen) {
-            openOverlay();
-          } else {
-            (firstOptionRef.current || selectedOptionRef.current)?.focus();
-          }
-        } else if (event.key === Key.ArrowUp) {
-          event.preventDefault();
+  const handleInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (null !== event.currentTarget) {
+      if (event.key === Key.Tab) {
+        setSearchValue('');
+        closeOverlay();
+      }
+      if (event.key === Key.ArrowDown) {
+        event.preventDefault();
+        if (!dropdownIsOpen) {
           openOverlay();
-        } else if (event.key === Key.Enter) {
-          event.preventDefault();
-          if (!dropdownIsOpen) {
-            openOverlay();
-          }
+        } else {
+          (firstOptionRef.current || selectedOptionRef.current)?.focus();
+        }
+      } else if (event.key === Key.ArrowUp) {
+        event.preventDefault();
+        openOverlay();
+      } else if (event.key === Key.Enter) {
+        event.preventDefault();
+        if (!dropdownIsOpen) {
+          openOverlay();
+        } else if ('' !== searchValue && -1 !== firstEnabledOptionIndex) {
+          onChange?.(filteredChildren[firstEnabledOptionIndex].props.value);
+          commitSelection();
         }
       }
-    },
-    [value, dropdownIsOpen]
-  );
+    }
+  };
 
   useEffect(() => {
     if (dropdownIsOpen && searchValue === '') {
@@ -581,6 +590,8 @@ const SelectInput = ({
             openOverlay();
             event.preventDefault();
           }}
+          onFocus={() => setIsSearchInputFocused(true)}
+          onBlur={() => setIsSearchInputFocused(false)}
           aria-labelledby={ariaLabelledby}
           onKeyDown={handleInputKeyDown}
           data-form-type={'other'}
@@ -621,6 +632,7 @@ const SelectInput = ({
               filteredChildren.map((child, index) => {
                 const childValue = child.props.value;
                 const isOptionDisabled = child.props?.disabled ?? false;
+                const isActiveOption = index === firstEnabledOptionIndex && '' !== searchValue && isSearchInputFocused;
 
                 if (isOptionGroup(child)) {
                   if (!isOption(filteredChildren[index + 1])) {
@@ -657,6 +669,7 @@ const SelectInput = ({
                       }
                     }}
                     disabled={isOptionDisabled}
+                    $highlighted={isActiveOption}
                   >
                     {React.cloneElement(child)}
                     {isOptionDisabled && <LockIcon size={18} />}

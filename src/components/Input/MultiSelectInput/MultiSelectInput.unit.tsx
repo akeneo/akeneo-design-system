@@ -1,5 +1,8 @@
 import React from 'react';
+import 'jest-styled-components';
 import {MultiSelectInput} from './MultiSelectInput';
+import {getColor} from '../../../theme/theme';
+import {pimTheme} from '../../../themes';
 import {render, screen, fireEvent} from '../../../storybook/test-util';
 import userEvent from '@testing-library/user-event';
 
@@ -563,4 +566,160 @@ test('it calls onOpenChange callback when dropdown state changes', () => {
   fireEvent.click(screen.getByText('French'));
   expect(onOpenChange).toHaveBeenCalledTimes(4);
   expect(onOpenChange).toHaveBeenLastCalledWith(false);
+});
+
+test('it highlights the first filtered option while typing', () => {
+  const onChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.focus(input);
+  fireEvent.change(input, {target: {value: 'German'}});
+
+  expect(screen.queryByText('French')).not.toBeInTheDocument();
+  const highlightBackground = getColor('grey', 20)({theme: pimTheme});
+  expect(screen.getByText('German').parentElement).toHaveStyleRule('background', highlightBackground);
+});
+
+test('it highlights the first option when opened', () => {
+  const onChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  fireEvent.focus(screen.getByRole('textbox'));
+
+  const highlightBackground = getColor('grey', 20)({theme: pimTheme});
+  expect(screen.getByText('French').parentElement).toHaveStyleRule('background', highlightBackground);
+  expect(screen.getByText('German').parentElement).not.toHaveStyleRule('background', highlightBackground);
+});
+
+test('it moves the highlight with the down arrow and selects it with Enter', () => {
+  const onChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="es_ES">Spanish</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.focus(input);
+  fireEvent.keyDown(input, {key: 'ArrowDown', code: 'ArrowDown'});
+
+  const highlightBackground = getColor('grey', 20)({theme: pimTheme});
+  expect(screen.getByText('German').parentElement).toHaveStyleRule('background', highlightBackground);
+
+  fireEvent.keyDown(input, {key: 'Enter', code: 'Enter'});
+  expect(onChange).toHaveBeenCalledWith(['de_DE']);
+});
+
+test('it moves the highlight back up with the up arrow and clamps at the first option', () => {
+  const onChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.focus(input);
+  fireEvent.keyDown(input, {key: 'ArrowDown', code: 'ArrowDown'});
+  fireEvent.keyDown(input, {key: 'ArrowUp', code: 'ArrowUp'});
+  fireEvent.keyDown(input, {key: 'ArrowUp', code: 'ArrowUp'});
+
+  fireEvent.keyDown(input, {key: 'Enter', code: 'Enter'});
+  expect(onChange).toHaveBeenCalledWith(['fr_FR']);
+});
+
+test('it opens the dropdown when an arrow key is pressed while closed', () => {
+  const onChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  expect(screen.queryByText('German')).not.toBeInTheDocument();
+
+  fireEvent.keyDown(input, {key: 'ArrowDown', code: 'ArrowDown'});
+  expect(screen.getByText('German')).toBeInTheDocument();
+
+  fireEvent.keyDown(input, {key: 'Escape', code: 'Escape'});
+  expect(screen.queryByText('German')).not.toBeInTheDocument();
+
+  fireEvent.keyDown(input, {key: 'ArrowUp', code: 'ArrowUp'});
+  expect(screen.getByText('German')).toBeInTheDocument();
+});
+
+test('it does not select anything when navigating with no matching option', () => {
+  const onChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.focus(input);
+  fireEvent.change(input, {target: {value: 'zzz'}});
+  expect(screen.getByText('Empty result')).toBeInTheDocument();
+
+  fireEvent.keyDown(input, {key: 'ArrowDown', code: 'ArrowDown'});
+  expect(screen.getByText('Empty result')).toBeInTheDocument();
 });

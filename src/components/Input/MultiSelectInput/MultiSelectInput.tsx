@@ -51,8 +51,8 @@ const ActionContainer = styled.div`
   gap: 10px;
 `;
 
-const OptionContainer = styled.div`
-  background: ${getColor('white')};
+const OptionContainer = styled.div<{$highlighted: boolean}>`
+  background: ${({$highlighted}) => ($highlighted ? getColor('grey', 20) : getColor('white'))};
   height: 34px;
   padding: 0 20px;
   align-items: center;
@@ -61,7 +61,7 @@ const OptionContainer = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: ${getColor('grey', 120)};
+  color: ${({$highlighted}) => ($highlighted ? getColor('brand', 140) : getColor('grey', 120))};
   line-height: 34px;
 
   &:focus {
@@ -263,6 +263,7 @@ const MultiSelectInput = ({
 }: MultiMultiSelectInputProps) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [withGroups, setWithGroups] = useState<boolean>(false);
+  const [activeOptionIndex, setActiveOptionIndex] = useState<number>(0);
   const [dropdownIsOpen, openOverlayState, closeOverlayState] = useBooleanState();
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -332,10 +333,46 @@ const MultiSelectInput = ({
     return filteredChildren.some(child => isOption(child));
   }, [filteredChildren]);
 
+  const firstOptionIndex = filteredChildren.findIndex(child => isOption(child));
+  const optionIndexes = filteredChildren.reduce<number[]>((indexes, child, index) => {
+    if (isOption(child)) {
+      indexes.push(index);
+    }
+
+    return indexes;
+  }, []);
+
+  const moveActiveOption = (direction: 1 | -1) => {
+    if (optionIndexes.length === 0) {
+      return;
+    }
+
+    const currentPosition = optionIndexes.indexOf(activeOptionIndex);
+    const nextPosition = Math.min(Math.max(currentPosition + direction, 0), optionIndexes.length - 1);
+    setActiveOptionIndex(optionIndexes[nextPosition]);
+  };
+
+  const handleArrowDown = (event: KeyboardEvent) => {
+    event.preventDefault();
+    if (!dropdownIsOpen) {
+      openOverlay();
+      return;
+    }
+    moveActiveOption(1);
+  };
+
+  const handleArrowUp = (event: KeyboardEvent) => {
+    event.preventDefault();
+    if (!dropdownIsOpen) {
+      openOverlay();
+      return;
+    }
+    moveActiveOption(-1);
+  };
+
   const handleEnter = () => {
-    if (filteredChildren.length > 0 && dropdownIsOpen) {
-      const firstOptionIndex = filteredChildren.findIndex(child => isOption(child));
-      const newValue = filteredChildren[firstOptionIndex].props.value;
+    if (filteredChildren.length > 0 && dropdownIsOpen && isOption(filteredChildren[activeOptionIndex])) {
+      const newValue = filteredChildren[activeOptionIndex].props.value;
 
       onChange?.(arrayUnique([...value, newValue]));
       setSearchValue('');
@@ -398,6 +435,16 @@ const MultiSelectInput = ({
 
   useShortcut(Key.Enter, handleEnter, inputRef);
   useShortcut(Key.Escape, handleBlur, inputRef);
+  useShortcut(Key.ArrowDown, handleArrowDown, inputRef);
+  useShortcut(Key.ArrowUp, handleArrowUp, inputRef);
+
+  useEffect(() => {
+    setActiveOptionIndex(firstOptionIndex);
+  }, [dropdownIsOpen, searchValue, filteredChildren.length, firstOptionIndex]);
+
+  useEffect(() => {
+    optionsContainerRef.current?.querySelector('[data-active="true"]')?.scrollIntoView?.({block: 'nearest'});
+  }, [activeOptionIndex]);
 
   useEffect(() => {
     if (filteredChildren.some(child => isOptionGroup(child))) {
@@ -465,6 +512,8 @@ const MultiSelectInput = ({
                     key={child.props.value}
                     onClick={handleOptionClick(child.props.value)}
                     ref={index === filteredChildren.length - 1 ? lastOptionRef : undefined}
+                    data-active={index === activeOptionIndex}
+                    $highlighted={index === activeOptionIndex}
                   >
                     {React.cloneElement(child)}
                   </OptionContainer>
