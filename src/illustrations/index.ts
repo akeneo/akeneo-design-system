@@ -52,6 +52,7 @@ export * from './ServerErrorIllustration';
 export * from './ServerIllustration';
 export * from './SettingsIllustration';
 export * from './StatusIllustration';
+export * from './SuccessIllustration';
 export * from './SurveyIllustration';
 export * from './TimezoneIllustration';
 export * from './UserGroupsIllustration';

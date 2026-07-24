@@ -1475,6 +1475,8 @@ declare type SubNavigationPanelProps = Override<default_2.HTMLAttributes<HTMLDiv
     noPadding?: boolean;
 }>;
 
+export declare const SuccessIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
+
 export declare const SupplierIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 declare type SurtitleProps = {
