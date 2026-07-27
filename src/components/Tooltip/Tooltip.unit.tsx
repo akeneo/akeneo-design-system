@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render, screen, waitFor} from '../../storybook/test-util';
+import {act, fireEvent, render, screen, waitFor} from '../../storybook/test-util';
 import {Tooltip} from './Tooltip';
 
 test('it renders its children properly', () => {
@@ -17,6 +17,44 @@ test('it triggers tooltip mouse events', async () => {
   await waitFor(() => {
     expect(screen.queryByText('Tooltip content')).not.toBeInTheDocument();
   });
+});
+
+test('it delays showing the tooltip when mouseEnterDelay is set', () => {
+  jest.useFakeTimers();
+  render(
+    <Tooltip data-testid="my_value" mouseEnterDelay={1000}>
+      Tooltip content
+    </Tooltip>
+  );
+
+  fireEvent.mouseOver(screen.getByTestId('my_value'));
+  expect(screen.queryByText('Tooltip content')).not.toBeInTheDocument();
+
+  act(() => {
+    jest.advanceTimersByTime(1000);
+  });
+  expect(screen.getByText('Tooltip content')).toBeInTheDocument();
+
+  jest.useRealTimers();
+});
+
+test('it cancels the delayed tooltip when the pointer leaves before the delay elapses', () => {
+  jest.useFakeTimers();
+  render(
+    <Tooltip data-testid="my_value" mouseEnterDelay={1000}>
+      Tooltip content
+    </Tooltip>
+  );
+
+  fireEvent.mouseOver(screen.getByTestId('my_value'));
+  fireEvent.mouseLeave(screen.getByTestId('my_value'));
+
+  act(() => {
+    jest.advanceTimersByTime(1000);
+  });
+  expect(screen.queryByText('Tooltip content')).not.toBeInTheDocument();
+
+  jest.useRealTimers();
 });
 
 test('it renders the tooltip with a bottom direction', () => {

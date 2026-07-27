@@ -154,6 +154,11 @@ export type TooltipProps = Override<
      * Define a custom z-index for the tooltip content.
      */
     contentZIndex?: number;
+
+    /**
+     * Delay in milliseconds before the tooltip appears on hover. Defaults to 0 (immediate).
+     */
+    mouseEnterDelay?: number;
   }
 >;
 
@@ -165,10 +170,12 @@ const Tooltip = ({
   trigger,
   offset,
   contentZIndex,
+  mouseEnterDelay = 0,
   ...rest
 }: TooltipProps) => {
   const [isVisible, showTooltip, hideTooltip] = useBooleanState(false);
   const hideTooltipAfterTimeoutRef = useRef<number>();
+  const showTooltipAfterDelayRef = useRef<number>();
   const portalNode = document.createElement('div');
   portalNode.setAttribute('id', 'tooltip-root');
   const portalRef = useRef<HTMLDivElement>(portalNode);
@@ -178,10 +185,16 @@ const Tooltip = ({
 
   const showTooltipHandler = () => {
     clearTimeout(hideTooltipAfterTimeoutRef.current);
-    showTooltip();
+    clearTimeout(showTooltipAfterDelayRef.current);
+    if (mouseEnterDelay > 0) {
+      showTooltipAfterDelayRef.current = window.setTimeout(showTooltip, mouseEnterDelay);
+    } else {
+      showTooltip();
+    }
   };
 
   const hideTooltipAfterTimeout = () => {
+    clearTimeout(showTooltipAfterDelayRef.current);
     hideTooltipAfterTimeoutRef.current = window.setTimeout(() => {
       hideTooltip();
     }, 100);
@@ -193,6 +206,7 @@ const Tooltip = ({
     return () => {
       document.body.removeChild(portalRef.current);
       clearTimeout(hideTooltipAfterTimeoutRef.current);
+      clearTimeout(showTooltipAfterDelayRef.current);
     };
   }, []);
 

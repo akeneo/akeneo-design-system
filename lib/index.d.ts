@@ -1805,7 +1805,7 @@ declare type ToolbarProps = Override<default_2.HTMLAttributes<HTMLDivElement>, {
 }>;
 
 export declare const Tooltip: {
-    ({ direction, iconSize, width, children, trigger, offset, contentZIndex, ...rest }: TooltipProps): default_2.JSX.Element;
+    ({ direction, iconSize, width, children, trigger, offset, contentZIndex, mouseEnterDelay, ...rest }: TooltipProps): default_2.JSX.Element;
     Title: StyledComponent<"div", DefaultTheme, {}, never>;
 };
 
@@ -1817,6 +1817,7 @@ export declare type TooltipProps = Override<HTMLAttributes<HTMLDivElement>, {
     width?: number;
     offset?: number;
     contentZIndex?: number;
+    mouseEnterDelay?: number;
 }>;
 
 declare const TopLeftButtons: StyledComponent<"div", DefaultTheme, {}, never>;
