@@ -1,5 +1,8 @@
 import React from 'react';
+import 'jest-styled-components';
 import {MetricInput} from './MetricInput';
+import {getColor} from '../../../theme/theme';
+import {pimTheme} from '../../../themes';
 import {fireEvent, render, screen} from '../../../storybook/test-util';
 
 test('it handles Amount Change', () => {
@@ -42,4 +45,21 @@ test('it handles Unit Change', () => {
   fireEvent.click(screen.getByText('Value 2'));
 
   expect(handleUnitChange).toHaveBeenCalledWith('value2');
+});
+
+test('it renders the selected unit label without uppercase transform so symbols like "μm" are not corrupted', () => {
+  render(
+    <MetricInput
+      amount={'12'}
+      onAmountChange={jest.fn()}
+      onUnitChange={jest.fn()}
+      unitOptions={[{value: 'MICROMETER', label: 'μm'}]}
+      openLabel={'Open'}
+      unit={'MICROMETER'}
+    />
+  );
+
+  const unitSelect = screen.getByTestId('currency');
+  expect(unitSelect).toHaveStyleRule('color', getColor('grey', 100)({theme: pimTheme}), {modifier: 'span'});
+  expect(unitSelect).not.toHaveStyleRule('text-transform', 'uppercase', {modifier: 'span'});
 });

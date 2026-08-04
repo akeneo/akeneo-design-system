@@ -39,7 +39,6 @@ const CustomSelectInput = styled(SelectInput)<{$invalid: boolean}>`
     }
   }
   span {
-    text-transform: uppercase;
     color: ${getColor('grey', 100)};
   }
 `;
