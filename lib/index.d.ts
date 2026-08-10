@@ -1498,7 +1498,7 @@ export declare const SwitcherButton: default_2.ForwardRefExoticComponent<Omit<de
 export declare const SystemIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const TabBar: {
-    ({ moreButtonTitle, children, sticky, ...rest }: TabBarProps): default_2.JSX.Element;
+    ({ moreButtonTitle, moreButtonBadge, children, sticky, ...rest }: TabBarProps): default_2.JSX.Element;
     Tab: {
         ({ children, onClick, isActive, parentRef, onVisibilityChange, ...rest }: TabProps): default_2.JSX.Element;
         displayName: string;
@@ -1507,6 +1507,7 @@ export declare const TabBar: {
 
 declare type TabBarProps = {
     moreButtonTitle: string;
+    moreButtonBadge?: (hiddenTabKeys: string[]) => ReactNode;
     sticky?: number;
     children?: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;

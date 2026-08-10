@@ -170,6 +170,12 @@ type TabBarProps = {
   moreButtonTitle: string;
 
   /**
+   * Renders a node next to the More button, receiving the keys of the tabs currently hidden behind it.
+   * Typically used to aggregate the hidden tabs' Badges into a single count.
+   */
+  moreButtonBadge?: (hiddenTabKeys: string[]) => ReactNode;
+
+  /**
    * When set, defines the sticky top position of the Tab bar.
    */
   sticky?: number;
@@ -183,12 +189,13 @@ type TabBarProps = {
 /**
  * TabBar is used to move from one content to another within the same context.
  */
-const TabBar = ({moreButtonTitle, children, sticky, ...rest}: TabBarProps) => {
+const TabBar = ({moreButtonTitle, moreButtonBadge, children, sticky, ...rest}: TabBarProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [hiddenElements, setHiddenElements] = useState<string[]>([]);
   const [isOpen, open, close] = useBooleanState();
 
   const hiddenTabs: ReactElement<TabProps>[] = [];
+  const hiddenTabKeys: string[] = [];
   const decoratedChildren = Children.map(children, (child, index) => {
     if (!child) {
       return;
@@ -203,6 +210,7 @@ const TabBar = ({moreButtonTitle, children, sticky, ...rest}: TabBarProps) => {
 
     if (isHidden) {
       hiddenTabs.push(child);
+      hiddenTabKeys.push(String(key));
     }
 
     return cloneElement(child, {
@@ -228,6 +236,7 @@ const TabBar = ({moreButtonTitle, children, sticky, ...rest}: TabBarProps) => {
       {0 < hiddenTabs.length && (
         <HiddenTabsDropdown $isActive={activeTabIsHidden}>
           <IconButton level="tertiary" ghost="borderless" icon={<MoreIcon />} title={moreButtonTitle} onClick={open} />
+          {moreButtonBadge?.(hiddenTabKeys)}
           {isOpen && (
             <Dropdown.Overlay verticalPosition="down" onClose={close}>
               <Dropdown.ItemCollection>

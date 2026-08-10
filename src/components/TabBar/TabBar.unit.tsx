@@ -101,6 +101,86 @@ test('it displays a Dropdown button when having a lot of tabs', async () => {
   });
 });
 
+test('it renders nothing next to the More button when moreButtonBadge is not provided', () => {
+  render(
+    <TabBar moreButtonTitle="More">
+      <TabBar.Tab key="firstTab" isActive={false}>
+        First tab
+      </TabBar.Tab>
+      <TabBar.Tab key="lastTab" isActive={false}>
+        Last tab
+      </TabBar.Tab>
+    </TabBar>
+  );
+
+  act(() => {
+    entryCallback?.([{isIntersecting: false}]);
+  });
+
+  expect(screen.getByTitle('More').parentElement?.children).toHaveLength(1);
+});
+
+test('it renders the moreButtonBadge next to the More button', () => {
+  render(
+    <TabBar moreButtonTitle="More" moreButtonBadge={() => <span data-testid="hidden_tabs_badge">4</span>}>
+      <TabBar.Tab key="firstTab" isActive={false}>
+        First tab
+      </TabBar.Tab>
+      <TabBar.Tab key="lastTab" isActive={false}>
+        Last tab
+      </TabBar.Tab>
+    </TabBar>
+  );
+
+  act(() => {
+    entryCallback?.([{isIntersecting: false}]);
+  });
+
+  expect(screen.getByTestId('hidden_tabs_badge').parentElement).toBe(screen.getByTitle('More').parentElement);
+});
+
+test('it gives the keys of the hidden tabs to moreButtonBadge', () => {
+  const moreButtonBadge = jest.fn().mockReturnValue(null);
+
+  render(
+    <TabBar moreButtonTitle="More" moreButtonBadge={moreButtonBadge}>
+      <TabBar.Tab key="firstTab" isActive={false}>
+        First tab
+      </TabBar.Tab>
+      <TabBar.Tab key="lastTab" isActive={false}>
+        Last tab
+      </TabBar.Tab>
+    </TabBar>
+  );
+
+  expect(moreButtonBadge).not.toHaveBeenCalled();
+
+  act(() => {
+    entryCallback?.([{isIntersecting: false}]);
+  });
+
+  expect(moreButtonBadge).toHaveBeenCalledWith(['lastTab']);
+});
+
+test('it renders nothing next to the More button when moreButtonBadge returns null', () => {
+  render(
+    <TabBar moreButtonTitle="More" moreButtonBadge={() => null}>
+      <TabBar.Tab key="firstTab" isActive={false}>
+        First tab
+      </TabBar.Tab>
+      <TabBar.Tab key="lastTab" isActive={false}>
+        Last tab
+      </TabBar.Tab>
+    </TabBar>
+  );
+
+  act(() => {
+    entryCallback?.([{isIntersecting: false}]);
+  });
+
+  expect(screen.getByTitle('More').parentElement?.children).toHaveLength(1);
+});
+
 test('it calls the onClick handler when hitting the enter or space key', () => {
   const handleClick = jest.fn();
 
