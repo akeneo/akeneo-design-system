@@ -83,7 +83,7 @@ test('it handles search', () => {
   expect(spainOption).toBeInTheDocument();
   fireEvent.keyDown(input, {key: 'Enter', code: 'Enter'});
   expect(onChange).toHaveBeenCalledWith(['en_US', 'es_ES']);
-  expect(onChange).toHaveBeenCalledTimes(4);
+  expect(onChange).toHaveBeenCalledTimes(2);
 });
 
 test('it handles external search', () => {
@@ -160,7 +160,7 @@ test('it handles empty cases', () => {
   expect(screen.getByText('Empty result')).toBeInTheDocument();
 
   fireEvent.keyDown(input, {key: 'Enter', code: 'Enter'});
-  expect(onChange).toHaveBeenCalledWith([]);
+  expect(onChange).not.toHaveBeenCalled();
 });
 
 test('it handles codes that do not have a label', () => {
@@ -317,7 +317,7 @@ test('it does not remove the chip when the search value is not empty', () => {
   userEvent.type(input, 'something{backspace}{backspace}');
 
   expect(screen.getByDisplayValue('somethi')).toBeInTheDocument();
-  expect(onChange).toHaveBeenCalledWith(['en_US', 'fr_FR']);
+  expect(onChange).not.toHaveBeenCalled();
 });
 
 test('MultiSelectInput supports ...rest props', () => {
@@ -402,20 +402,25 @@ test('it supports the copy paste of multiple tags', () => {
 
   render(
     <MultiSelectInput
-      value={['gucci', 'samsung', 'apple', 'asus']}
+      value={[]}
       onChange={handleChange}
       removeLabel="Remove"
       openLabel="Open"
       emptyResultLabel="Empty result"
-    />
+    >
+      <MultiSelectInput.Option value="gucci">Gucci</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="samsung">Samsung</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="apple">Apple</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="asus">Asus</MultiSelectInput.Option>
+    </MultiSelectInput>
   );
 
-  userEvent.paste(screen.getByRole('textbox'), ' gucci samsung,apple\r\nasus  ');
+  fireEvent.paste(screen.getByRole('textbox'), {clipboardData: {getData: () => 'gucci,apple\r\nasus'}});
 
-  expect(handleChange).toBeCalledWith(['gucci', 'samsung', 'apple', 'asus']);
+  expect(handleChange).toBeCalledWith(['gucci', 'apple', 'asus']);
 });
 
-test('it auto-selects matching option values by default', () => {
+test('it does not select an option while the user is typing its exact value', () => {
   const onChange = jest.fn();
   render(
     <MultiSelectInput
@@ -435,6 +440,79 @@ test('it auto-selects matching option values by default', () => {
   const input = screen.getByRole('textbox');
   fireEvent.click(input);
   fireEvent.change(input, {target: {value: 'en_US'}});
+
+  expect(onChange).not.toHaveBeenCalled();
+  expect(screen.getByDisplayValue('en_US')).toBeInTheDocument();
+});
+
+test('it selects matching option values when the text contains a separator', () => {
+  const onChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'en_US,fr_FR'}});
+
+  expect(onChange).toHaveBeenCalledWith(['en_US', 'fr_FR']);
+});
+
+test('it selects a matching option value when the user types a trailing separator', () => {
+  const onChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'en_US,'}});
+
+  expect(onChange).toHaveBeenCalledWith(['en_US']);
+});
+
+test('it selects a matching option value on paste even without separator', () => {
+  const onChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.paste(input, {clipboardData: {getData: () => 'en_US'}});
 
   expect(onChange).toHaveBeenCalledWith(['en_US']);
 });
@@ -466,6 +544,31 @@ test('it does not auto-select when disableAutoSelect is true', () => {
   expect(onChange).not.toHaveBeenCalled();
   expect(onSearchChange).toHaveBeenCalledWith('en_US');
   expect(screen.getByDisplayValue('en_US')).toBeInTheDocument();
+});
+
+test('it does not select options on paste when disableAutoSelect is true', () => {
+  const onChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+      disableAutoSelect={true}
+    >
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.paste(input, {clipboardData: {getData: () => 'en_US'}});
+
+  expect(onChange).not.toHaveBeenCalled();
 });
 
 test('it treats separators as regular text when disableAutoSelect is true', () => {

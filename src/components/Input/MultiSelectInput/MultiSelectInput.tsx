@@ -1,4 +1,5 @@
 import React, {
+  ClipboardEvent,
   isValidElement,
   NamedExoticComponent,
   ReactElement,
@@ -23,6 +24,9 @@ import {ArrowDownIcon} from '../../../icons/ArrowDownIcon';
 import {ChipInput, ChipValue} from './ChipInput';
 import {usePagination} from '../../../hooks/usePagination';
 import {Locale} from '../../Locale/Locale';
+
+// Matching : line break, comma and semi-colon
+const CHIP_SEPARATOR_REGEX = new RegExp('(?:\\r\\n|[,;])+', 'g');
 
 const MultiSelectInputContainer = styled.div<{$value: string[] | null; $readOnly: boolean} & AkeneoThemedProps>`
   width: 100%;
@@ -383,18 +387,8 @@ const MultiSelectInput = ({
     }
   };
 
-  const handleSearch = (searchValue: string) => {
-    // When disableAutoSelect is true, treat the input as pure search text only.
-    // This prevents automatic selection of matching options while typing.
-    if (disableAutoSelect) {
-      setSearchValue(searchValue);
-      onSearchChange?.(searchValue);
-      openOverlay();
-      return;
-    }
-
-    // Matching : line break, space, tab, comma and semi-colon
-    const newChips = searchValue.split(new RegExp('(?:\\r\\n|[,;])+', 'g'));
+  const convertSearchIntoChips = (searchValue: string) => {
+    const newChips = searchValue.split(CHIP_SEPARATOR_REGEX);
     const newChipsWithoutEmpty = newChips.filter((chip: string) => chip.trim() !== '');
     const newChipsFiltered = newChipsWithoutEmpty.filter((chip: string) =>
       validChildren.map(child => child.props.value).includes(chip)
@@ -408,6 +402,31 @@ const MultiSelectInput = ({
     // Calls onSearchChange (if provided) with the invalid input.
     onSearchChange?.(invalidChipsProvided);
     openOverlay();
+  };
+
+  const handleSearch = (searchValue: string) => {
+    if (disableAutoSelect || null === searchValue.match(CHIP_SEPARATOR_REGEX)) {
+      setSearchValue(searchValue);
+      onSearchChange?.(searchValue);
+      openOverlay();
+      return;
+    }
+
+    convertSearchIntoChips(searchValue);
+  };
+
+  const handlePaste = (event: ClipboardEvent<HTMLInputElement>) => {
+    if (disableAutoSelect || !event.clipboardData) {
+      return;
+    }
+
+    event.preventDefault();
+    const input = event.currentTarget;
+    const selectionStart = input.selectionStart ?? input.value.length;
+    const selectionEnd = input.selectionEnd ?? input.value.length;
+    const pastedValue =
+      input.value.slice(0, selectionStart) + event.clipboardData.getData('text') + input.value.slice(selectionEnd);
+    convertSearchIntoChips(pastedValue);
   };
 
   const handleRemove = (chipsCode: string) => {
@@ -466,6 +485,7 @@ const MultiSelectInput = ({
           readOnly={readOnly}
           invalid={invalid}
           onSearchChange={handleSearch}
+          onPaste={handlePaste}
           onRemove={handleRemove}
           onFocus={handleFocus}
           lockedValues={lockedValues}

@@ -1,4 +1,4 @@
-import React, {Ref, useEffect} from 'react';
+import React, {ClipboardEvent, Ref, useEffect} from 'react';
 import styled from 'styled-components';
 import {CloseIcon} from '../../../icons/CloseIcon';
 import {LockIcon} from '../../../icons/LockIcon';
@@ -116,6 +116,7 @@ type ChipInputProps = {
   removeLabel: string;
   onRemove: (chipCode: string) => void;
   onSearchChange: (searchValue: string) => void;
+  onPaste?: (event: ClipboardEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   lockedValues?: string[];
 };
@@ -133,6 +134,7 @@ const ChipInput = React.forwardRef<HTMLInputElement, ChipInputProps>(
       removeLabel,
       onRemove,
       onSearchChange,
+      onPaste,
       onFocus,
       lockedValues,
     }: ChipInputProps,
@@ -195,6 +197,7 @@ const ChipInput = React.forwardRef<HTMLInputElement, ChipInputProps>(
             ref={forwardedRef}
             placeholder={value.length === 0 ? placeholder : undefined}
             onChange={handleChange}
+            onPaste={onPaste}
             onBlur={unselectLast}
             aria-invalid={invalid}
             readOnly={readOnly}

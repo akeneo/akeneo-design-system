@@ -41,7 +41,7 @@ import {Locale} from '../../../components';
 
 Multi select input allows the user to select content and data when the expected user input is composed of multiple option values.
 
-Multi select input chip are created when a separator is used (typed or pasted).
+Multi select input chips are created when a separator is used (typed or pasted) or when values are pasted. Typed text without a separator is treated as pure search text and never selects an option automatically.
 
 Multi select input chip can be separated thanks to the following characters:
 
@@ -349,10 +349,10 @@ The placeholder text provides tips or examples of items to enter. Placeholder te
 
 ## Variation on disableAutoSelect
 
-By default, the MultiSelectInput automatically selects options when the typed text exactly matches an option value (e.g., typing "en_US" will automatically select that option). This behavior can be disabled using the `disableAutoSelect` property.
+By default, the MultiSelectInput automatically selects options matching the text when it is pasted (e.g., pasting "en_US" or "en_US;fr_FR" selects those options) or when it contains a separator (e.g., typing "en_US,"). Typed text without a separator is pure search text and never selects an option automatically. The remaining automatic selection can be disabled using the `disableAutoSelect` property.
 
 When `disableAutoSelect` is set to `true`:
-- Typed text is treated as pure search text and is not automatically matched against option values
+- Pasted text is treated as pure search text and is not automatically matched against option values
 - Separators (comma, semicolon, line break) are treated as regular text instead of creating chips
 - Users must explicitly click on options in the dropdown to select them
 - This is useful for search scenarios where option values might be common search terms
