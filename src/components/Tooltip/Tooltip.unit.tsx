@@ -87,6 +87,18 @@ test('it renders the tooltip with a right direction', () => {
   expect(screen.getByText('Tooltip content')).toBeInTheDocument();
 });
 
+test('it fits its content and caps its width when maxWidth is set', () => {
+  render(
+    <Tooltip data-testid="my_value" width={200} maxWidth={350}>
+      Tooltip content
+    </Tooltip>
+  );
+  fireEvent.mouseOver(screen.getByTestId('my_value'));
+
+  expect(screen.getByText('Tooltip content')).toHaveStyle('width: max-content');
+  expect(screen.getByText('Tooltip content')).toHaveStyle('max-width: 350px');
+});
+
 test('Tooltip supports ...rest props', () => {
   render(<Tooltip data-testid="my_value">Tooltip content</Tooltip>);
   expect(screen.getByTestId('my_value')).toBeInTheDocument();

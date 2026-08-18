@@ -30,6 +30,7 @@ const TooltipContent = styled.div<
   {
     $direction: Direction;
     width: number;
+    $maxWidth?: number;
     $top: number;
     $left: number;
     $offset?: number;
@@ -41,7 +42,12 @@ const TooltipContent = styled.div<
   z-index: ${({$contentZIndex}) => $contentZIndex ?? 1901};
   border-radius: 4px;
   padding: 10px;
-  width: ${({width}) => width}px;
+  width: ${({width, $maxWidth}) => (undefined === $maxWidth ? `${width}px` : 'max-content')};
+  ${({$maxWidth}) =>
+    undefined !== $maxWidth &&
+    css`
+      max-width: ${$maxWidth}px;
+    `}
   color: ${getColor('grey', 120)};
   background: ${getColor('blue', 10)};
   border: 1px solid ${getColor('blue', 40)};
@@ -146,6 +152,11 @@ export type TooltipProps = Override<
     width?: number;
 
     /**
+     * If provided, the tooltip fits its content and wraps beyond this width, ignoring `width`.
+     */
+    maxWidth?: number;
+
+    /**
      * Define the offset of the tooltip content relative to the anchor.
      */
     offset?: number;
@@ -166,6 +177,7 @@ const Tooltip = ({
   direction = 'top',
   iconSize = 24,
   width = 200,
+  maxWidth,
   children,
   trigger,
   offset,
@@ -232,6 +244,7 @@ const Tooltip = ({
             ref={contentRef}
             $direction={direction}
             width={width}
+            $maxWidth={maxWidth}
             $top={top}
             $left={left}
             $offset={offset}
