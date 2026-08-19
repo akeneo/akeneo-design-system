@@ -26,3 +26,25 @@ test('it calls the next page handler when the last element is almost reached', (
 
   expect(handleNextPage).toHaveBeenCalled();
 });
+
+test('it re-attaches the observer when data changes', () => {
+  const handleNextPage = jest.fn();
+  const containerRef = {
+    current: {},
+  } as RefObject<HTMLElement>;
+  const lastItemRef = {
+    current: {},
+  } as RefObject<HTMLElement>;
+
+  (window.IntersectionObserver as jest.Mock).mockClear();
+
+  const {rerender} = renderHook(({data}) => usePagination(containerRef, lastItemRef, handleNextPage, true, data), {
+    initialProps: {data: [1]},
+  });
+
+  expect(window.IntersectionObserver).toHaveBeenCalledTimes(1);
+
+  rerender({data: [1, 2]});
+
+  expect(window.IntersectionObserver).toHaveBeenCalledTimes(2);
+});

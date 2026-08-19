@@ -222,12 +222,17 @@ type MultiMultiSelectInputProps = Override<
            * Handler called when the search value changed
            */
           onSearchChange?: (searchValue: string) => void;
-          disableInternalSearch?: false;
+          optionsFilteredExternally?: false;
         }
       | {
           onNextPage: () => void;
           onSearchChange: (searchValue: string) => void;
-          disableInternalSearch: true;
+          /**
+           * The given options are already filtered by the caller (e.g. server-side search): the component renders
+           * them as-is instead of matching them against the search value. Already-selected options are still
+           * hidden from the list.
+           */
+          optionsFilteredExternally: true;
         }
     ) & {
       /**
@@ -236,6 +241,12 @@ type MultiMultiSelectInputProps = Override<
       onOpenChange?: (isOpen: boolean) => void;
     }
 >;
+
+const isOptionGroup = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean =>
+  component?.type.displayName === 'MultiSelectInput.OptionGroup';
+
+const isOption = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean =>
+  component?.type.displayName === 'MultiSelectInput.Option';
 
 /**
  * Multi select input allows the user to select content and data
@@ -258,7 +269,7 @@ const MultiSelectInput = ({
   dropdownMinWidth,
   onNextPage,
   onSearchChange,
-  disableInternalSearch = false,
+  optionsFilteredExternally = false,
   disableAutoSelect = false,
   lockedValues = [],
   'aria-labelledby': ariaLabelledby,
@@ -288,50 +299,53 @@ const MultiSelectInput = ({
     }
   }, [dropdownIsOpen, closeOverlayState, onOpenChange]);
 
-  const validChildren = React.Children.toArray(children).filter(
-    (child): child is ReactElement<OptionProps, NamedExoticComponent> => isValidElement<OptionProps>(child)
+  const validChildren = useMemo(
+    () =>
+      React.Children.toArray(children).filter((child): child is ReactElement<OptionProps, NamedExoticComponent> =>
+        isValidElement<OptionProps>(child)
+      ),
+    [children]
   );
 
-  const isOptionGroup = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean => {
-    return component?.type.displayName === 'MultiSelectInput.OptionGroup';
-  };
+  const indexedChips = useMemo(
+    () =>
+      validChildren.reduce<{[key: string]: ChipValue}>((indexedChips, child) => {
+        if (isOptionGroup(child)) {
+          return indexedChips;
+        }
 
-  const isOption = (component: ReactElement<OptionProps, NamedExoticComponent>): boolean => {
-    return component?.type.displayName === 'MultiSelectInput.Option';
-  };
+        const children = child.props.children;
+        const value = child.props.value;
 
-  const indexedChips = validChildren.reduce<{[key: string]: ChipValue}>((indexedChips, child) => {
-    if (isOptionGroup(child)) {
-      return indexedChips;
-    }
+        if ('string' !== typeof children) {
+          throw new Error('Multi select only accepts string as Option');
+        }
 
-    const children = child.props.children;
-    const value = child.props.value;
+        if (Object.prototype.hasOwnProperty.call(indexedChips, value)) {
+          throw new Error(`Duplicate option value ${value}`);
+        }
 
-    if ('string' !== typeof children) {
-      throw new Error('Multi select only accepts string as Option');
-    }
+        indexedChips[value] = {code: value, label: children};
 
-    if (Object.prototype.hasOwnProperty.call(indexedChips, value)) {
-      throw new Error(`Duplicate option value ${value}`);
-    }
+        return indexedChips;
+      }, {}),
+    [validChildren]
+  );
 
-    indexedChips[value] = {code: value, label: children};
-
-    return indexedChips;
-  }, {});
-
-  const filteredChildren = disableInternalSearch
-    ? validChildren
-    : validChildren.filter(child => {
+  const filteredChildren = useMemo(
+    () =>
+      validChildren.filter(child => {
         const childValue = child.props.value;
         const optionValue = childValue + child.props.children;
 
         return (
           isOptionGroup(child) ||
-          (!value.includes(childValue) && optionValue.toLowerCase().includes(searchValue.toLowerCase()))
+          (!value.includes(childValue) &&
+            (optionsFilteredExternally || optionValue.toLowerCase().includes(searchValue.toLowerCase())))
         );
-      });
+      }),
+    [optionsFilteredExternally, validChildren, searchValue, value]
+  );
 
   const hasChildren = useMemo(() => {
     return filteredChildren.some(child => isOption(child));
@@ -448,7 +462,7 @@ const MultiSelectInput = ({
     inputRef.current?.blur();
   };
 
-  usePagination(optionsContainerRef, lastOptionRef, onNextPage, dropdownIsOpen);
+  usePagination(optionsContainerRef, lastOptionRef, onNextPage, dropdownIsOpen, filteredChildren);
 
   const handleFocus = () => openOverlay();
 

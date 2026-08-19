@@ -1089,17 +1089,17 @@ declare type MultiMultiSelectInputProps = Override<Override<default_2.InputHTMLA
 } & ({
     onNextPage?: () => void;
     onSearchChange?: (searchValue: string) => void;
-    disableInternalSearch?: false;
+    optionsFilteredExternally?: false;
 } | {
     onNextPage: () => void;
     onSearchChange: (searchValue: string) => void;
-    disableInternalSearch: true;
+    optionsFilteredExternally: true;
 }) & {
     onOpenChange?: (isOpen: boolean) => void;
 }>;
 
 export declare const MultiSelectInput: {
-    ({ id, placeholder, invalid, value, invalidValue, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, dropdownMinWidth, onNextPage, onSearchChange, disableInternalSearch, disableAutoSelect, lockedValues, "aria-labelledby": ariaLabelledby, onOpenChange, ...rest }: MultiMultiSelectInputProps): default_2.JSX.Element;
+    ({ id, placeholder, invalid, value, invalidValue, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, dropdownMinWidth, onNextPage, onSearchChange, optionsFilteredExternally, disableAutoSelect, lockedValues, "aria-labelledby": ariaLabelledby, onOpenChange, ...rest }: MultiMultiSelectInputProps): default_2.JSX.Element;
     Option: {
         ({ children, enableLocaleRender, ...rest }: OptionProps): default_2.JSX.Element;
         displayName: string;
@@ -1352,7 +1352,7 @@ declare type SectionTitleProps = Override<HTMLAttributes<HTMLDivElement>, {
 }>;
 
 export declare const SelectInput: {
-    ({ id, placeholder, invalid, value, emptyResultLabel, children, onChange, clearable, clearLabel, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, disableInternalSearch, "aria-labelledby": ariaLabelledby, selectedValueComponent, onOpenChange, title, keepDropdownOnSelect, size, ...rest }: SelectInputProps): default_2.JSX.Element;
+    ({ id, placeholder, invalid, value, emptyResultLabel, children, onChange, clearable, clearLabel, openLabel, readOnly, verticalPosition, onNextPage, onSearchChange, optionsFilteredExternally, "aria-labelledby": ariaLabelledby, selectedValueComponent, onOpenChange, title, keepDropdownOnSelect, size, ...rest }: SelectInputProps): default_2.JSX.Element;
     Option: StyledComponent<"span", DefaultTheme, Omit<default_2.HTMLAttributes<HTMLSpanElement>, "disabled" | "value"> & {
     value: string;
     disabled?: boolean | undefined;
@@ -1390,11 +1390,11 @@ declare type SelectInputProps = Override<Override<default_2.InputHTMLAttributes<
 } & ({
     onNextPage?: () => void;
     onSearchChange?: (searchValue: string) => void;
-    disableInternalSearch?: false;
+    optionsFilteredExternally?: false;
 } | {
     onNextPage: () => void;
     onSearchChange: (searchValue: string) => void;
-    disableInternalSearch: true;
+    optionsFilteredExternally: true;
 }) & {
     onOpenChange?: (isOpen: boolean) => void;
 }>;

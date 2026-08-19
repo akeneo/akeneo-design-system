@@ -107,7 +107,7 @@ test('it handles external search', () => {
       emptyResultLabel="Empty result"
       onNextPage={onNextPage}
       onSearchChange={onSearchChange}
-      disableInternalSearch={true}
+      optionsFilteredExternally={true}
       removeLabel="Remove"
     >
       <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
@@ -129,6 +129,69 @@ test('it handles external search', () => {
   expect(spanishOption).toBeInTheDocument();
   const frenchOption = screen.getByText('French');
   expect(frenchOption).toBeInTheDocument();
+});
+
+test('it hides already selected options from the dropdown when options are filtered externally', () => {
+  render(
+    <MultiSelectInput
+      openLabel="Open"
+      value={['en_US']}
+      onChange={jest.fn()}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+      onNextPage={jest.fn()}
+      onSearchChange={jest.fn()}
+      optionsFilteredExternally={true}
+      removeLabel="Remove"
+    >
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="fr_FR">French</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="de_DE">German</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  fireEvent.focus(screen.getByRole('textbox'));
+
+  const displayedOptions = Array.from(document.querySelectorAll('[data-active]')).map(option => option.textContent);
+  expect(displayedOptions).toEqual(['French', 'German']);
+});
+
+test('it observes the new last option when a new page of options is loaded', () => {
+  const onNextPage = jest.fn();
+  const observe = jest.fn();
+  const unobserve = jest.fn();
+  window.IntersectionObserver = jest.fn(() => ({
+    observe,
+    unobserve,
+  })) as unknown as jest.Mock<IntersectionObserver>;
+
+  const renderOptions = (count: number) =>
+    Array.from({length: count}, (_, index) => (
+      <MultiSelectInput.Option key={`option_${index}`} value={`option_${index}`}>
+        {`Option ${index}`}
+      </MultiSelectInput.Option>
+    ));
+
+  const props = {
+    value: [],
+    onChange: jest.fn(),
+    placeholder: 'Placeholder',
+    removeLabel: 'Remove',
+    openLabel: 'Open',
+    emptyResultLabel: 'Empty result',
+    onNextPage,
+  };
+
+  const {rerender} = render(<MultiSelectInput {...props}>{renderOptions(2)}</MultiSelectInput>);
+
+  fireEvent.focus(screen.getByRole('textbox'));
+
+  expect(observe).toHaveBeenCalledTimes(1);
+  expect(observe.mock.calls[0][0]).toHaveTextContent('Option 1');
+
+  rerender(<MultiSelectInput {...props}>{renderOptions(4)}</MultiSelectInput>);
+
+  expect(observe.mock.calls[observe.mock.calls.length - 1][0]).toHaveTextContent('Option 3');
 });
 
 test('it handles empty cases', () => {

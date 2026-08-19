@@ -312,12 +312,16 @@ type SelectInputProps = Override<
            * Handler called when the search value changed
            */
           onSearchChange?: (searchValue: string) => void;
-          disableInternalSearch?: false;
+          optionsFilteredExternally?: false;
         }
       | {
           onNextPage: () => void;
           onSearchChange: (searchValue: string) => void;
-          disableInternalSearch: true;
+          /**
+           * The given options are already filtered by the caller (e.g. server-side search): the component renders
+           * them as-is instead of matching them against the search value.
+           */
+          optionsFilteredExternally: true;
         }
     ) & {
       /**
@@ -351,7 +355,7 @@ const SelectInput = ({
   verticalPosition,
   onNextPage,
   onSearchChange,
-  disableInternalSearch = false,
+  optionsFilteredExternally = false,
   'aria-labelledby': ariaLabelledby,
   selectedValueComponent,
   onOpenChange,
@@ -406,7 +410,7 @@ const SelectInput = ({
 
   const filteredChildren = useMemo(
     () =>
-      disableInternalSearch
+      optionsFilteredExternally
         ? validChildren
         : validChildren.filter(child => {
             const content = typeof child.props.children === 'string' ? child.props.children : '';
@@ -416,7 +420,7 @@ const SelectInput = ({
 
             return isOptionGroup(child) || optionValue.toLowerCase().includes(searchValue.toLowerCase());
           }),
-    [disableInternalSearch, validChildren, searchValue]
+    [optionsFilteredExternally, validChildren, searchValue]
   );
 
   const hasChildren = useMemo(() => {

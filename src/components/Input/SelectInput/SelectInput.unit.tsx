@@ -128,7 +128,7 @@ test('it handles external search', () => {
       emptyResultLabel="Empty result"
       onNextPage={onNextPage}
       onSearchChange={onSearchChange}
-      disableInternalSearch={true}
+      optionsFilteredExternally={true}
     >
       <SelectInput.Option value="en_US" title="English (United States)">
         <Locale code="en_US" languageLabel="English" />
