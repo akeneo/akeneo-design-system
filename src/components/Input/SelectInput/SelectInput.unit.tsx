@@ -159,6 +159,125 @@ test('it handles external search', () => {
   expect(frenchOption).toBeInTheDocument();
 });
 
+test('it resets external search when the dropdown is closed', () => {
+  const ExternalSearchSelectInput = () => {
+    const options = [
+      {value: 'en_US', label: 'English'},
+      {value: 'fr_FR', label: 'French'},
+    ];
+    const [search, setSearch] = React.useState('');
+
+    return (
+      <SelectInput
+        openLabel="Open"
+        value={null}
+        onChange={jest.fn()}
+        placeholder="Placeholder"
+        emptyResultLabel="Empty result"
+        onNextPage={jest.fn()}
+        onSearchChange={setSearch}
+        optionsFilteredExternally={true}
+      >
+        {options
+          .filter(option => option.label.toLowerCase().includes(search.toLowerCase()))
+          .map(option => (
+            <SelectInput.Option key={option.value} value={option.value} title={option.label}>
+              {option.label}
+            </SelectInput.Option>
+          ))}
+      </SelectInput>
+    );
+  };
+
+  render(<ExternalSearchSelectInput />);
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'French'}});
+
+  expect(screen.queryByText('English')).not.toBeInTheDocument();
+  expect(screen.getByText('French')).toBeInTheDocument();
+
+  fireEvent.click(screen.getByTestId('backdrop'));
+  expect(input).toHaveDisplayValue('');
+
+  fireEvent.click(input);
+  expect(screen.getByText('English')).toBeInTheDocument();
+  expect(screen.getByText('French')).toBeInTheDocument();
+});
+
+test('it does not notify external search when it is already empty', () => {
+  const onSearchChange = jest.fn();
+
+  render(
+    <SelectInput
+      openLabel="Open"
+      value={null}
+      onChange={jest.fn()}
+      placeholder="Placeholder"
+      emptyResultLabel="Empty result"
+      onNextPage={jest.fn()}
+      onSearchChange={onSearchChange}
+      optionsFilteredExternally={true}
+    >
+      <SelectInput.Option value="en_US" title="English">
+        English
+      </SelectInput.Option>
+    </SelectInput>
+  );
+
+  fireEvent.click(screen.getByRole('textbox'));
+  fireEvent.click(screen.getByTestId('backdrop'));
+
+  expect(onSearchChange).not.toHaveBeenCalled();
+});
+
+test('it resets external search after selecting an option with the keyboard', () => {
+  const ExternalSearchSelectInput = () => {
+    const options = [
+      {value: 'en_US', label: 'English'},
+      {value: 'fr_FR', label: 'French'},
+    ];
+    const [search, setSearch] = React.useState('');
+
+    return (
+      <SelectInput
+        openLabel="Open"
+        value={null}
+        onChange={jest.fn()}
+        placeholder="Placeholder"
+        emptyResultLabel="Empty result"
+        onNextPage={jest.fn()}
+        onSearchChange={setSearch}
+        optionsFilteredExternally={true}
+      >
+        {options
+          .filter(option => option.label.toLowerCase().includes(search.toLowerCase()))
+          .map(option => (
+            <SelectInput.Option key={option.value} value={option.value} title={option.label}>
+              {option.label}
+            </SelectInput.Option>
+          ))}
+      </SelectInput>
+    );
+  };
+
+  render(<ExternalSearchSelectInput />);
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'French'}});
+  fireEvent.keyDown(input, {key: 'ArrowDown', code: 'ArrowDown'});
+  fireEvent.keyDown(screen.getByTestId('fr_FR'), {key: 'Enter', code: 'Enter'});
+
+  expect(input).toHaveDisplayValue('');
+  expect(screen.queryByTestId('fr_FR')).not.toBeInTheDocument();
+
+  fireEvent.click(input);
+  expect(screen.getByText('English')).toBeInTheDocument();
+  expect(screen.getByText('French')).toBeInTheDocument();
+});
+
 test('it handles empty cases', () => {
   const onChange = jest.fn();
   render(

@@ -460,6 +460,15 @@ const SelectInput = ({
     openOverlay();
   };
 
+  const resetSearch = () => {
+    if ('' === searchValue) {
+      return;
+    }
+
+    setSearchValue('');
+    onSearchChange?.('');
+  };
+
   const handleOptionClick = (value: string, isOptionDisabled: boolean) => () => {
     if (isOptionDisabled) {
       return;
@@ -477,15 +486,14 @@ const SelectInput = ({
   };
 
   const handleEscape = () => {
-    setSearchValue('');
+    resetSearch();
     closeOverlay();
     inputRef.current?.focus();
   };
 
   const commitSelection = () => {
     if (keepDropdownOnSelect) {
-      setSearchValue('');
-      onSearchChange?.('');
+      resetSearch();
       inputRef.current?.focus();
     } else {
       handleEscape();
@@ -497,7 +505,7 @@ const SelectInput = ({
   const handleInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (null !== event.currentTarget) {
       if (event.key === Key.Tab) {
-        setSearchValue('');
+        resetSearch();
         closeOverlay();
       }
       if (event.key === Key.ArrowDown) {
@@ -534,39 +542,36 @@ const SelectInput = ({
     }
   }, [filteredChildren]);
 
-  const handleOptionKeyDown = useCallback(
-    (event: KeyboardEvent<HTMLDivElement>, isOptionDisabled: boolean) => {
-      if (null !== event.currentTarget) {
-        if (event.key === Key.Tab) {
-          setSearchValue('');
-          closeOverlay();
-        }
-        if (([Key.ArrowDown, Key.ArrowUp, Key.Enter, Key.Escape] as string[]).includes(event.key)) {
-          if (event.key === Key.ArrowDown) {
-            const nextSibling = (event.currentTarget as HTMLElement).nextSibling as HTMLElement;
-            nextSibling?.focus();
-            event.preventDefault();
-          }
-          if (event.key === Key.ArrowUp) {
-            const previousSibling = (event.currentTarget as HTMLElement).previousSibling as HTMLElement;
-            previousSibling?.focus();
-            event.preventDefault();
-          }
-          if (event.key === Key.Enter && !isOptionDisabled) {
-            const value = (event.currentTarget.firstChild as HTMLElement)?.getAttribute('value') as string;
-            onChange?.(value);
-            commitSelection();
-          }
-          if (event.key === Key.Escape) {
-            handleEscape();
-          }
-        } else {
-          inputRef.current?.focus();
-        }
+  const handleOptionKeyDown = (event: KeyboardEvent<HTMLDivElement>, isOptionDisabled: boolean) => {
+    if (null !== event.currentTarget) {
+      if (event.key === Key.Tab) {
+        resetSearch();
+        closeOverlay();
       }
-    },
-    [onChange, value]
-  );
+      if (([Key.ArrowDown, Key.ArrowUp, Key.Enter, Key.Escape] as string[]).includes(event.key)) {
+        if (event.key === Key.ArrowDown) {
+          const nextSibling = (event.currentTarget as HTMLElement).nextSibling as HTMLElement;
+          nextSibling?.focus();
+          event.preventDefault();
+        }
+        if (event.key === Key.ArrowUp) {
+          const previousSibling = (event.currentTarget as HTMLElement).previousSibling as HTMLElement;
+          previousSibling?.focus();
+          event.preventDefault();
+        }
+        if (event.key === Key.Enter && !isOptionDisabled) {
+          const value = (event.currentTarget.firstChild as HTMLElement)?.getAttribute('value') as string;
+          onChange?.(value);
+          commitSelection();
+        }
+        if (event.key === Key.Escape) {
+          handleEscape();
+        }
+      } else {
+        inputRef.current?.focus();
+      }
+    }
+  };
 
   usePagination(containerRef, lastOptionRef, onNextPage, dropdownIsOpen, filteredChildren);
 
