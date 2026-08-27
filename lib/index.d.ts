@@ -1627,6 +1627,13 @@ export declare const TableInput: {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;
     }>;
+    ReadOnlyCell: StyledComponent<"div", DefaultTheme, {}, never>;
+};
+
+declare type TableInputContextType = {
+    readOnly: boolean;
+    isDragAndDroppable: boolean;
+    onReorder: ((reorderedIndices: number[], draggedIndex?: number, droppedIndex?: number) => void) | undefined;
 };
 
 declare type TableInputHeaderCellProps = default_2.TdHTMLAttributes<HTMLTableCellElement>;
@@ -1912,6 +1919,8 @@ export declare const useSelection: <Type = string>(totalCount: number) => readon
 export declare const useShortcut: <NodeType extends HTMLElement>(key: Key, callback: (args?: any) => unknown, externalRef?: Ref_2<NodeType>) => Ref_2<NodeType>;
 
 export declare const useTabBar: (defaultTab: string) => readonly [(tab: string) => boolean, (tab: string) => void, string];
+
+export declare const useTableInputContext: () => TableInputContextType;
 
 export declare const useTheme: () => DefaultTheme;
 

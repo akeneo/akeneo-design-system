@@ -1,5 +1,5 @@
 import React from 'react';
-import {TableInput} from './TableInput';
+import {TableInput, useTableInputContext} from './TableInput';
 import {fireEvent, render, screen} from '../../../storybook/test-util';
 
 test('it renders its children properly', () => {
@@ -82,4 +82,38 @@ test('it can drag and drop', () => {
 test('TableInput supports ...rest props', () => {
   render(<TableInput data-testid="my_value" />);
   expect(screen.getByTestId('my_value')).toBeInTheDocument();
+});
+
+const ReadOnlyStateIndicator = () => {
+  const {readOnly} = useTableInputContext();
+
+  return <td>{`readOnly: ${readOnly}`}</td>;
+};
+
+test('it provides the read only state to its cells', () => {
+  render(
+    <TableInput readOnly={true}>
+      <tbody>
+        <tr>
+          <ReadOnlyStateIndicator />
+        </tr>
+      </tbody>
+    </TableInput>
+  );
+
+  expect(screen.getByText('readOnly: true')).toBeInTheDocument();
+});
+
+test('it is not read only by default outside of a TableInput', () => {
+  render(
+    <table>
+      <tbody>
+        <tr>
+          <ReadOnlyStateIndicator />
+        </tr>
+      </tbody>
+    </table>
+  );
+
+  expect(screen.getByText('readOnly: false')).toBeInTheDocument();
 });

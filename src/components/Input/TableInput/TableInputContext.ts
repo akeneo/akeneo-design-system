@@ -1,4 +1,4 @@
-import {createContext} from 'react';
+import {createContext, useContext} from 'react';
 
 type TableInputContextType = {
   readOnly: boolean;
@@ -12,4 +12,6 @@ const TableInputContext = createContext<TableInputContextType>({
   onReorder: undefined,
 });
 
-export {TableInputContext};
+const useTableInputContext = (): TableInputContextType => useContext(TableInputContext);
+
+export {TableInputContext, useTableInputContext};

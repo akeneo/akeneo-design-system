@@ -11,7 +11,8 @@ import {TableInputDate} from './TableInputDate/TableInputDate';
 import {TableInputNumber, TableInputNumberProps} from './TableInputNumber/TableInputNumber';
 import {TableInputBoolean} from './TableInputBoolean/TableInputBoolean';
 import {TableInputSelect} from './TableInputSelect/TableInputSelect';
-import {TableInputContext} from './TableInputContext';
+import {TableInputContext, useTableInputContext} from './TableInputContext';
+import {TableInputReadOnlyCell} from './shared/TableInputReadOnlyCell';
 import {AkeneoThemedProps} from '../../../theme';
 import {TableInputCellContent} from './TableInputCellContent/TableInputCellContent';
 import {TableInputMeasurement} from './TableInputMeasurement/TableInputMeasurement';
@@ -113,6 +114,7 @@ TableInput.Number = TableInputNumber;
 TableInput.Boolean = TableInputBoolean;
 TableInput.Select = TableInputSelect;
 TableInput.Measurement = TableInputMeasurement;
+TableInput.ReadOnlyCell = TableInputReadOnlyCell;
 
-export {TableInput};
+export {TableInput, useTableInputContext};
 export type {TableInputProps, TableInputNumberProps};
