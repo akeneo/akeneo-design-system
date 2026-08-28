@@ -70,6 +70,12 @@ type MetricInputProps = {
   id?: string;
   'aria-labelledby'?: string;
   unitAriaLabel?: string;
+
+  /**
+   * Allows text highlights (e.g. tinting the occurrences of a searched text)
+   * to be painted over the displayed amount.
+   */
+  highlightable?: boolean;
 };
 
 export const MetricInput: React.FC<MetricInputProps> = ({
@@ -89,6 +95,7 @@ export const MetricInput: React.FC<MetricInputProps> = ({
   id,
   'aria-labelledby': ariaLabelledby,
   unitAriaLabel,
+  highlightable = false,
 }) => {
   const getLabel = useCallback(
     (unit: string, amount: string) => {
@@ -112,6 +119,7 @@ export const MetricInput: React.FC<MetricInputProps> = ({
         data-testid="value"
         readOnly={readOnly}
         id={id}
+        highlightable={highlightable}
       />
       <CustomSelectInput
         onChange={onUnitChange}

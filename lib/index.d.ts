@@ -1039,6 +1039,7 @@ declare type MetricInputProps = {
     id?: string;
     'aria-labelledby'?: string;
     unitAriaLabel?: string;
+    highlightable?: boolean;
 };
 
 export declare const MinifyIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
@@ -1132,6 +1133,7 @@ export declare type NumberInputProps = Override<Override<Omit<default_2.InputHTM
     invalid?: boolean;
     onSubmit?: () => void;
     withIncrementIcons?: boolean;
+    highlightable?: boolean;
 }>;
 
 export declare const onboarderTheme: Theme;
@@ -1730,6 +1732,7 @@ export declare type TextAreaInputProps = Override<Override<default_2.InputHTMLAt
     characterLeftLabelVariant?: Variant_2;
     isValueHidden?: boolean;
     resizable?: boolean;
+    highlightable?: boolean;
 }>;
 
 export declare const TextInput: default_2.ForwardRefExoticComponent<TextInputProps & default_2.RefAttributes<HTMLInputElement>>;
@@ -1747,6 +1750,7 @@ export declare type TextInputProps = Override<Override<InputHTMLAttributes<HTMLI
     onSubmit?: () => void;
     characterLeftLabelVariant?: Variant;
     isValueHidden?: boolean;
+    highlightable?: boolean;
 }>;
 
 export declare type Theme = {

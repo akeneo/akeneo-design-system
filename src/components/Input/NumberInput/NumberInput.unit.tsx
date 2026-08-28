@@ -199,3 +199,18 @@ test('it clears a stale invalid state when the value is reset externally, withou
 
   expect(input).toHaveAttribute('aria-invalid', 'false');
 });
+
+test('it mirrors the value into hidden-from-assistive-tech light-DOM text when highlightable', () => {
+  render(<NumberInput value="42" onChange={jest.fn()} highlightable={true} />);
+
+  const mirror = screen.getByText('42');
+  expect(mirror.tagName).toBe('DIV');
+  expect(mirror).toHaveAttribute('aria-hidden', 'true');
+  expect(mirror).toHaveAttribute('inert');
+});
+
+test('it renders no value mirror by default', () => {
+  render(<NumberInput value="42" onChange={jest.fn()} />);
+
+  expect(screen.queryByText('42')).not.toBeInTheDocument();
+});

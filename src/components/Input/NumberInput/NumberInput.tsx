@@ -16,21 +16,21 @@ const NumberInputContainer = styled.div`
   width: 100%;
 `;
 
-const Input = styled.input<{readOnly?: boolean; $invalid?: boolean} & AkeneoThemedProps>`
+const Input = styled.input<{$readOnly?: boolean; $invalid?: boolean} & AkeneoThemedProps>`
   width: 100%;
   height: 40px;
   border: 1px solid ${({$invalid}) => ($invalid ? getColor('red', 100) : getColor('grey', 80))};
   border-radius: 2px;
-  background: ${({readOnly}) => (readOnly ? getColor('grey', 20) : getColor('white'))};
-  color: ${({readOnly}) => (readOnly ? getColor('grey', 100) : getColor('grey', 140))};
+  background: ${({$readOnly}) => ($readOnly ? getColor('grey', 20) : getColor('white'))};
+  color: ${({$readOnly}) => ($readOnly ? getColor('grey', 100) : getColor('grey', 140))};
   font-size: ${getFontSize('default')};
   line-height: 40px;
-  padding: 0 ${({readOnly}) => (readOnly ? '35px' : '15px')} 0 15px;
+  padding: 0 ${({$readOnly}) => ($readOnly ? '35px' : '15px')} 0 15px;
   box-sizing: border-box;
   outline-style: none;
   appearance: textfield;
-  ${({readOnly}) =>
-    readOnly &&
+  ${({$readOnly}) =>
+    $readOnly &&
     css`
       overflow: hidden;
       text-overflow: ellipsis;
@@ -48,6 +48,32 @@ const Input = styled.input<{readOnly?: boolean; $invalid?: boolean} & AkeneoThem
   &::placeholder {
     opacity: 1;
     color: ${getColor('grey', 100)};
+  }
+`;
+
+// CSS highlights cannot reach the input's value (browser-internal shadow DOM): they tint this
+// transparent copy instead, composed from Input so the text metrics match glyph for glyph.
+// The copy is inert so the browser's find-in-page (which matches transparent text, but skips
+// inert nodes) does not count the value twice; highlight painting is unaffected by inertness.
+const ValueMirror = styled(Input).attrs({as: 'div', inert: ''})`
+  && {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    white-space: pre;
+    pointer-events: none;
+    color: transparent;
+    background: none;
+    box-shadow: none;
+    border-color: transparent;
+    mix-blend-mode: multiply;
+  }
+
+  ${NumberInputContainer}:focus-within & {
+    display: none;
   }
 `;
 
@@ -125,6 +151,12 @@ type NumberInputProps = Override<
      * @internal
      */
     withIncrementIcons?: boolean;
+
+    /**
+     * Allows text highlights (e.g. tinting the occurrences of a searched text)
+     * to be painted over the displayed value.
+     */
+    highlightable?: boolean;
   }
 >;
 
@@ -133,7 +165,17 @@ type NumberInputProps = Override<
  */
 const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
   (
-    {invalid, onChange, readOnly, step, value, onSubmit, withIncrementIcons = true, ...rest}: NumberInputProps,
+    {
+      invalid,
+      onChange,
+      readOnly,
+      step,
+      value,
+      onSubmit,
+      withIncrementIcons = true,
+      highlightable = false,
+      ...rest
+    }: NumberInputProps,
     forwardedRef
   ) => {
     const internalRef = useRef<HTMLInputElement | null>(null);
@@ -199,6 +241,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           disabled={readOnly}
           aria-invalid={isInvalid}
           $invalid={isInvalid}
+          $readOnly={readOnly}
           autoComplete="off"
           value={value}
           title={value}
@@ -206,6 +249,11 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           {...rest}
           onWheel={handleWheel}
         />
+        {highlightable && (
+          <ValueMirror aria-hidden={true} className={rest.className} $readOnly={readOnly}>
+            {value}
+          </ValueMirror>
+        )}
         {readOnly && <ReadOnlyIcon size={16} />}
         {!readOnly && withIncrementIcons && 'any' !== step && (
           <IncrementIconContainer>

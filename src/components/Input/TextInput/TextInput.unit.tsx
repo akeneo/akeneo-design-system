@@ -108,3 +108,24 @@ test('it shows children icons', () => {
 
   expect(screen.getByTitle(/Copy/i)).toBeInTheDocument();
 });
+
+test('it mirrors the value into hidden-from-assistive-tech light-DOM text when highlightable', () => {
+  render(<TextInput value="Nice" onChange={jest.fn()} highlightable={true} />);
+
+  const mirror = screen.getByText('Nice');
+  expect(mirror.tagName).toBe('DIV');
+  expect(mirror).toHaveAttribute('aria-hidden', 'true');
+  expect(mirror).toHaveAttribute('inert');
+});
+
+test('it renders no value mirror by default', () => {
+  render(<TextInput value="Nice" onChange={jest.fn()} />);
+
+  expect(screen.queryByText('Nice')).not.toBeInTheDocument();
+});
+
+test('it renders no value mirror when the value is hidden', () => {
+  render(<TextInput value="Nice" onChange={jest.fn()} highlightable={true} isValueHidden={true} />);
+
+  expect(screen.queryByText('Nice')).not.toBeInTheDocument();
+});

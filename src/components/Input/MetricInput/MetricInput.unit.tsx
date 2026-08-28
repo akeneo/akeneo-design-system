@@ -63,3 +63,22 @@ test('it renders the selected unit label without uppercase transform so symbols 
   expect(unitSelect).toHaveStyleRule('color', getColor('grey', 100)({theme: pimTheme}), {modifier: 'span'});
   expect(unitSelect).not.toHaveStyleRule('text-transform', 'uppercase', {modifier: 'span'});
 });
+
+test('it mirrors the amount into hidden-from-assistive-tech light-DOM text when highlightable', () => {
+  render(
+    <MetricInput
+      amount={'12'}
+      onAmountChange={jest.fn()}
+      onUnitChange={jest.fn()}
+      unitOptions={[]}
+      openLabel={'Open'}
+      unit={null}
+      highlightable={true}
+    />
+  );
+
+  const mirror = screen.getByText('12');
+  expect(mirror.tagName).toBe('DIV');
+  expect(mirror).toHaveAttribute('aria-hidden', 'true');
+  expect(mirror).toHaveAttribute('inert');
+});

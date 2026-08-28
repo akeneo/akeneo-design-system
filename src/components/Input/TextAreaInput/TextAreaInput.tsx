@@ -1,4 +1,13 @@
-import React, {ChangeEvent, cloneElement, isValidElement, Ref, useCallback} from 'react';
+import React, {
+  ChangeEvent,
+  cloneElement,
+  ForwardedRef,
+  isValidElement,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import styled, {css} from 'styled-components';
 import {InputProps} from '../common/InputProps';
 import {LockIcon} from '../../../icons/LockIcon';
@@ -45,6 +54,32 @@ const Textarea = styled.textarea<{readOnly?: boolean; $invalid?: boolean; $resiz
   &::placeholder {
     opacity: 1;
     color: ${getColor('grey', 100)};
+  }
+`;
+
+// CSS highlights cannot reach the textarea's value (browser-internal shadow DOM): they tint this
+// transparent copy instead, composed from Textarea so the text metrics match glyph for glyph.
+// The copy is inert so the browser's find-in-page (which matches transparent text, but skips
+// inert nodes) does not count the value twice; highlight painting is unaffected by inertness.
+const ValueMirror = styled(Textarea).attrs({as: 'div', inert: ''})`
+  && {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-break: break-word;
+    resize: none;
+    pointer-events: none;
+    color: transparent;
+    background: none;
+    box-shadow: none;
+    border-color: transparent;
+    mix-blend-mode: multiply;
+  }
+
+  ${TextAreaInputContainer}:focus-within & {
+    display: none;
   }
 `;
 
@@ -123,6 +158,12 @@ type TextAreaInputProps = Override<
      * Allow the user to resize the textarea.
      */
     resizable?: boolean;
+
+    /**
+     * Allows text highlights (e.g. tinting the occurrences of a searched text)
+     * to be painted over the displayed value.
+     */
+    highlightable?: boolean;
   }
 >;
 
@@ -140,16 +181,53 @@ const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
       children,
       characterLeftLabelVariant = 'default',
       resizable = false,
+      highlightable = false,
       ...rest
     }: TextAreaInputProps,
-    forwardedRef: Ref<HTMLTextAreaElement>
+    forwardedRef: ForwardedRef<HTMLTextAreaElement>
   ) => {
+    const internalRef = useRef<HTMLTextAreaElement | null>(null);
+    const [mirror, setMirror] = useState<HTMLElement | null>(null);
+    const handleRef = useCallback(
+      (element: HTMLTextAreaElement | null) => {
+        internalRef.current = element;
+        if (typeof forwardedRef === 'function') {
+          forwardedRef(element);
+        } else if (forwardedRef) {
+          forwardedRef.current = element;
+        }
+      },
+      [forwardedRef]
+    );
+
     const handleChange = useCallback(
       (event: ChangeEvent<HTMLTextAreaElement>) => {
         if (!readOnly && onChange) onChange(event.currentTarget.value);
       },
       [readOnly, onChange]
     );
+
+    // A blurred textarea keeps its scroll position and stays user-resizable: the mirror must follow
+    // both, or the highlights land on the wrong lines.
+    useEffect(() => {
+      const textarea = internalRef.current;
+      if (!highlightable || textarea === null || mirror === null) return;
+
+      const syncWithTextarea = () => {
+        mirror.style.width = `${textarea.offsetWidth}px`;
+        mirror.style.height = `${textarea.offsetHeight}px`;
+        mirror.scrollTop = textarea.scrollTop;
+      };
+      syncWithTextarea();
+      textarea.addEventListener('scroll', syncWithTextarea);
+      const resizeObserver = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(syncWithTextarea);
+      resizeObserver?.observe(textarea);
+
+      return () => {
+        textarea.removeEventListener('scroll', syncWithTextarea);
+        resizeObserver?.disconnect();
+      };
+    }, [highlightable, mirror]);
 
     const actions = React.Children.map(children, child => {
       if (isValidElement<IconButtonProps>(child) && IconButton === child.type) {
@@ -166,7 +244,7 @@ const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
     return (
       <TextAreaInputContainer>
         <Textarea
-          ref={forwardedRef}
+          ref={handleRef}
           value={value}
           onChange={handleChange}
           type="text"
@@ -177,6 +255,11 @@ const TextAreaInput = React.forwardRef<HTMLTextAreaElement, TextAreaInputProps>(
           $resizable={resizable}
           {...rest}
         />
+        {highlightable && !rest.isValueHidden && (
+          <ValueMirror ref={setMirror} aria-hidden={true} className={rest.className}>
+            {value}
+          </ValueMirror>
+        )}
         {actions && <ActionContainer>{actions}</ActionContainer>}
         {readOnly && <ReadOnlyIcon size={16} />}
         {characterLeftLabel && (

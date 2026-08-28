@@ -64,6 +64,32 @@ const Input = styled.input<
   }
 `;
 
+// CSS highlights cannot reach the input's value (browser-internal shadow DOM): they tint this
+// transparent copy instead, composed from Input so the text metrics match glyph for glyph.
+// The copy is inert so the browser's find-in-page (which matches transparent text, but skips
+// inert nodes) does not count the value twice; highlight painting is unaffected by inertness.
+const ValueMirror = styled(Input).attrs({as: 'div', inert: ''})`
+  && {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    white-space: pre;
+    pointer-events: none;
+    color: transparent;
+    background: none;
+    box-shadow: none;
+    border-color: transparent;
+    mix-blend-mode: multiply;
+  }
+
+  ${TextInputContainer}:focus-within & {
+    display: none;
+  }
+`;
+
 const ReadOnlyIcon = styled(LockIcon)`
   position: absolute;
   right: 0;
@@ -131,6 +157,12 @@ type TextInputProps = Override<
      * Hide the input value.
      */
     isValueHidden?: boolean;
+
+    /**
+     * Allows text highlights (e.g. tinting the occurrences of a searched text)
+     * to be painted over the displayed value.
+     */
+    highlightable?: boolean;
   }
 >;
 
@@ -147,6 +179,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       onSubmit,
       children,
       characterLeftLabelVariant = 'default',
+      highlightable = false,
       ...rest
     }: TextInputProps,
     forwardedRef: Ref<HTMLInputElement>
@@ -193,6 +226,16 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           $hasActions={(actions?.length ?? 0) > 0}
           {...rest}
         />
+        {highlightable && !rest.isValueHidden && (
+          <ValueMirror
+            aria-hidden={true}
+            className={rest.className}
+            $readOnly={readOnly}
+            $hasActions={(actions?.length ?? 0) > 0}
+          >
+            {rest.value}
+          </ValueMirror>
+        )}
         {actions && <ActionContainer>{actions}</ActionContainer>}
         {readOnly && <ReadOnlyIcon size={16} />}
         {characterLeftLabel && (
