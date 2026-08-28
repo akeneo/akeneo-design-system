@@ -86,7 +86,7 @@ const TableInputMeasurement: React.FC<TableInputMeasurementProps> = ({
   const selectedUnit = units.find(({value}) => value === unit);
 
   return readOnly ? (
-    <TableInputReadOnlyCell>
+    <TableInputReadOnlyCell $highlighted={rest.highlighted} $inError={rest.inError}>
       {amount} <span>{selectedUnit?.symbol || selectedUnit?.label}</span>
     </TableInputReadOnlyCell>
   ) : (

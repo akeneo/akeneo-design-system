@@ -1629,7 +1629,10 @@ export declare const TableInput: {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;
     }>;
-    ReadOnlyCell: StyledComponent<"div", DefaultTheme, {}, never>;
+    ReadOnlyCell: StyledComponent<"div", DefaultTheme, {
+    $highlighted?: boolean | undefined;
+    $inError?: boolean | undefined;
+    } & AkeneoThemedProps, never>;
 };
 
 declare type TableInputContextType = {

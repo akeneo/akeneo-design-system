@@ -83,7 +83,11 @@ const TableInputBoolean: React.FC<TableInputBooleanProps> = ({
 
   if (readOnly) {
     return (
-      <TableInputReadOnlyCell title={value !== null ? (value ? yesLabel : noLabel) : undefined}>
+      <TableInputReadOnlyCell
+        title={value !== null ? (value ? yesLabel : noLabel) : undefined}
+        $highlighted={highlighted}
+        $inError={inError}
+      >
         {value !== null && (value ? YesBadge : NoBadge)}
       </TableInputReadOnlyCell>
     );

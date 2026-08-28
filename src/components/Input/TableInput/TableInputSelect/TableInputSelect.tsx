@@ -122,7 +122,11 @@ const TableInputSelect: React.FC<TableInputSelectProps> = ({
   const {readOnly} = React.useContext(TableInputContext);
 
   if (readOnly) {
-    return <TableInputReadOnlyCell title={value?.toString()}>{value}</TableInputReadOnlyCell>;
+    return (
+      <TableInputReadOnlyCell title={value?.toString()} $highlighted={highlighted} $inError={inError}>
+        {value}
+      </TableInputReadOnlyCell>
+    );
   }
 
   return (

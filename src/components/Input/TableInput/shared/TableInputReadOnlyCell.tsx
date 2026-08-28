@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import {getColor} from '../../../../theme/theme';
+import {AkeneoThemedProps, getColor} from '../../../../theme/theme';
+import {highlightCell} from './highlightCell';
 
-const TableInputReadOnlyCell = styled.div`
+const TableInputReadOnlyCell = styled.div<{$highlighted?: boolean; $inError?: boolean} & AkeneoThemedProps>`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -13,6 +14,8 @@ const TableInputReadOnlyCell = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  ${highlightCell};
 `;
 
 export {TableInputReadOnlyCell};
