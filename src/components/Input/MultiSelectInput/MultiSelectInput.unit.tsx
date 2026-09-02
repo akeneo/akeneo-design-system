@@ -483,6 +483,120 @@ test('it supports the copy paste of multiple tags', () => {
   expect(handleChange).toBeCalledWith(['gucci', 'apple', 'asus']);
 });
 
+const renderExternallyFilteredMultiSelectInput = (handleChange: jest.Mock, handleSearchChange: jest.Mock) =>
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={handleChange}
+      onSearchChange={handleSearchChange}
+      onNextPage={jest.fn()}
+      optionsFilteredExternally={true}
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="gucci">Gucci</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="samsung">Samsung</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+test('it accepts a pasted list of codes that are not among the currently loaded options when options are filtered externally', () => {
+  const handleChange = jest.fn();
+  const handleSearchChange = jest.fn();
+  renderExternallyFilteredMultiSelectInput(handleChange, handleSearchChange);
+
+  fireEvent.paste(screen.getByRole('textbox'), {clipboardData: {getData: () => 'not-loaded-1,not-loaded-2'}});
+
+  expect(handleChange).toBeCalledWith(['not-loaded-1', 'not-loaded-2']);
+  expect(handleSearchChange).toBeCalledWith('');
+});
+
+test('it trims the codes of a pasted list', () => {
+  const handleChange = jest.fn();
+  const handleSearchChange = jest.fn();
+  renderExternallyFilteredMultiSelectInput(handleChange, handleSearchChange);
+
+  fireEvent.paste(screen.getByRole('textbox'), {
+    clipboardData: {getData: () => 'not-loaded-1, not-loaded-2 ; not-loaded-3'},
+  });
+
+  expect(handleChange).toBeCalledWith(['not-loaded-1', 'not-loaded-2', 'not-loaded-3']);
+  expect(handleSearchChange).toBeCalledWith('');
+});
+
+test('it splits a pasted list on line feeds', () => {
+  const handleChange = jest.fn();
+  const handleSearchChange = jest.fn();
+  renderExternallyFilteredMultiSelectInput(handleChange, handleSearchChange);
+
+  fireEvent.paste(screen.getByRole('textbox'), {clipboardData: {getData: () => 'not-loaded-1\nnot-loaded-2'}});
+
+  expect(handleChange).toBeCalledWith(['not-loaded-1', 'not-loaded-2']);
+  expect(handleSearchChange).toBeCalledWith('');
+});
+
+test('it splits a pasted list on tabulations', () => {
+  const handleChange = jest.fn();
+  const handleSearchChange = jest.fn();
+  renderExternallyFilteredMultiSelectInput(handleChange, handleSearchChange);
+
+  fireEvent.paste(screen.getByRole('textbox'), {clipboardData: {getData: () => 'not-loaded-1\tnot-loaded-2'}});
+
+  expect(handleChange).toBeCalledWith(['not-loaded-1', 'not-loaded-2']);
+  expect(handleSearchChange).toBeCalledWith('');
+});
+
+test('it splits a pasted list on carriage returns', () => {
+  const handleChange = jest.fn();
+  const handleSearchChange = jest.fn();
+  renderExternallyFilteredMultiSelectInput(handleChange, handleSearchChange);
+
+  fireEvent.paste(screen.getByRole('textbox'), {clipboardData: {getData: () => 'not-loaded-1\rnot-loaded-2'}});
+
+  expect(handleChange).toBeCalledWith(['not-loaded-1', 'not-loaded-2']);
+  expect(handleSearchChange).toBeCalledWith('');
+});
+
+test('it does not treat a space as a chip separator', () => {
+  const handleChange = jest.fn();
+  const handleSearchChange = jest.fn();
+  renderExternallyFilteredMultiSelectInput(handleChange, handleSearchChange);
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'Blue Steel'}});
+
+  expect(handleChange).not.toBeCalled();
+  expect(handleSearchChange).toBeCalledWith('Blue Steel');
+  expect(screen.getByDisplayValue('Blue Steel')).toBeInTheDocument();
+});
+
+test('it hands a single pasted term that is not among the currently loaded options to the search', () => {
+  const handleChange = jest.fn();
+  const handleSearchChange = jest.fn();
+  renderExternallyFilteredMultiSelectInput(handleChange, handleSearchChange);
+
+  fireEvent.paste(screen.getByRole('textbox'), {clipboardData: {getData: () => 'Blue Steel'}});
+
+  expect(handleChange).not.toBeCalledWith(['Blue Steel']);
+  expect(handleSearchChange).toBeCalledWith('Blue Steel');
+  expect(screen.getByDisplayValue('Blue Steel')).toBeInTheDocument();
+});
+
+test('it hands a single typed term followed by a separator to the search when options are filtered externally', () => {
+  const handleChange = jest.fn();
+  const handleSearchChange = jest.fn();
+  renderExternallyFilteredMultiSelectInput(handleChange, handleSearchChange);
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'Blue,'}});
+
+  expect(handleChange).not.toBeCalledWith(['Blue']);
+  expect(handleSearchChange).toBeCalledWith('Blue');
+  expect(screen.getByDisplayValue('Blue')).toBeInTheDocument();
+});
+
 test('it does not select an option while the user is typing its exact value', () => {
   const onChange = jest.fn();
   render(

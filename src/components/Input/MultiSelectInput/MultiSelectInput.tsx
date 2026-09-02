@@ -25,8 +25,9 @@ import {ChipInput, ChipValue} from './ChipInput';
 import {usePagination} from '../../../hooks/usePagination';
 import {Locale} from '../../Locale/Locale';
 
-// Matching : line break, comma and semi-colon
-const CHIP_SEPARATOR_REGEX = new RegExp('(?:\\r\\n|[,;])+', 'g');
+// Matching : line break, tabulation, comma and semi-colon. The space is deliberately left out, unlike in
+// TagInput: this input has a search box, and a space separator would make a multi-word label untypable.
+const CHIP_SEPARATOR_REGEX = new RegExp('[\\n\\r\\t,;]+', 'g');
 
 const MultiSelectInputContainer = styled.div<{$value: string[] | null; $readOnly: boolean} & AkeneoThemedProps>`
   width: 100%;
@@ -402,11 +403,20 @@ const MultiSelectInput = ({
   };
 
   const convertSearchIntoChips = (searchValue: string) => {
-    const newChips = searchValue.split(CHIP_SEPARATOR_REGEX);
-    const newChipsWithoutEmpty = newChips.filter((chip: string) => chip.trim() !== '');
-    const newChipsFiltered = newChipsWithoutEmpty.filter((chip: string) =>
-      validChildren.map(child => child.props.value).includes(chip)
-    );
+    const newChips = searchValue.split(CHIP_SEPARATOR_REGEX).map((chip: string) => chip.trim());
+    const newChipsWithoutEmpty = newChips.filter((chip: string) => chip !== '');
+
+    // When options are filtered externally, the rendered children are only the loaded page(s) of a
+    // much larger server-side option list, so matching a pasted list against them would wrongly
+    // reject valid codes that simply haven't been fetched yet. Only a list of several terms is
+    // unambiguously made of codes: a single term is just as likely to be a label, and is left to the
+    // server search. The caller validates the resulting value against the full option list
+    // (see how already-selected values are validated, e.g. AttributeMultiSelectInput).
+    const acceptsChipsOutsideLoadedOptions = optionsFilteredExternally && newChipsWithoutEmpty.length > 1;
+
+    const newChipsFiltered = acceptsChipsOutsideLoadedOptions
+      ? newChipsWithoutEmpty
+      : newChipsWithoutEmpty.filter((chip: string) => validChildren.map(child => child.props.value).includes(chip));
     onChange?.(arrayUnique([...value, ...newChipsFiltered]));
     // Finds chips that were entered but are not valid (invalidChipsProvided = invalid or unrecognized chips)
     // and joins the found values with commas.
