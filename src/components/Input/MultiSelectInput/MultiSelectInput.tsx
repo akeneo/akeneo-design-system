@@ -402,25 +402,30 @@ const MultiSelectInput = ({
     }
   };
 
-  const convertSearchIntoChips = (searchValue: string) => {
+  const convertSearchIntoChips = (searchValue: string, isPastedValue: boolean) => {
     const newChips = searchValue.split(CHIP_SEPARATOR_REGEX).map((chip: string) => chip.trim());
     const newChipsWithoutEmpty = newChips.filter((chip: string) => chip !== '');
 
     // When options are filtered externally, the rendered children are only the loaded page(s) of a
     // much larger server-side option list, so matching a pasted list against them would wrongly
-    // reject valid codes that simply haven't been fetched yet. Only a list of several terms is
-    // unambiguously made of codes: a single term is just as likely to be a label, and is left to the
-    // server search. The caller validates the resulting value against the full option list
-    // (see how already-selected values are validated, e.g. AttributeMultiSelectInput).
-    const acceptsChipsOutsideLoadedOptions = optionsFilteredExternally && newChipsWithoutEmpty.length > 1;
+    // reject valid codes that simply haven't been fetched yet. Only a pasted list of several terms is
+    // unambiguously made of codes: a single term is just as likely to be a label, and text being typed
+    // stays a search term even once it holds a separator. The caller validates the resulting value
+    // against the full option list (see how already-selected values are validated, e.g.
+    // AttributeMultiSelectInput).
+    const acceptsChipsOutsideLoadedOptions =
+      optionsFilteredExternally && isPastedValue && newChipsWithoutEmpty.length > 1;
 
     const newChipsFiltered = acceptsChipsOutsideLoadedOptions
       ? newChipsWithoutEmpty
       : newChipsWithoutEmpty.filter((chip: string) => validChildren.map(child => child.props.value).includes(chip));
     onChange?.(arrayUnique([...value, ...newChipsFiltered]));
-    // Finds chips that were entered but are not valid (invalidChipsProvided = invalid or unrecognized chips)
-    // and joins the found values with commas.
-    const invalidChipsProvided = newChipsWithoutEmpty.filter(x => !newChipsFiltered.includes(x)).join(',');
+    // When nothing matched, the input is handed back untouched: it may well be a label that contains
+    // a separator, and rejoining the chips would drop the separator the user just typed.
+    const invalidChipsProvided =
+      newChipsFiltered.length === 0
+        ? searchValue
+        : newChipsWithoutEmpty.filter(x => !newChipsFiltered.includes(x)).join(',');
     // Update the search input with leftover (invalid) chips that were not matched.
     setSearchValue(invalidChipsProvided);
     // Calls onSearchChange (if provided) with the invalid input.
@@ -436,7 +441,7 @@ const MultiSelectInput = ({
       return;
     }
 
-    convertSearchIntoChips(searchValue);
+    convertSearchIntoChips(searchValue, false);
   };
 
   const handlePaste = (event: ClipboardEvent<HTMLInputElement>) => {
@@ -450,7 +455,7 @@ const MultiSelectInput = ({
     const selectionEnd = input.selectionEnd ?? input.value.length;
     const pastedValue =
       input.value.slice(0, selectionStart) + event.clipboardData.getData('text') + input.value.slice(selectionEnd);
-    convertSearchIntoChips(pastedValue);
+    convertSearchIntoChips(pastedValue, true);
   };
 
   const handleRemove = (chipsCode: string) => {

@@ -583,6 +583,34 @@ test('it hands a single pasted term that is not among the currently loaded optio
   expect(screen.getByDisplayValue('Blue Steel')).toBeInTheDocument();
 });
 
+test('it keeps a typed label that contains a separator when options are filtered externally', () => {
+  const handleChange = jest.fn();
+  const handleSearchChange = jest.fn();
+  renderExternallyFilteredMultiSelectInput(handleChange, handleSearchChange);
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'Cleaning;'}});
+  fireEvent.change(input, {target: {value: 'Cleaning; maintenance'}});
+
+  expect(handleChange).not.toBeCalledWith(['Cleaning', 'maintenance']);
+  expect(handleSearchChange).toBeCalledWith('Cleaning; maintenance');
+  expect(screen.getByDisplayValue('Cleaning; maintenance')).toBeInTheDocument();
+});
+
+test('it still selects typed terms that match loaded options when options are filtered externally', () => {
+  const handleChange = jest.fn();
+  const handleSearchChange = jest.fn();
+  renderExternallyFilteredMultiSelectInput(handleChange, handleSearchChange);
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'gucci,samsung'}});
+
+  expect(handleChange).toBeCalledWith(['gucci', 'samsung']);
+  expect(handleSearchChange).toBeCalledWith('');
+});
+
 test('it hands a single typed term followed by a separator to the search when options are filtered externally', () => {
   const handleChange = jest.fn();
   const handleSearchChange = jest.fn();
@@ -593,8 +621,8 @@ test('it hands a single typed term followed by a separator to the search when op
   fireEvent.change(input, {target: {value: 'Blue,'}});
 
   expect(handleChange).not.toBeCalledWith(['Blue']);
-  expect(handleSearchChange).toBeCalledWith('Blue');
-  expect(screen.getByDisplayValue('Blue')).toBeInTheDocument();
+  expect(handleSearchChange).toBeCalledWith('Blue,');
+  expect(screen.getByDisplayValue('Blue,')).toBeInTheDocument();
 });
 
 test('it does not select an option while the user is typing its exact value', () => {
@@ -668,6 +696,58 @@ test('it selects a matching option value when the user types a trailing separato
   fireEvent.change(input, {target: {value: 'en_US,'}});
 
   expect(onChange).toHaveBeenCalledWith(['en_US']);
+});
+
+test('it keeps the separator the user typed when no option matches', () => {
+  const onChange = jest.fn();
+  const onSearchChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      onSearchChange={onSearchChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="cleaning_maintenance">Cleaning, maintenance</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.change(input, {target: {value: 'Cleaning,'}});
+
+  expect(onSearchChange).toHaveBeenCalledWith('Cleaning,');
+  expect(screen.getByDisplayValue('Cleaning,')).toBeInTheDocument();
+});
+
+test('it keeps the whole text when a label containing a separator is pasted', () => {
+  const onChange = jest.fn();
+  const onSearchChange = jest.fn();
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={onChange}
+      onSearchChange={onSearchChange}
+      placeholder="Placeholder"
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="cleaning_maintenance">Cleaning; maintenance</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="en_US">English</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  const input = screen.getByRole('textbox');
+  fireEvent.click(input);
+  fireEvent.paste(input, {clipboardData: {getData: () => 'Cleaning; maintenance'}});
+
+  expect(onSearchChange).toHaveBeenCalledWith('Cleaning; maintenance');
+  expect(screen.getByDisplayValue('Cleaning; maintenance')).toBeInTheDocument();
 });
 
 test('it selects a matching option value on paste even without separator', () => {
