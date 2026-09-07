@@ -1087,22 +1087,25 @@ declare type MultiMultiSelectInputProps = Override<Override<default_2.InputHTMLA
     lockedValues?: string[];
     onSubmit?: () => void;
     disableAutoSelect?: boolean;
+    keepDropdownOnSelect?: boolean;
 } & ({
     onNextPage?: () => void;
     onSearchChange?: (searchValue: string) => void;
     optionsFilteredExternally?: false;
+    resolvePastedLabels?: boolean;
 } | {
     onNextPage: () => void;
     onSearchChange: (searchValue: string) => void;
     optionsFilteredExternally: true;
+    resolvePastedLabels?: never;
 }) & {
     onOpenChange?: (isOpen: boolean) => void;
 }>;
 
 export declare const MultiSelectInput: {
-    ({ id, placeholder, invalid, value, invalidValue, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, dropdownMinWidth, onNextPage, onSearchChange, optionsFilteredExternally, disableAutoSelect, lockedValues, "aria-labelledby": ariaLabelledby, onOpenChange, ...rest }: MultiMultiSelectInputProps): default_2.JSX.Element;
+    ({ id, placeholder, invalid, value, invalidValue, emptyResultLabel, children, onChange, removeLabel, onSubmit, openLabel, readOnly, verticalPosition, dropdownMinWidth, separators, onNextPage, onSearchChange, optionsFilteredExternally, disableAutoSelect, keepDropdownOnSelect, resolvePastedLabels, lockedValues, "aria-labelledby": ariaLabelledby, onOpenChange, ...rest }: MultiMultiSelectInputProps): default_2.JSX.Element;
     Option: {
-        ({ children, enableLocaleRender, ...rest }: OptionProps): default_2.JSX.Element;
+        ({ children, enableLocaleRender, pasteAliases: _pasteAliases, ...rest }: OptionProps): default_2.JSX.Element;
         displayName: string;
     };
     OptionGroup: {
@@ -1142,6 +1145,7 @@ declare type OptionProps = {
     value: string;
     children: string;
     enableLocaleRender?: boolean;
+    pasteAliases?: string[];
 } & default_2.HTMLAttributes<HTMLSpanElement>;
 
 export declare const Overlay: ({ verticalPosition, parentRef, minWidth, onClose, children, ...rest }: OverlayProps) => default_2.ReactPortal;

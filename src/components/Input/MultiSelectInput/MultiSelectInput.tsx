@@ -25,9 +25,7 @@ import {ChipInput, ChipValue} from './ChipInput';
 import {usePagination} from '../../../hooks/usePagination';
 import {Locale} from '../../Locale/Locale';
 
-// Matching : line break, tabulation, comma and semi-colon. The space is deliberately left out, unlike in
-// TagInput: this input has a search box, and a space separator would make a multi-word label untypable.
-const CHIP_SEPARATOR_REGEX = new RegExp('[\\n\\r\\t,;]+', 'g');
+const DEFAULT_SEPARATORS = ['\\r', '\\n', '\\t', ',', ';'];
 
 const MultiSelectInputContainer = styled.div<{$value: string[] | null; $readOnly: boolean} & AkeneoThemedProps>`
   width: 100%;
@@ -122,9 +120,16 @@ type OptionProps = {
   value: string;
   children: string;
   enableLocaleRender?: boolean;
+
+  /**
+   * Extra texts that resolve to this option when pasted, on top of its value and its label. Useful when the
+   * value the component works with is not what users have at hand (e.g. an internal id for a named entity).
+   * Like label resolution, this only covers the options that are actually rendered.
+   */
+  pasteAliases?: string[];
 } & React.HTMLAttributes<HTMLSpanElement>;
 
-const Option = ({children, enableLocaleRender, ...rest}: OptionProps) => (
+const Option = ({children, enableLocaleRender, pasteAliases: _pasteAliases, ...rest}: OptionProps) => (
   <span {...rest}>{enableLocaleRender ? <Locale code={rest.value} languageLabel={children} /> : children}</span>
 );
 const OptionGroup = ({children, ...rest}: React.HTMLAttributes<HTMLSpanElement>) => <span {...rest}>{children}</span>;
@@ -213,6 +218,12 @@ type MultiMultiSelectInputProps = Override<
      * @default false
      */
     disableAutoSelect?: boolean;
+
+    /**
+     * Keeps the dropdown open after an option is selected, so several options can be picked in a row.
+     * @default false
+     */
+    keepDropdownOnSelect?: boolean;
   } & (
       | {
           /**
@@ -224,6 +235,14 @@ type MultiMultiSelectInputProps = Override<
            */
           onSearchChange?: (searchValue: string) => void;
           optionsFilteredExternally?: false;
+
+          /**
+           * Resolves pasted texts against the options labels, case insensitively, on top of their values.
+           * Only available when every option is rendered: resolution is a lookup over the rendered options, so
+           * with server-side filtering it would resolve the loaded page and silently drop the rest.
+           * @default false
+           */
+          resolvePastedLabels?: boolean;
         }
       | {
           onNextPage: () => void;
@@ -234,6 +253,12 @@ type MultiMultiSelectInputProps = Override<
            * hidden from the list.
            */
           optionsFilteredExternally: true;
+
+          /**
+           * Unavailable here: label resolution needs every option to be rendered. Resolve the pasted texts into
+           * option values in the caller, where they can be fetched, before handing them to this component.
+           */
+          resolvePastedLabels?: never;
         }
     ) & {
       /**
@@ -268,15 +293,19 @@ const MultiSelectInput = ({
   readOnly = false,
   verticalPosition,
   dropdownMinWidth,
+  separators = DEFAULT_SEPARATORS,
   onNextPage,
   onSearchChange,
   optionsFilteredExternally = false,
   disableAutoSelect = false,
+  keepDropdownOnSelect = false,
+  resolvePastedLabels = false,
   lockedValues = [],
   'aria-labelledby': ariaLabelledby,
   onOpenChange,
   ...rest
 }: MultiMultiSelectInputProps) => {
+  const chipSeparatorRegex = new RegExp(`[${separators.join('')}]+`, 'g');
   const [searchValue, setSearchValue] = useState<string>('');
   const [withGroups, setWithGroups] = useState<boolean>(false);
   const [activeOptionIndex, setActiveOptionIndex] = useState<number>(0);
@@ -396,36 +425,63 @@ const MultiSelectInput = ({
       onChange?.(arrayUnique([...value, newValue]));
       setSearchValue('');
       onSearchChange?.('');
-      closeOverlay();
+      if (!keepDropdownOnSelect) {
+        closeOverlay();
+      }
+      inputRef.current?.focus();
     } else {
       !readOnly && onSubmit?.();
     }
   };
 
   const convertSearchIntoChips = (searchValue: string, isPastedValue: boolean) => {
-    const newChips = searchValue.split(CHIP_SEPARATOR_REGEX).map((chip: string) => chip.trim());
-    const newChipsWithoutEmpty = newChips.filter((chip: string) => chip !== '');
+    const newChips = searchValue
+      .split(chipSeparatorRegex)
+      .map(chip => chip.trim())
+      .filter(chip => chip !== '');
+    const chips = Object.values(indexedChips);
+    const valuesByCode = new Map<string, string>();
+    const valuesByAlias = new Map<string, string>();
+    const valuesByLowercaseLabel = new Map<string, string>();
 
-    // When options are filtered externally, the rendered children are only the loaded page(s) of a
-    // much larger server-side option list, so matching a pasted list against them would wrongly
-    // reject valid codes that simply haven't been fetched yet. Only a pasted list of several terms is
-    // unambiguously made of codes: a single term is just as likely to be a label, and text being typed
-    // stays a search term even once it holds a separator. The caller validates the resulting value
-    // against the full option list (see how already-selected values are validated, e.g.
-    // AttributeMultiSelectInput).
-    const acceptsChipsOutsideLoadedOptions =
-      optionsFilteredExternally && isPastedValue && newChipsWithoutEmpty.length > 1;
+    chips.forEach(({code}) => {
+      valuesByCode.set(code, code);
+    });
+    validChildren.forEach(child => {
+      if (isOptionGroup(child)) {
+        return;
+      }
 
-    const newChipsFiltered = acceptsChipsOutsideLoadedOptions
-      ? newChipsWithoutEmpty
-      : newChipsWithoutEmpty.filter((chip: string) => validChildren.map(child => child.props.value).includes(chip));
-    onChange?.(arrayUnique([...value, ...newChipsFiltered]));
-    // When nothing matched, the input is handed back untouched: it may well be a label that contains
-    // a separator, and rejoining the chips would drop the separator the user just typed.
+      child.props.pasteAliases?.forEach(alias => valuesByAlias.set(alias, child.props.value));
+    });
+    if (resolvePastedLabels) {
+      chips.forEach(({code, label}) => {
+        valuesByLowercaseLabel.set(label.toLowerCase(), code);
+      });
+    }
+
+    const findValueByPastedText = (pastedText: string): string | undefined =>
+      valuesByCode.get(pastedText) ??
+      valuesByAlias.get(pastedText) ??
+      valuesByLowercaseLabel.get(pastedText.toLowerCase());
+
+    const acceptsChipsOutsideLoadedOptions = optionsFilteredExternally && isPastedValue && newChips.length > 1;
+    const newValues = newChips.flatMap(chip => {
+      const matchingValue = findValueByPastedText(chip);
+
+      if (matchingValue !== undefined) {
+        return [matchingValue];
+      }
+
+      return acceptsChipsOutsideLoadedOptions ? [chip] : [];
+    });
+    onChange?.(arrayUnique([...value, ...newValues]));
     const invalidChipsProvided =
-      newChipsFiltered.length === 0
+      newValues.length === 0
         ? searchValue
-        : newChipsWithoutEmpty.filter(x => !newChipsFiltered.includes(x)).join(',');
+        : acceptsChipsOutsideLoadedOptions
+        ? ''
+        : newChips.filter(chip => findValueByPastedText(chip) === undefined).join(',');
     // Update the search input with leftover (invalid) chips that were not matched.
     setSearchValue(invalidChipsProvided);
     // Calls onSearchChange (if provided) with the invalid input.
@@ -434,7 +490,7 @@ const MultiSelectInput = ({
   };
 
   const handleSearch = (searchValue: string) => {
-    if (disableAutoSelect || null === searchValue.match(CHIP_SEPARATOR_REGEX)) {
+    if (disableAutoSelect || null === searchValue.match(chipSeparatorRegex)) {
       setSearchValue(searchValue);
       onSearchChange?.(searchValue);
       openOverlay();
@@ -466,7 +522,9 @@ const MultiSelectInput = ({
     onChange?.(arrayUnique([...value, newValue]));
     setSearchValue('');
     onSearchChange?.('');
-    closeOverlay();
+    if (!keepDropdownOnSelect) {
+      closeOverlay();
+    }
     inputRef.current?.focus();
   };
 

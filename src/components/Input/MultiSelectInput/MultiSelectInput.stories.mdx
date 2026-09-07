@@ -32,6 +32,21 @@ import {Locale} from '../../../components';
         'Disables automatic selection when text matches option values exactly. When true, users must explicitly select options from the dropdown. Useful for search scenarios where option values might be common search terms.',
       table: {type: {summary: 'boolean'}, defaultValue: {summary: 'false'}},
     },
+    keepDropdownOnSelect: {
+      control: {type: 'boolean'},
+      description: 'Keeps the dropdown open after an option is selected.',
+      table: {type: {summary: 'boolean'}, defaultValue: {summary: 'false'}},
+    },
+    resolvePastedLabels: {
+      control: {type: 'boolean'},
+      description: 'Resolves pasted option labels to their values.',
+      table: {type: {summary: 'boolean'}, defaultValue: {summary: 'false'}},
+    },
+    separators: {
+      control: {type: 'object'},
+      description: 'List of separators used to create chips.',
+      table: {type: {summary: 'string[]'}, defaultValue: {summary: "['\\\\r', '\\\\n', '\\\\t', ',', ';']"}},
+    },
   }}
 />
 
@@ -41,15 +56,16 @@ import {Locale} from '../../../components';
 
 Multi select input allows the user to select content and data when the expected user input is composed of multiple option values.
 
-Multi select input chips are created when a separator is used (typed or pasted) or when values are pasted. Typed text without a separator is treated as pure search text and never selects an option automatically.
+Multi select input chips are created when a separator is used (typed or pasted) or when values are pasted. Typed text without a separator is treated as pure search text and never selects an option automatically. When `resolvePastedLabels` is enabled, pasted option labels are resolved to their values.
 
 Multi select input chip can be separated thanks to the following characters:
 
-- space
 - tab
 - line break
 - comma
 - semi-colon
+
+The separator list can be customized with the `separators` property. For example, `['\\s', ',', ';']` also treats spaces as separators. Do not enable whitespace separation when valid option values or labels can contain spaces.
 
 ### Placeholder text
 

@@ -483,6 +483,247 @@ test('it supports the copy paste of multiple tags', () => {
   expect(handleChange).toBeCalledWith(['gucci', 'apple', 'asus']);
 });
 
+test('it does not use spaces as separators by default', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={handleChange}
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="catalog">Catalog</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="managers">Managers</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  fireEvent.paste(screen.getByRole('textbox'), {clipboardData: {getData: () => 'catalog managers'}});
+
+  expect(handleChange).toHaveBeenCalledWith([]);
+  expect(screen.getByDisplayValue('catalog managers')).toBeInTheDocument();
+});
+
+test('it uses configured separators', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={handleChange}
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+      separators={['\\s', ',', ';']}
+    >
+      <MultiSelectInput.Option value="catalog">Catalog</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="managers">Managers</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  fireEvent.paste(screen.getByRole('textbox'), {clipboardData: {getData: () => 'catalog managers'}});
+
+  expect(handleChange).toHaveBeenCalledWith(['catalog', 'managers']);
+});
+
+test('it supports pasted option labels with spreadsheet separators', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={handleChange}
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+      resolvePastedLabels={true}
+    >
+      <MultiSelectInput.Option value="42">Catalog managers</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="51">Product editors</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="63">IT support</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  fireEvent.paste(screen.getByRole('textbox'), {
+    clipboardData: {getData: () => ' Catalog managers \nProduct editors\tIT support'},
+  });
+
+  expect(handleChange).toHaveBeenCalledWith(['42', '51', '63']);
+});
+
+test('it resolves pasted option aliases while ignoring option groups', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={handleChange}
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.OptionGroup title="User groups">User groups</MultiSelectInput.OptionGroup>
+      <MultiSelectInput.Option value="Catalog managers" pasteAliases={['1']}>
+        Catalog managers
+      </MultiSelectInput.Option>
+      <MultiSelectInput.Option value="Product editors" pasteAliases={['2']}>
+        Product editors
+      </MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  fireEvent.paste(screen.getByRole('textbox'), {
+    clipboardData: {getData: () => '1;2'},
+  });
+
+  expect(handleChange).toHaveBeenCalledWith(['Catalog managers', 'Product editors']);
+});
+
+test('it gives option values precedence over the paste aliases of other options', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={handleChange}
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="1">A group named like an id</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="Catalog managers" pasteAliases={['1', '42']}>
+        Catalog managers
+      </MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  fireEvent.paste(screen.getByRole('textbox'), {
+    clipboardData: {getData: () => '1\n42'},
+  });
+
+  expect(handleChange).toHaveBeenCalledWith(['1', 'Catalog managers']);
+});
+
+test('it resolves pasted option labels case insensitively', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={handleChange}
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+      resolvePastedLabels={true}
+    >
+      <MultiSelectInput.Option value="42">Catalog managers</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="51">Product editors</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  fireEvent.paste(screen.getByRole('textbox'), {
+    clipboardData: {getData: () => 'catalog MANAGERS\nPRODUCT editors'},
+  });
+
+  expect(handleChange).toHaveBeenCalledWith(['42', '51']);
+});
+
+test('it gives exact option codes precedence over case-insensitive labels', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={handleChange}
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+      resolvePastedLabels={true}
+    >
+      <MultiSelectInput.Option value="42">Catalog managers</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="catalog managers">Exact code group</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  fireEvent.paste(screen.getByRole('textbox'), {
+    clipboardData: {getData: () => 'catalog managers'},
+  });
+
+  expect(handleChange).toHaveBeenCalledWith(['catalog managers']);
+});
+
+test('it keeps unknown pasted values in the search input', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={handleChange}
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+      resolvePastedLabels={true}
+    >
+      <MultiSelectInput.Option value="42">Catalog managers</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  fireEvent.paste(screen.getByRole('textbox'), {
+    clipboardData: {getData: () => 'Catalog managers\nUnknown group'},
+  });
+
+  expect(handleChange).toHaveBeenCalledWith(['42']);
+  expect(screen.getByDisplayValue('Unknown group')).toBeInTheDocument();
+});
+
+test('it does not resolve pasted labels unless resolvePastedLabels is enabled', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={handleChange}
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+    >
+      <MultiSelectInput.Option value="42">Catalog managers</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  fireEvent.paste(screen.getByRole('textbox'), {
+    clipboardData: {getData: () => 'Catalog managers'},
+  });
+
+  expect(handleChange).toHaveBeenCalledWith([]);
+  expect(screen.getByDisplayValue('Catalog managers')).toBeInTheDocument();
+});
+
+test('it keeps the dropdown open after selecting an option when requested', () => {
+  const handleChange = jest.fn();
+
+  render(
+    <MultiSelectInput
+      value={[]}
+      onChange={handleChange}
+      removeLabel="Remove"
+      openLabel="Open"
+      emptyResultLabel="Empty result"
+      keepDropdownOnSelect={true}
+    >
+      <MultiSelectInput.Option value="catalog">Catalog managers</MultiSelectInput.Option>
+      <MultiSelectInput.Option value="product">Product editors</MultiSelectInput.Option>
+    </MultiSelectInput>
+  );
+
+  fireEvent.focus(screen.getByRole('textbox'));
+  fireEvent.click(screen.getByText('Catalog managers'));
+
+  expect(handleChange).toHaveBeenCalledWith(['catalog']);
+  expect(screen.getByText('Product editors')).toBeInTheDocument();
+});
+
 const renderExternallyFilteredMultiSelectInput = (handleChange: jest.Mock, handleSearchChange: jest.Mock) =>
   render(
     <MultiSelectInput
