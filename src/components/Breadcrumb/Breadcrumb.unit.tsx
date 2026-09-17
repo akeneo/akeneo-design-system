@@ -36,6 +36,17 @@ test('it respects Breadcrumb accessibility standards', () => {
   expect(screen.getByText('Second')).toHaveAttribute('aria-current', 'page');
 });
 
+test('it renders the separator with the grey 120 color', () => {
+  render(
+    <Breadcrumb>
+      <Breadcrumb.Step href="#">First</Breadcrumb.Step>
+      <Breadcrumb.Step href="#">Second</Breadcrumb.Step>
+    </Breadcrumb>
+  );
+
+  expect(screen.getByText('/')).toHaveStyle('color: #67768a');
+});
+
 test('it throws when passing children that are not `Breadcrumb.Step`', () => {
   const mockConsole = jest.spyOn(console, 'error').mockImplementation();
 

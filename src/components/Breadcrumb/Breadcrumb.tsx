@@ -20,6 +20,7 @@ const BreadcrumbContainer = styled.nav`
 
 const Separator = styled.span`
   margin: 0 0.5rem;
+  color: ${getColor('grey', 120)};
 `;
 
 type BreadcrumbChild = ReactElement<LinkProps> | null | boolean | undefined | BreadcrumbChild[];
