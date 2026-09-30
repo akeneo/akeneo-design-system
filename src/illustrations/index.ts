@@ -61,4 +61,5 @@ export * from './UsersIllustration';
 export * from './UsingIllustration';
 export * from './ViewsIllustration';
 export * from './WarningIllustration';
+export * from './ZiggyIllustration';
 export type {IllustrationProps} from './IllustrationProps';

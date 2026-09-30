@@ -163,6 +163,7 @@ const palette: Palette = {
   tertiary: 'grey',
   warning: 'yellow',
   danger: 'red',
+  ai: 'purple',
 };
 
 const fontFamily: FontFamily = {

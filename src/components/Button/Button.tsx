@@ -21,7 +21,7 @@ type ButtonProps = Override<
   {
     /**
      * Level of the button defining it's color and outline.
-     * Possible values are: primary, secondary, tertiary, warning & danger.
+     * Possible values are: primary, secondary, tertiary, warning, danger & ai.
      */
     level?: Level;
 

@@ -6,7 +6,7 @@ import {ArrowDownIcon} from '../../icons';
   title="Components/Buttons/Button"
   component={Button}
   argTypes={{
-    level: {control: {type: 'select'}, options: ['primary', 'secondary', 'tertiary', 'warning', 'danger']},
+    level: {control: {type: 'select'}, options: ['primary', 'secondary', 'tertiary', 'warning', 'danger', 'ai']},
     ghost: {control: {type: 'boolean'}},
     disabled: {control: {type: 'boolean'}},
     active: {control: {type: 'boolean'}},
@@ -80,6 +80,9 @@ Use this playground to test the button component
           <Button {...args} level="danger">
             Danger
           </Button>
+          <Button {...args} level="ai">
+            AI
+          </Button>
         </>
       );
     }}
@@ -107,6 +110,9 @@ Use this playground to test the button component
           </Button>
           <Button {...args} ghost={true} level="danger">
             Danger
+          </Button>
+          <Button {...args} ghost={true} level="ai">
+            AI
           </Button>
         </>
       );
@@ -136,6 +142,9 @@ Use this playground to test the button component
           <Button {...args} active={true} level="danger">
             Danger
           </Button>
+          <Button {...args} active={true} level="ai">
+            AI
+          </Button>
           <br />
           <Button {...args} active={true} ghost={true} level="primary">
             Primary
@@ -151,6 +160,9 @@ Use this playground to test the button component
           </Button>
           <Button {...args} active={true} ghost={true} level="danger">
             Danger
+          </Button>
+          <Button {...args} active={true} ghost={true} level="ai">
+            AI
           </Button>
         </>
       );

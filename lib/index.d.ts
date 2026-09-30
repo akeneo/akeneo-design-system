@@ -876,7 +876,7 @@ declare type KeyFigureProps = {
 
 export declare const KeyIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
-export declare type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
+export declare type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger' | 'ai';
 
 declare type Level_2 = 'info' | 'warning' | 'error' | 'success' | 'learn';
 
@@ -1178,6 +1178,7 @@ export declare type Palette = {
     tertiary: string;
     warning: string;
     danger: string;
+    ai: string;
 };
 
 export declare const palette: Palette;
@@ -1965,5 +1966,7 @@ declare type WindowSize = {
 };
 
 export declare const WorkflowIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
+export declare const ZiggyIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
 
 export { }

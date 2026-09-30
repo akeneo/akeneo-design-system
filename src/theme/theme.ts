@@ -120,6 +120,7 @@ type Palette = {
   tertiary: string;
   warning: string;
   danger: string;
+  ai: string;
 };
 
 type Theme = {
@@ -136,7 +137,7 @@ type FontFamily = {
   monospace: string;
 };
 
-type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
+type Level = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger' | 'ai';
 
 type ThemedProps = {
   theme: DefaultTheme;
