@@ -7,9 +7,9 @@ const Highlighted = styled.span`
 `;
 
 const Highlight: React.FC<{children: string; highlight: string}> = ({children, highlight}) => {
-  const index = children.toLowerCase().indexOf(highlight.toLowerCase());
+  const index = '' === highlight ? -1 : children.toLowerCase().indexOf(highlight.toLowerCase());
   if (index < 0) {
-    return <>{children}</>;
+    return <span>{children}</span>;
   }
 
   const left = children.substring(0, index);
@@ -18,9 +18,9 @@ const Highlight: React.FC<{children: string; highlight: string}> = ({children, h
 
   return (
     <>
-      {left}
+      {'' !== left && <span>{left}</span>}
       <Highlighted>{middle}</Highlighted>
-      {right}
+      {'' !== right && <span>{right}</span>}
     </>
   );
 };

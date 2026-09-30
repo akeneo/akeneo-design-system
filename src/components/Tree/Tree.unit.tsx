@@ -22,7 +22,7 @@ test("it set selected to 'mixed' when a children is selected ", () => {
     </Tree>
   );
 
-  const masterTree = screen.getByText('Master');
+  const masterTree = screen.getByText('Master').closest('[aria-selected]') as HTMLElement;
   expect(masterTree).toBeInTheDocument();
   expect(masterTree.getAttribute('aria-selected')).toBe('true');
 });
@@ -35,7 +35,7 @@ test("it set selected to 'true' when all children are selected ", () => {
     </Tree>
   );
 
-  const masterTree = screen.getByText('Master');
+  const masterTree = screen.getByText('Master').closest('[aria-selected]') as HTMLElement;
   expect(masterTree).toBeInTheDocument();
   expect(masterTree.getAttribute('aria-selected')).toBe('true');
 });
