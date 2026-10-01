@@ -580,6 +580,8 @@ declare type DropdownProps = Override<HTMLAttributes<HTMLDivElement>, {
     children?: ReactNode;
 }>;
 
+export declare const DuplicateIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
 export declare const EditIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const EntitiesIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;

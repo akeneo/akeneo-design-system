@@ -56,6 +56,7 @@ export * from './DialogIcon';
 export * from './DimensionsIcon';
 export * from './DownloadIcon';
 export * from './DragDropIcon';
+export * from './DuplicateIcon';
 export * from './EditIcon';
 export * from './EntityIcon';
 export * from './EntityMultiIcon';
