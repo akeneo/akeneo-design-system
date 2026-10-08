@@ -44,7 +44,9 @@ const Content = styled.div`
   font-size: ${getFontSize('small')};
   border-left: 1px solid;
   flex: 1;
+  min-width: 0;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 
   a {
     color: ${getColor('grey', 140)};
@@ -54,6 +56,7 @@ const Content = styled.div`
 const Title = styled.div`
   font-size: ${getFontSize('big')};
   margin-bottom: 4px;
+  overflow-wrap: anywhere;
 `;
 
 const Timer = styled.div`

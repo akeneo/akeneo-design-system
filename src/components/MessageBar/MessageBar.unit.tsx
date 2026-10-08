@@ -1,4 +1,5 @@
 import React from 'react';
+import 'jest-styled-components';
 import {MessageBar, AnimateMessageBar} from './MessageBar';
 import {screen, act, render, fireEvent} from '../../storybook/test-util';
 import {InfoIcon} from '../../icons';
@@ -126,6 +127,13 @@ test('It can animate a MessageBar', () => {
     jest.runAllTimers();
   });
   expect(onClose).toHaveBeenCalled();
+});
+
+test('it allows long unbroken text to wrap instead of overflowing', () => {
+  render(<MessageBar level="error" title={'a'.repeat(300)} onClose={jest.fn()} dismissTitle="Dismiss notification" />);
+
+  const title = screen.getByText('a'.repeat(300));
+  expect(title).toHaveStyleRule('overflow-wrap', 'anywhere');
 });
 
 test('It cannot animate something else than a MessageBar', () => {
