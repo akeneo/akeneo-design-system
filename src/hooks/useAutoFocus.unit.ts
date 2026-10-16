@@ -54,3 +54,15 @@ test('It does not try to focus if the current ref is null', () => {
   jest.runAllTimers();
   expect(button).not.toHaveFocus();
 });
+
+test('It sets the focus on the first descendant matching the selector', () => {
+  jest.useFakeTimers();
+  const container = document.createElement('div');
+  container.innerHTML = '<span>Title</span><button data-item>First</button><button data-item>Second</button>';
+  document.body.appendChild(container);
+
+  renderHook(() => useAutoFocus({current: container}, '[data-item]'));
+  jest.runAllTimers();
+
+  expect(container.querySelector('[data-item]')).toHaveFocus();
+});

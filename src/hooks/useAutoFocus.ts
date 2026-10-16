@@ -1,11 +1,13 @@
 import {RefObject, useCallback, useEffect} from 'react';
 
-const useAutoFocus = (ref: RefObject<HTMLElement>): (() => void) => {
+const useAutoFocus = (ref: RefObject<HTMLElement>, descendantSelector?: string): (() => void) => {
   const focus = useCallback(() => {
     setTimeout(() => {
-      if (ref.current !== null) ref.current.focus();
+      const target =
+        undefined === descendantSelector ? ref.current : ref.current?.querySelector<HTMLElement>(descendantSelector);
+      target?.focus();
     }, 0);
-  }, [ref]);
+  }, [ref, descendantSelector]);
 
   useEffect(focus, []);
 

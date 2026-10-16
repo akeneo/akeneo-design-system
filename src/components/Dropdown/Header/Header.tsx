@@ -17,6 +17,8 @@ const HeaderContainer = styled.div`
   }
 `;
 
+const HEADER_SELECTOR = '[data-dropdown-header]';
+
 type HeaderProps = Override<
   React.HTMLAttributes<HTMLDivElement>,
   {
@@ -29,8 +31,12 @@ type HeaderProps = Override<
 
 const Header = React.forwardRef<HTMLDivElement, HeaderProps>(
   ({children}: HeaderProps, forwardedRef: Ref<HTMLDivElement>): React.ReactElement => {
-    return <HeaderContainer ref={forwardedRef}>{children}</HeaderContainer>;
+    return (
+      <HeaderContainer data-dropdown-header ref={forwardedRef}>
+        {children}
+      </HeaderContainer>
+    );
   }
 );
 
-export {Header};
+export {Header, HEADER_SELECTOR};

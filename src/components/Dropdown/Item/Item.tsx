@@ -24,6 +24,9 @@ const sizeMap = {
 
 type SIZE = keyof typeof sizeMap;
 
+const ITEM_SELECTOR = '[data-dropdown-item]';
+const NAVIGABLE_ITEM_SELECTOR = `${ITEM_SELECTOR}:not([aria-disabled="true"])`;
+
 const ItemContainer = styled.div<{$size: SIZE; disabled: boolean; $isActive: boolean} & AkeneoThemedProps>`
   background: ${getColor('white')};
   height: ${({$size}: {$size: SIZE}) => sizeMap[$size]}px;
@@ -199,6 +202,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
         onKeyDown={handleKeyDown}
         disabled={disabled}
         aria-disabled={disabled}
+        data-dropdown-item
         $isActive={isActive}
         title={title}
         {...rest}
@@ -210,4 +214,4 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
   }
 );
 
-export {Item, ItemLabel};
+export {Item, ItemLabel, ITEM_SELECTOR, NAVIGABLE_ITEM_SELECTOR};

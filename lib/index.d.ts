@@ -541,7 +541,7 @@ export declare const DragDropIcon: ({ title, size, color, ...props }: IconProps)
 export declare const Dropdown: {
     ({ children, ...rest }: DropdownProps): default_2.JSX.Element;
     Overlay: {
-        ({ verticalPosition, horizontalPosition, dropdownOpenerVisible, fullWidth, parentRef, onClose, children, ...rest }: Omit<default_2.HTMLAttributes<HTMLDivElement>, "children" | "verticalPosition" | "horizontalPosition" | "dropdownOpenerVisible" | "fullWidth" | "onClose" | "parentRef"> & {
+        ({ verticalPosition, horizontalPosition, dropdownOpenerVisible, fullWidth, parentRef, onClose, onKeyDown, children, ...rest }: Omit<default_2.HTMLAttributes<HTMLDivElement>, "children" | "verticalPosition" | "horizontalPosition" | "dropdownOpenerVisible" | "fullWidth" | "onClose" | "parentRef"> & {
             verticalPosition?: VerticalPosition | undefined;
             horizontalPosition?: HorizontalPosition | undefined;
             dropdownOpenerVisible?: boolean | undefined;
@@ -1886,7 +1886,7 @@ export declare const UpdateIcon: ({ title, size, color, ...props }: IconProps) =
 
 export declare const UploadIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
-export declare const useAutoFocus: (ref: RefObject<HTMLElement>) => (() => void);
+export declare const useAutoFocus: (ref: RefObject<HTMLElement>, descendantSelector?: string) => (() => void);
 
 export declare const useBooleanState: (initialValue?: boolean) => readonly [
 boolean,

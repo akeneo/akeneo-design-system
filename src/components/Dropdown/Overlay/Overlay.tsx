@@ -1,4 +1,4 @@
-import React, {ReactNode, useRef, useState, useEffect, RefObject} from 'react';
+import React, {ReactNode, useRef, useState, useEffect, RefObject, KeyboardEvent} from 'react';
 import {createPortal} from 'react-dom';
 import styled, {css} from 'styled-components';
 import {Override} from '../../../shared/override';
@@ -9,6 +9,9 @@ import {useVerticalPosition, VerticalPosition} from '../../../hooks/usePosition'
 import {useWindowResize} from '../../../hooks/useWindowResize';
 import {AkeneoThemedProps, getColor} from '../../../theme/theme';
 import {CommonStyle} from '../../../theme/common';
+import {NAVIGABLE_ITEM_SELECTOR} from '../Item/Item';
+import {LISTBOX_SELECTOR} from '../ItemCollection/ItemCollection';
+import {HEADER_SELECTOR} from '../Header/Header';
 
 const BORDER_SHADOW_OFFSET = 2;
 const MIN_TOP_POSITION = 0;
@@ -131,6 +134,7 @@ const Overlay = ({
   fullWidth = false,
   parentRef,
   onClose,
+  onKeyDown,
   children,
   ...rest
 }: OverlayProps) => {
@@ -167,6 +171,23 @@ const Overlay = ({
     );
   }, [children, overlayVerticalPosition, overlayHorizontalPosition, parentRef, overlayRef, dropdownOpenerVisible]);
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    onKeyDown?.(event);
+
+    if (Key.ArrowDown !== event.key || event.defaultPrevented) return;
+
+    const header = event.target instanceof Element ? event.target.closest(HEADER_SELECTOR) : null;
+    if (null === header || !overlayRef.current?.contains(header)) return;
+
+    const firstNavigableItem = overlayRef.current?.querySelector<HTMLElement>(
+      `${LISTBOX_SELECTOR} ${NAVIGABLE_ITEM_SELECTOR}`
+    );
+    if (!firstNavigableItem) return;
+
+    event.preventDefault();
+    firstNavigableItem.focus();
+  };
+
   const [top, left] = overlayPosition;
 
   const parentWidth = parentRef?.current?.getBoundingClientRect()?.width ?? null;
@@ -180,6 +201,7 @@ const Overlay = ({
         $top={top}
         $left={left}
         $fixedWidth={fullWidth ? parentWidth : null}
+        onKeyDown={handleKeyDown}
         {...rest}
       >
         {children}
