@@ -100,6 +100,29 @@ Cards should be displayed in a grid, therefore, a `CardGrid` component is also a
   </Story>
 </Canvas>
 
+## Subtitle
+
+Use `Card.Subtitle` to display a secondary information under the card text.
+
+<Canvas>
+  <Story name="With Subtitle">
+    {args => {
+      return (
+        <CardGrid>
+          <Card {...args} src={getStaticImage('akenea_200.jpg')}>
+            Card text
+            <Card.Subtitle>Card subtitle</Card.Subtitle>
+          </Card>
+          <Card {...args} src={getStaticImage('akeneb_200.jpg')} isSelected={false} onSelect={() => {}}>
+            Selectable card
+            <Card.Subtitle>Card subtitle</Card.Subtitle>
+          </Card>
+        </CardGrid>
+      );
+    }}
+  </Story>
+</Canvas>
+
 ## Dimmed
 
 Use `dimmed` to visually indicate that the item represented by the card is inactive or unavailable,

@@ -173,6 +173,20 @@ const CardText = styled.span`
   overflow: hidden;
 `;
 
+const CardTexts = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+`;
+
+const CardSubtitle = styled.span`
+  color: ${getColor('grey', 100)};
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
+CardSubtitle.displayName = 'Card.Subtitle';
+
 type BadgeContainerProps = {stacked?: boolean} & AkeneoThemedProps;
 const BadgeContainer = styled.div<BadgeContainerProps>`
   position: absolute;
@@ -261,6 +275,7 @@ const CardComponent = forwardRef<HTMLDivElement, CardProps>(
   ) => {
     const nonLabelChildren: ReactElement[] = [];
     const texts: string[] = [];
+    let subtitle = undefined as string | undefined;
     let linkProps: Partial<LinkProps> = {};
     const isLoadingImage = null === src;
 
@@ -268,7 +283,9 @@ const CardComponent = forwardRef<HTMLDivElement, CardProps>(
       if (typeof child === 'string') {
         texts.push(child);
       } else {
-        if (isValidElement<LinkProps>(child) && Link === child.type) {
+        if (isValidElement<{children: string}>(child) && CardSubtitle === child.type) {
+          subtitle = child.props.children;
+        } else if (isValidElement<LinkProps>(child) && Link === child.type) {
           linkProps = {...child.props, href: disabled ? undefined : child.props.href};
         } else if (isValidElement<BadgeContainerProps>(child) && BadgeContainer === child.type) {
           nonLabelChildren.push(React.cloneElement(child, {key: child.key, stacked}));
@@ -323,7 +340,14 @@ const CardComponent = forwardRef<HTMLDivElement, CardProps>(
           {undefined !== onSelect && (
             <Checkbox aria-label={cardText} checked={isSelected} readOnly={disabled} onChange={onSelect} />
           )}
-          <CardText title={cardText}>{cardText}</CardText>
+          {undefined === subtitle ? (
+            <CardText title={cardText}>{cardText}</CardText>
+          ) : (
+            <CardTexts>
+              <CardText title={cardText}>{cardText}</CardText>
+              <CardSubtitle title={subtitle}>{subtitle}</CardSubtitle>
+            </CardTexts>
+          )}
         </CardLabel>
         {nonLabelChildren}
       </CardContainer>
@@ -333,6 +357,7 @@ const CardComponent = forwardRef<HTMLDivElement, CardProps>(
 
 const Card = Object.assign(CardComponent, {
   BadgeContainer: BadgeContainer,
+  Subtitle: CardSubtitle,
 });
 
 export {Card, CardGrid};

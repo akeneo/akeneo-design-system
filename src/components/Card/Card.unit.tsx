@@ -20,6 +20,18 @@ test('it renders its children properly', () => {
   expect(screen.getByText('100%')).toBeInTheDocument();
 });
 
+test('it renders a subtitle under the card text', () => {
+  render(
+    <Card src="some.jpg">
+      Card text
+      <Card.Subtitle>Card subtitle</Card.Subtitle>
+    </Card>
+  );
+
+  expect(screen.getByText('Card text')).toBeInTheDocument();
+  expect(screen.getByText('Card subtitle')).toBeInTheDocument();
+});
+
 test('it calls onSelect handler when clicked on', () => {
   const onSelect = jest.fn();
   render(

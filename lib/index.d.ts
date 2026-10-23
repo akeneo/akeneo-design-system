@@ -279,6 +279,7 @@ export declare const Card: default_2.ForwardRefExoticComponent<Omit<default_2.HT
     BadgeContainer: StyledComponent<"div", DefaultTheme, {
     stacked?: boolean | undefined;
     } & AkeneoThemedProps, never>;
+    Subtitle: StyledComponent<"span", DefaultTheme, {}, never>;
 };
 
 export declare const CardGrid: StyledComponent<"div", DefaultTheme, CardGridProps & AkeneoThemedProps, never>;
