@@ -508,6 +508,20 @@
         "__isArgsStory": true
       }
     },
+    "components-card--with-subtitle": {
+      "id": "components-card--with-subtitle",
+      "name": "With Subtitle",
+      "title": "Components/Card",
+      "importPath": "./src/components/Card/Card.stories.mdx",
+      "kind": "Components/Card",
+      "story": "With Subtitle",
+      "parameters": {
+        "fileName": "./src/components/Card/Card.stories.mdx",
+        "framework": "react",
+        "__id": "components-card--with-subtitle",
+        "__isArgsStory": true
+      }
+    },
     "components-card--dimmed": {
       "id": "components-card--dimmed",
       "name": "Dimmed",
