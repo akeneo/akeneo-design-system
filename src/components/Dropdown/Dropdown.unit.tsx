@@ -4,6 +4,7 @@ import {Link, Image, Button} from '../../components';
 import {render, screen, fireEvent} from '../../storybook/test-util';
 import {Checkbox} from '../Checkbox/Checkbox';
 import {Surtitle} from './Surtitle/Surtitle';
+import {Subtitle} from './Subtitle/Subtitle';
 import {GroupsIllustration} from '../../illustrations';
 import {getStaticImage} from '../../storybook/util';
 
@@ -118,6 +119,44 @@ test('it renders Surtitle item', () => {
   );
 
   expect(screen.getByTestId('item_with_surtitle')).toHaveStyle({height: '64px'});
+});
+
+test('it renders Subtitle item as tall as a Surtitle one', () => {
+  render(
+    <Dropdown>
+      <Button>Dropdown</Button>
+      <Dropdown.Overlay verticalPosition="down" onClose={jest.fn()}>
+        <Dropdown.ItemCollection>
+          <Dropdown.Item data-testid="item_with_subtitle">
+            <Subtitle label="Item caption">Item</Subtitle>
+          </Dropdown.Item>
+        </Dropdown.ItemCollection>
+      </Dropdown.Overlay>
+    </Dropdown>
+  );
+
+  expect(screen.getByTestId('item_with_subtitle')).toHaveStyle({height: '44px'});
+});
+
+test('it sets the active item in italics unless told otherwise', () => {
+  render(
+    <Dropdown>
+      <Button>Dropdown</Button>
+      <Dropdown.Overlay verticalPosition="down" onClose={jest.fn()}>
+        <Dropdown.ItemCollection>
+          <Dropdown.Item isActive={true} data-testid="italic">
+            Italic
+          </Dropdown.Item>
+          <Dropdown.Item isActive={true} italicWhenActive={false} data-testid="upright">
+            Upright
+          </Dropdown.Item>
+        </Dropdown.ItemCollection>
+      </Dropdown.Overlay>
+    </Dropdown>
+  );
+
+  expect(screen.getByTestId('italic')).toHaveStyle({fontStyle: 'italic', fontWeight: '700'});
+  expect(screen.getByTestId('upright')).toHaveStyle({fontStyle: 'normal', fontWeight: '700'});
 });
 
 test('Dropdown supports ...rest props', () => {

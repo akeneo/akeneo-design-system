@@ -556,9 +556,10 @@ export declare const Dropdown: {
     Header: default_2.ForwardRefExoticComponent<Omit<default_2.HTMLAttributes<HTMLDivElement>, "children"> & {
         children: default_2.ReactNode;
     } & default_2.RefAttributes<HTMLDivElement>>;
-    Item: default_2.ForwardRefExoticComponent<Omit<default_2.HTMLAttributes<HTMLDivElement>, "children" | "disabled" | "isActive"> & {
+    Item: default_2.ForwardRefExoticComponent<Omit<default_2.HTMLAttributes<HTMLDivElement>, "children" | "disabled" | "isActive" | "italicWhenActive"> & {
         disabled?: boolean | undefined;
         isActive?: boolean | undefined;
+        italicWhenActive?: boolean | undefined;
         children: default_2.ReactNode;
     } & default_2.RefAttributes<HTMLDivElement>>;
     Section: StyledComponent<"div", DefaultTheme, {}, never>;
@@ -572,6 +573,10 @@ export declare const Dropdown: {
         noResultTitle?: string | undefined;
     } & default_2.RefAttributes<HTMLDivElement>>;
     Surtitle: default_2.FC<{
+        label: string;
+        children?: default_2.ReactNode;
+    }>;
+    Subtitle: default_2.FC<{
         label: string;
         children?: default_2.ReactNode;
     }>;

@@ -7,6 +7,7 @@ import {Header} from './Header/Header';
 import {Title} from './Header/Title';
 import {getColor} from '../../theme/theme';
 import {Surtitle} from './Surtitle/Surtitle';
+import {Subtitle} from './Subtitle/Subtitle';
 import {Override} from '../../shared/override';
 
 const Section = styled.div`
@@ -70,5 +71,6 @@ Dropdown.Section = Section;
 Dropdown.Title = Title;
 Dropdown.ItemCollection = ItemCollection;
 Dropdown.Surtitle = Surtitle;
+Dropdown.Subtitle = Subtitle;
 
 export {Dropdown};

@@ -8,6 +8,7 @@ import {Key} from '../../../shared/key';
 import {Override} from '../../../shared/override';
 import {LockIcon} from '../../../icons/LockIcon';
 import {Surtitle} from '../Surtitle/Surtitle';
+import {Subtitle} from '../Subtitle/Subtitle';
 
 const ItemLabel = styled.span`
   white-space: nowrap;
@@ -27,7 +28,9 @@ type SIZE = keyof typeof sizeMap;
 const ITEM_SELECTOR = '[data-dropdown-item]';
 const NAVIGABLE_ITEM_SELECTOR = `${ITEM_SELECTOR}:not([aria-disabled="true"])`;
 
-const ItemContainer = styled.div<{$size: SIZE; disabled: boolean; $isActive: boolean} & AkeneoThemedProps>`
+const ItemContainer = styled.div<
+  {$size: SIZE; disabled: boolean; $isActive: boolean; $italicWhenActive: boolean} & AkeneoThemedProps
+>`
   background: ${getColor('white')};
   height: ${({$size}: {$size: SIZE}) => sizeMap[$size]}px;
   line-height: ${({$size}: {$size: SIZE}) => sizeMap[$size]}px;
@@ -46,7 +49,10 @@ const ItemContainer = styled.div<{$size: SIZE; disabled: boolean; $isActive: boo
       }
     `}
 
-  &:focus {
+  /* :focus-visible rather than :focus: the ring shows for keyboard navigation, and not on the item the overlay
+     focuses when it opens from a pointer click, where it read as a selection the user never made. */
+  &:focus-visible {
+    outline: none;
     box-shadow: inset 0 0 0 2px ${getColor('blue', 40)};
   }
 
@@ -74,11 +80,11 @@ const ItemContainer = styled.div<{$size: SIZE; disabled: boolean; $isActive: boo
           }
         `}
 
-  ${({$isActive}) =>
+  ${({$isActive, $italicWhenActive}) =>
     $isActive &&
     css`
       color: ${getColor('brand', 100)};
-      font-style: italic;
+      font-style: ${$italicWhenActive ? 'italic' : 'normal'};
       font-weight: 700;
     `}
 `;
@@ -97,6 +103,11 @@ type ItemProps = Override<
     isActive?: boolean;
 
     /**
+     * Whether the active item is set in italics, on top of bold brand purple. Defaults to true.
+     */
+    italicWhenActive?: boolean;
+
+    /**
      * The content of the item.
      */
     children: ReactNode;
@@ -105,7 +116,16 @@ type ItemProps = Override<
 
 const Item = React.forwardRef<HTMLDivElement, ItemProps>(
   (
-    {children, onKeyDown, disabled = false, isActive = false, onClick, title, ...rest}: ItemProps,
+    {
+      children,
+      onKeyDown,
+      disabled = false,
+      isActive = false,
+      italicWhenActive = true,
+      onClick,
+      title,
+      ...rest
+    }: ItemProps,
     forwardedRef: Ref<HTMLDivElement>
   ): React.ReactElement => {
     let hasImageChild = false;
@@ -183,7 +203,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
         });
       }
 
-      if (isValidElement(child) && child.type === Surtitle) {
+      if (isValidElement(child) && (child.type === Surtitle || child.type === Subtitle)) {
         hasSurtitleChild = true;
       }
 
@@ -204,6 +224,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
         aria-disabled={disabled}
         data-dropdown-item
         $isActive={isActive}
+        $italicWhenActive={italicWhenActive}
         title={title}
         {...rest}
         ref={forwardedRef}
