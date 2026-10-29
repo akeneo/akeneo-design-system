@@ -1537,10 +1537,11 @@ export declare const Table: {
         children?: default_2.ReactNode;
     } & default_2.RefAttributes<HTMLTableHeaderCellElement>>;
     Body: default_2.ForwardRefExoticComponent<TableBodyProps & default_2.RefAttributes<HTMLTableSectionElement>>;
-    Row: default_2.ForwardRefExoticComponent<Omit<default_2.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "level" | "isSelected" | "rowIndex" | "onSelectToggle"> & {
+    Row: default_2.ForwardRefExoticComponent<Omit<default_2.HTMLAttributes<HTMLTableRowElement>, "children" | "onClick" | "level" | "isSelected" | "rowIndex" | "onSelectToggle" | "isSelectionReadOnly"> & {
         children?: default_2.ReactNode;
         onSelectToggle?: ((isSelected: boolean) => void) | undefined;
         isSelected?: boolean | "mixed" | undefined;
+        isSelectionReadOnly?: boolean | undefined;
         level?: ("tertiary" | "warning") | undefined;
         onClick?: ((event: default_2.MouseEvent<HTMLTableRowElement, MouseEvent>) => void) | undefined;
         rowIndex?: number | undefined;
@@ -1689,6 +1690,7 @@ declare type TableRowProps = Override<HTMLAttributes<HTMLTableRowElement>, {
     children?: ReactNode;
     onSelectToggle?: (isSelected: boolean) => void;
     isSelected?: boolean | 'mixed';
+    isSelectionReadOnly?: boolean;
     level?: Level_4;
     onClick?: (event: MouseEvent_2<HTMLTableRowElement>) => void;
     rowIndex?: number;

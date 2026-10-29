@@ -37,6 +37,37 @@ test('it calls onSelectToggle handler when user clicks on selectable row', () =>
   expect(onSelectToggle).toBeCalled();
 });
 
+test('it does not call onSelectToggle when the row selection is read only', () => {
+  const onSelectToggle = jest.fn();
+  render(
+    <Table isSelectable={true}>
+      <Table.Body>
+        <Table.Row onSelectToggle={onSelectToggle} isSelected={false} isSelectionReadOnly={true}>
+          <Table.Cell>A value</Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
+  );
+
+  fireEvent.click(screen.getByRole('checkbox', {hidden: true}));
+
+  expect(onSelectToggle).not.toBeCalled();
+});
+
+test('it does not require onSelectToggle on a row whose selection is read only', () => {
+  render(
+    <Table isSelectable={true}>
+      <Table.Body>
+        <Table.Row isSelectionReadOnly={true}>
+          <Table.Cell>A value</Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
+  );
+
+  expect(screen.getByText('A value')).toBeInTheDocument();
+});
+
 test('it calls onClick handler when user clicks on row', () => {
   const onClick = jest.fn();
   render(

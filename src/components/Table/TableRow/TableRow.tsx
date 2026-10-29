@@ -165,6 +165,11 @@ type TableRowProps = Override<
     isSelected?: boolean | 'mixed';
 
     /**
+     * Define if the row checkbox is shown greyed out and cannot be toggled, for a row that cannot be selected
+     */
+    isSelectionReadOnly?: boolean;
+
+    /**
      * Define if the row has a warning
      */
     level?: Level;
@@ -183,7 +188,17 @@ type TableRowProps = Override<
 
 const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
   (
-    {rowIndex = 0, isSelected = false, level, onSelectToggle, onClick, draggable, children, ...rest}: TableRowProps,
+    {
+      rowIndex = 0,
+      isSelected = false,
+      isSelectionReadOnly = false,
+      level,
+      onSelectToggle,
+      onClick,
+      draggable,
+      children,
+      ...rest
+    }: TableRowProps,
     forwardedRef: Ref<HTMLTableRowElement>
   ) => {
     const {isSelectable, displayCheckbox, isDragAndDroppable, hasWarningRows, hasLockedRows, dragAndDropMode} =
@@ -191,13 +206,14 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
     const [placeholderPosition, placeholderDragEnter, placeholderDragLeave, placeholderDragEnd] =
       usePlaceholderPosition(rowIndex, dragAndDropMode);
 
-    if (isSelectable && (undefined === isSelected || undefined === onSelectToggle)) {
+    if (isSelectable && !isSelectionReadOnly && (undefined === isSelected || undefined === onSelectToggle)) {
       throw Error('A row in a selectable table should have the prop "isSelected" and "onSelectToggle"');
     }
     const {index: draggedElementIndex, onDragStart, onDragEnd} = useContext(DraggedElementContext);
 
     const handleCheckboxChange = (event: SyntheticEvent) => {
       event.stopPropagation();
+      if (isSelectionReadOnly) return;
       onSelectToggle?.(!isSelected);
     };
 
@@ -242,6 +258,7 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
           >
             <Checkbox
               checked={isSelected}
+              readOnly={isSelectionReadOnly}
               onChange={(_value, e) => {
                 handleCheckboxChange(e);
               }}
