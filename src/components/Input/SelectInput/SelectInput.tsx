@@ -133,6 +133,10 @@ const OptionContainer = styled.div<
     `}
 `;
 
+const DisabledOptionIcon = styled(LockIcon)`
+  flex-shrink: 0;
+`;
+
 const EmptyResultContainer = styled.div`
   background: ${getColor('white')};
   height: 20px;
@@ -681,7 +685,7 @@ const SelectInput = ({
                     $highlighted={isActiveOption}
                   >
                     {React.cloneElement(child)}
-                    {isOptionDisabled && <LockIcon size={18} />}
+                    {isOptionDisabled && <DisabledOptionIcon size={18} />}
                   </OptionContainer>
                 );
               })

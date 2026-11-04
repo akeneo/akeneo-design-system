@@ -431,6 +431,36 @@ Use `size="big"` together with `SelectInput.Surtitle` to display each option's c
     </Story>
 </Canvas>
 
+## Variation on long disabled options
+
+A disabled option keeps the size of its lock icon when its label is too long: only the label is truncated.
+
+<Canvas>
+  <Story name="Long disabled options">
+    {args => {
+      const [value, setValue] = useState(null);
+      return (
+        <SpaceContainer width={220} height={220}>
+          <SelectInput {...args} value={value} onChange={setValue}>
+            <SelectInput.Option value="master" title="Master catalog">
+              Master catalog
+            </SelectInput.Option>
+            <SelectInput.Option value="sales" title="Sales catalog (no attribute to copy)" disabled={true}>
+              Sales catalog (no attribute to copy)
+            </SelectInput.Option>
+            <SelectInput.Option value="print" title="Print (no attribute)" disabled={true}>
+              Print (no attribute)
+            </SelectInput.Option>
+            <SelectInput.Option value="suppliers" title="Suppliers and manufacturers of the brand">
+              Suppliers and manufacturers of the brand
+            </SelectInput.Option>
+          </SelectInput>
+        </SpaceContainer>
+      );
+    }}
+  </Story>
+</Canvas>
+
 ## Pagination
 
 <Canvas>
