@@ -1992,6 +1992,20 @@
         "__isArgsStory": true
       }
     },
+    "components-inputs-select-input--long-disabled-options": {
+      "id": "components-inputs-select-input--long-disabled-options",
+      "name": "Long disabled options",
+      "title": "Components/Inputs/Select input",
+      "importPath": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+      "kind": "Components/Inputs/Select input",
+      "story": "Long disabled options",
+      "parameters": {
+        "fileName": "./src/components/Input/SelectInput/SelectInput.stories.mdx",
+        "framework": "react",
+        "__id": "components-inputs-select-input--long-disabled-options",
+        "__isArgsStory": true
+      }
+    },
     "components-inputs-select-input--pagination": {
       "id": "components-inputs-select-input--pagination",
       "name": "Pagination",
