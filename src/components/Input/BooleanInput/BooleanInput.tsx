@@ -122,7 +122,7 @@ const ClearButton = styled.button`
   margin-left: 5px;
   padding: 5px;
   vertical-align: middle;
-  background: ${getColor('white')};
+  background: transparent;
   color: ${getColor('grey', 100)};
 `;
 
