@@ -1354,6 +1354,8 @@ export declare const SectionTitle: {
     Spacer: StyledComponent<"div", DefaultTheme, {}, never>;
     Separator: StyledComponent<"div", DefaultTheme, {}, never>;
     Information: StyledComponent<"div", DefaultTheme, {}, never>;
+    StepNumber: ({ label, children, ...rest }: StepNumberProps) => default_2.JSX.Element;
+    Highlight: StyledComponent<"span", DefaultTheme, {}, never>;
 };
 
 declare const SectionTitle_2: ({ size, color, children, ...rest }: default_2.PropsWithChildren<{
@@ -1463,6 +1465,11 @@ export declare type SplitButtonProps = Omit<Override<ButtonProps, {
 export declare const StarIcon: ({ title, size, color, fill, ...props }: IconProps) => default_2.JSX.Element;
 
 export declare const StatusIllustration: ({ title, size, ...props }: IllustrationProps) => default_2.JSX.Element;
+
+declare type StepNumberProps = Override<HTMLAttributes<HTMLSpanElement>, {
+    label: string;
+    children: ReactNode;
+}>;
 
 declare type StepState = 'done' | 'inprogress' | 'todo';
 

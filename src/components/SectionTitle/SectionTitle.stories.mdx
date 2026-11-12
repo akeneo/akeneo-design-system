@@ -9,6 +9,8 @@ import {Scrollable, Content} from '../../storybook/PreviewGallery';
   component={SectionTitle}
   subcomponents={{
     'SectionTitle.Title': SectionTitle.Title,
+    'SectionTitle.StepNumber': SectionTitle.StepNumber,
+    'SectionTitle.Highlight': SectionTitle.Highlight,
   }}
   args={{
     children: 'General parameters',
@@ -75,6 +77,30 @@ Use this component only for title, not for description or help message.
       </SectionTitle>
       <Content height={400}>Some other content</Content>
     </Scrollable>
+  </Story>
+</Canvas>
+
+## Numbered steps
+
+Use `SectionTitle.StepNumber` inside `SectionTitle.Title` when a page walks the user through numbered steps, and `SectionTitle.Highlight` to accent the key words of the step title.
+Its `label` is hidden on screen but announced by screen readers before the number, so the heading reads "Step 1 Select the primary products".
+
+<Canvas>
+  <Story name="Numbered steps">
+    <SectionTitle>
+      <SectionTitle.Title level="secondary">
+        <SectionTitle.StepNumber label="Step">1</SectionTitle.StepNumber>
+        Select the <SectionTitle.Highlight>primary products</SectionTitle.Highlight>
+      </SectionTitle.Title>
+    </SectionTitle>
+    <SectionTitle>
+      <SectionTitle.Title level="secondary">
+        <SectionTitle.StepNumber label="Step">2</SectionTitle.StepNumber>
+        Select the <SectionTitle.Highlight>compatible products</SectionTitle.Highlight>
+      </SectionTitle.Title>
+      <SectionTitle.Spacer />
+      <SectionTitle.Information>10 results</SectionTitle.Information>
+    </SectionTitle>
   </Story>
 </Canvas>
 

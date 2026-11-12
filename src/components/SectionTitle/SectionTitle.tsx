@@ -62,6 +62,61 @@ const Information = styled.div`
   white-space: nowrap;
 `;
 
+const StepNumberContainer = styled.span`
+  display: inline-block;
+  vertical-align: top;
+  min-width: 28px;
+  height: 23px;
+  margin: calc((44px - 23px) / 2) 10px 0 0;
+  padding: 0 5px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-color: ${getColor('blue', 120)};
+  color: ${getColor('white')};
+  font-size: ${getFontSize('default')};
+  font-weight: 600;
+  line-height: 23px;
+  text-align: center;
+`;
+
+const VisuallyHidden = styled.span`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+`;
+
+type StepNumberProps = Override<
+  HTMLAttributes<HTMLSpanElement>,
+  {
+    /**
+     * The word announced by screen readers before the number, e.g. "Step".
+     */
+    label: string;
+
+    /**
+     * The number of the step.
+     */
+    children: ReactNode;
+  }
+>;
+
+const StepNumber = ({label, children, ...rest}: StepNumberProps) => (
+  <StepNumberContainer {...rest}>
+    <VisuallyHidden>{label} </VisuallyHidden>
+    {children}
+  </StepNumberContainer>
+);
+
+const Highlight = styled.span`
+  font-weight: 700;
+`;
+
 type SectionTitleProps = Override<
   HTMLAttributes<HTMLDivElement>,
   {
@@ -109,5 +164,7 @@ SectionTitle.Title = Title;
 SectionTitle.Spacer = Spacer;
 SectionTitle.Separator = Separator;
 SectionTitle.Information = Information;
+SectionTitle.StepNumber = StepNumber;
+SectionTitle.Highlight = Highlight;
 
 export {SectionTitle};
