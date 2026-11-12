@@ -3308,6 +3308,20 @@
         "__isArgsStory": false
       }
     },
+    "components-section-title--numbered-steps": {
+      "id": "components-section-title--numbered-steps",
+      "name": "Numbered steps",
+      "title": "Components/Section title",
+      "importPath": "./src/components/SectionTitle/SectionTitle.stories.mdx",
+      "kind": "Components/Section title",
+      "story": "Numbered steps",
+      "parameters": {
+        "fileName": "./src/components/SectionTitle/SectionTitle.stories.mdx",
+        "framework": "react",
+        "__id": "components-section-title--numbered-steps",
+        "__isArgsStory": false
+      }
+    },
     "components-section-title--title-level": {
       "id": "components-section-title--title-level",
       "name": "Title level",
