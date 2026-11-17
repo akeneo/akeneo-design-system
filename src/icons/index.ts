@@ -102,6 +102,7 @@ export * from './MediaLinkIcon';
 export * from './MegaphoneIcon';
 export * from './MetricIcon';
 export * from './MinifyIcon';
+export * from './MinusIcon';
 export * from './MoreIcon';
 export * from './MoreVerticalIcon';
 export * from './MouseClickIcon';

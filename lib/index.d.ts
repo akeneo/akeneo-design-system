@@ -1052,6 +1052,8 @@ declare type MetricInputProps = {
 
 export declare const MinifyIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
 
+export declare const MinusIcon: ({ title, size, color, ...props }: IconProps) => default_2.JSX.Element;
+
 export declare const Modal: default_2.FC<ModalProps> & {
     BottomButtons: typeof BottomButtons;
     TopRightButtons: typeof TopRightButtons;
