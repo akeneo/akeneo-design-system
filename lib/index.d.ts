@@ -1601,15 +1601,15 @@ export declare const TableInput: {
         }): default_2.JSX.Element;
         displayName: string;
     };
-    Text: ({ children, value, ...rest }: Omit<TextInputProps, "highlighted" | "inError"> & {
+    Text: ({ children, value, highlighted, inError, ...rest }: Omit<TextInputProps, "highlighted" | "inError"> & {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;
     }) => default_2.JSX.Element;
-    Date: ({ children, value, ...rest }: Omit<DateInputProps, "highlighted" | "inError"> & {
+    Date: ({ children, value, highlighted, inError, ...rest }: Omit<DateInputProps, "highlighted" | "inError"> & {
         highlighted?: boolean | undefined;
         inError?: boolean | undefined;
     }) => default_2.JSX.Element;
-    Number: ({ children, value, ...rest }: TableInputNumberProps) => default_2.JSX.Element;
+    Number: ({ children, value, highlighted, inError, ...rest }: TableInputNumberProps) => default_2.JSX.Element;
     Boolean: default_2.FC<Omit<default_2.HTMLAttributes<HTMLDivElement>, "onChange" | "value" | "clearLabel" | "yesLabel" | "noLabel" | "highlighted" | "inError" | "openDropdownLabel"> & {
         value: boolean | null;
         onChange: (value: boolean | null) => void;

@@ -31,17 +31,17 @@ type TableInputNumberProps = Override<
   }
 >;
 
-const TableInputNumber = ({children, value, ...rest}: TableInputNumberProps) => {
+const TableInputNumber = ({children, value, highlighted, inError, ...rest}: TableInputNumberProps) => {
   const {readOnly} = React.useContext(TableInputContext);
   if (readOnly) {
     return (
-      <TableInputReadOnlyCell title={value} $highlighted={rest.highlighted} $inError={rest.inError}>
+      <TableInputReadOnlyCell title={value} $highlighted={highlighted} $inError={inError}>
         {value}
       </TableInputReadOnlyCell>
     );
   } else
     return (
-      <EditableTableInputNumber value={value} {...rest}>
+      <EditableTableInputNumber value={value} $highlighted={highlighted} $inError={inError} {...rest}>
         {children}
       </EditableTableInputNumber>
     );

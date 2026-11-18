@@ -71,6 +71,8 @@ const TableInputMeasurement: React.FC<TableInputMeasurementProps> = ({
   openLabel,
   onChange,
   units,
+  highlighted,
+  inError,
   ...rest
 }) => {
   const {readOnly} = React.useContext(TableInputContext);
@@ -86,11 +88,11 @@ const TableInputMeasurement: React.FC<TableInputMeasurementProps> = ({
   const selectedUnit = units.find(({value}) => value === unit);
 
   return readOnly ? (
-    <TableInputReadOnlyCell $highlighted={rest.highlighted} $inError={rest.inError}>
+    <TableInputReadOnlyCell $highlighted={highlighted} $inError={inError}>
       {amount} <span>{selectedUnit?.symbol || selectedUnit?.label}</span>
     </TableInputReadOnlyCell>
   ) : (
-    <TableInputMeasurementContainer {...rest}>
+    <TableInputMeasurementContainer $highlighted={highlighted} $inError={inError} {...rest}>
       <TableInputMeasurementAmount value={amount} onChange={handleAmountChange} />
       <TableInputMeasurementUnit
         value={unit || null}

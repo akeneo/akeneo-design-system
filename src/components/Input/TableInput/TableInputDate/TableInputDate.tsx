@@ -31,17 +31,17 @@ type TableInputDateProps = Override<
   }
 >;
 
-const TableInputDate = ({children, value, ...rest}: TableInputDateProps) => {
+const TableInputDate = ({children, value, highlighted, inError, ...rest}: TableInputDateProps) => {
   const {readOnly} = React.useContext(TableInputContext);
   if (readOnly) {
     return (
-      <TableInputReadOnlyCell title={value} $highlighted={rest.highlighted} $inError={rest.inError}>
+      <TableInputReadOnlyCell title={value} $highlighted={highlighted} $inError={inError}>
         {value}
       </TableInputReadOnlyCell>
     );
   } else
     return (
-      <EditableTableInputDate value={value} {...rest}>
+      <EditableTableInputDate value={value} $highlighted={highlighted} $inError={inError} {...rest}>
         {children}
       </EditableTableInputDate>
     );

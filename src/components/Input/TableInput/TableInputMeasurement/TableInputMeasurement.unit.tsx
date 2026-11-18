@@ -1,6 +1,9 @@
 import React from 'react';
+import 'jest-styled-components';
 import {render, screen, fireEvent} from '../../../../storybook/test-util';
 import {TableInputMeasurement} from './TableInputMeasurement';
+import {getColor} from '../../../../theme/theme';
+import {pimTheme} from '../../../../themes';
 
 test('it renders its children properly', () => {
   render(
@@ -102,4 +105,54 @@ test('TableInputMeasurement supports ...rest props', () => {
     </table>
   );
   expect(screen.getByTestId('my_value')).toBeInTheDocument();
+});
+
+test('it paints an editable measurement cell in error', () => {
+  render(
+    <table>
+      <thead>
+        <tr>
+          <td>
+            <TableInputMeasurement
+              onChange={jest.fn()}
+              openLabel={'open'}
+              emptyResultLabel={'no results'}
+              amount={'42'}
+              unit={'METER'}
+              units={[{value: 'METER', symbol: 'm', label: 'Meter'}]}
+              data-testid={'my_value'}
+              inError={true}
+            />
+          </td>
+        </tr>
+      </thead>
+    </table>
+  );
+
+  expect(screen.getByTestId('my_value')).toHaveStyleRule('background', getColor('red', 10)({theme: pimTheme}));
+});
+
+test('it paints a highlighted editable measurement cell', () => {
+  render(
+    <table>
+      <thead>
+        <tr>
+          <td>
+            <TableInputMeasurement
+              onChange={jest.fn()}
+              openLabel={'open'}
+              emptyResultLabel={'no results'}
+              amount={'42'}
+              unit={'METER'}
+              units={[{value: 'METER', symbol: 'm', label: 'Meter'}]}
+              data-testid={'my_value'}
+              highlighted={true}
+            />
+          </td>
+        </tr>
+      </thead>
+    </table>
+  );
+
+  expect(screen.getByTestId('my_value')).toHaveStyleRule('background', getColor('green', 10)({theme: pimTheme}));
 });
